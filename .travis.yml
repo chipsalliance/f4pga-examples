@@ -1,14 +1,20 @@
 os: linux
 dist: bionic
 language: c++
+env:
+  global:
+       - DEBIAN_FRONTEND: noninteractive
+addons:
+  apt:
+    packages:
+        - wget
+        - locales
 
 before_install:
-        - export DEBIAN_FRONTEND=noninteractive
-
-install:
-        - sudo apt-get update && sudo apt-get install -y wget locales
         - sudo locale-gen "en_US.UTF-8"
         - export LANG="en_US.UTF-8"
+
+install:
         - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
         - bash miniconda.sh -b -p $HOME/miniconda
         - source "$HOME/miniconda/etc/profile.d/conda.sh"
@@ -29,4 +35,8 @@ script:
         - tar -xf symbiflow-arch-defs-install-a321d9d9.tar.xz
         - export PATH=$TRAVIS_BUILD_DIR/install/bin:$PATH
         - cd $TRAVIS_BUILD_DIR/counter_test
+        - make
+        - cd $TRAVIS_BUILD_DIR/picosoc_demo
+        - make
+        - cd $TRAVIS_BUILD_DIR/linux_litex_demo
         - make

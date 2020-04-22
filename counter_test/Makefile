@@ -20,10 +20,10 @@ ${BUILDDIR}/${TOP}.net: ${BUILDDIR}/${TOP}.eblif
 	cd ${BUILDDIR} && pack -e ${TOP}.eblif -d ${DEVICE}
 
 ${BUILDDIR}/${TOP}.place: ${BUILDDIR}/${TOP}.net
-	cd ${BUILDDIR} && place -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME}
+	cd ${BUILDDIR} && place -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME} 2>&1 > /dev/null
 
 ${BUILDDIR}/${TOP}.route: ${BUILDDIR}/${TOP}.place
-	cd ${BUILDDIR} && route -e ${TOP}.eblif -d ${DEVICE}
+	cd ${BUILDDIR} && route -e ${TOP}.eblif -d ${DEVICE} 2>&1 > /dev/null
 
 ${BUILDDIR}/${TOP}.fasm: ${BUILDDIR}/${TOP}.route
 	cd ${BUILDDIR} && write_fasm -e ${TOP}.eblif -d ${DEVICE}

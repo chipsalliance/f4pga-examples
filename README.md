@@ -41,7 +41,7 @@ The Travis-based CI performs all the necessary steps to build the example design
 If you want to manually build the examples, run following commands:
 
 ```bash
-git clone https://github.com/antmicro/symbiflow-examples.git
+git clone https://github.com/SymbiFlow/symbiflow-examples.git
 cd symbiflow-examples
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
 bash miniconda.sh -b -p $HOME/miniconda

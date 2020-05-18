@@ -1,0 +1,9 @@
+[submodule "third_party/prjxray-db"]
+	path = third_party/prjxray-db
+	url = https://github.com/SymbiFlow/prjxray-db
+[submodule "third_party/prjxray"]
+	path = third_party/prjxray
+	url = https://github.com/SymbiFlow/prjxray
+[submodule "third_party/fasm"]
+	path = third_party/fasm
+	url = https://github.com/SymbiFlow/fasm.git

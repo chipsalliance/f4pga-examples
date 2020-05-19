@@ -43,22 +43,25 @@ If you want to manually build the examples, run following commands:
 ```bash
 git clone https://github.com/SymbiFlow/symbiflow-examples.git
 cd symbiflow-examples
+git submodule update --init --recursive
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
 bash miniconda.sh -b -p $HOME/miniconda
 source "$HOME/miniconda/etc/profile.d/conda.sh"
 conda config --set always_yes yes --set changeps1 no
-conda config --add channels conda-forge
-conda config --add channels symbiflow
 conda update -q conda
-conda activate
-conda install -c symbiflow yosys
-conda install -c symbiflow yosys-plugins
-conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
-conda install lxml simplejson intervaltree python-constraint git pip
-pip install git+https://github.com/symbiflow/fasm
-wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz"
-tar -xf symbiflow-arch-defs-install-a321d9d9.tar.xz
+conda env create --file $PWD/conf/environment.yml
+conda init bash
+source ~/.bashrc
+conda activate symbiflow-examples-env
+wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/11/20200519-183311/symbiflow-arch-defs-install-ccb38aa3.tar.xz"
+tar -xf symbiflow-arch-defs-install-ccb38aa3.tar.xz
+pushd third_party/prjxray
+make build -j`nproc`
+popd
 export PATH=$PWD/install/bin:$PATH
+export XRAY_DATABASE_DIR=$PWD/third_party/prjxray-db
+export XRAY_FASM2FRAMES=$PWD/third_party/prjxray/utils/fasm2frames.py
+export XRAY_TOOLS_DIR=$PWD/third_party/prjxray/build/tools
 # counter example
 pushd counter_test && make && popd
 # picosoc example

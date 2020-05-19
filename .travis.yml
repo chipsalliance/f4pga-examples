@@ -15,24 +15,26 @@ before_install:
         - export LANG="en_US.UTF-8"
 
 install:
+        - git submodule update --init --recursive
         - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
         - bash miniconda.sh -b -p $HOME/miniconda
         - source "$HOME/miniconda/etc/profile.d/conda.sh"
         - hash -r
         - conda config --set always_yes yes --set changeps1 no
-        - conda config --add channels conda-forge
-        - conda config --add channels symbiflow
         - conda update -q conda
-        - conda activate
-        - conda install -c symbiflow yosys
-        - conda install -c symbiflow yosys-plugins
-        - conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
-        - conda install lxml simplejson intervaltree python-constraint git pip
-        - pip install git+https://github.com/symbiflow/fasm
+        - conda env create --file $TRAVIS_BUILD_DIR/conf/environment.yml
+        - conda init bash
+        - source ~/.bashrc
+        - conda activate symbiflow-examples-env
         - wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/11/20200519-183311/symbiflow-arch-defs-install-ccb38aa3.tar.xz"
         - tar -xf symbiflow-arch-defs-install-ccb38aa3.tar.xz
+        - cd third_party/prjxray
+        - make build -j`nproc`
 script:
         - export PATH=$TRAVIS_BUILD_DIR/install/bin:$PATH
+        - export XRAY_DATABASE_DIR=$TRAVIS_BUILD_DIR/third_party/prjxray-db
+        - export XRAY_FASM2FRAMES=$TRAVIS_BUILD_DIR/third_party/prjxray/utils/fasm2frames.py
+        - export XRAY_TOOLS_DIR=$TRAVIS_BUILD_DIR/third_party/prjxray/build/tools
         - cd $TRAVIS_BUILD_DIR/counter_test
         - make
         - cd $TRAVIS_BUILD_DIR/picosoc_demo

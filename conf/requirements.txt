@@ -1,0 +1,6 @@
+simplejson
+lxml
+python-constraint
+intervaltree
+-e ../third_party/fasm
+-e ../third_party/prjxray

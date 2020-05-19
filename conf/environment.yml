@@ -1,0 +1,13 @@
+name: symbiflow-examples-env
+channels:
+  - m-labs
+  - conda-forge
+  - pkgw-forge
+  - symbiflow
+dependencies:
+  - yosys
+  - yosys-plugins
+  - vtr=8.0.0.rc2_3935_g7d6424bb0
+  - pip
+  - pip:                            # Packages installed from PyPI
+    - -r file:requirements.txt

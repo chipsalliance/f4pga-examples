@@ -29,10 +29,9 @@ install:
         - conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
         - conda install lxml simplejson intervaltree python-constraint git pip
         - pip install git+https://github.com/symbiflow/fasm
-        - wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz"
-
+        - wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/11/20200519-183311/symbiflow-arch-defs-install-ccb38aa3.tar.xz"
+        - tar -xf symbiflow-arch-defs-install-ccb38aa3.tar.xz
 script:
-        - tar -xf symbiflow-arch-defs-install-a321d9d9.tar.xz
         - export PATH=$TRAVIS_BUILD_DIR/install/bin:$PATH
         - cd $TRAVIS_BUILD_DIR/counter_test
         - make

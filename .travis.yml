@@ -15,25 +15,10 @@ before_install:
         - export LANG="en_US.UTF-8"
 
 install:
-        - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-        - bash miniconda.sh -b -p $HOME/miniconda
-        - source "$HOME/miniconda/etc/profile.d/conda.sh"
-        - hash -r
-        - conda config --set always_yes yes --set changeps1 no
-        - conda config --add channels conda-forge
-        - conda config --add channels symbiflow
-        - conda update -q conda
-        - conda activate
-        - conda install -c symbiflow yosys
-        - conda install -c symbiflow yosys-plugins
-        - conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
-        - conda install lxml simplejson intervaltree python-constraint git pip
-        - pip install git+https://github.com/symbiflow/fasm
-        - wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz"
+        - make conda
 
 script:
-        - tar -xf symbiflow-arch-defs-install-a321d9d9.tar.xz
-        - export PATH=$TRAVIS_BUILD_DIR/install/bin:$PATH
+        - source env.sh
         - cd $TRAVIS_BUILD_DIR/counter_test
         - make
         - cd $TRAVIS_BUILD_DIR/picosoc_demo

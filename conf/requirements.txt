@@ -1,0 +1,6 @@
+simplejson
+lxml
+python-constraint
+intervaltree
+-e git://github.com/SymbiFlow/fasm.git#egg=fasm
+-e git://github.com/SymbiFlow/prjxray.git#egg=prjxray

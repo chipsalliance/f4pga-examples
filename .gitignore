@@ -1,0 +1,8 @@
+# Environment
+env
+
+# Python modules
+conf/src
+
+# Build files
+**/build

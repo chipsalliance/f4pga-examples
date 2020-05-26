@@ -75,6 +75,8 @@ The `linux_litex` example is already provided with working Linux images.
 To build the examples, run following commands from the project root directory:
 
 ```bash
+export INSTALL_DIR=/opt/symbiflow
+source $INSTALL_DIR/conda/etc/profile.d/conda.sh
 conda activate
 # adding symbiflow toolchain binaries to PATH
 export PATH=$INSTALL_DIR/install/bin:$PATH

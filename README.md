@@ -49,13 +49,13 @@ conda config --set always_yes yes --set changeps1 no
 conda config --add channels conda-forge
 conda config --add channels symbiflow
 conda update -q conda
+wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
 conda activate
 conda install -c symbiflow yosys
 conda install -c symbiflow yosys-plugins
 conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
 conda install python-constraint make lxml simplejson intervaltree git pip
 pip install git+https://github.com/symbiflow/fasm
-wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
 conda deactivate
 ```
 

@@ -53,7 +53,7 @@ conda activate
 conda install -c symbiflow yosys
 conda install -c symbiflow yosys-plugins
 conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
-conda install lxml simplejson intervaltree python-constraint git pip
+conda install python-constraint make lxml simplejson intervaltree git pip
 pip install git+https://github.com/symbiflow/fasm
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
 conda deactivate
@@ -72,14 +72,15 @@ The example designs are provided in separate directories:
 The Linux images for the `linux_litex` example can be build following the [linux on litex vexriscv](https://github.com/litex-hub/linux-on-litex-vexriscv) instructions.
 The `linux_litex` example is already provided with working Linux images.
 
-To build the examples, run following commands from the project root directory:
+To build the examples, run following commands:
 
 ```bash
 export INSTALL_DIR=/opt/symbiflow
-source $INSTALL_DIR/conda/etc/profile.d/conda.sh
-conda activate
 # adding symbiflow toolchain binaries to PATH
 export PATH=$INSTALL_DIR/install/bin:$PATH
+source $INSTALL_DIR/conda/etc/profile.d/conda.sh
+conda activate
+git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 # counter example
 pushd counter_test && make && popd
 # picosoc example

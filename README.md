@@ -47,8 +47,7 @@ bash Miniconda3-latest-Linux-x86_64.sh -b -p $INSTALL_DIR/conda && rm Miniconda3
 source $INSTALL_DIR/conda/etc/profile.d/conda.sh
 conda update -y -q conda
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
-conda install -y -c symbiflow yosys yosys-plugins
-conda install -y -c symbiflow -c conda-forge vtr=8.0.0.rc2_3575_g253f75b6d
+conda install -y -c symbiflow yosys yosys-plugins vtr-no-gui
 conda install -y make lxml simplejson intervaltree git pip
 conda activate
 pip install python-constraint

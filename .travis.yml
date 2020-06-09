@@ -15,28 +15,30 @@ before_install:
         - export LANG="en_US.UTF-8"
 
 install:
-        - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-        - bash miniconda.sh -b -p $HOME/miniconda
-        - source "$HOME/miniconda/etc/profile.d/conda.sh"
-        - hash -r
-        - conda config --set always_yes yes --set changeps1 no
-        - conda config --add channels conda-forge
-        - conda config --add channels symbiflow
-        - conda update -q conda
+        - export INSTALL_DIR=/opt/symbiflow
+        - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+        - bash Miniconda3-latest-Linux-x86_64.sh -b -p $INSTALL_DIR/conda && rm Miniconda3-latest-Linux-x86_64.sh
+        - source $INSTALL_DIR/conda/etc/profile.d/conda.sh
+        - conda update -y -q conda
+        - wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
+        - conda install -y -c symbiflow yosys yosys-plugins
+        - conda install -y -c symbiflow -c conda-forge vtr=8.0.0.rc2_3575_g253f75b6d
+        - conda install -y make lxml simplejson intervaltree git pip
         - conda activate
-        - conda install -c symbiflow yosys
-        - conda install -c symbiflow yosys-plugins
-        - conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
-        - conda install lxml simplejson intervaltree python-constraint git pip
+        - pip install python-constraint
         - pip install git+https://github.com/symbiflow/fasm
-        - wget "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz"
+        - conda deactivate
 
 script:
-        - tar -xf symbiflow-arch-defs-install-a321d9d9.tar.xz
-        - export PATH=$TRAVIS_BUILD_DIR/install/bin:$PATH
-        - cd $TRAVIS_BUILD_DIR/counter_test
-        - make
-        - cd $TRAVIS_BUILD_DIR/picosoc_demo
-        - make
-        - cd $TRAVIS_BUILD_DIR/linux_litex_demo
-        - make
+        - export INSTALL_DIR=/opt/symbiflow
+        - # adding symbiflow toolchain binaries to PATH
+        - export PATH=$INSTALL_DIR/install/bin:$PATH
+        - source $INSTALL_DIR/conda/etc/profile.d/conda.sh
+        - conda activate
+        - git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
+        - # counter example
+        - pushd counter_test && make && popd
+        - # picosoc example
+        - pushd picosoc_demo && make && popd
+        - # litex example
+        - pushd linux_litex_demo && make && popd

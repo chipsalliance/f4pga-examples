@@ -1,15 +1,7 @@
 # Settings to improve linguist data reporting (used by GitHub)
 *.v                     linguist-language=Verilog
 *.vh                    linguist-language=Verilog
-*.sql                   linguist-language=SQL
 
 # FIXME: All vendor files should be under third_party
 third_party/**          		linguist-vendored
-counter_test/counter_basys3.v		linguist-vendored
-picosoc_demo/simpleuart.v		linguist-vendored
-picosoc_demo/picosoc_noflash.v		linguist-vendored
-picosoc_demo/basys3_demo_no_roi.v	linguist-vendored
-picosoc_demo/progmem.v			linguist-vendored
-picosoc_demo/picorv32.v			linguist-vendored
-linux_litex_demo/baselitex_arty.v	linguist-vendored
-linux_litex_demo/VexRiscv_Linux.v	linguist-vendored
+examples/** 	         		linguist-vendored

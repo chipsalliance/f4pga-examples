@@ -1,5 +1,5 @@
 os: linux
-dist: bionic
+dist: focal
 language: c++
 env:
   global:
@@ -9,35 +9,16 @@ addons:
     packages:
         - wget
         - locales
-
-stages:
-    - xc7
+        - python3-pip
 
 before_install:
         - sudo locale-gen "en_US.UTF-8"
         - export LANG="en_US.UTF-8"
-        - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda_installer.sh
+        - pip install git+https://github.com/antmicro/tuttest
 
-jobs:
-  include:
-    - stage: SymbiFlow
-      env:
-        - INSTALL_DIR: /opt/symbiflow/xc7
-      install:
-        - bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-        - source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        - conda update -y -q conda
-        - wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
-        - conda install -y -c symbiflow yosys yosys-plugins vtr-no-gui
-        - conda install -y make lxml simplejson intervaltree git pip
-        - conda activate
-        - pip install python-constraint
-        - pip install git+https://github.com/symbiflow/fasm
-        - conda deactivate
-      script:
-        - source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        - export PATH=$INSTALL_DIR/install/bin:$PATH
-        - conda activate
-        - pushd examples/xc7/counter_test && make && popd
-        - pushd examples/xc7/picosoc_demo && make && popd
-        - pushd examples/xc7/linux_litex_demo && make && popd
+install:
+        - tuttest README.md unnamed0 | bash -
+        - tuttest README.md unnamed1 | bash -
+
+script:
+        - tuttest README.md unnamed2 | bash -

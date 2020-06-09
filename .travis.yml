@@ -15,10 +15,16 @@ before_install:
         - sudo locale-gen "en_US.UTF-8"
         - export LANG="en_US.UTF-8"
         - pip install git+https://github.com/antmicro/tuttest
-
-install:
         - tuttest README.md unnamed0 | bash -
-        - tuttest README.md unnamed1 | bash -
+jobs:
+  include:
+    - stage: SymbiFlow
+      install:
+            - tuttest README.md unnamed1 | bash -
 
-script:
-        - tuttest README.md unnamed2 | bash -
+      script:
+            - tuttest README.md unnamed3 | bash -
+    - #
+      script:
+            - tuttest README.md unnamed2 | bash -
+

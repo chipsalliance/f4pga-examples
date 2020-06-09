@@ -25,6 +25,9 @@ jobs:
       script:
             - tuttest README.md unnamed3 | bash -
     - #
-      script:
+      install:
             - tuttest README.md unnamed2 | bash -
+
+      script:
+            - tuttest README.md unnamed4 | bash -
 

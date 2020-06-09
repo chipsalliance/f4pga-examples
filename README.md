@@ -45,16 +45,12 @@ INSTALL_DIR=/opt/symbiflow
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p $INSTALL_DIR/conda && rm Miniconda3-latest-Linux-x86_64.sh
 source $INSTALL_DIR/conda/etc/profile.d/conda.sh
-conda config --set always_yes yes --set changeps1 no
-conda config --add channels conda-forge
-conda config --add channels symbiflow
-conda update -q conda
+conda update -y -q conda
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
-conda install -c symbiflow yosys
-conda install -c symbiflow yosys-plugins
-conda install -c symbiflow vtr=8.0.0.rc2_3575_g253f75b6d
-conda install python-constraint make lxml simplejson intervaltree git pip
+conda install -y -c symbiflow yosys yosys-plugins vtr-no-gui
+conda install -y make lxml simplejson intervaltree git pip
 conda activate
+pip install python-constraint
 pip install git+https://github.com/symbiflow/fasm
 conda deactivate
 ```

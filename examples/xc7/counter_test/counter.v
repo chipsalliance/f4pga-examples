@@ -2,8 +2,7 @@ module top (
     input  clk,
     input rx,
     output tx,
-    input [15:0] sw,
-    output [15:0] led
+    output [3:0] led
 );
 
     localparam BITS = 4;
@@ -19,7 +18,5 @@ module top (
     end
 
     assign led[3:0] = counter >> LOG2DELAY;
-    assign led[14:4] = sw[14:4];
     assign tx = rx;
-    assign led[15] = ^sw;
 endmodule

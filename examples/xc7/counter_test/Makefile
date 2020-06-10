@@ -2,12 +2,18 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
 TOP:=top
 VERILOG:=${current_dir}/counter.v
-PARTNAME:= xc7a35tcpg236-1
 DEVICE  := xc7a50t_test
 BITSTREAM_DEVICE := artix7
-PCF:=${current_dir}/basys3.pcf
-SDC:=${current_dir}/basys3.sdc
+SDC:=${current_dir}/counter.sdc
 BUILDDIR:=build
+
+ifeq ($(TARGET),arty)
+  PARTNAME := xc7a35tcsg324-1
+  PCF:=${current_dir}/arty.pcf
+else
+  PARTNAME:= xc7a35tcpg236-1
+  PCF:=${current_dir}/basys3.pcf
+endif
 
 all: ${BUILDDIR}/${TOP}.bit
 

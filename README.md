@@ -35,14 +35,9 @@ For the Artix-7 devices:
 INSTALL_DIR="/opt/symbiflow/xc7"
 bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda update -y -q conda
-
+conda env create -f xc7.yml
+conda activate xc7
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
-conda install -y -c symbiflow yosys yosys-plugins vtr-no-gui
-conda install -y make lxml simplejson intervaltree git pip
-conda activate
-pip install python-constraint
-pip install git+https://github.com/symbiflow/fasm
 conda deactivate
 ```
 
@@ -52,16 +47,9 @@ For the EOS S3 devices:
 INSTALL_DIR="/opt/symbiflow/eos-s3"
 bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda update -y -q conda
-
+conda env create -f eos-s3.yml
+conda activate eos-s3
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic/arch-defs-install-eos-s3-f7880e1f.tar.xz | tar -xJ -C $INSTALL_DIR
-conda install -y -c antmicro/label/ql yosys yosys-plugins vtr-no-gui
-conda install -y make lxml simplejson intervaltree git pip
-conda activate
-pip install python-constraint
-pip install git+https://github.com/symbiflow/fasm
-pip install git+https://github.com/antmicro/quicklogic-fasm
-pip install git+https://github.com/antmicro/quicklogic-fasm-utils
 conda deactivate
 ```
 
@@ -89,7 +77,7 @@ export INSTALL_DIR="/opt/symbiflow/xc7"
 # adding symbiflow toolchain binaries to PATH
 export PATH="$INSTALL_DIR/install/bin:$PATH"
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda activate
+conda activate xc7
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 # counter example
 pushd examples/xc7/counter_test && TARGET="arty" make && popd
@@ -120,7 +108,7 @@ export INSTALL_DIR="/opt/symbiflow/eos-s3"
 # adding symbiflow toolchain binaries to PATH
 export PATH="$INSTALL_DIR/install/bin:$PATH"
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda activate
+conda activate eos-s3
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 pushd examples/eos-s3 && make && popd
 ```

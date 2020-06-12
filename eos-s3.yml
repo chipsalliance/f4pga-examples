@@ -1,0 +1,16 @@
+name: eos-s3
+channels:
+  - antmicro/label/ql
+dependencies:
+  - antmicro/label/ql::yosys
+  - antmicro/label/ql::yosys-plugins
+  - antmicro/label/ql::vtr
+  - make
+  - lxml
+  - simplejson
+  - intervaltree
+  - git
+  - pip
+  # Packages installed from PyPI
+  - pip:
+    - -r file:eos-s3_requirements.txt

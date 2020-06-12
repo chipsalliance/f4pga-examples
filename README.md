@@ -97,6 +97,15 @@ pushd examples/xc7/counter_test && make clean && TARGET="basys3" make && popd
 # picosoc example
 pushd examples/xc7/picosoc_demo && make && popd
 # litex example
+wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
+chmod +x litex_setup.py
+./litex_setup.py init
+./litex_setup.py install
+wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
+tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
+export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
+pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
+# linux litex example
 pushd examples/xc7/linux_litex_demo && make && popd
 ```
 

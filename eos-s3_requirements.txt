@@ -1,0 +1,4 @@
+python-constraint
+-e git+https://github.com/symbiflow/fasm#egg=fasm
+-e git+https://github.com/antmicro/quicklogic-fasm#egg=quicklogic-fasm
+-e git+https://github.com/antmicro/quicklogic-fasm-utils#egg=quicklogic-fasm-utils

@@ -38,7 +38,7 @@ source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda update -y -q conda
 
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
-conda install -y -c symbiflow yosys yosys-plugins vtr-no-gui
+conda install -y -c symbiflow yosys yosys-plugins vtr
 conda install -y make lxml simplejson intervaltree git pip
 conda activate
 pip install python-constraint
@@ -55,7 +55,7 @@ source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda update -y -q conda
 
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic/arch-defs-install-eos-s3-f7880e1f.tar.xz | tar -xJ -C $INSTALL_DIR
-conda install -y -c antmicro/label/ql yosys yosys-plugins vtr-no-gui
+conda install -y -c antmicro/label/ql yosys yosys-plugins vtr
 conda install -y make lxml simplejson intervaltree git pip
 conda activate
 pip install python-constraint

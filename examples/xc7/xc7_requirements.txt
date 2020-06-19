@@ -1,2 +1,2 @@
 python-constraint
--e git+https://github.com/symbiflow/fasm#egg=fasm
+git+https://github.com/symbiflow/fasm

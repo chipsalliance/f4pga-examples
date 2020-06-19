@@ -35,7 +35,7 @@ For the Artix-7 devices:
 INSTALL_DIR="/opt/symbiflow/xc7"
 bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda env create -f xc7.yml
+conda env create -f examples/xc7/xc7.yml
 conda activate xc7
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
 conda deactivate
@@ -47,7 +47,7 @@ For the EOS S3 devices:
 INSTALL_DIR="/opt/symbiflow/eos-s3"
 bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda env create -f eos-s3.yml
+conda env create -f examples/eos-s3/eos-s3.yml
 conda activate eos-s3
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic/arch-defs-install-eos-s3-f7880e1f.tar.xz | tar -xJ -C $INSTALL_DIR
 conda deactivate

@@ -1,0 +1,2 @@
+python-constraint
+git+https://github.com/symbiflow/fasm

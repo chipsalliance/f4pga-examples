@@ -13,4 +13,4 @@ dependencies:
   - pip
   # Packages installed from PyPI
   - pip:
-    - -r file:xc7_requirements.txt
+    - -r file:requirements.txt

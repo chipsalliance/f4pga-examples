@@ -1,33 +1,70 @@
 os: linux
 dist: focal
-language: c++
+language: minimal
+
+services:
+  - docker
+
 env:
-  global:
-       - DEBIAN_FRONTEND: noninteractive
-addons:
-  apt:
-    packages:
-        - wget
-        - locales
-        - python3-pip
+  # Testing QuickLogic toolchain on all OSes
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=trusty
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=xenial
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=bionic
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=eoan
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=6
+  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=7
+  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=8
+  # Testing Xilinx 7 Series toolchain on all OSes
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=trusty
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=xenial
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=bionic
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=eoan
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=6
+  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=7
+  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=8
 
-before_install:
-        - sudo locale-gen "en_US.UTF-8"
-        - export LANG="en_US.UTF-8"
-        - pip install git+https://github.com/antmicro/tuttest
-        - tuttest README.md unnamed0 | bash -
-jobs:
-  include:
-    - stage: SymbiFlow
-      install:
-            - tuttest README.md unnamed1 | bash -
 
-      script:
-            - tuttest README.md unnamed3 | bash -
-    - #
-      install:
-            - tuttest README.md unnamed2 | bash -
 
-      script:
-            - tuttest README.md unnamed4 | bash -
+#before_install:
+#     - sudo locale-gen "en_US.UTF-8"
+#     - export LANG="en_US.UTF-8"
+#     - pip install git+https://github.com/antmicro/tuttest
+#     - tuttest README.md unnamed0 | bash -
+
+install:
+ - docker create
+        --name test
+        --env LANG="en_US.UTF-8"
+        --env DEBIAN_FRONTEND="noninteractive"
+        --volume /home/travis
+        --workdir $PWD
+        --interactive
+        --tty
+        $OS:$OS_VERSION
+ - docker start test
+ - docker ps
+ - docker exec test ps fax
+ - docker exec test ls -l
+ - docker exec test pip install git+https://github.com/antmicro/tuttest
+
+
+script:
+ - true
+
+#jobs:
+#  include:
+#    - stage: SymbiFlow
+#      install:
+#            - tuttest README.md unnamed1 | bash -
+#
+#      script:
+#            - tuttest README.md unnamed3 | bash -
+#    - #
+#      install:
+#            - tuttest README.md unnamed2 | bash -
+#
+#      script:
+#            - tuttest README.md unnamed4 | bash -
 

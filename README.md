@@ -44,13 +44,9 @@ conda deactivate
 For the EOS S3 devices:
 
 ```bash
-INSTALL_DIR="/opt/symbiflow/eos-s3"
-bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda env create -f examples/eos-s3/environment.yml
-conda activate eos-s3
-wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic/arch-defs-install-eos-s3-f7880e1f.tar.xz | tar -xJ -C $INSTALL_DIR
-conda deactivate
+export INSTALL_DIR="/opt/symbiflow/eos-s3"
+wget 'https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0_Beta/Symbiflow_v1.1.0.gz.run'
+bash Symbiflow_v1.1.0.gz.run
 ```
 
 ## Build Example Designs
@@ -105,10 +101,10 @@ To build the example, run the following commands:
 
 ```bash
 export INSTALL_DIR="/opt/symbiflow/eos-s3"
-# adding symbiflow toolchain binaries to PATH
-export PATH="$INSTALL_DIR/install/bin:$PATH"
+export PATH="$INSTALL_DIR/install/bin:$INSTALL_DIR/install/bin/python:$PATH"
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda activate eos-s3
+conda activate
+
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 pushd examples/eos-s3 && make && popd
 ```

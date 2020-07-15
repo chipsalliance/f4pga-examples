@@ -37,7 +37,7 @@ bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda env create -f examples/xc7/environment.yml
 conda activate xc7
-wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/4/20200416-002215/symbiflow-arch-defs-install-a321d9d9.tar.xz | tar -xJ -C $INSTALL_DIR
+wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/477/20200714-082108/symbiflow-arch-defs-install-8eb88e76.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
 conda deactivate
 ```
 

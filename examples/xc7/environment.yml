@@ -4,7 +4,9 @@ channels:
 dependencies:
   - symbiflow::symbiflow-yosys=0.8_3925_g6bccd35a
   - symbiflow::symbiflow-yosys-plugins=1.0.0.7_0032_g104f4fc
-  - symbiflow::symbiflow-vtr=8.0.0.rc2_3575_g253f75b6d
+  - symbiflow::symbiflow-vtr=8.0.0.rc2_4003_g8980e4621
+  - symbiflow::prjxray-tools
+  - symbiflow::prjxray-db
   - make
   - lxml
   - simplejson

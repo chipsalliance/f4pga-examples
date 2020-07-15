@@ -76,7 +76,8 @@ source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda activate xc7
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 # counter example
-pushd examples/xc7/counter_test && TARGET="arty" make && popd
+pushd examples/xc7/counter_test && TARGET="arty_50" make && popd
+pushd examples/xc7/counter_test && TARGET="arty_100" make && popd
 pushd examples/xc7/counter_test && make clean && TARGET="basys3" make && popd
 # picosoc example
 pushd examples/xc7/picosoc_demo && make && popd

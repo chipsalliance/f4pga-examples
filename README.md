@@ -45,7 +45,7 @@ For the EOS S3 devices:
 
 ```bash
 export INSTALL_DIR="/opt/symbiflow/eos-s3"
-wget 'https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0_Beta/Symbiflow_v1.1.0.gz.run'
+wget 'https://github.com/QuickLogic-Corp/quicklogic-fpga-toolchain/releases/download/v1.1.0/Symbiflow_v1.1.0.gz.run'
 bash Symbiflow_v1.1.0.gz.run
 ```
 

@@ -5,7 +5,14 @@ The examples target the Xilinx Artix-7 and the QuickLogic EOS S3 devices.
 
 The repository includes:
 
-* [examples](./examples) - Example FPGA designs including:
+* [eos-s3](./eos-s3) - Example FPGA designs for the QuickLogic EOS S3 series of parts:
+
+  * Verilog code
+  * Pin constraints files
+  * Timing constraints files
+  * Makefiles for running the SymbiFlow toolchain
+
+* [xc7](./xc7) - Example FPGA designs for the Xilinx 7 series of parts:
 
   * Verilog code
   * Pin constraints files
@@ -35,7 +42,7 @@ For the Artix-7 devices:
 INSTALL_DIR="/opt/symbiflow/xc7"
 bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
 source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-conda env create -f examples/xc7/environment.yml
+conda env create -f xc7/environment.yml
 conda activate xc7
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/477/20200714-082108/symbiflow-arch-defs-install-8eb88e76.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
 conda deactivate
@@ -54,8 +61,8 @@ bash Symbiflow_v1.1.0.gz.run
 With the toolchain installed, you can build the example designs.
 The example designs are provided in separate directories:
 
-* `examples/xc7` directory for the Artix-7 devices
-* `examples/eos-s3` directory for the EOS S3 devices
+* `xc7` directory for the Artix-7 devices
+* `eos-s3` directory for the EOS S3 devices
 
 ### Example designs for the Artix-7 devices:
 
@@ -76,11 +83,11 @@ source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda activate xc7
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 # counter example
-pushd examples/xc7/counter_test && TARGET="arty_50" make && popd
-pushd examples/xc7/counter_test && TARGET="arty_100" make && popd
-pushd examples/xc7/counter_test && make clean && TARGET="basys3" make && popd
+pushd xc7/counter_test && TARGET="arty_50" make && popd
+pushd xc7/counter_test && TARGET="arty_100" make && popd
+pushd xc7/counter_test && make clean && TARGET="basys3" make && popd
 # picosoc example
-pushd examples/xc7/picosoc_demo && make && popd
+pushd xc7/picosoc_demo && make && popd
 # litex example
 wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
 chmod +x litex_setup.py
@@ -91,7 +98,7 @@ tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
 export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
 pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
 # linux litex example
-pushd examples/xc7/linux_litex_demo && make && popd
+pushd xc7/linux_litex_demo && make && popd
 ```
 
 ### Example design for the EOS S3 devices:
@@ -107,5 +114,5 @@ source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda activate
 
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
-pushd examples/eos-s3 && make && popd
+pushd eos-s3 && make && popd
 ```

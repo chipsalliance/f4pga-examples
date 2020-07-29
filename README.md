@@ -36,6 +36,8 @@ wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O co
 
 2. Toolchain
 
+FIXME: This should be included from xc7/README.md
+
 For the Artix-7 devices:
 
 ```bash
@@ -47,6 +49,8 @@ conda activate xc7
 wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/477/20200714-082108/symbiflow-arch-defs-install-8eb88e76.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
 conda deactivate
 ```
+
+FIXME: This should be included from eos-s3/README.md
 
 For the EOS S3 devices:
 
@@ -65,6 +69,7 @@ The example designs are provided in separate directories:
 * `eos-s3` directory for the EOS S3 devices
 
 ### Example designs for the Artix-7 devices:
+
 
 1. `counter` - simple 4-bit counter driving LEDs. The design targets the [Basys3 board](https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/) and the [Arty board](https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/).
 1. `picosoc` - [picorv32](https://github.com/cliffordwolf/picorv32) based SoC. The design targets the [Basys3 board](https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/).
@@ -102,6 +107,8 @@ pushd xc7/linux_litex_demo && make && popd
 ```
 
 ### Example design for the EOS S3 devices:
+
+FIXME: This should be included from eos-s3/README.md
 
 1. `btn_counter` - simple 4-bit counter driving LEDs. The design targets the [EOS S3 FPGA](https://www.quicklogic.com/products/eos-s3/).
 

@@ -1,18 +1,29 @@
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
 TOP := top
-VERILOG := ${current_dir}/baselitex_arty.v \
-           ${current_dir}/VexRiscv_Linux.v
 MEM_INIT := ${current_dir}/mem.init \
             ${current_dir}/mem_1.init \
             ${current_dir}/mem_2.init
-PARTNAME := xc7a35tcsg324-1
-DEVICE  := xc7a50t_test
+
+ifeq ($(TARGET),arty_100)
+  VERILOG  := ${current_dir}/baselitex_arty100.v \
+              ${current_dir}/VexRiscv_Linux.v
+  PARTNAME := xc7a100tcsg324-1
+  DEVICE   := xc7a100t_test
+  BUILDDIR := build.arty_100
+else
+  VERILOG  := ${current_dir}/baselitex_arty.v \
+              ${current_dir}/VexRiscv_Linux.v
+  PARTNAME := xc7a35tcsg324-1
+  DEVICE   := xc7a50t_test
+  BUILDDIR := build.arty
+endif
+
 BITSTREAM_DEVICE := artix7
 PCF := ${current_dir}/arty.pcf
 SDC := ${current_dir}/arty.sdc
 XDC := ${current_dir}/arty.xdc
-BUILDDIR := build
+
 
 all: ${BUILDDIR}/${TOP}.bit
 

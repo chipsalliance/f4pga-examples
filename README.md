@@ -92,6 +92,7 @@ export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubun
 pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
 # linux litex example
 pushd examples/xc7/linux_litex_demo && make && popd
+pushd examples/xc7/linux_litex_demo && TARGET="arty_100" make && popd
 ```
 
 ### Example design for the EOS S3 devices:

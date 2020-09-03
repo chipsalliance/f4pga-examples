@@ -59,9 +59,9 @@ The example designs are provided in separate directories:
 
 ### Example designs for the Artix-7 devices:
 
-1. `counter` - simple 4-bit counter driving LEDs. The design targets the [Basys3 board](https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/) and the [Arty board](https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/).
+1. `counter` - simple 4-bit counter driving LEDs. The design targets the [Basys3 board](https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/) and the [Arty boards](https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/) (both 35T and 100T).
 1. `picosoc` - [picorv32](https://github.com/cliffordwolf/picorv32) based SoC. The design targets the [Basys3 board](https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/).
-1. `linux_litex` - [LiteX](https://github.com/enjoy-digital/litex) based system with Linux capable [VexRiscv core](https://github.com/SpinalHDL/VexRiscv). The design includes [DDR](https://github.com/enjoy-digital/litedram) and [Ethernet](https://github.com/enjoy-digital/liteeth) controllers. The design targets the [Arty board](https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/).
+1. `linux_litex` - [LiteX](https://github.com/enjoy-digital/litex) based system with Linux capable [VexRiscv core](https://github.com/SpinalHDL/VexRiscv). The design includes [DDR](https://github.com/enjoy-digital/litedram) and [Ethernet](https://github.com/enjoy-digital/liteeth) controllers. The design targets the [Arty boards](https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/) (both 35T or 100T).
 
 The Linux images for the `linux_litex` example can be built following the [linux on litex vexriscv](https://github.com/litex-hub/linux-on-litex-vexriscv) instructions.
 The `linux_litex` example is already provided with working Linux images.
@@ -76,7 +76,7 @@ source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
 conda activate xc7
 git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 # counter example
-pushd examples/xc7/counter_test && TARGET="arty_50" make && popd
+pushd examples/xc7/counter_test && TARGET="arty_35" make && popd
 pushd examples/xc7/counter_test && TARGET="arty_100" make && popd
 pushd examples/xc7/counter_test && make clean && TARGET="basys3" make && popd
 # picosoc example
@@ -91,7 +91,7 @@ tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
 export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
 pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
 # linux litex example
-pushd examples/xc7/linux_litex_demo && make && popd
+pushd examples/xc7/linux_litex_demo && TARGET="arty_35"  make && popd
 pushd examples/xc7/linux_litex_demo && TARGET="arty_100" make && popd
 ```
 

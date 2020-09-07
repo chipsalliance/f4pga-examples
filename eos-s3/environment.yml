@@ -1,10 +1,11 @@
 name: eos-s3
 channels:
-  - antmicro/label/ql
+  - conda-forge
+  - quicklogic-corp
 dependencies:
-  - antmicro/label/ql::yosys
-  - antmicro/label/ql::yosys-plugins
-  - antmicro/label/ql::vtr
+  - quicklogic-corp::yosys=0.6.0_0013_g2478b28
+  - quicklogic-corp::yosys-plugins=0.1.0_0005_g6bbbc9b
+  - quicklogic-corp::vtr=v8.0.0_rc2_4006_g36a4d4b
   - make
   - lxml
   - simplejson

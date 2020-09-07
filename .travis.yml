@@ -20,14 +20,14 @@ jobs:
   include:
     - stage: SymbiFlow
       install:
-            - tuttest README.md unnamed1 | bash -
+            - tuttest xc7/README.md unnamed0 | bash -
 
       script:
-            - tuttest README.md unnamed3 | bash -
+            - tuttest xc7/README.md unnamed1 | bash -
     - #
       install:
-            - tuttest README.md unnamed2 | bash -
+            - tuttest eos-s3/README.md unnamed0 | bash -
 
       script:
-            - tuttest README.md unnamed4 | bash -
+            - tuttest eos-s3/README.md unnamed1 | bash -
 

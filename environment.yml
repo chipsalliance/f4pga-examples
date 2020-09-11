@@ -1,0 +1,8 @@
+name: symbiflow-examples
+channels:
+  - defaults
+dependencies:
+  - python
+  - pip
+  - pip:
+    - -r file:requirements.txt

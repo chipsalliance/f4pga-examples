@@ -14,20 +14,22 @@ addons:
 before_install:
         - sudo locale-gen "en_US.UTF-8"
         - export LANG="en_US.UTF-8"
+        - source .github/travis/common.sh
+        - rm README.rst && make README.rst && .github/travis/git-check.sh
         - pip install git+https://github.com/antmicro/tuttest
-        - tuttest README.md unnamed0 | bash -
+        - tuttest README.rst unnamed0 | bash -
 jobs:
   include:
     - stage: SymbiFlow
       install:
-            - tuttest README.md unnamed1 | bash -
+            - tuttest xc7/README.rst unnamed0 | bash -
 
       script:
-            - tuttest README.md unnamed3 | bash -
+            - tuttest xc7/README.rst unnamed1,unnamed2,unnamed3,unnamed4,unnamed5 | bash -
     - #
       install:
-            - tuttest README.md unnamed2 | bash -
+            - tuttest eos-s3/README.rst unnamed0 | bash -
 
       script:
-            - tuttest README.md unnamed4 | bash -
+            - tuttest eos-s3/README.rst unnamed1,unnamed2 | bash -
 

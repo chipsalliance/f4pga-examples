@@ -22,7 +22,7 @@ Setting up the toolchain
         source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
         conda env create -f xc7/environment.yml
         conda activate xc7
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/477/20200714-082108/symbiflow-arch-defs-install-8eb88e76.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
+        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
         conda deactivate
 
 .. toolchain_include_end_label

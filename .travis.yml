@@ -25,13 +25,20 @@ env:
   - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=7
   - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=8
 
+before_install:
+        - sudo locale-gen "en_US.UTF-8"
+        - export LANG="en_US.UTF-8"
+        - source .github/travis/common.sh
+        - rm README.rst && make README.rst && .github/travis/git-check.sh
+        - pip install git+https://github.com/antmicro/tuttest@prefix-lines-with#egg=tuttest
+
 install:
  - if [ "$OS" = "ubuntu" ]; then export INSTALL_COMMAND="apt update && apt install -y"; fi
  - if [ "$OS" = "centos" ]; then export INSTALL_COMMAND="yum -y install"; fi
- - if [ "$OS" = "ubuntu" ]; then export INSTALL_PACKAGES="locales software-properties-common git wget xz-utils make build-essential zlib1g libz-dev libffi-dev ca-certificates"; fi
- - if [ "$OS" = "centos" ]; then export INSTALL_PACKAGES="git wget make gcc-c++ zlib-devel xz libffi-devel perl-Pod-Html diffutils byacc"; fi
+ - if [ "$OS" = "ubuntu" ]; then export INSTALL_PACKAGES="git wget make"; fi
+ - if [ "$OS" = "centos" ]; then export INSTALL_PACKAGES="git wget make"; fi
  - export DOCKER_NAME=test
- - export IN_DOCKER_EXEC="docker exec -it $DOCKER_NAME"
+ - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -c"
  - docker create
         --name $DOCKER_NAME
         --env LANG="en_US.UTF-8"
@@ -39,34 +46,15 @@ install:
         --env DEBIAN_FRONTEND="noninteractive"
         -v /home/travis:/home/travis
         --workdir $PWD
-        --interactive
         --tty
         $OS:$OS_VERSION
  - docker start $DOCKER_NAME
- - $IN_DOCKER_EXEC bash -c "$INSTALL_COMMAND $INSTALL_PACKAGES"
- - if [ "$OS" = "ubuntu" ]; then $IN_DOCKER_EXEC locale-gen en_US.UTF-8; fi
- - if [ "$OS" = "ubuntu" ]; then $IN_DOCKER_EXEC update-locale; fi
- - $IN_DOCKER_EXEC wget https://www.openssl.org/source/openssl-1.1.1c.tar.gz
- - $IN_DOCKER_EXEC tar xf openssl-1.1.1c.tar.gz
- - $IN_DOCKER_EXEC bash -c 'cd openssl-1.1.1c && ./config --prefix=/usr/local --openssldir=/usr/local/ssl shared zlib && make install > /dev/null'
- - if [ "$OS" = "centos" ]; then $IN_DOCKER_EXEC bash -c 'echo "/usr/local/lib64" | tee -a /etc/ld.so.conf'; fi
- - $IN_DOCKER_EXEC ldconfig
- - if [ "$OS" = "centos" ] && [ "$OS_VERSION" == "8" ]; then $IN_DOCKER_EXEC bash -c "wget https://kerberos.org/dist/krb5/1.17/krb5-1.17.1.tar.gz && tar xf krb5-1.17.1.tar.gz && cd krb5-1.17.1/src && ./configure && make && cp lib/libk5crypto.so.3.1 /lib64/"; fi
- - if [ "$OS" = "centos" ] && [ "$OS_VERSION" == "8" ]; then $IN_DOCKER_EXEC bash -c "rm /lib64/libk5crypto.so.3 && ln -s /lib64/libk5crypto.so.3.1 /lib64/libk5crypto.so.3"; fi
- - $IN_DOCKER_EXEC ldconfig
- - $IN_DOCKER_EXEC wget https://www.python.org/ftp/python/3.7.9/Python-3.7.9.tar.xz --ca-directory=/etc/ssl/certs/
- - $IN_DOCKER_EXEC tar xf Python-3.7.9.tar.xz
- - $IN_DOCKER_EXEC bash -c 'cd ./Python-3.7.9/ && ./configure > /dev/null && make install > /dev/null'
- - $IN_DOCKER_EXEC ln -s /usr/local/bin/python3.7 /usr/local/bin/python
- - $IN_DOCKER_EXEC ln -s /usr/local/bin/pip3 /usr/local/bin/pip
- - $IN_DOCKER_EXEC python --version
- - $IN_DOCKER_EXEC pip --version
- - $IN_DOCKER_EXEC pip install git+https://github.com/antmicro/tuttest
- - $IN_DOCKER_EXEC tuttest README.md unnamed0 | tr -d '\r' | bash -
- - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then $IN_DOCKER_EXEC tuttest README.md unnamed1 | tr -d '\r' | bash -; fi
- - if [ "$TOOLCHAIN" = "quicklogic" ];      then $IN_DOCKER_EXEC tuttest README.md unnamed2 | tr -d '\r' | bash -; fi
+ - $IN_DOCKER_EXEC "$INSTALL_COMMAND $INSTALL_PACKAGES"
+ - tuttest README.rst unnamed0 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -
+ - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst unnamed0 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -; fi
+ - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst unnamed0 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -; fi
 
 script:
- - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then $IN_DOCKER_EXEC tuttest README.md unnamed3 | tr -d '\r' | bash -; fi
- - if [ "$TOOLCHAIN" = "quicklogic" ];      then $IN_DOCKER_EXEC tuttest README.md unnamed4 | tr -d '\r' | bash -; fi
+ - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst unnamed1,unnamed2,unnamed3,unnamed4,unnamed5 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -; fi
+ - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst unnamed1,unnamed2 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -; fi
 

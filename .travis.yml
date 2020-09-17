@@ -35,8 +35,9 @@ before_install:
 install:
  - if [ "$OS" = "ubuntu" ]; then export INSTALL_COMMAND="apt update && apt install -y"; fi
  - if [ "$OS" = "centos" ]; then export INSTALL_COMMAND="yum -y install"; fi
- - if [ "$OS" = "ubuntu" ]; then export INSTALL_PACKAGES="git wget make"; fi
- - if [ "$OS" = "centos" ]; then export INSTALL_PACKAGES="git wget make"; fi
+ - if [ "$OS" = "ubuntu" ]; then export INSTALL_PACKAGES="wget"; fi
+ - if [ "$OS" = "centos" ]; then export INSTALL_PACKAGES="wget"; fi
+ - if [ "$OS" = "centos" ] && [ "$OS_VERSION" = "6" ]; then export INSTALL_PACKAGES="$INSTALL_PACKAGES util-linux-ng"; fi # Install missing `getopt` binary in centos 6
  - export DOCKER_NAME=test
  - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -c"
  - docker create
@@ -50,6 +51,7 @@ install:
         $OS:$OS_VERSION
  - docker start $DOCKER_NAME
  - $IN_DOCKER_EXEC "$INSTALL_COMMAND $INSTALL_PACKAGES"
+ - if [ "$OS_VERSION" = "6" ] || [ "$OS_VERSION" = "trusty" ]; then $IN_DOCKER_EXEC "echo 'readlink -f \$@' | tee -a /usr/bin/realpath;chmod +x /usr/bin/realpath"; fi # Replace missing `realpath` binary with readlink -f
  - tuttest README.rst unnamed0 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -
  - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst unnamed0 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -; fi
  - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst unnamed0 --prefix-lines-with "$IN_DOCKER_EXEC" | bash -; fi

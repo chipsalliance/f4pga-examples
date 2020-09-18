@@ -75,5 +75,6 @@ To build the linux-litex-demo example, run the following commands:
 .. code:: bash
 
         pushd xc7/linux_litex_demo && make && popd
+        pushd xc7/linux_litex_demo && TARGET=arty_100 make && popd
 
 .. build_examples_include_end_label

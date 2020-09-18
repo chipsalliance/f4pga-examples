@@ -11,7 +11,7 @@ PCF := ${current_dir}/arty.pcf
 SDC := ${current_dir}/arty.sdc
 XDC := ${current_dir}/arty.xdc
 BUILDDIR_35  := build
-BUILDDIR_100 := build
+BUILDDIR_100 := build_100
 
 ifeq ($(TARGET),arty_100)
     PARTNAME := xc7a100tcsg324-1
@@ -30,7 +30,7 @@ ${BUILDDIR}:
 	ln -s ${MEM_INIT} ${BUILDDIR}
 
 ${BUILDDIR}/${TOP}.eblif: | ${BUILDDIR}
-	cd ${BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} -x ${XDC} 
+	cd ${BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} -x ${XDC} 2>&1 > /dev/null
 
 ${BUILDDIR}/${TOP}.net: ${BUILDDIR}/${TOP}.eblif
 	cd ${BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null

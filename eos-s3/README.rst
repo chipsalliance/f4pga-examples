@@ -3,21 +3,39 @@ SymbiFlow Toolchain Examples for QuickLogic EOS S3
 
 #. ``btn_counter`` - simple 4-bit counter driving LEDs. The design targets the `EOS S3 FPGA <https://www.quicklogic.com/products/eos-s3/>`__.
 
+Clone this repository
+---------------------
+If you have not already done so, clone this repository and `cd` into it:
+
+.. code:: bash
+
+    sudo apt install git
+    git clone https://github.com/SymbiFlow/symbiflow-examples.git && cd symbiflow-examples
+
+
 Setting up the toolchain
 ------------------------
+
+Choose the installation directory (see the `README.rst <../README.rst>`_ one level up for details):
+
+
+.. code:: bash
+
+    export INSTALL_DIR=~/opt/symbiflow
+
 
 .. toolchain_include_begin_label
 
 .. code:: bash
+   :name: eoss3-setup-toolchain
 
-        export INSTALL_DIR="/opt/symbiflow/eos-s3"
-        bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda env create -f eos-s3/environment.yml
-        conda activate eos-s3
-        wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR
-        cp -r $INSTALL_DIR/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/conda/envs/eos-s3/share/
-        conda deactivate
+   bash conda_installer.sh -b -p $INSTALL_DIR/eos-s3/conda
+   source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
+   conda env create -f eos-s3/environment.yml
+   conda activate eos-s3
+   wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3
+   cp -r $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/
+   conda deactivate
 
 .. toolchain_include_end_label
 
@@ -26,21 +44,26 @@ Building the examples
 
 .. build_examples_include_begin_label
 
-Before building example, prepare environment:
+Before building any example, set the installation directory to match what you set it to earlier,
 
 .. code:: bash
 
-        export INSTALL_DIR="/opt/symbiflow/eos-s3"
-        export PATH="$INSTALL_DIR/install/bin:$PATH"
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda activate eos-s3
+    export INSTALL_DIR=~/opt/symbiflow
 
-        git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
+and prepare the environment:
+
+.. code:: bash
+   :name: eoss3-prepare-env
+
+   export PATH="$INSTALL_DIR/eos-s3/install/bin:$PATH"
+   source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
+   conda activate eos-s3
 
 To build the example, run the following command:
 
 .. code:: bash
+   :name: eoss3-counter
 
-        pushd eos-s3/btn_counter && make && popd
+   pushd eos-s3/btn_counter && make && popd
 
 .. build_examples_include_end_label

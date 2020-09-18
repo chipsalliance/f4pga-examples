@@ -22,46 +22,71 @@ The repository includes:
 
 * `.travis.yml <.travis.yml>`_ - Travis CI configuration file
 
-Toolchain installation
-----------------------
 
-This section describes how to install the toolchain. This procedure is divided in two steps:
+Clone this repository
+---------------------
 
-- Installing the Conda package manager
-- Downloading the architecture definitions and installing the toolchain
-
-#. Conda
+If you have not already done so, clone this repository and ``cd`` into it:
 
 .. code:: bash
 
-        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda_installer.sh
+    sudo apt install git
+    git clone https://github.com/SymbiFlow/symbiflow-examples.git && cd symbiflow-examples
 
-#. Toolchain
+
+Toolchain installation
+----------------------
+
+This section describes how to install the toolchain. This procedure is divided in three steps:
+
+- Installing the Conda package manager
+- Choosing an installation directory
+- Downloading the architecture definitions and installing the toolchain
+
+1. Conda
+
+.. code:: bash
+   :name: wget-conda
+
+   wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda_installer.sh
+
+2. Choose the install directory
+
+The install directory can either be in your home directory
+such as `~/opt/symbiflow` or in a system directory such as `/opt/symbiflow`.
+If you choose a system directory, you will need root permission to perform the installation,
+and so you will need to add some `sudo` commands to the instructions below.
+
+.. code:: bash
+
+   INSTALL_DIR=~/opt/symbiflow
+
+3. Toolchain
 
 * For the Artix-7 devices:
 
 .. code:: bash
+   :name: xc7-setup-toolchain
 
-        INSTALL_DIR="/opt/symbiflow/xc7"
-        bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda env create -f xc7/environment.yml
-        conda activate xc7
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
-        conda deactivate
+   bash conda_installer.sh -b -p $INSTALL_DIR/xc7/conda
+   source "$INSTALL_DIR/xc7/conda/etc/profile.d/conda.sh"
+   conda env create -f xc7/environment.yml
+   conda activate xc7
+   wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/xc7/install
+   conda deactivate
 
 * For the EOS S3 devices:
 
 .. code:: bash
+   :name: eoss3-setup-toolchain
 
-        export INSTALL_DIR="/opt/symbiflow/eos-s3"
-        bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda env create -f eos-s3/environment.yml
-        conda activate eos-s3
-        wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR
-        cp -r $INSTALL_DIR/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/conda/envs/eos-s3/share/
-        conda deactivate
+   bash conda_installer.sh -b -p $INSTALL_DIR/eos-s3/conda
+   source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
+   conda env create -f eos-s3/environment.yml
+   conda activate eos-s3
+   wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3
+   cp -r $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/
+   conda deactivate
 
 Build Example Designs
 ---------------------
@@ -72,75 +97,87 @@ The example designs are provided in separate directories:
 * ``xc7`` directory for the Artix-7 devices
 * ``eos-s3`` directory for the EOS S3 devices
 
+
+
 Example designs for the Artix-7 devices:
 ****************************************
 
-* For the Artix-7 devices:
-
-Before building any example, prepare environment:
+Before building any example, set the installation directory to match what you set it to earlier,
 
 .. code:: bash
 
-        export INSTALL_DIR="/opt/symbiflow/xc7"
-        # adding symbiflow toolchain binaries to PATH
-        export PATH="$INSTALL_DIR/install/bin:$PATH"
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda activate xc7
-        git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
+    export INSTALL_DIR=~/opt/symbiflow
 
-To build the counter example, run the following commands:
+and prepare the environment:
 
 .. code:: bash
+   :name: xc7-prepare-env
 
-        pushd xc7/counter_test && make clean && TARGET="arty_50" make && popd
-        pushd xc7/counter_test && make clean && TARGET="arty_100" make && popd
-        pushd xc7/counter_test && make clean && TARGET="basys3" make && popd
+   # adding symbiflow toolchain binaries to PATH
+   export PATH="$INSTALL_DIR/xc7/install/bin:$PATH"
+   source "$INSTALL_DIR/xc7/conda/etc/profile.d/conda.sh"
+   conda activate xc7
+
+To build the counter example, run any or all of the following commands:
+
+.. code:: bash
+   :name: xc7-counter
+
+   pushd xc7/counter_test && make clean && TARGET="arty_50" make && popd
+   pushd xc7/counter_test && make clean && TARGET="arty_100" make && popd
+   pushd xc7/counter_test && make clean && TARGET="basys3" make && popd
 
 To build the picosoc example, run the following commands:
 
 .. code:: bash
+   :name: xc7-picosoc
 
-        pushd xc7/picosoc_demo && make && popd
+   pushd xc7/picosoc_demo && make && popd
 
 To build the litex example, run the following commands:
 
 .. code:: bash
+   :name: xc7-litex
 
-        wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
-        chmod +x litex_setup.py
-        ./litex_setup.py init
-        ./litex_setup.py install
-        wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
-        tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
-        export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
-        pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
+   wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
+   chmod +x litex_setup.py
+   ./litex_setup.py init
+   ./litex_setup.py install
+   wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
+   tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
+   export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
+   pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
 
 To build the linux-litex-demo example, run the following commands:
 
 .. code:: bash
+   :name: xc7-linux
 
-        pushd xc7/linux_litex_demo && make && popd
-        pushd xc7/linux_litex_demo && TARGET=arty_100 make && popd
+   pushd xc7/linux_litex_demo && make && popd
+   pushd xc7/linux_litex_demo && TARGET="arty_100" make && popd
 
 Example design for the EOS S3 devices:
 **************************************
 
-* For the EOS S3 devices:
-
-Before building example, prepare environment:
+Before building any example, set the installation directory to match what you set it to earlier,
 
 .. code:: bash
 
-        export INSTALL_DIR="/opt/symbiflow/eos-s3"
-        export PATH="$INSTALL_DIR/install/bin:$PATH"
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
-        conda activate eos-s3
+    export INSTALL_DIR=~/opt/symbiflow
 
-        git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
+and prepare the environment:
+
+.. code:: bash
+   :name: eoss3-prepare-env
+
+   export PATH="$INSTALL_DIR/eos-s3/install/bin:$PATH"
+   source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
+   conda activate eos-s3
 
 To build the example, run the following command:
 
 .. code:: bash
+   :name: eoss3-counter
 
-        pushd eos-s3/btn_counter && make && popd
+   pushd eos-s3/btn_counter && make && popd
 

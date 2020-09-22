@@ -22,7 +22,6 @@ The repository includes:
 
 * `.travis.yml <.travis.yml>`_ - Travis CI configuration file
 
-
 Clone this repository
 ---------------------
 
@@ -33,6 +32,22 @@ If you have not already done so, clone this repository and ``cd`` into it:
     sudo apt install git
     git clone https://github.com/SymbiFlow/symbiflow-examples.git && cd symbiflow-examples
 
+
+Prerequisites
+-------------
+The only required prerequisite is ``wget``. You can install it using:
+
+* For Ubuntu:
+
+.. code:: bash
+
+   apt update && apt install -y wget
+
+* For CentOS:
+
+.. code:: bash
+
+   yum install -y wget
 
 Toolchain installation
 ----------------------

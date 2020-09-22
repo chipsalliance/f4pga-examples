@@ -12,6 +12,8 @@ dependencies:
   - intervaltree
   - git
   - pip
+  - coreutils
+  - util-linux
   # Packages installed from PyPI
   - pip:
     - -r file:requirements.txt

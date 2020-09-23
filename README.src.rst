@@ -53,9 +53,9 @@ This section describes how to install the toolchain. This procedure is divided i
 2. Choose the install directory
 
 The install directory can either be in your home directory 
-such as `~/opt/symbiflow` or in a system directory such as `/opt/symbiflow`.  
+such as ``~/opt/symbiflow`` or in a system directory such as ``/opt/symbiflow``.  
 If you choose a system directory, you will need root permission to perform the installation, 
-and so you will need to add some `sudo` commands to the instructions below.
+and so you will need to add some ``sudo`` commands to the instructions below.
 
 .. code:: bash
 

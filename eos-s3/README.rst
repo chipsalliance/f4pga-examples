@@ -16,12 +16,12 @@ If you have not already done so, clone this repository and `cd` into it:
 Setting up the toolchain
 ------------------------
 
-Choose the installation directory (see the `README.rst <../README.rst>`_ one level up for details):
+Choose the installation directory (see the `README <../README.rst>`_ one level up for details):
 
 
 .. code:: bash
 
-    export INSTALL_DIR=~/opt/symbiflow
+    export INSTALL_DIR=~/opt/symbiflow    # or somewhere else you choose
 
 
 .. toolchain_include_begin_label

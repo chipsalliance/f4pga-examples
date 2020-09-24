@@ -12,7 +12,6 @@ addons:
         - python3-pip
 
 before_install:
-        - echo === before_install
         - sudo locale-gen "en_US.UTF-8"
         - export LANG="en_US.UTF-8"
         - source .github/travis/common.sh
@@ -23,7 +22,6 @@ jobs:
   include:
     - stage: SymbiFlow
       install:
-            - echo === stage symbiflow install
             - export INSTALL_DIR=$PWD/../opt/symbiflow/xc7
             - tuttest xc7/README.rst xc7-setup-toolchain | bash -ex -
 

@@ -27,15 +27,15 @@ Choose the installation directory (see the `README <../README.rst>`_ one level u
 .. toolchain_include_begin_label
 
 .. code:: bash
-   :name: eoss3-setup-toolchain
+        :name: eoss3-setup-toolchain
 
-   bash conda_installer.sh -b -p $INSTALL_DIR/eos-s3/conda
-   source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
-   conda env create -f eos-s3/environment.yml
-   conda activate eos-s3
-   wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3
-   cp -r $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/
-   conda deactivate
+        bash conda_installer.sh -b -p $INSTALL_DIR/eos-s3/conda
+        source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
+        conda env create -f eos-s3/environment.yml
+        conda activate eos-s3
+        wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3
+        cp -r $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/
+        conda deactivate
 
 .. toolchain_include_end_label
 
@@ -53,17 +53,17 @@ Before building any example, set the installation directory to match what you se
 and prepare the environment:
 
 .. code:: bash
-   :name: eoss3-prepare-env
+        :name: eoss3-prepare-env
 
-   export PATH="$INSTALL_DIR/eos-s3/install/bin:$PATH"
-   source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
-   conda activate eos-s3
+        export PATH="$INSTALL_DIR/eos-s3/install/bin:$PATH"
+        source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
+        conda activate eos-s3
 
 To build the example, run the following command:
 
 .. code:: bash
-   :name: eoss3-counter
+        :name: eoss3-counter
 
-   pushd eos-s3/btn_counter && make && popd
+        pushd eos-s3/btn_counter && make && popd
 
 .. build_examples_include_end_label

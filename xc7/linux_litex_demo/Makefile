@@ -6,13 +6,22 @@ VERILOG := ${current_dir}/baselitex_arty.v \
 MEM_INIT := ${current_dir}/mem.init \
             ${current_dir}/mem_1.init \
             ${current_dir}/mem_2.init
-PARTNAME := xc7a35tcsg324-1
-DEVICE  := xc7a50t_test
 BITSTREAM_DEVICE := artix7
 PCF := ${current_dir}/arty.pcf
 SDC := ${current_dir}/arty.sdc
 XDC := ${current_dir}/arty.xdc
-BUILDDIR := build
+BUILDDIR_35  := build
+BUILDDIR_100 := build_100
+
+ifeq ($(TARGET),arty_100)
+    PARTNAME := xc7a100tcsg324-1
+    DEVICE   := xc7a100t_test
+    BUILDDIR := ${BUILDDIR_100}
+else
+    PARTNAME := xc7a35tcsg324-1
+    DEVICE   := xc7a50t_test
+    BUILDDIR := ${BUILDDIR_35}
+endif
 
 all: ${BUILDDIR}/${TOP}.bit
 
@@ -39,5 +48,4 @@ ${BUILDDIR}/${TOP}.bit: ${BUILDDIR}/${TOP}.fasm
 	cd ${BUILDDIR} && symbiflow_write_bitstream -d ${BITSTREAM_DEVICE} -f ${TOP}.fasm -p ${PARTNAME} -b ${TOP}.bit
 
 clean:
-	rm -rf ${BUILDDIR}
-
+	rm -rf ${BUILDDIR_35} ${BUILDDIR_100}

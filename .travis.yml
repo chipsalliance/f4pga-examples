@@ -17,19 +17,24 @@ before_install:
         - source .github/travis/common.sh
         - rm README.rst && make README.rst && .github/travis/git-check.sh
         - pip install git+https://github.com/antmicro/tuttest
-        - tuttest README.rst unnamed0 | bash -
+        - tuttest README.rst wget-conda | bash -ex -
 jobs:
   include:
     - stage: SymbiFlow
       install:
-            - tuttest xc7/README.rst unnamed0 | bash -
+            - export INSTALL_DIR=$PWD/../opt/symbiflow/xc7
+            - tuttest xc7/README.rst xc7-setup-toolchain | bash -ex -
 
       script:
-            - tuttest xc7/README.rst unnamed1,unnamed2,unnamed3,unnamed4,unnamed5 | bash -
+            - export INSTALL_DIR=$PWD/../opt/symbiflow/xc7
+            - tuttest xc7/README.rst  xc7-prepare-env,xc7-counter,xc7-picosoc,xc7-litex,xc7-linux | bash -ex -
+
     - #
       install:
-            - tuttest eos-s3/README.rst unnamed0 | bash -
+            - export INSTALL_DIR=$PWD/../opt/symbiflow/eos-s3
+            - tuttest eos-s3/README.rst eoss3-setup-toolchain | bash -ex -
 
       script:
-            - tuttest eos-s3/README.rst unnamed1,unnamed2 | bash -
+            - export INSTALL_DIR=$PWD/../opt/symbiflow/eos-s3
+            - tuttest eos-s3/README.rst eoss3-prepare-env,eoss3-counter | bash -ex -
 

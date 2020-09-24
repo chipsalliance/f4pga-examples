@@ -10,19 +10,38 @@ SymbiFlow Toolchain Examples for Xilinx 7 Series
 The Linux images for the ``linux_litex`` example can be built following the `linux on litex vexriscv <https://github.com/litex-hub/linux-on-litex-vexriscv>`__ instructions.
 The ``linux_litex`` example is already provided with working Linux images.
 
+
+Clone this repository
+---------------------
+If you have not already done so, clone this repository and `cd` into it:
+
+.. code:: bash
+
+   sudo apt install git
+   git clone https://github.com/SymbiFlow/symbiflow-examples.git && cd symbiflow-examples
+
+
+
 Setting up the toolchain
 ------------------------
+
+Choose the installation directory (see the `README <../README.rst>`_ one level up for details):
+
+
+.. code:: bash
+
+    export INSTALL_DIR=~/opt/symbiflow   # or somewhere else you choose
 
 .. toolchain_include_begin_label
 
 .. code:: bash
+        :name: xc7-setup-toolchain
 
-        INSTALL_DIR="/opt/symbiflow/xc7"
-        bash conda_installer.sh -b -p $INSTALL_DIR/conda && rm conda_installer.sh
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
+        bash conda_installer.sh -b -p $INSTALL_DIR/xc7/conda
+        source "$INSTALL_DIR/xc7/conda/etc/profile.d/conda.sh"
         conda env create -f xc7/environment.yml
         conda activate xc7
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/477/20200714-082108/symbiflow-arch-defs-install-8eb88e76.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/install
+        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/xc7/install
         conda deactivate
 
 .. toolchain_include_end_label
@@ -32,20 +51,26 @@ Building the examples
 
 .. build_examples_include_begin_label
 
-Before building any example, prepare environment:
+Before building any example, set the installation directory to match what you set it to earlier,
 
 .. code:: bash
 
-        export INSTALL_DIR="/opt/symbiflow/xc7"
+    export INSTALL_DIR=~/opt/symbiflow
+
+and prepare the environment:
+
+.. code:: bash
+        :name: xc7-prepare-env
+
         # adding symbiflow toolchain binaries to PATH
-        export PATH="$INSTALL_DIR/install/bin:$PATH"
-        source "$INSTALL_DIR/conda/etc/profile.d/conda.sh"
+        export PATH="$INSTALL_DIR/xc7/install/bin:$PATH"
+        source "$INSTALL_DIR/xc7/conda/etc/profile.d/conda.sh"
         conda activate xc7
-        git clone https://github.com/SymbiFlow/symbiflow-examples && cd symbiflow-examples
 
-To build the counter example, run the following commands:
+To build the counter example, run any or all of the following commands:
 
 .. code:: bash
+        :name: xc7-counter
 
         pushd xc7/counter_test && make clean && TARGET="arty_50" make && popd
         pushd xc7/counter_test && make clean && TARGET="arty_100" make && popd
@@ -54,12 +79,14 @@ To build the counter example, run the following commands:
 To build the picosoc example, run the following commands:
 
 .. code:: bash
+        :name: xc7-picosoc
 
         pushd xc7/picosoc_demo && make && popd
 
 To build the litex example, run the following commands:
 
 .. code:: bash
+        :name: xc7-litex
 
         wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
         chmod +x litex_setup.py
@@ -73,7 +100,9 @@ To build the litex example, run the following commands:
 To build the linux-litex-demo example, run the following commands:
 
 .. code:: bash
+        :name: xc7-linux
 
         pushd xc7/linux_litex_demo && make && popd
+        pushd xc7/linux_litex_demo && TARGET="arty_100" make && popd
 
 .. build_examples_include_end_label

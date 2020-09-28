@@ -1,40 +1,58 @@
 os: linux
 dist: focal
-language: c++
+language: minimal
+
+services:
+  - docker
+
 env:
-  global:
-       - DEBIAN_FRONTEND: noninteractive
-addons:
-  apt:
-    packages:
-        - wget
-        - locales
-        - python3-pip
+  # Testing QuickLogic toolchain on all OSes
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=trusty
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=xenial
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=bionic
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=eoan
+  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=6
+  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=7
+  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=8
+  # Testing Xilinx 7 Series toolchain on all OSes
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=trusty
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=xenial
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=bionic
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=eoan
+  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=6
+  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=7
+  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=8
 
 before_install:
         - sudo locale-gen "en_US.UTF-8"
         - export LANG="en_US.UTF-8"
         - source .github/travis/common.sh
         - rm README.rst && make README.rst && .github/travis/git-check.sh
-        - pip install git+https://github.com/antmicro/tuttest
-        - tuttest README.rst wget-conda | bash -ex -
-jobs:
-  include:
-    - stage: SymbiFlow
-      install:
-            - export INSTALL_DIR=$PWD/../opt/symbiflow/xc7
-            - tuttest xc7/README.rst xc7-setup-toolchain | bash -ex -
+        - pip install git+https://github.com/antmicro/tuttest#egg=tuttest
 
-      script:
-            - export INSTALL_DIR=$PWD/../opt/symbiflow/xc7
-            - tuttest xc7/README.rst  xc7-prepare-env,xc7-counter,xc7-picosoc,xc7-litex,xc7-linux | bash -ex -
+install:
+ - export DOCKER_NAME=test
+ - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -c"
+ - docker create
+        --name $DOCKER_NAME
+        --env LANG="en_US.UTF-8"
+        --env LANGUAGE="en_US"
+        --env DEBIAN_FRONTEND="noninteractive"
+        --env INSTALL_DIR=~/opt/symbiflow/
+        -v /home/travis:/home/travis
+        --workdir $PWD
+        --tty
+        $OS:$OS_VERSION
+ - docker start $DOCKER_NAME
+ - if [ "$OS" = "ubuntu" ]; then tuttest README.rst install-wget-ubuntu --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
+ - if [ "$OS" = "centos" ]; then tuttest README.rst install-wget-centos --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
+ - tuttest README.rst wget-conda --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
+ - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst xc7-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
+ - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst eoss3-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
 
-    - #
-      install:
-            - export INSTALL_DIR=$PWD/../opt/symbiflow/eos-s3
-            - tuttest eos-s3/README.rst eoss3-setup-toolchain | bash -ex -
-
-      script:
-            - export INSTALL_DIR=$PWD/../opt/symbiflow/eos-s3
-            - tuttest eos-s3/README.rst eoss3-prepare-env,eoss3-counter | bash -ex -
+script:
+ - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst xc7-prepare-env,xc7-counter,xc7-picosoc,xc7-litex,xc7-linux --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -; fi
+ - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst eoss3-prepare-env,eoss3-counter --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -; fi
 

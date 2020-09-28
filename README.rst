@@ -22,7 +22,6 @@ The repository includes:
 
 * `.travis.yml <.travis.yml>`_ - Travis CI configuration file
 
-
 Clone this repository
 ---------------------
 
@@ -33,6 +32,24 @@ If you have not already done so, clone this repository and ``cd`` into it:
     sudo apt install git
     git clone https://github.com/SymbiFlow/symbiflow-examples.git && cd symbiflow-examples
 
+
+Prerequisites
+-------------
+The only required prerequisite is ``wget``. You can install it using:
+
+* For Ubuntu:
+
+.. code:: bash
+   :name: install-wget-ubuntu
+
+   apt update && apt install -y wget
+
+* For CentOS:
+
+.. code:: bash
+   :name: install-wget-centos
+
+   yum install -y wget
 
 Toolchain installation
 ----------------------
@@ -84,8 +101,7 @@ and so you will need to add some ``sudo`` commands to the instructions below.
         source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
         conda env create -f eos-s3/environment.yml
         conda activate eos-s3
-        wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/Eb7341Bq-XRAukVQ6oQ6PrgB-qdFbrsrPEON1yTa4krFSA?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3
-        cp -r $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/yosys/* $INSTALL_DIR/eos-s3/conda/envs/eos-s3/share/
+        wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/EWuqtXJmalROpI2L5XeewMIBRYVCY8H4yc10nlli-Xq79g?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3/
         conda deactivate
 
 Build Example Designs

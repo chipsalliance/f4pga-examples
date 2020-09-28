@@ -40,12 +40,14 @@ The only required prerequisite is ``wget``. You can install it using:
 * For Ubuntu:
 
 .. code:: bash
+   :name: install-wget-ubuntu
 
    apt update && apt install -y wget
 
 * For CentOS:
 
 .. code:: bash
+   :name: install-wget-centos
 
    yum install -y wget
 

@@ -7,52 +7,53 @@ services:
 
 env:
   # Testing QuickLogic toolchain on all OSes
-  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=trusty
-  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=xenial
-  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=bionic
-  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=eoan
-  - TOOLCHAIN=quicklogic      OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=6
-  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=7
-  - TOOLCHAIN=quicklogic      OS=centos OS_VERSION=8
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=trusty
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=xenial
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=bionic
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=eoan
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=6
+  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=7
+  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=8
   # Testing Xilinx 7 Series toolchain on all OSes
-  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=trusty
-  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=xenial
-  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=bionic
-  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=eoan
-  - TOOLCHAIN=xilinx-series-7 OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=6
-  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=7
-  - TOOLCHAIN=xilinx-series-7 OS=centos OS_VERSION=8
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=trusty
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=6
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8
 
 before_install:
-        - sudo locale-gen "en_US.UTF-8"
-        - export LANG="en_US.UTF-8"
-        - source .github/travis/common.sh
-        - rm README.rst && make README.rst && .github/travis/git-check.sh
-        - pip install git+https://github.com/antmicro/tuttest#egg=tuttest
-
-install:
+ - sudo locale-gen "en_US.UTF-8"
+ - export LANG="en_US.UTF-8"
+ - source .github/travis/common.sh
+ # Get tuttest and setup a docker container to run the test in.
+ - pip install git+https://github.com/antmicro/tuttest#egg=tuttest
  - export DOCKER_NAME=test
  - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -c"
  - docker create
-        --name $DOCKER_NAME
-        --env LANG="en_US.UTF-8"
-        --env LANGUAGE="en_US"
-        --env DEBIAN_FRONTEND="noninteractive"
-        --env INSTALL_DIR=~/opt/symbiflow/
-        -v /home/travis:/home/travis
-        --workdir $PWD
-        --tty
-        $OS:$OS_VERSION
+       --name $DOCKER_NAME
+       --env LANG="en_US.UTF-8"
+       --env LANGUAGE="en_US"
+       --env DEBIAN_FRONTEND="noninteractive"
+       --env INSTALL_DIR=~/opt/symbiflow/
+       -v /home/travis:/home/travis
+       --workdir $PWD
+       --tty
+       $OS:$OS_VERSION
  - docker start $DOCKER_NAME
- - if [ "$OS" = "ubuntu" ]; then tuttest README.rst install-wget-ubuntu --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
- - if [ "$OS" = "centos" ]; then tuttest README.rst install-wget-centos --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
+
+install:
+ # Check the top level README file is up to date.
+ - rm README.rst && make README.rst && .github/travis/git-check.sh
+ # Install the toolchain into the docker container.
+ - tuttest README.rst install-wget-${OS} --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
  - tuttest README.rst wget-conda --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
- - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst xc7-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
- - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst eoss3-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -; fi
+ - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
 
 script:
- - if [ "$TOOLCHAIN" = "xilinx-series-7" ]; then tuttest xc7/README.rst xc7-prepare-env,xc7-counter,xc7-picosoc,xc7-litex,xc7-linux --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -; fi
- - if [ "$TOOLCHAIN" = "quicklogic" ];      then tuttest eos-s3/README.rst eoss3-prepare-env,eoss3-counter --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -; fi
-
+ # Run the tests inside the docker container.
+ - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc,xc7-litex,xc7-linux; fi
+ - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -

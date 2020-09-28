@@ -95,7 +95,7 @@ and so you will need to add some ``sudo`` commands to the instructions below.
 * For the EOS S3 devices:
 
 .. code:: bash
-        :name: eoss3-setup-toolchain
+        :name: eos-s3-setup-toolchain
 
         bash conda_installer.sh -b -p $INSTALL_DIR/eos-s3/conda
         source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
@@ -184,7 +184,7 @@ Before building any example, set the installation directory to match what you se
 and prepare the environment:
 
 .. code:: bash
-        :name: eoss3-prepare-env
+        :name: eos-s3-prepare-env
 
         export PATH="$INSTALL_DIR/eos-s3/install/bin:$PATH"
         source "$INSTALL_DIR/eos-s3/conda/etc/profile.d/conda.sh"
@@ -193,7 +193,7 @@ and prepare the environment:
 To build the example, run the following command:
 
 .. code:: bash
-        :name: eoss3-counter
+        :name: eos-s3-counter
 
         pushd eos-s3/btn_counter && make && popd
 

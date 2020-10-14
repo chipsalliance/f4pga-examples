@@ -7,7 +7,7 @@ BITSTREAM_DEVICE := artix7
 SDC:=${current_dir}/counter.sdc
 BUILDDIR:=build
 
-ifeq ($(TARGET),arty_50)
+ifeq ($(TARGET),arty_35)
   PARTNAME := xc7a35tcsg324-1
   PCF:=${current_dir}/arty.pcf
 else ifeq ($(TARGET),arty_100)

@@ -44,58 +44,22 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_symbiflow_theme'
+
+html_show_sourcelink = True
+html_sidebars = {
+    "**": ["logo-text.html", "globaltoc.html", "localtoc.html", "searchbox.html"]
+}
+
+html_theme = 'sphinx_material'
 html_theme_options = {
-    # Specify a list of menu in Header.
-    # Tuples forms:
-    #  ('Name', 'external url or path of pages in the document', boolean, 'icon name')
-    #
-    # Third argument:
-    # True indicates an external link.
-    # False indicates path of pages in the document.
-    #
-    # Fourth argument:
-    # Specify the icon name.
-    # For details see link.
-    # https://material.io/icons/
-    'header_links' : [
-        ('Home', 'index', False, 'home'),
-        ("Website", "https://symbiflow-examples.github.io", True, 'launch'),
-        ("GitHub", "https://github.com/SymbiFlow/symbiflow-examples", True, 'code')
-    ],
-
-    # Customize css colors.
-    # For details see link.
-    # https://getmdl.io/customize/index.html
-    #
-    # Values: amber, blue, brown, cyan deep_orange, deep_purple, green, grey, indigo, light_blue,
-    #         light_green, lime, orange, pink, purple, red, teal, yellow(Default: indigo)
-    'primary_color': 'deep_purple',
-    # Values: Same as primary_color. (Default: pink)
-    'accent_color': 'purple',
-
-    # Customize layout.
-    # For details see link.
-    # https://getmdl.io/components/index.html#layout-section
-    'fixed_drawer': True,
-    'fixed_header': True,
-    'header_waterfall': True,
-    'header_scroll': False,
-
-    # Render title in header.
-    # Values: True, False (Default: False)
-    'show_header_title': False,
-    # Render title in drawer.
-    # Values: True, False (Default: True)
-    'show_drawer_title': True,
-    # Render footer.
-    # Values: True, False (Default: True)
-    'show_footer': True,
-
-    'hide_symbiflow_links': True,
+    'nav_title': project,
+    'color_primary': 'deep-purple',
+    'color_accent': 'purple',
+    'repo_name': "antmicro/symbiflow-examples",
+    'repo_url': 'https://github.com/antmicro/symbiflow-examples',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']

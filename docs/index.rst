@@ -3,30 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to SymbiFlow examples's documentation!
-==============================================
+Welcome to SymbiFlow examples documentation!
+============================================
 
 .. toctree::
    :maxdepth: 2
 
    introduction
-
-
-.. toctree::
-   :maxdepth: 2
-
    getting
-
-
-.. toctree::
-   :maxdepth: 2
-
    examples
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

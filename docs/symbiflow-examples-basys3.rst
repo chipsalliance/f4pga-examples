@@ -21,10 +21,10 @@ To complete this tutorial, you need:
   - `Digilent Basys 3 Artix-7 FPGA Trainer Board`_
   - USB A to Micro-B cable
 
-.. image:: ../images/basys3.png
+.. image:: images/basys3.png
    :width: 49%
 
-.. image:: ../images/usb-a-to-micro-b-cable.png
+.. image:: images/usb-a-to-micro-b-cable.png
    :width: 49%
 
 2. Download SymbiFlow Examples
@@ -118,7 +118,7 @@ SymbiFlow Toolchain can be found in the dedicated
 
 Connect the Basys3 Board to your computer using the USB cable:
 
-.. image:: ../images/basys3-usb.png
+.. image:: images/basys3-usb.png
    :width: 49%
    :align: center
 
@@ -153,7 +153,7 @@ with the design, follow the steps below:
    - Additionally, the board's LEDs should show the sequentially ordered numbers
      displayed in the binary form:
 
-   .. image:: ../images/counter-example-basys3.gif
+   .. image:: images/counter-example-basys3.gif
       :align: center
 
 7. PicoSoC Example
@@ -242,7 +242,7 @@ with the design, follow the steps below:
 
    - The board's LED should blink at a regular rate from left to the right
 
-      .. image:: ../images/picosoc-example-basys3.gif
+      .. image:: images/picosoc-example-basys3.gif
          :width: 49%
          :align: center
 

@@ -22,13 +22,13 @@ To complete this tutorial, you need:
   - USB A to Micro-B cable
   - Ethernet cable (for the LiteX Linux Example)
 
-.. image:: ../images/arty.png
+.. image:: images/arty.png
    :width: 33%
 
-.. image:: ../images/usb-a-to-micro-b-cable.png
+.. image:: images/usb-a-to-micro-b-cable.png
    :width: 33%
 
-.. image:: ../images/ethernet-cable.png
+.. image:: images/ethernet-cable.png
    :width: 33%
 
 
@@ -132,7 +132,7 @@ SymbiFlow Toolchain can be found in the dedicated
 #. Connect the board to your computer using the Ethernet cable
    (only if you want to test the LiteX Linux Example)
 
-.. image:: ../images/arty-usb-ethernet.png
+.. image:: images/arty-usb-ethernet.png
    :width: 49%
    :align: center
 
@@ -167,7 +167,7 @@ with the design, follow the steps below:
    - Additionally, the board's LEDs should show the sequentially ordered numbers
      displayed in the binary form:
 
-   .. image:: ../images/counter-example-arty.gif
+   .. image:: images/counter-example-arty.gif
       :align: center
 
 7. LiteX Linux Example
@@ -268,12 +268,12 @@ server, follow the instructions in the :doc:`../howto/install-tftp-server`.
 
    - In the ``picocom`` terminal, you should observe the following output:
 
-   .. thumbnail:: ../images/linux-example-console.gif
+   .. thumbnail:: images/linux-example-console.gif
       :align: center
       :width: 80%
 
    - Additionally, two LED's on the board should be turned on
 
-   .. image:: ../images/linux-example-arty.jpg
+   .. image:: images/linux-example-arty.jpg
       :width: 49%
       :align: center

@@ -1,15 +1,33 @@
-.. SymbiFlow examples documentation master file, created by
-   sphinx-quickstart on Tue Nov  3 08:30:47 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Welcome to SymbiFlow examples!
+==============================
 
-Welcome to SymbiFlow examples documentation!
-============================================
+This guide explains how to get started with SymbiFlow and build example designs
+from the SymbiFlow Examples GitHub repository. It currently focuses on two FPGA
+families:
+
+- Artix-7 from Xilinx,
+- EOS S3 from QuickLogic.
+
+Follow this guide to:
+
+- install SymbiFlow and all of its dependencies,
+- build and upload example designs onto the devboard of your choice.
+
+About SymbiFlow
+---------------
+
+SymbiFlow is a fully open source toolchain for the development of FPGAs,
+currently targeting chips from multiple vendors, e.g.:
+
+- Xilinx 7-Series
+- Lattice iCE40
+- Lattice ECP5 FPGAs
+- QuickLogic EOS S3
 
 .. toctree::
    :maxdepth: 2
+   :caption: Sections
 
-   introduction
-   getting
-   examples
-
+   getting-symbiflow
+   building-examples
+   running-examples

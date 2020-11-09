@@ -76,38 +76,38 @@ It is assumed that the server is running on port ``6069`` and uses ``/tftp`` dir
 
 #. Install tftp with:
 
-.. tabs::
+   .. tabs::
 
-    .. group-tab:: Ubuntu
+      .. group-tab:: Ubuntu
 
-        .. code-block:: bash
+         .. code-block:: bash
 
             sudo apt install tftpd-hpa
 
 #. Create a directory for the server:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    sudo mkdir -p /tftp
-    sudo chmod 777 -R /tftp
-    sudo chown tftp -R /tftp
+      sudo mkdir -p /tftp
+      sudo chmod 777 -R /tftp
+      sudo chown tftp -R /tftp
 
 #. Set up your TFTP configuration with:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    cat << EOF | sudo tee /etc/default/tftpd-hpa
-    TFTP_USERNAME="tftp"
-    TFTP_DIRECTORY="/tftp"
-    TFTP_ADDRESS=":6069"
-    TFTP_OPTIONS="--secure"
-    EOF
+      cat << EOF | sudo tee /etc/default/tftpd-hpa
+      TFTP_USERNAME="tftp"
+      TFTP_DIRECTORY="/tftp"
+      TFTP_ADDRESS=":6069"
+      TFTP_OPTIONS="--secure"
+      EOF
 
 #. Restart the TFTP server:
 
-.. code-block:: bash
+   .. code-block:: bash
 
-    sudo systemctl restart tftpd-hpa
+      sudo systemctl restart tftpd-hpa
 
 Configuring your network interfaces
 -----------------------------------
@@ -116,15 +116,15 @@ Check your network interfaces with:
 
 .. code-block::
 
-    ip link
+   ip link
 
 Add IPv4 address to you interface:
 
 .. code-block:: bash
 
-    ip addr add 192.168.100.100/24 dev eth0
+   ip addr add 192.168.100.100/24 dev eth0
 
 
 .. warning::
 
-    ``192.169.100.100/24`` and ``eth0`` are just examples!
+   ``192.169.100.100/24`` and ``eth0`` are just examples!

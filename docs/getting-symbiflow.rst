@@ -15,7 +15,7 @@ To be able to follow through this tutorial, install the following software:
 
       .. code-block:: bash
          :name: install-reqs-ubuntu
-        
+
          apt install -y git wget picocom
 
    .. group-tab:: CentOS
@@ -35,9 +35,10 @@ To be able to follow through this tutorial, install the following software:
 Next, clone the SymbiFlow examples repository and enter it:
 
 .. code-block:: bash
+   :name: get-symbiflow
 
-    git clone https://github.com/SymbiFlow/symbiflow-examples
-    cd symbiflow-examples
+   git clone https://github.com/SymbiFlow/symbiflow-examples
+   cd symbiflow-examples
 
 Toolchain installation
 ----------------------
@@ -68,8 +69,9 @@ If you choose a system directory, you will need root permission to perform the i
 and so you will need to add some ``sudo`` commands to the instructions below.
 
 .. code-block:: bash
+   :name: conda-install-dir
 
-   INSTALL_DIR=~/opt/symbiflow
+   export INSTALL_DIR=~/opt/symbiflow
 
 Toolchain
 ~~~~~~~~~
@@ -78,31 +80,35 @@ Select your target FPGA family:
 
 .. tabs::
 
-    .. group-tab:: Artix-7
+   .. group-tab:: Artix-7
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: fpga-fam-xc7
 
-            FPGA_FAM=xc7
+         export FPGA_FAM=xc7
 
-    .. group-tab:: EOS S3
+   .. group-tab:: EOS S3
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: fpga-fam-eos-s3
 
-            FPGA_FAM=eos-s3
+         export FPGA_FAM=eos-s3
 
 Next, setup Conda and your system's enviroments:
 
 .. code-block:: bash
+   :name: conda-setup
 
-    bash conda_installer.sh -b -p $INSTALL_DIR/$FPGA_FAM/conda
-    source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
-    conda env create -f examples/$FPGA_FAM/environment.yml
+   bash conda_installer.sh -u -b -p $INSTALL_DIR/$FPGA_FAM/conda;
+   source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
+   conda env create -f $FPGA_FAM/environment.yml
 
 Activate your Conda enviroment:
 
 .. code-block:: bash
+   :name: conda-activate
 
-    conda activate $FPGA_FAM
+   conda activate $FPGA_FAM
 
 Download architecture definitions
 
@@ -111,20 +117,24 @@ Download architecture definitions
    .. group-tab:: Artix-7
 
       .. code-block:: bash
+         :name: download-arch-def-xc7
 
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJ --one-top-level=$INSTALL_DIR/xc7/install
+         mkdir -p $INSTALL_DIR/xc7/install;
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJ -C $INSTALL_DIR/xc7/install
 
    .. group-tab:: EOS-S3
 
       .. code-block:: bash
+         :name: download-arch-def-eos-s3
 
          wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/EWuqtXJmalROpI2L5XeewMIBRYVCY8H4yc10nlli-Xq79g?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3/
 
 You have successfuly installed and configured your working enviroment. For now, you can safely deactivate it with:
 
 .. code-block:: bash
+   :name: conda-deactivate
 
-    conda deactivate
+   conda deactivate
 
 
 Build Example Designs

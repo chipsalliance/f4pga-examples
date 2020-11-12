@@ -62,9 +62,9 @@ Simply use ``picocom`` to connect:
    If the picocom is unable to connect to any ``ttyUSBx`` device, you probably don't have appropriate user permissions.
    On Debian distributions, type the command below to add the user to the ``dialout`` group.
    This should resolve the missing permissions problem:
-    
+
    .. code-block:: bash
-    
+
       sudo usermod -a -G dialout `whoami`
 
 Setting up TFTP

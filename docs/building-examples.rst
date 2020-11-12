@@ -5,42 +5,47 @@ Before building any example, set the installation directory to match what you
 set it to earlier, for example:
 
 .. code-block:: bash
+   :name: export-install-dir
 
-    export INSTALL_DIR=~/opt/symbiflow
+   export INSTALL_DIR=~/opt/symbiflow
 
 Select your fpga family:
 
 .. tabs::
 
-    .. group-tab:: Artix-7
+   .. group-tab:: Artix-7
 
-        .. code-block:: bash
-        
-            FPGA_FAM="xc7"
+      .. code-block:: bash
+         :name: fpga-fam-xc7
 
-    .. group-tab:: EOS S3
+         FPGA_FAM="xc7"
 
-        .. code-block:: bash
+   .. group-tab:: EOS S3
 
-            FPGA_FAM="eos-s3"
+      .. code-block:: bash
+         :name: fpga-fam-eos-s3
+
+         FPGA_FAM="eos-s3"
 
 Next, prepare the enviroment:
 
 .. code-block:: bash
+   :name: conda-prep-env
 
-    export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH"
-    source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
+   export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
+   source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 Finally, enter your working Conda enviroment:
 
 .. code-block:: bash
+   :name: conda-act-env
 
-    conda activate $FPGA_FAM
+   conda activate $FPGA_FAM
 
 .. note::
 
-    If you don't know how to upload any of the following examples onto your
-    development board, please refer to the Running examples section.
+   If you don't know how to upload any of the following examples onto your
+   development board, please refer to the Running examples section.
 
 
 Xilinx 7-Series
@@ -49,8 +54,9 @@ Xilinx 7-Series
 Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 
 .. code-block:: bash
+   :name: enter-dir-xc7
 
-    cd examples/xc7
+   cd xc7
 
 Counter test
 ~~~~~~~~~~~~
@@ -60,35 +66,38 @@ counter example, run the following command:
 
 .. tabs::
 
-    .. group-tab:: Arty 35T
+   .. group-tab:: Arty 35T
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: example-counter-a35t
 
-            TARGET="arty_35" make -C counter_test
+         TARGET="arty_35" make -C counter_test
 
-    .. group-tab:: Arty 100T
+   .. group-tab:: Arty 100T
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: example-counter-a100t
 
-            TARGET="arty_100" make -C counter_test
+         TARGET="arty_100" make -C counter_test
 
-    .. group-tab:: Basys 3
+   .. group-tab:: Basys 3
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: example-counter-basys3
 
-            TARGET="basys3" make -C counter_test
+         TARGET="basys3" make -C counter_test
 
 Now you can upload the design with:
 
 .. code-block:: bash
 
-    openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
 
 
 The result should be as follows:
 
 .. image:: images/counter-example-arty.gif
-    :align: center
+   :align: center
 
 PicoSoC demo
 ~~~~~~~~~~~~
@@ -98,55 +107,56 @@ picosoc example, run the following commands:
 
 .. tabs::
 
-    .. group-tab:: Basys 3
+   .. group-tab:: Basys 3
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: example-picosoc-basys3
 
-            TARGET="basys3" make -C picosoc_demo
+         TARGET="basys3" make -C picosoc_demo
 
 Now you can upload the design with:
 
 .. code-block:: bash
 
-    openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
 
 
 You should observe the following line in the OpenOCD output:
 
  .. code-block::
 
-    Info : JTAG tap: xc7.tap tap/device found: 0x0362d093 (mfg: 0x049 (Xilinx), part: 0x362d, ver: 0x0)
+   Info : JTAG tap: xc7.tap tap/device found: 0x0362d093 (mfg: 0x049 (Xilinx), part: 0x362d, ver: 0x0)
 
 The UART output should look as follows:
 
  .. code-block::
 
-    Terminal ready
-    Press ENTER to continue..
-    Press ENTER to continue..
-    Press ENTER to continue..
-    Press ENTER to continue..
+   Terminal ready
+   Press ENTER to continue..
+   Press ENTER to continue..
+   Press ENTER to continue..
+   Press ENTER to continue..
 
-     ____  _          ____         ____
-    |  _ \(_) ___ ___/ ___|  ___  / ___|
-    | |_) | |/ __/ _ \___ \ / _ \| |
-    |  __/| | (_| (_) |__) | (_) | |___
-    |_|   |_|\___\___/____/ \___/ \____|
+    ____  _          ____         ____
+   |  _ \(_) ___ ___/ ___|  ___  / ___|
+   | |_) | |/ __/ _ \___ \ / _ \| |
+   |  __/| | (_| (_) |__) | (_) | |___
+   |_|   |_|\___\___/____/ \___/ \____|
 
 
-    [9] Run simplistic benchmark
+   [9] Run simplistic benchmark
 
-    Command>
+   Command>
 
 .. note::
 
-    PicoSoC uses baud rate of ``460800`` by default.
+   PicoSoC uses baud rate of ``460800`` by default.
 
 The board's LED should blink at a regular rate from left to the right
 
- .. image:: images/picosoc-example-basys3.gif
-    :width: 49%
-    :align: center
+.. image:: images/picosoc-example-basys3.gif
+   :width: 49%
+   :align: center
 
 Linux LiteX demo
 ~~~~~~~~~~~~~~~~
@@ -156,43 +166,45 @@ CPU. It also includes DDR and Ethernet controllers. To build the litex example,
 run the following commands:
 
 .. code-block:: bash
-   :name: xc7-litex
+   :name: example-litex-deps
 
-   wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
-   chmod +x litex_setup.py
-   ./litex_setup.py init
-   ./litex_setup.py install
-   wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
-   tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
+   wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py;
+   chmod +x litex_setup.py;
+   ./litex_setup.py init;
+   ./litex_setup.py install;
+   wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz;
+   tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz;
    export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
-   pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
+   #pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
 
 To build the linux-litex-demo example, run the following commands:
 
 .. tabs::
 
-    .. group-tab:: Arty 35T
+   .. group-tab:: Arty 35T
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: example-litex-a35t
 
-            TARGET="arty_35" make -C litex_linux_demo
+         TARGET="arty_35" make -C linux_litex_demo
 
-    .. group-tab:: Arty 100T
+   .. group-tab:: Arty 100T
 
-        .. code-block:: bash
+      .. code-block:: bash
+         :name: example-litex-a100t
 
-            TARGET="arty_100" make -C litex_linux_demo
+         TARGET="arty_100" make -C linux_litex_demo
 
 Now you can upload the design with:
 
 .. code-block:: bash
 
-    openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
 
 .. note::
 
-    LiteX on Linux demo excepts you to use IPv4 address of ``192.168.100.100/24``
-    on your network interface.
+   LiteX on Linux demo excepts you to use IPv4 address of ``192.168.100.100/24``
+   on your network interface.
 
 You should observe the following line in the OpenOCD output
 
@@ -218,8 +230,9 @@ QuickLogic EOS S3
 Enter the directory that contains examples for QuickLogic EOS S3:
 
 .. code-block:: bash
+   :name: enter-dir-eos-s3
 
-    cd examples/eos-s3
+   cd eos-s3
 
 Button counter
 ~~~~~~~~~~~~~~

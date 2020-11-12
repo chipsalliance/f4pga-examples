@@ -2,58 +2,14 @@ os: linux
 dist: focal
 language: minimal
 
-services:
-  - docker
-
 env:
-  # Testing QuickLogic toolchain on all OSes
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=trusty
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=xenial
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=bionic
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=eoan
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=6
-  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=7
-  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=8
-  # Testing Xilinx 7 Series toolchain on all OSes
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=trusty
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=6
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8
+  - FPGA_FAM="xc7"
+  - FPGA_FAM="eos-s3"
 
 before_install:
- - sudo locale-gen "en_US.UTF-8"
- - export LANG="en_US.UTF-8"
- - source .github/travis/common.sh
- # Get tuttest and setup a docker container to run the test in.
- - pip install git+https://github.com/antmicro/tuttest#egg=tuttest
- - export DOCKER_NAME=test
- - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -c"
- - docker create
-       --name $DOCKER_NAME
-       --env LANG="en_US.UTF-8"
-       --env LANGUAGE="en_US"
-       --env DEBIAN_FRONTEND="noninteractive"
-       --env INSTALL_DIR=~/opt/symbiflow/
-       -v /home/travis:/home/travis
-       --workdir $PWD
-       --tty
-       $OS:$OS_VERSION
- - docker start $DOCKER_NAME
+  - sudo apt update -y
+  - sudo apt install -y python3-pip python3-setuptools git
+  - sudo pip3 install dataclasses
+  - sudo pip3 install git+https://github.com/antmicro/tuttest
 
-install:
- # Check the top level README file is up to date.
- - rm README.rst && make README.rst && .github/travis/git-check.sh
- # Install the toolchain into the docker container.
- - tuttest README.rst install-wget-${OS} --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
- - tuttest README.rst wget-conda --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
- - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
-
-script:
- # Run the tests inside the docker container.
- - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc,xc7-litex,xc7-linux; fi
- - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -
+script: .github/travis/build.sh $FPGA_FAM

@@ -1,7 +1,7 @@
 Welcome to SymbiFlow examples!
 ==============================
 
-This guide explains how to get started with SymbiFlow and build example designs from the `SymbiFlow Examples <https://github.com/antmicro/symbiflow-examples>` GitHub repository. It currently focuses on two FPGA families:
+This guide explains how to get started with SymbiFlow and build example designs from the `SymbiFlow Examples <https://github.com/antmicro/symbiflow-examples>`_ GitHub repository. It currently focuses on two FPGA families:
 
 - Artix-7 from Xilinx,
 - EOS S3 from QuickLogic.

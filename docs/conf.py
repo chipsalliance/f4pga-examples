@@ -57,6 +57,8 @@ html_theme_options = {
     'color_accent': 'purple',
     'repo_name': "antmicro/symbiflow-examples",
     'repo_url': 'https://github.com/antmicro/symbiflow-examples',
+    'globaltoc_depth': 2,
+    'globaltoc_collapse': True
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

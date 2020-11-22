@@ -32,7 +32,7 @@ before_install:
  # Get tuttest and setup a docker container to run the test in.
  - pip install git+https://github.com/antmicro/tuttest#egg=tuttest
  - export DOCKER_NAME=test
- - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -c"
+ - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -ex -"
  - docker create
        --name $DOCKER_NAME
        --env LANG="en_US.UTF-8"
@@ -49,11 +49,11 @@ install:
  # Check the top level README file is up to date.
  - rm README.rst && make README.rst && .github/travis/git-check.sh
  # Install the toolchain into the docker container.
- - tuttest README.rst install-wget-${OS} --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
- - tuttest README.rst wget-conda --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
- - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-setup-toolchain --prefix-lines-with "$IN_DOCKER_EXEC" | bash -ex -
+ - tuttest README.rst install-wget-${OS}" | $IN_DOCKER_EXEC
+ - tuttest README.rst wget-conda | $IN_DOCKER_EXEC
+ - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-setup-toolchain | $IN_DOCKER_EXEC
 
 script:
  # Run the tests inside the docker container.
  - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc,xc7-litex,xc7-linux; fi
- - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} --prefix-lines-with "$IN_DOCKER_EXEC" --single-command | bash -ex -
+ - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} | $IN_DOCKER_EXEC

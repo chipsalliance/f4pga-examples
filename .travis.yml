@@ -32,7 +32,7 @@ before_install:
  # Get tuttest and setup a docker container to run the test in.
  - pip install git+https://github.com/antmicro/tuttest#egg=tuttest
  - export DOCKER_NAME=test
- - export IN_DOCKER_EXEC="docker exec -t $DOCKER_NAME bash -ex -"
+ - export IN_DOCKER_EXEC="docker exec -t test bash -c \$(cat /dev/stdin)"
  - docker create
        --name $DOCKER_NAME
        --env LANG="en_US.UTF-8"

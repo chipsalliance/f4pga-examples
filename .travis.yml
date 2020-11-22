@@ -7,7 +7,6 @@ services:
 
 env:
   # Testing QuickLogic toolchain on all OSes
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=trusty
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=xenial
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=bionic
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=eoan
@@ -16,12 +15,10 @@ env:
   - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=7
   - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=8
   # Testing Xilinx 7 Series toolchain on all OSes
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=trusty
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=6
   - TOOLCHAIN=xc7    OS=centos OS_VERSION=7
   - TOOLCHAIN=xc7    OS=centos OS_VERSION=8
 
@@ -55,5 +52,5 @@ install:
 
 script:
  # Run the tests inside the docker container.
- - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc,xc7-litex,xc7-linux; fi
+ - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc,xc7-litex; fi
  - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"

@@ -7,19 +7,19 @@ services:
 
 env:
   # Testing QuickLogic toolchain on all OSes
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=trusty  
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=xenial
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=bionic
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=eoan
   - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=6
   - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=7
   - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=8
   # Testing Xilinx 7 Series toolchain on all OSes
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=trusty  
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=6  
   - TOOLCHAIN=xc7    OS=centos OS_VERSION=7
   - TOOLCHAIN=xc7    OS=centos OS_VERSION=8
 

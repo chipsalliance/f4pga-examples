@@ -51,5 +51,5 @@ install:
 
 script:
  # Run the tests inside the docker container.
- - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc,xc7-litex,xc7-linux; fi
+ - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc; fi
  - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"

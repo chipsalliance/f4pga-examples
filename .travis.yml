@@ -19,6 +19,7 @@ env:
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan
   - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=6  
   - TOOLCHAIN=xc7    OS=centos OS_VERSION=7
   - TOOLCHAIN=xc7    OS=centos OS_VERSION=8
 

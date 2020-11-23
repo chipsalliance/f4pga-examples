@@ -94,7 +94,7 @@ Select your target FPGA family:
 
          export FPGA_FAM=eos-s3
 
-Next, setup Conda and your system's enviroments:
+Next, setup Conda and your system's enviroment:
 
 .. code-block:: bash
    :name: conda-setup
@@ -103,14 +103,7 @@ Next, setup Conda and your system's enviroments:
    source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
    conda env create -f $FPGA_FAM/environment.yml
 
-Activate your Conda enviroment:
-
-.. code-block:: bash
-   :name: conda-activate
-
-   conda activate $FPGA_FAM
-
-Download architecture definitions
+Download architecture definitions:
 
 .. tabs::
 
@@ -129,13 +122,7 @@ Download architecture definitions
 
          wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/EWuqtXJmalROpI2L5XeewMIBRYVCY8H4yc10nlli-Xq79g?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3/
 
-You have successfuly installed and configured your working enviroment. For now, you can safely deactivate it with:
-
-.. code-block:: bash
-   :name: conda-deactivate
-
-   conda deactivate
-
+If the above commands exited without errors, you have successfuly installed and configured your working enviroment.
 
 Build Example Designs
 ---------------------

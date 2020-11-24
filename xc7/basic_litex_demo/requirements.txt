@@ -1,0 +1,8 @@
+git+https://github.com/m-labs/migen
+git+https://github.com/litex-hub/pythondata-software-compiler_rt
+git+https://github.com/enjoy-digital/litex
+git+https://github.com/enjoy-digital/liteeth
+git+https://github.com/enjoy-digital/litedram
+git+https://github.com/enjoy-digital/liteiclink
+git+https://github.com/litex-hub/litex-boards
+git+https://github.com/litex-hub/pythondata-cpu-vexriscv

@@ -7,19 +7,41 @@ services:
 
 env:
   # Testing QuickLogic toolchain on all OSes
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=xenial
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=bionic
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=eoan
-  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=7
-  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=8
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=xenial  EXAMPLE=eos-s3-counter
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=bionic  EXAMPLE=eos-s3-counter
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=eoan    EXAMPLE=eos-s3-counter
+  - TOOLCHAIN=eos-s3 OS=ubuntu OS_VERSION=focal   EXAMPLE=eos-s3-counter
+  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=7       EXAMPLE=eos-s3-counter
+  - TOOLCHAIN=eos-s3 OS=centos OS_VERSION=8       EXAMPLE=eos-s3-counter
+
   # Testing Xilinx 7 Series toolchain on all OSes
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan
-  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7
-  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial  EXAMPLE=xc7-counter
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic  EXAMPLE=xc7-counter
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan    EXAMPLE=xc7-counter
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal   EXAMPLE=xc7-counter
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7       EXAMPLE=xc7-counter
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8       EXAMPLE=xc7-counter
+
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial  EXAMPLE=xc7-picosoc
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic  EXAMPLE=xc7-picosoc
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan    EXAMPLE=xc7-picosoc
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal   EXAMPLE=xc7-picosoc
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7       EXAMPLE=xc7-picosoc
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8       EXAMPLE=xc7-picosoc
+
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial  EXAMPLE=xc7-litex
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic  EXAMPLE=xc7-litex
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan    EXAMPLE=xc7-litex
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal   EXAMPLE=xc7-litex
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7       EXAMPLE=xc7-litex
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8       EXAMPLE=xc7-litex
+
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=xenial  EXAMPLE=xc7-linux
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=bionic  EXAMPLE=xc7-linux
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=eoan    EXAMPLE=xc7-linux
+  - TOOLCHAIN=xc7    OS=ubuntu OS_VERSION=focal   EXAMPLE=xc7-linux
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=7       EXAMPLE=xc7-linux
+  - TOOLCHAIN=xc7    OS=centos OS_VERSION=8       EXAMPLE=xc7-linux
 
 before_install:
  - sudo locale-gen "en_US.UTF-8"
@@ -51,5 +73,4 @@ install:
 
 script:
  # Run the tests inside the docker container.
- - if [ "$TOOLCHAIN" = "xc7" ]; then EXTRA_TESTS=,xc7-picosoc; fi
- - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${TOOLCHAIN}-counter${EXTRA_TESTS} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
+ - tuttest ${TOOLCHAIN}/README.rst ${TOOLCHAIN}-prepare-env,${EXAMPLE} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"

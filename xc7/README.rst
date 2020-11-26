@@ -42,7 +42,10 @@ Choose the installation directory (see the `README <../README.rst>`_ one level u
         conda env create -f xc7/environment.yml
         conda activate xc7
         mkdir -p $INSTALL_DIR/xc7/install
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/66/20200914-111752/symbiflow-arch-defs-install-05d68df0.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/1049/20201123-030526/symbiflow-arch-defs-install-05bd35c7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+        mkdir -p $INSTALL_DIR/xc7/install/share/symbiflow/arch
+        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/1049/20201123-030526/symbiflow-xc7a50t_test.tar.xz | tar -xJC $INSTALL_DIR/xc7/install/share/symbiflow/arch
+        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/1049/20201123-030526/symbiflow-xc7a100t_test.tar.xz | tar -xJC $INSTALL_DIR/xc7/install/share/symbiflow/arch
         conda deactivate
 
 .. toolchain_include_end_label
@@ -96,7 +99,7 @@ To build the litex example, run the following commands:
         wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
         tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
         export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
-        pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
+        pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --sys-clk-freq 80e6 --no-ident-version --build && popd
 
 To build the linux-litex-demo example, run the following commands:
 

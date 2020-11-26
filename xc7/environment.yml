@@ -3,9 +3,9 @@ channels:
   - symbiflow
 dependencies:
   - symbiflow::symbiflow-yosys=0.8_6021_gd8b2d1a2=20200708_083630
-  - symbiflow::symbiflow-yosys-plugins=1.0.0.7_0060_g7454cd6=20200902_114536
-  - symbiflow::symbiflow-vtr=8.0.0.rc2_4003_g8980e4621
-  - symbiflow::prjxray-db=0.0_0232_g303a61d=20200902_114536
+  - symbiflow::symbiflow-yosys-plugins=1.0.0.7_0174_g5e6370a=20201012_171341
+  - symbiflow::symbiflow-vtr=8.0.0.rc2_5097_gf1a3bcc2a=20200916_072439
+  - symbiflow::prjxray-db=0.0_0239_gd87c844=20201120_180018
   - symbiflow::prjxray-tools
   - make
   - lxml

@@ -1,6 +1,6 @@
 set -e
 
-source .github/travis/common.sh
+source .github/scripts/common.sh
 
 # Output any changes in the repository
 # ------------------------------------------------------------------------

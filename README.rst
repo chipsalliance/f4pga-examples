@@ -35,21 +35,22 @@ If you have not already done so, clone this repository and ``cd`` into it:
 
 Prerequisites
 -------------
-The only required prerequisite is ``wget``. You can install it using:
+
+Install the following prerequisites before using symbiflow-examples:
 
 * For Ubuntu:
 
 .. code:: bash
-   :name: install-wget-ubuntu
+   :name: install-req-ubuntu
 
    apt update && apt install -y wget
 
 * For CentOS:
 
 .. code:: bash
-   :name: install-wget-centos
+   :name: install-req-centos
 
-   yum install -y wget
+   yum install -y wget which
 
 Toolchain installation
 ----------------------
@@ -159,6 +160,8 @@ To build the litex example, run the following commands:
 .. code:: bash
         :name: xc7-litex
 
+        mkdir xc7/litex_demo
+        pushd xc7/litex_demo
         wget https://raw.githubusercontent.com/enjoy-digital/litex/master/litex_setup.py
         chmod +x litex_setup.py
         ./litex_setup.py init
@@ -167,6 +170,7 @@ To build the litex example, run the following commands:
         tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
         export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
         pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --sys-clk-freq 80e6 --no-ident-version --build && popd
+        popd
 
 To build the linux-litex-demo example, run the following commands:
 

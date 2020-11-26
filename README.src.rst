@@ -35,21 +35,22 @@ If you have not already done so, clone this repository and ``cd`` into it:
 
 Prerequisites
 -------------
-The only required prerequisite is ``wget``. You can install it using:
+
+Install the following prerequisites before using symbiflow-examples:
 
 * For Ubuntu:
 
 .. code:: bash
-   :name: install-wget-ubuntu
+   :name: install-req-ubuntu
 
    apt update && apt install -y wget
 
 * For CentOS:
 
 .. code:: bash
-   :name: install-wget-centos
+   :name: install-req-centos
 
-   yum install -y wget
+   yum install -y wget which
 
 Toolchain installation
 ----------------------
@@ -69,9 +70,9 @@ This section describes how to install the toolchain. This procedure is divided i
 
 2. Choose the install directory
 
-The install directory can either be in your home directory 
-such as ``~/opt/symbiflow`` or in a system directory such as ``/opt/symbiflow``.  
-If you choose a system directory, you will need root permission to perform the installation, 
+The install directory can either be in your home directory
+such as ``~/opt/symbiflow`` or in a system directory such as ``/opt/symbiflow``.
+If you choose a system directory, you will need root permission to perform the installation,
 and so you will need to add some ``sudo`` commands to the instructions below.
 
 .. code:: bash

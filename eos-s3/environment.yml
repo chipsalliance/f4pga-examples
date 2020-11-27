@@ -1,11 +1,11 @@
 name: eos-s3
 channels:
   - conda-forge
-  - quicklogic-corp/label/ql
+  - litex-hub
 dependencies:
-  - yosys=0.5_7972_g4045d484=20200817_053125
-  - yosys-plugins=1.2.0_0009_g9ab211c=20200817_053125
-  - vtr=v8.0.0_rc2_4003_g8980e4621=20200817_053125
+  - litex-hub::quicklogic-yosys=0.8.0_0021_g5eaf370c=20201120_145821
+  - litex-hub::quicklogic-yosys-plugins=1.2.0_0009_g9ab211c=20201120_145821
+  - litex-hub::quicklogic-vtr=v8.0.0.rc2_4003_g8980e4621=20200902_114536
   - make
   - lxml
   - simplejson

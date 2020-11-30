@@ -22,6 +22,11 @@ else ifeq ($(TARGET),zybo)
   BITSTREAM_DEVICE:= zynq7
   BOARD_BUILDDIR := ${BUILDDIR}/zybo
   VERILOG:=${current_dir}/counter_zynq.v
+else ifeq ($(TARGET),nexys_video)
+  PARTNAME:= xc7a200tsbg484-1
+  XDC:=${current_dir}/nexys_video.xdc
+  DEVICE:= xc7a200t_test
+  BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
 else
   PARTNAME:= xc7a35tcpg236-1
   XDC:=${current_dir}/basys3.xdc

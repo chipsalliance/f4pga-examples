@@ -1,0 +1,12 @@
+# 100 Mhz CLK
+set_io clk R4
+
+# UART
+set_io tx AA19
+set_io rx V18
+
+# LEDs
+set_io led[0] T14
+set_io led[1] T15
+set_io led[2] T16
+set_io led[3] U16

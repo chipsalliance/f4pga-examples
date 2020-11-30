@@ -14,6 +14,10 @@ else ifeq ($(TARGET),arty_100)
   PARTNAME:= xc7a100tcsg324-1
   PCF:=${current_dir}/arty.pcf
   DEVICE:= xc7a100t_test
+else ifeq ($(TARGET),nexys_video)
+  PARTNAME:= xc7a200tsbg484-1
+  PCF:=${current_dir}/nexys_video.pcf
+  DEVICE:= xc7a200t_test
 else
   PARTNAME:= xc7a35tcpg236-1
   PCF:=${current_dir}/basys3.pcf

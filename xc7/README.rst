@@ -76,9 +76,9 @@ To build the counter example, run any or all of the following commands:
 .. code:: bash
         :name: xc7-counter
 
-        pushd xc7/counter_test && make clean && TARGET="arty_35" make && popd
-        pushd xc7/counter_test && make clean && TARGET="arty_100" make && popd
-        pushd xc7/counter_test && make clean && TARGET="basys3" make && popd
+        pushd xc7/counter_test && TARGET="arty_35" make && popd
+        pushd xc7/counter_test && TARGET="arty_100" make && popd
+        pushd xc7/counter_test && TARGET="basys3" make && popd
 
 To build the picosoc example, run the following commands:
 

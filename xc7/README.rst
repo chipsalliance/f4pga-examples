@@ -42,10 +42,9 @@ Choose the installation directory (see the `README <../README.rst>`_ one level u
         conda env create -f xc7/environment.yml
         conda activate xc7
         mkdir -p $INSTALL_DIR/xc7/install
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/1049/20201123-030526/symbiflow-arch-defs-install-05bd35c7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-        mkdir -p $INSTALL_DIR/xc7/install/share/symbiflow/arch
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/1049/20201123-030526/symbiflow-xc7a50t_test.tar.xz | tar -xJC $INSTALL_DIR/xc7/install/share/symbiflow/arch
-        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/presubmit/install/1049/20201123-030526/symbiflow-xc7a100t_test.tar.xz | tar -xJC $INSTALL_DIR/xc7/install/share/symbiflow/arch
+        curl -s https://storage.googleapis.com/symbiflow-arch-defs-gha/symbiflow-toolchain-latest | xargs wget -qO- | tar -xJC $INSTALL_DIR/xc7/install
+        curl -s https://storage.googleapis.com/symbiflow-arch-defs-gha/symbiflow-xc7a50t_test-latest | xargs wget -qO- | tar -xJC $INSTALL_DIR/xc7/install
+        curl -s https://storage.googleapis.com/symbiflow-arch-defs-gha/symbiflow-xc7a100t_test-latest | xargs wget -qO- | tar -xJC $INSTALL_DIR/xc7/install
         conda deactivate
 
 .. toolchain_include_end_label

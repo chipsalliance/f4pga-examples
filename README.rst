@@ -43,14 +43,14 @@ Install the following prerequisites before using symbiflow-examples:
 .. code:: bash
    :name: install-req-ubuntu
 
-   apt update && apt install -y wget
+   apt update && apt install -y wget curl
 
 * For CentOS:
 
 .. code:: bash
    :name: install-req-centos
 
-   yum install -y wget which
+   yum install -y wget which curl
 
 Toolchain installation
 ----------------------

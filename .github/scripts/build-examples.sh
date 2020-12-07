@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex_linux"
+    examples="counter picosoc litex_linux axi_lite"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -72,6 +72,9 @@ if [ "$fpga_family" = "xc7" ]; then
             "litex_linux")
                 tuttest_exec xc7/linux_litex_demo/README.rst example-litex-deps
                 tuttest_exec xc7/linux_litex_demo/README.rst example-litex-*-group
+                ;;
+            "axi_lite")
+                tuttest_exec xc7/axi_lite/README.rst example-axi-lite-zybo
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example"

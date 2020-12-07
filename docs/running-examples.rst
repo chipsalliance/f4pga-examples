@@ -237,3 +237,43 @@ Make sure to have :ref:`prepared the SD correctly<prepare-sd>`.
 
       Zynq> fpga loadb 0 0x10000000 <size>
 
+
+Configure Arch Linux on Zynq
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure to have :ref:`prepared the SD correctly<prepare-sd>`.
+
+#. With the SD card inserted in the Zybo Z7 board, power up the board and :ref:`connect to it <uart-connection>`.
+
+#. Halt the U-boot auto-booting process by pressing any key.
+
+#. Set U-boot environment to correctly load Linux:
+
+   .. code-block:: bash
+      
+      setenv bootargs "root=/dev/mmcblk0p2 rw rootwait"
+      setenv bootcmd "load mmc 0 0x1000000 uImage && load mmc 0 0x2000000 devicetree.dtb && bootm 0x1000000 - 0x2000000"
+      saveenv
+
+#. Connect the bord to Internet, by connecting the Ethernet port to your router.
+
+   .. image:: images/zyboz7-eth.png
+      :width: 49%
+      :align: center
+
+#. Reset the device by pressing the ``PS SRST`` button on the board.
+
+#. Login into Arch Linux with the following credentials:
+
+   .. code-block:: bash
+
+      user: root
+      pass: root
+
+#. Update the system with the following commands:
+
+   .. code-block:: bash
+
+      pacman-key --init
+      pacman-key --populate
+      pacman -Syu

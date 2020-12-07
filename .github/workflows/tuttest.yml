@@ -53,7 +53,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set Up Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
 
     - name: Install Prerequisites
       run: |

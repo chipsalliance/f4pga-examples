@@ -1,0 +1,56 @@
+name: doc-test
+
+on: [push, pull_request]
+
+jobs:
+  test-sphinx-docs:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {fpga-fam: "eos-s3", os: "ubuntu", os-version: "xenial", example: "counter"}
+          - {fpga-fam: "eos-s3", os: "ubuntu", os-version: "bionic", example: "counter"}
+          - {fpga-fam: "eos-s3", os: "ubuntu", os-version: "focal",  example: "counter"}
+          - {fpga-fam: "eos-s3", os: "centos", os-version: "7",      example: "counter"}
+          - {fpga-fam: "eos-s3", os: "centos", os-version: "8",      example: "counter"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "counter"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "counter"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "counter"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "counter"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "counter"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "picosoc"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "linux_litex"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "linux_litex"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "eoan",   example: "linux_litex"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "linux_litex"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "linux_litex"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "linux_litex"}
+    env:
+      LANG: "en_US.UTF-8"
+      DOCKER_NAME: test
+
+    steps:
+      - name: Setup repository
+        uses: actions/checkout@v2
+
+      - name: Setup Docker
+        run: |
+            docker create --name $DOCKER_NAME -v $PWD:$PWD --workdir $PWD --tty ${{matrix.os}}:${{matrix.os-version}}
+            docker start $DOCKER_NAME
+
+      - name: Install tuttest
+        run: docker exec -t $DOCKER_NAME .github/scripts/install-deps.sh ${{matrix.os}} ${{matrix.os-version}}
+
+      - name: Setup Conda environment
+        run: docker exec -t $DOCKER_NAME .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}}
+
+      - name: Build examples
+        run: docker exec -t $DOCKER_NAME .github/scripts/build.sh ${{matrix.fpga-fam}} ${{matrix.example}}

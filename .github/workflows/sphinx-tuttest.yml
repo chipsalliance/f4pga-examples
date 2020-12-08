@@ -54,3 +54,9 @@ jobs:
 
       - name: Build examples
         run: docker exec -t $DOCKER_NAME .github/scripts/build.sh ${{matrix.fpga-fam}} ${{matrix.example}}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: symbiFlow-examples_bitstreams
+          path: |
+            **/*.bit

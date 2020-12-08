@@ -17,14 +17,14 @@
  *
  */
 
-module basys3_demo (
+module top (
 	input clk,
 
 	output tx,
 	input rx,
 
-    input [15:0] sw,
-	output [15:0] led
+    	input [3:0] sw,
+	output [3:0] led
 );
 
 	wire clk_bufg;
@@ -46,7 +46,7 @@ module basys3_demo (
 
 	reg [31:0] gpio;
 
-	assign led = gpio[15:0];
+	assign led = gpio[3:0];
 
 	always @(posedge clk_bufg) begin
 		if (!resetn) begin
@@ -55,7 +55,7 @@ module basys3_demo (
 			iomem_ready <= 0;
 			if (iomem_valid && !iomem_ready && iomem_addr[31:24] == 8'h 03) begin
 				iomem_ready <= 1;
-				iomem_rdata <= {sw, gpio[15:0]};
+				iomem_rdata <= {4{sw, gpio[3:0]}};
 				if (iomem_wstrb[0]) gpio[ 7: 0] <= iomem_wdata[ 7: 0];
 				if (iomem_wstrb[1]) gpio[15: 8] <= iomem_wdata[15: 8];
 				if (iomem_wstrb[2]) gpio[23:16] <= iomem_wdata[23:16];

@@ -1,8 +1,7 @@
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
-TOP := basys3_demo
-VERILOG := ${current_dir}/basys3_demo_no_roi.v \
-           ${current_dir}/picosoc_noflash.v \
+TOP := top
+VERILOG := ${current_dir}/picosoc_noflash.v \
            ${current_dir}/picorv32.v \
            ${current_dir}/simpleuart.v \
            ${current_dir}/progmem.v
@@ -10,8 +9,26 @@ PARTNAME := xc7a35tcpg236-1
 DEVICE  := xc7a50t_test
 BITSTREAM_DEVICE := artix7
 PCF := ${current_dir}/basys3.pcf
-SDC := ${current_dir}/basys3.sdc
+SDC := ${current_dir}/picosoc.sdc
 BUILDDIR := build
+
+ifeq ($(TARGET),arty_35)
+  VERILOG += ${current_dir}/arty.v
+  PARTNAME := xc7a35tcsg324-1
+  PCF :=${current_dir}/arty.pcf
+  BOARD_BUILDDIR := ${BUILDDIR}/arty_35
+else ifeq ($(TARGET),arty_100)
+  VERILOG += ${current_dir}/arty.v
+  PARTNAME := xc7a100tcsg324-1
+  PCF:=${current_dir}/arty.pcf
+  DEVICE := xc7a100t_test
+  BOARD_BUILDDIR := ${BUILDDIR}/arty_100
+else
+  VERILOG += ${current_dir}/basys3.v
+  PARTNAME := xc7a35tcpg236-1
+  PCF := ${current_dir}/basys3.pcf
+  BOARD_BUILDDIR := ${BUILDDIR}/basys3
+endif
 
 all: ${BUILDDIR}/${TOP}.bit
 

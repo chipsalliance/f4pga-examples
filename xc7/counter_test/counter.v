@@ -1,7 +1,5 @@
 module top (
     input  clk,
-    input rx,
-    output tx,
     output [3:0] led
 );
 
@@ -18,5 +16,4 @@ module top (
     end
 
     assign led[3:0] = counter >> LOG2DELAY;
-    assign tx = rx;
 endmodule

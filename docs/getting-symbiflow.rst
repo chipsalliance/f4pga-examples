@@ -16,21 +16,17 @@ To be able to follow through this tutorial, install the following software:
       .. code-block:: bash
          :name: install-reqs-ubuntu
 
-         apt install -y git wget picocom
+         apt update -y
+         apt install -y git wget xz-utils
 
    .. group-tab:: CentOS
 
       .. code-block:: bash
          :name: install-reqs-centos
 
-         yum install -y git wget picocom
+         yum update -y
+         yum install -y git wget which xz
 
-   .. group-tab:: Arch
-
-      .. code-block:: bash
-         :name: install-reqs-arch
-
-         pacman -Sy git wget picocom
 
 Next, clone the SymbiFlow examples repository and enter it:
 

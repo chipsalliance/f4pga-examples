@@ -27,19 +27,22 @@ jobs:
           - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "picosoc"}
           - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "picosoc"}
 
-          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "linux_litex"}
-          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "linux_litex"}
-          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "eoan",   example: "linux_litex"}
-          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "linux_litex"}
-          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "linux_litex"}
-          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "linux_litex"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "litex_linux"}
     env:
       LANG: "en_US.UTF-8"
       DOCKER_NAME: test
+      IN_DOCKER_EXEC: "docker exec -t test bash -e -c"
 
     steps:
       - name: Setup repository
         uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
 
       - name: Setup Docker
         run: |
@@ -47,16 +50,18 @@ jobs:
             docker start $DOCKER_NAME
 
       - name: Install tuttest
-        run: docker exec -t $DOCKER_NAME .github/scripts/install-deps.sh ${{matrix.os}} ${{matrix.os-version}}
+        run: |
+            sudo locale-gen $LANG
+            pip3 install git+https://github.com/antmicro/tuttest#egg=tuttest
 
-      - name: Setup Conda environment
-        run: docker exec -t $DOCKER_NAME .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}}
+      - name: Install SymbiFlow toolchain
+        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
 
       - name: Build examples
-        run: docker exec -t $DOCKER_NAME .github/scripts/build.sh ${{matrix.fpga-fam}} ${{matrix.example}}
+        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
 
       - uses: actions/upload-artifact@v2
         with:
-          name: symbiFlow-examples_bitstreams
+          name: symbiflow-examples-bitstreams
           path: |
             **/*.bit

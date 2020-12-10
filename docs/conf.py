@@ -56,8 +56,8 @@ html_theme_options = {
     'nav_title': project,
     'color_primary': 'deep-purple',
     'color_accent': 'purple',
-    'repo_name': "antmicro/symbiflow-examples",
-    'repo_url': 'https://github.com/antmicro/symbiflow-examples',
+    'repo_name': "symbiflow/symbiflow-examples",
+    'repo_url': 'https://github.com/symbiflow/symbiflow-examples',
     'globaltoc_depth': 2,
     'globaltoc_collapse': True
 }

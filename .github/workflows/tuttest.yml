@@ -10,35 +10,30 @@ jobs:
         include:
           - {toolchain: "eos-s3", os: "ubuntu", os-version: "xenial", example: "eos-s3-counter"}
           - {toolchain: "eos-s3", os: "ubuntu", os-version: "bionic", example: "eos-s3-counter"}
-          - {toolchain: "eos-s3", os: "ubuntu", os-version: "eoan",   example: "eos-s3-counter"}
           - {toolchain: "eos-s3", os: "ubuntu", os-version: "focal",  example: "eos-s3-counter"}
           - {toolchain: "eos-s3", os: "centos", os-version: "7",      example: "eos-s3-counter"}
           - {toolchain: "eos-s3", os: "centos", os-version: "8",      example: "eos-s3-counter"}
 
           - {toolchain: "xc7",    os: "ubuntu", os-version: "xenial", example: "xc7-counter"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "bionic", example: "xc7-counter"}
-          - {toolchain: "xc7",    os: "ubuntu", os-version: "eoan",   example: "xc7-counter"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "focal",  example: "xc7-counter"}
           - {toolchain: "xc7",    os: "centos", os-version: "7",      example: "xc7-counter"}
           - {toolchain: "xc7",    os: "centos", os-version: "8",      example: "xc7-counter"}
 
           - {toolchain: "xc7",    os: "ubuntu", os-version: "xenial", example: "xc7-picosoc"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "bionic", example: "xc7-picosoc"}
-          - {toolchain: "xc7",    os: "ubuntu", os-version: "eoan",   example: "xc7-picosoc"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "focal",  example: "xc7-picosoc"}
           - {toolchain: "xc7",    os: "centos", os-version: "7",      example: "xc7-picosoc"}
           - {toolchain: "xc7",    os: "centos", os-version: "8",      example: "xc7-picosoc"}
 
           - {toolchain: "xc7",    os: "ubuntu", os-version: "xenial", example: "xc7-litex"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "bionic", example: "xc7-litex"}
-          - {toolchain: "xc7",    os: "ubuntu", os-version: "eoan",   example: "xc7-litex"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "focal",  example: "xc7-litex"}
           - {toolchain: "xc7",    os: "centos", os-version: "7",      example: "xc7-litex"}
           - {toolchain: "xc7",    os: "centos", os-version: "8",      example: "xc7-litex"}
 
           - {toolchain: "xc7",    os: "ubuntu", os-version: "xenial", example: "xc7-linux"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "bionic", example: "xc7-linux"}
-          - {toolchain: "xc7",    os: "ubuntu", os-version: "eoan",   example: "xc7-linux"}
           - {toolchain: "xc7",    os: "ubuntu", os-version: "focal",  example: "xc7-linux"}
           - {toolchain: "xc7",    os: "centos", os-version: "7",      example: "xc7-linux"}
           - {toolchain: "xc7",    os: "centos", os-version: "8",      example: "xc7-linux"}

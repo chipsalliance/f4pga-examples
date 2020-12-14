@@ -1,0 +1,67 @@
+name: doc-test
+
+on: [push, pull_request]
+
+jobs:
+  test-sphinx-docs:
+    runs-on: ubuntu-18.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {fpga-fam: "eos-s3", os: "ubuntu", os-version: "xenial", example: "counter"}
+          - {fpga-fam: "eos-s3", os: "ubuntu", os-version: "bionic", example: "counter"}
+          - {fpga-fam: "eos-s3", os: "ubuntu", os-version: "focal",  example: "counter"}
+          - {fpga-fam: "eos-s3", os: "centos", os-version: "7",      example: "counter"}
+          - {fpga-fam: "eos-s3", os: "centos", os-version: "8",      example: "counter"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "counter"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "counter"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "counter"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "counter"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "counter"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "picosoc"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "picosoc"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial", example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic", example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",  example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",      example: "litex_linux"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",      example: "litex_linux"}
+    env:
+      LANG: "en_US.UTF-8"
+      DOCKER_NAME: test
+      IN_DOCKER_EXEC: "docker exec -t test bash -e -c"
+
+    steps:
+      - name: Setup repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+
+      - name: Setup Docker
+        run: |
+            docker create --name $DOCKER_NAME -v $PWD:$PWD --workdir $PWD --tty ${{matrix.os}}:${{matrix.os-version}}
+            docker start $DOCKER_NAME
+
+      - name: Install tuttest
+        run: |
+            sudo locale-gen $LANG
+            pip3 install git+https://github.com/antmicro/tuttest#egg=tuttest
+
+      - name: Install SymbiFlow toolchain
+        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
+
+      - name: Build examples
+        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: symbiflow-examples-bitstreams
+          path: |
+            **/*.bit

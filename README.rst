@@ -1,7 +1,7 @@
 SymbiFlow examples
 ==================
 
-.. image:: https://github.com/symbiflow/symbiflow-examples/workflows/sphinx-tuttest/badge.svg?branch=master
+.. image:: https://github.com/symbiflow/symbiflow-examples/workflows/doc-test/badge.svg?branch=master
    :target: https://github.com/SymbiFlow/symbiflow-examples/actions
 
 This repository provides example FPGA designs that can be built using the

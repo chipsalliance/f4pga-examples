@@ -1,8 +1,8 @@
 SymbiFlow examples
 ==================
 
-.. image:: https://travis-ci.com/SymbiFlow/symbiflow-examples.svg?branch=master
-   :target: https://travis-ci.com/SymbiFlow/symbiflow-examples
+.. image:: https://github.com/symbiflow/symbiflow-examples/workflows/sphinx-tuttest/badge.svg?branch=master
+   :target: https://github.com/SymbiFlow/symbiflow-examples/actions
 
 This repository provides example FPGA designs that can be built using the
 SymbiFlow open source toolchain. These examples target the Xilinx 7-Series and

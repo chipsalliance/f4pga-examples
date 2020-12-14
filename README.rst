@@ -4,6 +4,10 @@ SymbiFlow examples
 .. image:: https://github.com/symbiflow/symbiflow-examples/workflows/sphinx-tuttest/badge.svg?branch=master
    :target: https://github.com/SymbiFlow/symbiflow-examples/actions
 
+.. image:: https://readthedocs.org/projects/symbiflow-examples/badge/?version=latest
+   :target: https://symbiflow-examples.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
 This repository provides example FPGA designs that can be built using the
 SymbiFlow open source toolchain. These examples target the Xilinx 7-Series and
 the QuickLogic EOS S3 devices.

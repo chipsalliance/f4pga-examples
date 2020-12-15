@@ -1,0 +1,11 @@
+create_clock -period 10 -waveform {0 5} crg_clkin
+create_clock -period 12.5 -waveform {0 6.25} crg_clkout0
+create_clock -period 3.125 -waveform {0 1.5625} crg_clkout1
+create_clock -period 3.125 -waveform {0.78125 2.34375} crg_clkout2
+create_clock -period 5 -waveform {0 2.5} crg_clkout3
+create_clock -period 40 -waveform {0 20} crg_clkout4
+create_clock -period 3.125 -waveform {0 1.5625} crg_clkout_buf1
+create_clock -period 3.125 -waveform {0.78125 2.34375} crg_clkout_buf2
+create_clock -period 5 -waveform {0 2.5} crg_clkout_buf3
+create_clock -period 40 -waveform {0 20} crg_clkout_buf4
+create_clock -period 12.5 -waveform {0 6.25} picorv32.clk

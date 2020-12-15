@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex_linux"
+    examples="counter picosoc litex_picorv32 litex_linux"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -68,6 +68,11 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "picosoc")
                 tuttest_exec xc7/picosoc_demo/README.rst example-picosoc-*-group
+                ;;
+            "litex_picorv32")
+                tuttest_exec xc7/picorv32_litex_demo/README.rst example-litex_picorv32-dir
+                tuttest_exec xc7/picorv32_litex_demo/README.rst example-litex_picorv32-gen
+                tuttest_exec xc7/picorv32_litex_demo/README.rst example-litex_picorv32-*-group
                 ;;
             "litex_linux")
                 tuttest_exec xc7/linux_litex_demo/README.rst example-litex-deps

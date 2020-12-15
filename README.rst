@@ -58,7 +58,7 @@ which you can install with::
 
 * ``<fpga-family>`` is one of ``{eos-s3, xc7}`` (the two currently
   covered platforms - EOS-S3 and Xilinx series 7).
-* ``<os>`` is one of ``{ubuntu, centos}`` (currently supported operating systems).
+* ``<os>`` is one of ``{ubuntu, debian, centos}`` (currently supported operating systems).
 
 To install the toolchain (just the first time), run::
 

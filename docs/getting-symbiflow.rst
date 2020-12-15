@@ -19,6 +19,14 @@ To be able to follow through this tutorial, install the following software:
          apt update -y
          apt install -y git wget xz-utils
 
+   .. group-tab:: Debian
+
+      .. code-block:: bash
+         :name: install-reqs-debian
+
+         apt update -y
+         apt install -y git wget xz-utils
+
    .. group-tab:: CentOS
 
       .. code-block:: bash

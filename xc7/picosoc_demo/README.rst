@@ -5,6 +5,18 @@ This example features a picorv32 soft CPU and a SoC based on it. To build the
 picosoc example, run the following commands:
 
 .. code-block:: bash
+   :name: example-picosoc-a35t-group
+
+   TARGET="arty_35" make -C picosoc_demo
+
+
+.. code-block:: bash
+   :name: example-picosoc-a100t-group
+
+   TARGET="arty_100" make -C picosoc_demo
+
+
+.. code-block:: bash
    :name: example-picosoc-basys3-group
 
    TARGET="basys3" make -C picosoc_demo

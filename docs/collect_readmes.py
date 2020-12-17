@@ -9,32 +9,37 @@ full_name_lut = {
     'eos_s3': 'EOS S3',
 }
 families = ('xc7', 'eos-s3')
+inlines = ('literal', 'strong', 'reference')
 
 
-def handle_default_with_literals(block):
+def handle_default_with_inlines(block):
     """
-     Extracts information from a block that contains literal blocks in
+     Extracts information from a block that contains inline blocks in
      its subtree. The text from the block is combined with the contents
-     of the literal blocks. This is used, i.e., when the code is inserted
+     of the inline blocks. This is used, i.e., when the code is inserted
      in the text with `` marks.
 
     Args:
-      block: A block with a literal block in the subtree
+      block: A block with a inline block in the subtree
 
     Returns: A dictionary with the extracted information
 
     """
     text = ""
     for node in block.traverse(include_self=False, condition=lambda x:
-                               x.parent.tagname.strip() != 'literal'):
+                               x.parent.tagname.strip() not in inlines):
         tagname = node.tagname.strip()
         if tagname in ('paragraph',):
             continue
 
         if tagname == 'literal':
-            text = text + '``' + node.astext() + '``'
+            text += f'``{node.astext()}``'
+        elif tagname == 'strong':
+            text += f'**{node.astext()}**'
+        elif tagname == 'reference':
+            text += f'`{node.astext()} <{node["refuri"]}>`_'
         else:
-            text = text + node.astext()
+            text += node.astext()
 
     ret = {}
     ret['type'] = block.tagname.strip()
@@ -128,7 +133,7 @@ def handle_literal_block(block):
 def handle_note(block):
     """
     Extracts information from a note block (from a README doctree).
-    If the block contain literal block in its subtree, the data from that block
+    If the block contain inline block in its subtree, the data from that block
     will also be extracted.
 
     Args:
@@ -140,10 +145,10 @@ def handle_note(block):
     ret = {}
     ret['type'] = block.tagname.strip()
 
-    if subtree_has_tag(block, 'literal'):
+    if sum(map(lambda x: subtree_has_tag(block, x), inlines)):
         for node in block.traverse(condition=lambda x:
                                    x.tagname.strip() == 'paragraph'):
-            ret['text'] = handle_default_with_literals(node)['text']
+            ret['text'] = handle_default_with_inlines(node)['text']
     else:
         ret['text'] = block.astext()
 
@@ -155,7 +160,7 @@ def handle_note(block):
 def handle_default(block):
     """
     Extracts information from doctree blocks that need not be handled in
-    a special way. Nevertheless, if the block contains a literal block,
+    a special way. Nevertheless, if the block contains a inline block,
     the informaton from that block will also be extracted.
 
     Args:
@@ -164,8 +169,8 @@ def handle_default(block):
     Returns: A dictionary with the extracted information
 
     """
-    if subtree_has_tag(block, 'literal'):
-        return handle_default_with_literals(block)
+    if sum(map(lambda x: subtree_has_tag(block, x), inlines)):
+        return handle_default_with_inlines(block)
 
     ret = {}
     ret['type'] = block.tagname.strip()
@@ -219,7 +224,7 @@ def fill_context(text):
         tagname = block.tagname.strip()
 
         # do not process those
-        if tagname in ('#text', 'inline', 'literal'):
+        if tagname in ('#text', 'inline') + inlines:
             continue
 
         # try do get handler; if not found, use the default one

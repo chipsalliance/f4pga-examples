@@ -44,6 +44,15 @@ jobs:
           - {fpga-fam: "xc7",    os: "debian", os-version: "buster",   example: "litex_linux"}
           - {fpga-fam: "xc7",    os: "debian", os-version: "bullseye", example: "litex_linux"}
           - {fpga-fam: "xc7",    os: "debian", os-version: "sid",      example: "litex_linux"}
+
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial",   example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic",   example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",    example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",        example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",        example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "debian", os-version: "buster",   example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "debian", os-version: "bullseye", example: "axi_lite"}
+          - {fpga-fam: "xc7",    os: "debian", os-version: "sid",      example: "axi_lite"}
     env:
       LANG: "en_US.UTF-8"
       DOCKER_NAME: test

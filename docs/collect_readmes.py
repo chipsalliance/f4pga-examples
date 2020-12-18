@@ -7,6 +7,7 @@ full_name_lut = {
     'a100t': 'Arty 100T',
     'basys3': 'Basys 3',
     'eos_s3': 'EOS S3',
+    'zybo': 'Zybo Z7',
 }
 families = ('xc7', 'eos-s3')
 inlines = ('literal', 'strong', 'reference')

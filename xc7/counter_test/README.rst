@@ -28,11 +28,17 @@ counter example, depending on your hardware, run:
    TARGET="zybo" make -C counter_test
 
 
+At completion, the bitstreams are located in the build directory:
+
+.. code-block:: bash
+
+   cd counter_test/build/<board>
+
 Now, for **Arty and Basys3**, you can upload the design with:
 
 .. code-block:: bash
 
-   openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openocd -f ${INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
 
 
 The result should be as follows:

@@ -21,11 +21,17 @@ picosoc example, run the following commands:
 
    TARGET="basys3" make -C picosoc_demo
 
+At completion, the bitstreams are located in the build directory:
+
+.. code-block:: bash
+
+   cd picosoc_demo/build/<board>
+
 Now you can upload the design with:
 
 .. code-block:: bash
 
-   openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openocd -f ${INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
 
 
 You should observe the following line in the OpenOCD output:

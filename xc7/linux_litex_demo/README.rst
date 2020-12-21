@@ -29,11 +29,17 @@ To build the linux-litex-demo example, depending on your hardware, run:
 
    TARGET="arty_100" make -C linux_litex_demo
 
+At completion, the bitstreams are located in the build directory:
+
+.. code-block:: bash
+
+   cd linux_litex_demo/build/<board>
+
 Now you can upload the design with:
 
 .. code-block:: bash
 
-   openocd -f ${INSTALL_DIR}/conda/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openocd -f ${INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
 
 .. note::
 

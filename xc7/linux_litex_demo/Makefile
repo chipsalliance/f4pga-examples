@@ -15,11 +15,11 @@ BUILDDIR := build
 ifeq ($(TARGET),arty_100)
     PARTNAME := xc7a100tcsg324-1
     DEVICE   := xc7a100t_test
-    BOARD_BUILDDIR := ${BUILDDIR}/arty_35
+    BOARD_BUILDDIR := ${BUILDDIR}/arty_100
 else
     PARTNAME := xc7a35tcsg324-1
     DEVICE   := xc7a50t_test
-    BOARD_BUILDDIR := ${BUILDDIR}/arty_100
+    BOARD_BUILDDIR := ${BUILDDIR}/arty_35
 endif
 
 all: ${BOARD_BUILDDIR}/${TOP}.bit

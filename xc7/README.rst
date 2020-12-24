@@ -1,7 +1,7 @@
 SymbiFlow Toolchain Examples for Xilinx 7 Series
 ================================================
 
-#. ``counter`` - simple 4-bit counter driving LEDs. The design targets the `Basys3 board <https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/>`__, the `Arty boards <https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/>`__, and the `Zybo Z7 board <https://store.digilentinc.com/zybo-z7-zynq-7000-arm-fpga-soc-development-board/>`__
+#. ``counter`` - simple 4-bit counter driving LEDs. The design targets the `Basys3 board <https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/>`__, the `Arty boards <https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/>`__, the `Nexys Video board <https://store.digilentinc.com/nexys-video-artix-7-fpga-trainer-board-for-multimedia-applications/>`__, and the `Zybo Z7 board <https://store.digilentinc.com/zybo-z7-zynq-7000-arm-fpga-soc-development-board/>`__
 #. ``picosoc`` - `picorv32 <https://github.com/cliffordwolf/picorv32>`__ based SoC. The design targets the `Basys3 board <https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/>`__.
 #. ``linux_litex`` - `LiteX <https://github.com/enjoy-digital/litex>`__ based system with Linux capable `VexRiscv core <https://github.com/SpinalHDL/VexRiscv>`__. The design includes `DDR <https://github.com/enjoy-digital/litedram>`__ and `Ethernet <https://github.com/enjoy-digital/liteeth>`__ controllers. The design targets the `Arty boards <https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/>`__.
 

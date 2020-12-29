@@ -15,7 +15,7 @@ Install the litex dependencies with the following:
    :name: example-litex-req
 
    pip install -r requirements.txt
-   
+
 There are multiple CPU types supported, choose one from the below commands to generate the design and build it.
 
 **Picorv32**
@@ -23,24 +23,24 @@ There are multiple CPU types supported, choose one from the below commands to ge
 .. code-block:: bash
    :name: example-litex_picorv32-a35t-group
 
-   ./arty.py --toolchain=symbiflow --cpu-type=picorv32 --sys-clk-freq 80e6 --uart-baudrate=1000000 --output-dir build/picorv32/arty_35 --board-variant a7-35 --build
+   ./arty.py --toolchain=symbiflow --cpu-type=picorv32 --sys-clk-freq 80e6 --output-dir build/picorv32/arty_35 --board-variant a7-35 --build
 
 .. code-block:: bash
    :name: example-litex_picorv32-a100t-group
 
-   ./arty.py --toolchain=symbiflow --cpu-type=picorv32 --sys-clk-freq 80e6 --uart-baudrate=1000000 --output-dir build/picorv32/arty_100 --board-variant a7-100 --build
+   ./arty.py --toolchain=symbiflow --cpu-type=picorv32 --sys-clk-freq 80e6 --output-dir build/picorv32/arty_100 --board-variant a7-100 --build
 
 **VexRiscv**
 
 .. code-block:: bash
    :name: example-litex_vexriscv-a35t-group
 
-   ./arty.py --toolchain=symbiflow --cpu-type=vexriscv --sys-clk-freq 80e6 --uart-baudrate=1000000 --output-dir build/vexriscv/arty_35 --board-variant a7-35 --build
+   ./arty.py --toolchain=symbiflow --cpu-type=vexriscv --sys-clk-freq 80e6 --output-dir build/vexriscv/arty_35 --board-variant a7-35 --build
 
 .. code-block:: bash
    :name: example-litex_vexriscv-a100t-group
 
-   ./arty.py --toolchain=symbiflow --cpu-type=vexriscv --sys-clk-freq 80e6 --uart-baudrate=1000000 --output-dir build/vexriscv/arty_100 --board-variant a7-100 --build
+   ./arty.py --toolchain=symbiflow --cpu-type=vexriscv --sys-clk-freq 80e6 --output-dir build/vexriscv/arty_100 --board-variant a7-100 --build
 
 Depending on which board and CPU-type you selected, the bitstream is loacted in:
 
@@ -56,7 +56,7 @@ Now you can upload the design with:
 
 .. note::
 
-   This example uses baud rate of ``1000000`` by default.
+   This example uses baud rate of ``115200`` by default.
 
 You should observe the following line in the OpenOCD output
 

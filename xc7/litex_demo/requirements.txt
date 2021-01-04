@@ -1,5 +1,5 @@
 # LiteX
--e git+https://github.com/enjoy-digital/litex@4092180662ec62cf28b9283a020f1ff7f0892c19#egg=litex
+-e git+https://github.com/enjoy-digital/litex@afbac26e8015fdca70e7b2bc1477db31f7860c38#egg=litex
 -e git+https://github.com/enjoy-digital/litedram@103072c68a2e3ec9c81f198e50e5427e5780580c#egg=litedram
 -e git+https://github.com/enjoy-digital/liteeth@617400fe9e5b902e6bfd39a7c32ef5b255bc10c0#egg=liteeth
 -e git+https://github.com/enjoy-digital/liteiclink@8b29505096406d242685bf71b16a0ce4e4be54aa#egg=liteiclink

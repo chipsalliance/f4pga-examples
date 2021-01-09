@@ -1,8 +1,8 @@
 Getting SymbiFlow
 =================
 
-This section describe how to install SymbiFlow and setup a fully working
-enviroment to later build example desings.
+This section describes how to install SymbiFlow and set up a fully working
+environment to later build example designs.
 
 Prerequisites
 -------------
@@ -98,7 +98,7 @@ Select your target FPGA family:
 
          export FPGA_FAM=eos-s3
 
-Next, setup Conda and your system's enviroment:
+Next, setup Conda and your system's environment:
 
 .. code-block:: bash
    :name: conda-setup
@@ -129,7 +129,7 @@ Download architecture definitions:
 
          wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/EWuqtXJmalROpI2L5XeewMIBRYVCY8H4yc10nlli-Xq79g?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3/
 
-If the above commands exited without errors, you have successfuly installed and configured your working enviroment.
+If the above commands exited without errors, you have successfully installed and configured your working environment.
 
 Build Example Designs
 ---------------------

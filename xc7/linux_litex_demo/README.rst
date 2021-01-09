@@ -1,7 +1,7 @@
 Linux LiteX demo
 ~~~~~~~~~~~~~~~~
 
-This example design features a Linix-capable SoC based around VexRiscv soft
+This example design features a Linux-capable SoC based around VexRiscv soft
 CPU. It also includes DDR and Ethernet controllers. To build the litex example,
 run the following commands:
 

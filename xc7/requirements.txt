@@ -1,4 +1,4 @@
 python-constraint
 git+https://github.com/symbiflow/fasm
-git+https://github.com/SymbiFlow/prjxray.git#egg=prjxray
+git+https://github.com/SymbiFlow/prjxray.git@905a6b5b0407b45b6b7484741c8f701dcfa6b81d#egg=prjxray
 git+https://github.com/symbiflow/xc-fasm

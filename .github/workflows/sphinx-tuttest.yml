@@ -79,3 +79,4 @@ jobs:
           name: symbiflow-examples-bitstreams
           path: |
             **/*.bit
+            **/plot_*.svg

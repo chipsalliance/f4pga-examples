@@ -3,7 +3,7 @@ name: doc-test
 on: [push, pull_request]
 
 jobs:
-  test-sphinx-docs:
+  test:
     runs-on: [self-hosted, Linux, X64]
     strategy:
       fail-fast: false

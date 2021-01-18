@@ -1,7 +1,7 @@
 Linux LiteX demo
 ~~~~~~~~~~~~~~~~
 
-This example design features a Linix-capable SoC based around VexRiscv soft
+This example design features a Linux-capable SoC based around VexRiscv soft
 CPU. It also includes DDR and Ethernet controllers. To build the litex example,
 run the following commands:
 
@@ -15,7 +15,7 @@ run the following commands:
    wget https://static.dev.sifive.com/dev-tools/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz;
    tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz;
    export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/;
-   pushd litex/litex/boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
+   pushd litex-boards/litex_boards/targets && ./arty.py --toolchain symbiflow --cpu-type vexriscv --build && popd
 
 To build the linux-litex-demo example, depending on your hardware, run:
 

@@ -17,5 +17,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 function tuttest_exec() {
+  echo -e "\e[93mExecuting tuttest $@\e[39m"
   tuttest "$@" | bash -ex -
 }

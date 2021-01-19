@@ -54,20 +54,20 @@ fi
 
 # activate conda and enter example dir
 
-snippets="export-install-dir,fpga-fam-$fpga_family,conda-prep-env,conda-act-env,enter-dir-$fpga_family"
+snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env,conda-act-env,enter-dir-$fpga_family"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
     for example in $examples; do
         case $example in
             "counter")
-                snippets="${snippets},example-counter-*-group"
+                snippets="${snippets} xc7/counter_test/README.rst:example-counter-*-group"
                 ;;
             "picosoc")
-                snippets="${snippets},xc7/picosoc_demo/README.rst,example-picosoc-*-group"
+                snippets="${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group"
                 ;;
             "litex_linux")
-                snippets="${snippets},xc7/linux_litex_demo/README.rst,example-litex-deps,example-litex-*-group"
+                snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-deps,example-litex-*-group"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2
@@ -80,7 +80,7 @@ elif [ "$fpga_family" = "eos-s3" ]; then
     for example in $examples; do
         case $example in
             "counter")
-                snippets="${snippets},eos-s3-counter"
+                snippets="${snippets} eos-s3/btn_counter/README.rst:eos-s3-counter"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2
@@ -94,4 +94,4 @@ else
 fi
 
 # call tuttest
-tuttest_exec docs/building-examples.rst ${snippets}
+tuttest_exec ${snippets}

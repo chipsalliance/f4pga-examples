@@ -64,7 +64,7 @@ jobs:
 
       - name: Install tuttest
         run: |
-          wget https://github.com/antmicro/tuttest/releases/download/0.1.1/tuttest -O /usr/bin/tuttest
+          wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest
           chmod a+rx /usr/bin/tuttest
 
       - name: Install SymbiFlow toolchain

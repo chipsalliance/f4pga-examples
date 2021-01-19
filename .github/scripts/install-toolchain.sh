@@ -45,4 +45,4 @@ fi
 fpga_family=$1
 os=$2
 
-tuttest_exec docs/getting-symbiflow.rst install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,conda-setup,download-arch-def-$fpga_family
+tuttest_exec docs/getting-symbiflow.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,conda-setup,download-arch-def-$fpga_family

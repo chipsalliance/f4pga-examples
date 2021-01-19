@@ -35,8 +35,8 @@ function help() {
 }
 
 if [[ ! $# -eq 2 ]]; then
-  echo "ERROR: Invalid number of arguments"
-  help
+  echo "ERROR: Invalid number of arguments" >&2
+  help >&2
   exit 1
 fi
 

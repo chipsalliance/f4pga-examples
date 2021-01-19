@@ -70,7 +70,7 @@ if [ "$fpga_family" = "xc7" ]; then
                 snippets="${snippets},xc7/linux_litex_demo/README.rst,example-litex-deps,example-litex-*-group"
                 ;;
              *)
-                echo "ERROR: Unknown example name: $example"
+                echo "ERROR: Unknown example name: $example" >&2
                 exit 1
                 ;;
         esac
@@ -83,13 +83,13 @@ elif [ "$fpga_family" = "eos-s3" ]; then
                 snippets="${snippets},eos-s3-counter"
                 ;;
              *)
-                echo "ERROR: Unknown example name: $example"
+                echo "ERROR: Unknown example name: $example" >&2
                 exit 1
                 ;;
         esac
     done
 else
-  echo "ERROR: Unknown fpga_family: $fpga_family"
+  echo "ERROR: Unknown fpga_family: $fpga_family" >&2
   exit 1
 fi
 

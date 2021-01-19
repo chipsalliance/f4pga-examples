@@ -47,7 +47,6 @@ jobs:
     env:
       LANG: "en_US.UTF-8"
       DEBIAN_FRONTEND: "noninteractive"
-      BASH_CMD: "bash -ex -"
 
     container: ${{matrix.os}}:${{matrix.os-version}}
 
@@ -69,10 +68,10 @@ jobs:
           chmod a+rx /usr/bin/tuttest
 
       - name: Install SymbiFlow toolchain
-        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}} | ${BASH_CMD}
+        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}}
 
       - name: Build examples
-        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}} | ${BASH_CMD}
+        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
 
       - uses: actions/upload-artifact@v2
         with:

@@ -17,5 +17,5 @@
 # SPDX-License-Identifier: Apache-2.0
 
 function tuttest_exec() {
-  tuttest "$@"
+  tuttest "$@" | bash -ex -
 }

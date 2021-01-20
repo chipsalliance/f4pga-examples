@@ -18,5 +18,5 @@
 
 function tuttest_exec() {
   echo -e "\e[93mExecuting tuttest $@\e[39m"
-  tuttest "$@" | bash -ex -
+  (echo "trap 'printf \"+ %s\\n\" \"\$BASH_COMMAND\" >&2' DEBUG"; tuttest "$@") | bash -e -
 }

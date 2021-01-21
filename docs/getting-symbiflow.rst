@@ -120,6 +120,7 @@ Download architecture definitions:
          wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/112/20201208-080919/symbiflow-arch-defs-install-7c1267b7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
          wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/112/20201208-080919/symbiflow-arch-defs-xc7a50t_test-7c1267b7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
          wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/112/20201208-080919/symbiflow-arch-defs-xc7a100t_test-7c1267b7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/112/20201208-080919/symbiflow-arch-defs-xc7a200t_test-7c1267b7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
          wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/112/20201208-080919/symbiflow-arch-defs-xc7z010_test-7c1267b7.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
 
    .. group-tab:: EOS-S3

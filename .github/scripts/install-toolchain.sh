@@ -35,8 +35,8 @@ function help() {
 }
 
 if [[ ! $# -eq 2 ]]; then
-  echo "ERROR: Invalid number of arguments"
-  help
+  echo "ERROR: Invalid number of arguments" >&2
+  help >&2
   exit 1
 fi
 
@@ -45,9 +45,4 @@ fi
 fpga_family=$1
 os=$2
 
-tuttest_exec docs/getting-symbiflow.rst install-reqs-$os
-tuttest_exec docs/getting-symbiflow.rst wget-conda
-tuttest_exec docs/getting-symbiflow.rst conda-install-dir
-tuttest_exec docs/getting-symbiflow.rst fpga-fam-$fpga_family
-tuttest_exec docs/getting-symbiflow.rst conda-setup
-tuttest_exec docs/getting-symbiflow.rst download-arch-def-$fpga_family
+tuttest_exec docs/getting-symbiflow.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,conda-setup,download-arch-def-$fpga_family

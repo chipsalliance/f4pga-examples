@@ -3,8 +3,8 @@ name: doc-test
 on: [push, pull_request]
 
 jobs:
-  test-sphinx-docs:
-    runs-on: ubuntu-18.04
+  test:
+    runs-on: [self-hosted, Linux, X64]
     strategy:
       fail-fast: false
       matrix:
@@ -46,34 +46,36 @@ jobs:
           - {fpga-fam: "xc7",    os: "debian", os-version: "sid",      example: "litex_linux"}
     env:
       LANG: "en_US.UTF-8"
-      DOCKER_NAME: test
-      IN_DOCKER_EXEC: "docker exec -t test bash -e -c"
+      DEBIAN_FRONTEND: "noninteractive"
+
+    container: ${{matrix.os}}:${{matrix.os-version}}
 
     steps:
       - name: Setup repository
         uses: actions/checkout@v2
 
-      - name: Set Up Python
-        uses: actions/setup-python@v2
+      - name: Install utils
+        if: ${{matrix.os == 'ubuntu' || matrix.os == 'debian'}}
+        run: apt -qqy update && apt -qqy install wget locales && locale-gen $LANG
 
-      - name: Setup Docker
-        run: |
-            docker create --name $DOCKER_NAME -v $PWD:$PWD --workdir $PWD --tty ${{matrix.os}}:${{matrix.os-version}}
-            docker start $DOCKER_NAME
+      - name: Install utils
+        if: ${{matrix.os == 'centos'}}
+        run: yum -y install wget
 
       - name: Install tuttest
         run: |
-            sudo locale-gen $LANG
-            pip3 install git+https://github.com/antmicro/tuttest#egg=tuttest
+          wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest
+          chmod a+rx /usr/bin/tuttest
 
       - name: Install SymbiFlow toolchain
-        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
+        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}}
 
       - name: Build examples
-        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}} | ${IN_DOCKER_EXEC} "$(cat /dev/stdin)"
+        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
 
       - uses: actions/upload-artifact@v2
         with:
           name: symbiflow-examples-bitstreams
           path: |
             **/*.bit
+            **/plot_*.svg

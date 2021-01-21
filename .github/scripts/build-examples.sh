@@ -53,28 +53,24 @@ elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
 fi
 
 # activate conda and enter example dir
-tuttest_exec docs/building-examples.rst export-install-dir
-tuttest_exec docs/building-examples.rst fpga-fam-$fpga_family
-tuttest_exec docs/building-examples.rst conda-prep-env
-tuttest_exec docs/building-examples.rst conda-act-env
-tuttest_exec docs/building-examples.rst enter-dir-$fpga_family
+
+snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env,conda-act-env,enter-dir-$fpga_family"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
     for example in $examples; do
         case $example in
             "counter")
-                tuttest_exec xc7/counter_test/README.rst example-counter-*-group
+                snippets="${snippets} xc7/counter_test/README.rst:example-counter-*-group"
                 ;;
             "picosoc")
-                tuttest_exec xc7/picosoc_demo/README.rst example-picosoc-*-group
+                snippets="${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group"
                 ;;
             "litex_linux")
-                tuttest_exec xc7/linux_litex_demo/README.rst example-litex-deps
-                tuttest_exec xc7/linux_litex_demo/README.rst example-litex-*-group
+                snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-deps,example-litex-*-group"
                 ;;
              *)
-                echo "ERROR: Unknown example name: $example"
+                echo "ERROR: Unknown example name: $example" >&2
                 exit 1
                 ;;
         esac
@@ -84,14 +80,18 @@ elif [ "$fpga_family" = "eos-s3" ]; then
     for example in $examples; do
         case $example in
             "counter")
-                tuttest eos-s3/btn_counter/README.rst eos-s3-counter
+                snippets="${snippets} eos-s3/btn_counter/README.rst:eos-s3-counter"
                 ;;
              *)
-                echo "ERROR: Unknown example name: $example"
+                echo "ERROR: Unknown example name: $example" >&2
                 exit 1
                 ;;
         esac
     done
 else
-  echo "ERROR: Unknown fpga_family: $fpga_family"
+  echo "ERROR: Unknown fpga_family: $fpga_family" >&2
+  exit 1
 fi
+
+# call tuttest
+tuttest_exec ${snippets}

@@ -17,15 +17,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 function tuttest_exec() {
-cat << EOF
-  echo
-  echo "==================================================================== "
-  echo "OUTPUT : tuttest $@"
-  echo "EXECUTED COMMAND:"
-  echo
-  echo '$(tuttest $@)'
-  echo "-------------------------------------------------------------------- "
-  echo
-EOF
-  tuttest "$@"
+  echo -e "\e[93mExecuting tuttest $@\e[39m"
+  (echo "trap 'printf \"+ %s\\n\" \"\$BASH_COMMAND\" >&2' DEBUG"; tuttest "$@") | bash -e -
 }

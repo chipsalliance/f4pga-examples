@@ -1,7 +1,7 @@
 Running example designs
 ========================
 
-This section desribes how to properly connect your board.
+This section describes how to properly connect your board.
 It also helps you configure and run any other software that is necessary to observe results.
 
 Connecting development boards
@@ -10,7 +10,7 @@ Connecting development boards
 Arty board
 ~~~~~~~~~~
 
-#. Connect the board to your computer using the USB cable:
+#. Connect the board to your computer using the USB cable
 #. Connect the board to your computer using the Ethernet cable
    (only if you want to test the LiteX Linux Example)
 
@@ -151,7 +151,7 @@ Prepare SD card
 
 #. Format the SD card by following the `official guide <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot>`_.
 
-#. Download and extract pre-built U-boot images
+#. Download and extract pre-built U-boot images:
 
    .. code-block:: bash
 
@@ -160,21 +160,21 @@ Prepare SD card
       wget -qO- https://github.com/SymbiFlow/symbiflow-xc7z-automatic-tester/releases/download/v1.0.0/uboot-linux-images.zip | bsdtar -xf-
       popd
 
-#. Copy U-boot images to the boot mountpoint
+#. Copy U-boot images to the boot mountpoint:
 
    .. code-block:: bash
 
       cp uboot-linux-images/boot/* /path/to/mountpoint/boot/
       sync
 
-#. Copy Arch Linux to the root mountpoint
+#. Copy Arch Linux to the root mountpoint:
 
    .. code-block:: bash
 
       wget -qO- http://de5.mirror.archlinuxarm.org/os/ArchLinuxARM-armv7-latest.tar.gz | sudo tar -xvzC /path/to/mountpoint/root
       sync
 
-#. Copy additional files and binaries to the root directory in the Arch Linux filesystem
+#. Copy additional files and binaries to the root directory in the Arch Linux filesystem:
 
    .. code-block:: bash
 
@@ -187,7 +187,7 @@ Prepare SD card
 
 .. note::
 
-   ``/path/to/mountpoint/root`` contains the Arch Linux FileSystem, while ``/path/to/mountpoint/root/root/`` is a directory within the FileSystem itself.
+   ``/path/to/mountpoint/root`` contains the Arch Linux filesystem, while ``/path/to/mountpoint/root/root/`` is a directory within the filesystem itself.
 
 .. warning::
 

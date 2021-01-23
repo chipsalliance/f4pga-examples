@@ -9,7 +9,7 @@ set it to earlier, for example:
 
    export INSTALL_DIR=~/opt/symbiflow
 
-Select your fpga family:
+Select your FPGA family:
 
 .. tabs::
 
@@ -27,7 +27,7 @@ Select your fpga family:
 
          FPGA_FAM="eos-s3"
 
-Next, prepare the enviroment:
+Next, prepare the environment:
 
 .. code-block:: bash
    :name: conda-prep-env
@@ -35,7 +35,7 @@ Next, prepare the enviroment:
    export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
    source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
-Finally, enter your working Conda enviroment:
+Finally, enter your working Conda environment:
 
 .. code-block:: bash
    :name: conda-act-env

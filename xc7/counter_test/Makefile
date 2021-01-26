@@ -33,6 +33,9 @@ else
   BOARD_BUILDDIR := ${BUILDDIR}/basys3
 endif
 
+.DELETE_ON_ERROR:
+
+
 all: ${BOARD_BUILDDIR}/${TOP}.bit
 
 ${BOARD_BUILDDIR}:

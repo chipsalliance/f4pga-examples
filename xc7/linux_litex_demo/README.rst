@@ -45,7 +45,7 @@ Now you can upload the design with:
 
 .. note::
 
-   LiteX on Linux demo excepts you to use IPv4 address of ``192.168.100.100/24``
+   LiteX on Linux demo expects you to use IPv4 address of ``192.168.100.100/24``
    on your network interface.
 
 You should observe the following line in the OpenOCD output

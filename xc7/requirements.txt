@@ -16,4 +16,4 @@ yapf==0.24.0
 python-constraint
 git+https://github.com/symbiflow/fasm
 git+https://github.com/SymbiFlow/prjxray.git@905a6b5b0407b45b6b7484741c8f701dcfa6b81d#egg=prjxray
-git+https://github.com/symbiflow/xc-fasm
+git+https://github.com/symbiflow/xc-fasm.git@e12f31334e96fedf3af86d13cf51f70ad2270f5f#egg=xc-fasm

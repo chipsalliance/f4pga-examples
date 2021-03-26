@@ -16,7 +16,7 @@ run the following commands:
    tar -xf riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14.tar.gz
    export PATH=$PATH:$PWD/riscv64-unknown-elf-gcc-8.1.0-2019.01.0-x86_64-linux-ubuntu14/bin/
    cd litex-boards/litex_boards/targets
-   ./arty.py --toolchain symbiflow --cpu-type vexriscv --build
+   ./digilent_arty.py --toolchain symbiflow --cpu-type vexriscv --build
    cd -
 
 To build the linux-litex-demo example, depending on your hardware, run:

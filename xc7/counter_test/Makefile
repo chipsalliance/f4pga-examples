@@ -15,6 +15,11 @@ else ifeq ($(TARGET),arty_100)
   XDC:=${current_dir}/arty.xdc
   DEVICE:= xc7a100t_test
   BOARD_BUILDDIR := ${BUILDDIR}/arty_100
+else ifeq ($(TARGET),nexys4ddr)
+  PARTNAME:= xc7a100tcsg324-1
+  XDC:=${current_dir}/nexys4ddr.xdc
+  DEVICE:= xc7a100t_test
+  BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
 else ifeq ($(TARGET),zybo)
   PARTNAME:= xc7z010clg400-1
   XDC:=${current_dir}/zybo.xdc

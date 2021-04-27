@@ -17,6 +17,11 @@ counter example, depending on your hardware, run:
 
 
 .. code-block:: bash
+   :name: example-counter-nexys4ddr-group
+
+   TARGET="nexys4ddr" make -C counter_test
+
+.. code-block:: bash
    :name: example-counter-basys3-group
 
    TARGET="basys3" make -C counter_test

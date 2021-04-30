@@ -17,6 +17,12 @@ picosoc example, run the following commands:
 
 
 .. code-block:: bash
+   :name: example-picosoc-nexys4ddr-group
+
+   TARGET="nexys4ddr" make -C picosoc_demo
+
+
+.. code-block:: bash
    :name: example-picosoc-basys3-group
 
    TARGET="basys3" make -C picosoc_demo
@@ -64,6 +70,10 @@ The UART output should look as follows:
 .. note::
 
    PicoSoC uses baud rate of ``460800`` by default.
+
+.. note::
+
+   On the Nexys4DDR, the USB-UART does not work, so UART can be accessed from pins 1 and 2 of PMOD C.
 
 The board's LED should blink at a regular rate from left to the right
 

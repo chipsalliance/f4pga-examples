@@ -23,6 +23,12 @@ else ifeq ($(TARGET),arty_100)
   PCF:=${current_dir}/arty.pcf
   DEVICE := xc7a100t_test
   BOARD_BUILDDIR := ${BUILDDIR}/arty_100
+else ifeq ($(TARGET),nexys4ddr)
+  VERILOG += ${current_dir}/nexys4ddr.v
+  PARTNAME := xc7a100tcsg324-1
+  PCF:=${current_dir}/nexys4ddr.pcf
+  DEVICE := xc7a100t_test
+  BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
 else
   VERILOG += ${current_dir}/basys3.v
   PARTNAME := xc7a35tcpg236-1

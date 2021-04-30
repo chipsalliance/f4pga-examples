@@ -1,11 +1,9 @@
 # 100 MHz CLK
 set_io clk E3
 
-# UART
-set_io rx D4
-set_io tx C4
-set_io uart_cts D3
-set_io uart_rts E5
+# UART rx and tx are assigned to pins 1 and 2 of the PMOD Jumper C
+set_io rx K1
+set_io tx F6
 
 # LEDs
 set_io led[0] H17

@@ -23,14 +23,9 @@ module top (
 	output tx,
 	input rx,
 
-    	input [15:0] sw,
+    input [15:0] sw,
 	output [15:0] led,
-	output uart_cts,
-	output uart_rts
 );
-
-	assign uart_cts = 1'b0;
-	assign uart_rts = 1'b0;
 
 	wire clk_bufg;
 	BUFG bufg (.I(clk), .O(clk_bufg));

@@ -71,10 +71,6 @@ The UART output should look as follows:
 
    PicoSoC uses baud rate of ``460800`` by default.
 
-.. note::
-
-   On the Nexys4DDR, the USB-UART does not work, so UART can be accessed from pins 1 and 2 of PMOD C.
-
 The board's LED should blink at a regular rate from left to the right
 
 .. image:: ../../docs/images/picosoc-example-basys3.gif

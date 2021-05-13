@@ -1,7 +1,6 @@
 import os
 from docutils.core import publish_doctree
 
-
 full_name_lut = {
     'a35t': 'Arty 35T',
     'a100t': 'Arty 100T',
@@ -29,10 +28,11 @@ def handle_default_with_inlines(block):
 
     """
     text = ""
-    for node in block.traverse(include_self=False, condition=lambda x:
-                               x.parent.tagname.strip() not in inlines):
+    for node in block.traverse(
+            include_self=False,
+            condition=lambda x: x.parent.tagname.strip() not in inlines):
         tagname = node.tagname.strip()
-        if tagname in ('paragraph',):
+        if tagname in ('paragraph', ):
             continue
 
         if tagname == 'literal':
@@ -149,8 +149,8 @@ def handle_note(block):
     ret['type'] = block.tagname.strip()
 
     if sum(map(lambda x: subtree_has_tag(block, x), inlines)):
-        for node in block.traverse(condition=lambda x:
-                                   x.tagname.strip() == 'paragraph'):
+        for node in block.traverse(
+                condition=lambda x: x.tagname.strip() == 'paragraph'):
             ret['text'] = handle_default_with_inlines(node)['text']
     else:
         ret['text'] = block.astext()
@@ -204,8 +204,10 @@ def get_blocks(text):
     """
     doctree = publish_doctree(text)
 
-    return doctree.traverse(condition=lambda x: x.tagname.strip() != 'document'
-                            and x.parent.tagname.strip() != 'note')
+    return doctree.traverse(
+        condition=lambda x: x.tagname.strip() != 'document' and x.parent.
+        tagname.strip() != 'note'
+    )
 
 
 def fill_context(text):

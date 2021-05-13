@@ -13,7 +13,8 @@ JSON_SRCS=$(shell find . -name "*.json" -not -path "./env/*" -not -path "./symbi
 VERILOG_SRCS=$(shell find . -name "*.v" -not -path "./env/*" -not -path "./symbiflow/*")
 
 env:
-	pip install -r requirements.txt
+	conda env create -f environment.yml
+	conda activate symbiflow-examples
 
 format:
 	yapf -i ${PYTHON_SRCS}
@@ -25,6 +26,8 @@ format:
 	done
 
 clean::
-	rm -rf env/ symbiflow/
+	rm -rf env/
+	conda deactivate
+	conda env remove -n symbiflow-examples
 
 .PHONY: env format clean

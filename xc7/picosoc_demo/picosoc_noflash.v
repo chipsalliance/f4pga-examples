@@ -255,4 +255,3 @@ module picosoc_mem #(
 		if (wen[3]) mem[addr][31:24] <= wdata[31:24];
 	end
 endmodule
-

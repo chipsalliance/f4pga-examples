@@ -17,6 +17,12 @@ picosoc example, run the following commands:
 
 
 .. code-block:: bash
+   :name: example-picosoc-nexys4ddr-group
+
+   TARGET="nexys4ddr" make -C picosoc_demo
+
+
+.. code-block:: bash
    :name: example-picosoc-basys3-group
 
    TARGET="basys3" make -C picosoc_demo

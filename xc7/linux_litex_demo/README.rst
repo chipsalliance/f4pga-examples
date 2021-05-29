@@ -19,7 +19,14 @@ run the following commands:
    ./digilent_arty.py --toolchain symbiflow --cpu-type vexriscv --build
    cd -
 
-To build the linux-litex-demo example, depending on your hardware, run:
+To build the linux-litex-demo example, first re-navigate to the directory that contains examples for Xilinx 7-Series FPGAs:
+
+.. code-block:: bash
+   :name: enter-dir-xc7
+   
+   cd symbiflow-examples/xc7
+
+Then depending on your hardware, run:
 
 .. code-block:: bash
    :name: example-litex-a35t-group

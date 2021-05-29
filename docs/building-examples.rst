@@ -1,3 +1,4 @@
+
 Building example designs
 ========================
 
@@ -56,7 +57,7 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 .. code-block:: bash
    :name: enter-dir-xc7
 
-   cd xc7
+   cd symbiflow-examples/xc7
 
 .. jinja:: xc7_counter_test
    :file: templates/example.jinja

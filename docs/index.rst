@@ -32,3 +32,4 @@ currently targeting chips from multiple vendors, e.g.:
    getting-symbiflow
    building-examples
    running-examples
+   personal-designs

@@ -47,30 +47,73 @@ Finally, enter your working Conda environment:
    conda activate $FPGA_FAM
 
 
-File pre-requisits
--------------------
 
 
-
-Creating the Makefile
+Preparing Your Design
 ----------------------
+Building a design in symbiflow requires three simple parts, the HDL files for your design, a constraints file, and a Makefile. For simplisity, all three of these design parts should be moved to a single directory.
+
+HDL files
+++++++++++
+Symbiflow provides support for both Varilog and systemVarilog HDL code. Use whichever methode you perfer and add your design files to the directory of choice. If you are using the provided Makefiles to build your design, your top level module should be declared as ``module top (...``.
 
 
-Building your personal projects
+Constraint file
+++++++++++++++++
+The Symbiflow toolchain suports both .XDC and .PCF+.SDC formates for constraint files. Use whichever methode you perfer and add your constraint file(s) to the design directory.
+
+.. warning::
+   In its current state, symbiflow-examples does not provide support for dictionaries within XDC files by default. To support this functionality you will need to use the `XDC-plugin <https://github.com/SymbiFlow/yosys-symbiflow-plugins/tree/master/xdc-plugin>`_ from ``symbiflow-yosys-plugins.`` Failure to install the plugin beffore attempting to use dictionaries within your XDC file may result in a faulty bitstream.   
+
+
+Makefile
++++++++++
+To learn about how the Makefiles in symbiflow work see the `Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_ page.
+
+If you have used varilog as your HDL and an XDC as your constraint, you can add this :download:`Makefile <master_makefile/Makefile>` to your design directory instead of building your own.
+
+
+Building your personal projects 
 -------------------------------
-Before you begin building your design navigate to the directory where you have stored your Makefile, virilog, and .xdc files:
+Before you begin building your design navigate to the directory where you have stored your Makefile, HDL, and constraint files:
 
 .. code-block:: bash
    :name: your-directory
 
    cd <path to your directory>
 
-Then, to build your design, simply run make on your current dirrectory: 
+Then, depending on your board type run: 
 
-.. code-block:: bash
-   :name: run-make
+.. tabs::
 
-   make -C .
+   .. group-tab:: Arty_35T
+
+      .. code-block:: bash
+         :name: example-counter-a35t-group
+
+         TARGET="arty_35" make -C .
+
+   .. group-tab:: Arty_100T
+
+      .. code-block:: bash
+         :name: example-counter-a100t-group
+
+      TARGET="arty_100" make -C .
+
+   .. group-tab:: Nexus4
+
+      .. code-block:: bash
+         :name: example-counter-nexys4ddr-group
+
+         TARGET="nexys4ddr" make -C .
+
+   .. group-tab:: Basys3
+
+      .. code-block:: bash
+         :name: example-counter-basys3-group
+
+         TARGET="basys3" make -C .
+
 
 
 If your design builds withought error, the bitstream can be found in the following location:
@@ -87,8 +130,8 @@ Finaly, for **Arty and Basys3**, you can upload the design with:
 
 
 .. tip::
-    Many of the commands needed to build a project are run many times withought deviation. You might consider adding a few aliases or even a few bash functions to your .bashrc file to save yourself some typing or repeated coppy/paste. 
-    For example, instead of using the cumbersome command used to upload the bitsream to arty or basys3 every time, you could just add the following lines to your bashrc file:
+    Many of the commands needed to build a project are run many times. You might consider adding a few aliases or even a few bash functions to your .bashrc file to save yourself some typing or repeated coppy/paste. 
+    For example, instead of using the somwhat cumbersome command used to upload the bitsream to arty or basys3 every time, you could just add the following lines to your bashrc file:
     
     .. code-block:: bash
        :name: bash-functions

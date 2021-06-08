@@ -33,3 +33,4 @@ currently targeting chips from multiple vendors, e.g.:
    building-examples
    running-examples
    personal-designs
+   Understanding-Makefile

@@ -1,14 +1,14 @@
 Understanding the Makefile in Symbiflow
 ==========================================
-A key steep in creating your own designs is understanding how to use the Makefiles in symbiflow. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow to allow for better debuging. 
+A key steep in creating your own designs is understanding how to use the Makefiles in symbiflow. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow to allow for better debugging. 
 
 Example 
-========
-To understand how the Makfiles within symbiflow are setup lets take a look at a more simple Makefile that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code bellow are of particular intrest.
+-------
+To understand how the Makfiles within symbiflow are setup lets take a look at a more simple Makefile that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code bellow are of particular interest and will change depending on your design and hardware.
 
 .. code-block:: bash
    :name: makefile-example
-   :emphasize-lines: 4, 5, 11, 12, 22
+   :emphasize-lines: 4, 5, 9, 10
    :linenos:
 
    mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -56,4 +56,144 @@ Lets go over the highlighted lines one by one and discuss their purpose.
 
 Adding HDL files to your design
 ----------------------------------
+Line 4 in the Makefile shows how to add HDL files to the design. The general syntax is: ``<HDL language>:=${current_dir}/<your HDL file path>``. You can also add multiple HDL files to a design using the following syntax:
+ 
+ .. code-block:: bash
+   :name: multi-file-example
 
+   <HDL language> := ${current_dir}/<HDL file> \
+
+                     ${current_dir}/<HDL file>\
+
+                     ${current_dir}/<HDL file> \
+
+                     ${current_dir}/<HDL file> \
+                     ...
+
+You could also use wildcards to collect all HDL file types of a specific extension and add them to your design. For example, if you wanted to add all verilog files within the current directory to your design you should replace line 4 in the makefile with:
+ 
+ .. code-block:: bash
+   :name: wildcard-example
+
+    VERILOG := ${current_dir}/*.v
+
+
+As of this writing symbiflow only supports Verilog and SystemVerilog HDL. 
+
+Setting the device constraints
+------------------------------
+Line 5 in the example sets the device type for the project. Several different board types are supported and a listing of the commands for each board type follows:
+
+.. tabs::
+
+   .. group-tab:: Arty_35T
+
+      .. code-block:: bash
+         :name: example-counter-a35t-group
+
+         DEVICE:= xc7a50t_test
+
+   .. group-tab:: Arty_100T
+
+      .. code-block:: bash
+         :name: example-counter-a100t-group
+
+         DEVICE:= xc7a100t_test
+
+   .. group-tab:: Nexus 4 DDR
+
+      .. code-block:: bash
+         :name: example-counter-nexys4ddr-group
+
+         DEVICE:= xc7a100t_test
+
+   .. group-tab:: Basys3
+
+      .. code-block:: bash
+         :name: example-counter-basys3-group
+
+         DEVICE:= xc7a50t_test
+
+   .. group-tab:: Zybo Z7
+
+      .. code-block:: bash
+         :name: example-counter-zybo-group
+
+         DEVICE:= xc7z010_test
+
+   .. group-tab:: Nexys Video
+
+      .. code-block:: bash
+         :name: example-counter-nexys_video-group
+
+         DEVICE:= xc7a200t_test
+
+
+As shown on line 9 of the example makefile you will also need to define the part your FPGA uses. To do this you need to add the following line of code to your makefile depending on your hardware:
+
+.. tabs::
+
+   .. group-tab:: Arty_35T
+
+      .. code-block:: bash
+         :name: example-part-a35t-group
+
+         PARTNAME := xc7a35tcsg324-1
+
+   .. group-tab:: Arty_100T
+
+      .. code-block:: bash
+         :name: example-part-a100t-group
+
+         PARTNAME:= xc7a100tcsg324-1
+
+   .. group-tab:: Nexus 4 DDR
+
+      .. code-block:: bash
+         :name: example-part-nexys4ddr-group
+
+         PARTNAME:= xc7a100tcsg324-1
+
+   .. group-tab:: Basys3
+
+      .. code-block:: bash
+         :name: example-part-basys3-group
+
+         PARTNAME:= xc7a35tcpg236-1
+
+   .. group-tab:: Zybo Z7
+
+      .. code-block:: bash
+         :name: example-part-zybo-group
+
+         PARTNAME:= xc7z010clg400-1
+
+   .. group-tab:: Nexys Video
+
+      .. code-block:: bash
+         :name: example-part-nexys_video-group
+
+         PARTNAME:= xc7a200tsbg484-1
+
+
+Constraint files
+----------------
+
+Line 10 shows how you can specify what the constraint files are for your design. The general syntax depends on wether you are using XDC files or a SDC+PCF pair:
+
+.. tabs::
+
+   .. group-tab:: XDC
+   
+      .. code-block:: bash
+
+         XDC:=${current_dir}/<name of XDC file>
+
+   .. group-tab:: SDC+PCF
+
+         .. code-block:: bash
+
+            PCF := ${current_dir}/<name of PCF file>
+            SDC := ${current_dir}/<name of SDC file>
+
+Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) may will need to change depending on if you use an XDC file or some combination of SDC, PCF and XDC. 

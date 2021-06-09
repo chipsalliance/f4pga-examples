@@ -4,7 +4,7 @@ A key steep in creating your own designs is understanding how to use the Makefil
 
 Example 
 -------
-To understand how the Makfiles within symbiflow are setup lets take a look at a more simple Makefile that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code bellow are of particular interest and will change depending on your design and hardware.
+To understand how the Makfiles within symbiflow are setup, lets take a look at a more simple Makefile that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code below are of particular interest and will change depending on your design and hardware.
 
 .. code-block:: bash
    :name: makefile-example
@@ -61,16 +61,16 @@ Line 4 in the Makefile shows how to add HDL files to the design. The general syn
  .. code-block:: bash
    :name: multi-file-example
 
-   <HDL language> := ${current_dir}/<HDL file> \
+   <HDL language> := ${current_dir}/<HDL file 1> \
 
-                     ${current_dir}/<HDL file>\
+                     ${current_dir}/<HDL file 2>\
 
-                     ${current_dir}/<HDL file> \
+                     ${current_dir}/<HDL file 3> \
 
-                     ${current_dir}/<HDL file> \
+                     ${current_dir}/<HDL file 4> \
                      ...
 
-You could also use wildcards to collect all HDL file types of a specific extension and add them to your design. For example, if you wanted to add all verilog files within the current directory to your design you should replace line 4 in the makefile with:
+You could also use wildcards to collect all HDL file types of a specific extension and add them to your design. For example, if you wanted to add all verilog files within the current directory to your design you could replace line 4 in the Makefile with:
  
  .. code-block:: bash
    :name: wildcard-example
@@ -78,9 +78,13 @@ You could also use wildcards to collect all HDL file types of a specific extensi
     VERILOG := ${current_dir}/*.v
 
 
-As of this writing symbiflow only supports Verilog and SystemVerilog HDL. 
+To include SystemVerilog in your design simply change the ``*.v`` above to a ``*.sv``. You might also want to change the ``VERILOG`` bash variables throughout the Makefile to ``SYSTEM_VERILOG`` to improve readability. 
 
-Setting the device constraints
+.. note::
+
+   As of this writing symbiflow only supports Verilog and SystemVerilog HDL by default.
+
+Setting the device properties
 ------------------------------
 Line 5 in the example sets the device type for the project. Several different board types are supported and a listing of the commands for each board type follows:
 
@@ -179,7 +183,7 @@ As shown on line 9 of the example makefile you will also need to define the part
 Constraint files
 ----------------
 
-Line 10 shows how you can specify what the constraint files are for your design. The general syntax depends on wether you are using XDC files or a SDC+PCF pair:
+Line 10 shows how you can specify what the constraint files are being used for your design. The general syntax depends on wether you are using XDC files or a SDC+PCF pair:
 
 .. tabs::
 
@@ -196,4 +200,60 @@ Line 10 shows how you can specify what the constraint files are for your design.
             PCF := ${current_dir}/<name of PCF file>
             SDC := ${current_dir}/<name of SDC file>
 
-Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) may will need to change depending on if you use an XDC file or some combination of SDC, PCF and XDC. 
+Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) will also need to change depending on if you use an XDC file or some combination of SDC, PCF and XDC files. The following snippets show the differences and the areas that will need to change:
+
+.. tabs::
+
+   .. group-tab:: XDC
+
+      .. code-block:: bash
+         :emphasize-lines: 2
+
+         ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
+            cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} -x ${XDC} 2>&1 > /dev/null
+
+         ${BOARD_BUILDDIR}/${TOP}.net: ${BOARD_BUILDDIR}/${TOP}.eblif
+            cd ${BOARD_BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} 2>&1 > /dev/null
+
+         ${BOARD_BUILDDIR}/${TOP}.place: ${BOARD_BUILDDIR}/${TOP}.net
+            cd ${BOARD_BUILDDIR} && symbiflow_place -e ${TOP}.eblif -d ${DEVICE} -n ${TOP}.net -P ${PARTNAME} 2>&1 > /dev/null
+
+         ${BOARD_BUILDDIR}/${TOP}.route: ${BOARD_BUILDDIR}/${TOP}.place
+            cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} 2>&1 > /dev/null
+
+   .. group-tab:: SDC+PCF
+
+      .. code-block:: bash
+         :emphasize-lines: 5, 8, 11
+
+         ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
+            cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${BITSTREAM_DEVICE} -p ${PARTNAME}
+ 
+         ${BOARD_BUILDDIR}/${TOP}.net: ${BOARD_BUILDDIR}/${TOP}.eblif
+            cd ${BOARD_BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} -s ${SDC}
+      
+         ${BOARD_BUILDDIR}/${TOP}.place: ${BOARD_BUILDDIR}/${TOP}.net
+            cd ${BOARD_BUILDDIR} && symbiflow_place -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME} -s ${SDC} 2>&1 > /dev/null
+         
+         ${BOARD_BUILDDIR}/${TOP}.route: ${BOARD_BUILDDIR}/${TOP}.place
+            cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
+         
+
+   .. group-tab:: SDC+PCF+XDC
+
+      .. code-block:: bash
+         :emphasize-lines: 2, 5, 8, 11 
+
+         ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
+            cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} -x ${XDC} 2>&1 > /dev/null
+
+         ${BOARD_BUILDDIR}/${TOP}.net: ${BOARD_BUILDDIR}/${TOP}.eblif
+            cd ${BOARD_BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
+
+         ${BOARD_BUILDDIR}/${TOP}.place: ${BOARD_BUILDDIR}/${TOP}.net
+            cd ${BOARD_BUILDDIR} && symbiflow_place -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME} -s ${SDC} 2>&1 > /dev/null
+
+         ${BOARD_BUILDDIR}/${TOP}.route: ${BOARD_BUILDDIR}/${TOP}.place
+            cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
+
+Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do not change from design to design.

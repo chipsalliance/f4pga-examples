@@ -67,13 +67,10 @@ if [ "$fpga_family" = "xc7" ]; then
                 snippets="${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group"
                 ;;
             "litex")
-                tuttest_exec xc7/litex_demo/README.rst example-litex-dir
-                tuttest_exec xc7/litex_demo/README.rst example-litex-req
-                tuttest_exec xc7/litex_demo/README.rst example-litex_picorv32-*-group
-                tuttest_exec xc7/litex_demo/README.rst example-litex_vexriscv-*-group
+                snippets="${snippets} xc7/litex_demo/README.rst:example-litex-dir,example-litex-req,example-litex_picorv32-*-group,example-litex_vexriscv-*-group"
                 ;;
             "litex_linux")
-                snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-deps,example-litex-*-group"
+                snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

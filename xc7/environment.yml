@@ -8,6 +8,7 @@ dependencies:
   - litex-hub::prjxray-db=0.0_248_g2e51ad3=20210312_125539
   - litex-hub::vtr-optimized=8.0.0_3445_ga806b1609=20210312_125539
   - litex-hub::yosys=0.9_5266_g0fb4224e=20210301_104249_py37
+  - litex-hub::gcc-riscv64-elf-newlib=9.2.0=20201119_154229
   - make
   - lxml
   - simplejson

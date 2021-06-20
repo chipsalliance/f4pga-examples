@@ -1,12 +1,12 @@
-Using Symbiflow to upload your own designs
-===========================================
+Compiling and Running Your Own Designs Using the Symbiflow Toolchain 
+=====================================================================
 
-This section describes how to upload you're own designs to an FPGA from start to finish using only open source tools.
+This section describes how to compile and download your own designs to an FPGA using only the symbiflow tool chain.
 
-Preparing your environment
-----------------------------
-Before building any example, set the installation directory to match what you
-set it to earlier, for example:
+Setup Prior to Running the Toolchain
+--------------------------------------
+Before building any examples, you will need to first install the toolchain. To do this, follow the steps in `Getting Symbiflow <getting-symbiflow.html>`_.
+After you have downloaded the toolchain, set the installation directory to match what you set it to earlier, for example:
 
 .. code-block:: bash
    :name: export-install-dir
@@ -31,7 +31,7 @@ Select your FPGA family:
 
          FPGA_FAM="eos-s3"
 
-Next, prepare the environment:
+Next, set the path and source for your conda environment:
 
 .. code-block:: bash
    :name: conda-prep-env
@@ -39,7 +39,7 @@ Next, prepare the environment:
    export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
    source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
-Finally, enter your working Conda environment:
+Finally, activate your Conda environment:
 
 .. code-block:: bash
    :name: conda-act-env
@@ -49,39 +49,41 @@ Finally, enter your working Conda environment:
 
 .. note::
 
-   You will need to run the commands for preparing your conda environment each time you open a new terminal. You will also need to activate the Conda environment for your hardware before you attempt to build your designs. It might be a good idea to add the above commands to your ``.bashrc`` either as functions or aliases to save yourself some repetitive typing. 
+   You will need to run the commands for setting the path and source of your conda environment each time you open a new terminal. You will also need to activate the Conda environment for your hardware before you attempt to build your designs. It might be a good idea to add the above commands to your ``.bashrc`` either as default commands that run each time you open a new terminal or aliases to save yourself some repetitive typing. 
 
 
-Preparing Your Design
+Preparing Your Design 
 ----------------------
-Building a design in symbiflow requires three simple parts, the HDL files for your design, a constraints file, and a Makefile. For simplicity, all three of these design parts should be moved to a single directory.
+Building a design in symbiflow requires three parts, the HDL files for your design, a constraints file, and a Makefile. For simplicity, all three of these design files should be moved to a single directory in the location of your choosing.
 
-HDL files
+HDL Files
 ++++++++++
-Symbiflow provides support for both Verilog and SystemVerilog HDL code. Use whichever method you prefer and add your design files to the directory of choice. If you are using the provided Makefiles to build your design, your top level module should be declared as ``module top (...``. Failure to do so will result in an error during the build process stating something to the effect of ``ERROR: Module 'top' not found!``
+Symbiflow provides support for both Verilog and SystemVerilog HDL code. Use whichever method you prefer and add your design files to the directory of choice. If you are using the provided Makefiles to build your design, the top level module in your HDL code should be declared as ``module top (...``. Failure to do so will result in an error during the build process stating something similar to ``ERROR: Module 'top' not found!``
 
 
 
-Constraint file
+Constraint File
 ++++++++++++++++
-The Symbiflow tool chain supports both .XDC and .PCF+.SDC formats for constraint files. Use whichever method you prefer and add your constraint file(s) to the design directory.
+The Symbiflow tool chain supports both .XDC and .PCF+.SDC formats for constraints. Use whichever method you prefer and add your constraint file(s) to your design directory.
 
 
 Makefile
 +++++++++
-To learn about how Makefiles in symbiflow work, see the `Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_ page.
+To learn about how Makefiles in symbiflow work, see `Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_ page.
 
 If you have used verilog as your HDL and an XDC as your constraint, you can add this :download:`Makefile <master_makefile/Makefile>` to your design directory instead of building your own.
 
 
 Building your personal projects 
 -------------------------------
-Before you begin building your design, navigate to the directory where you have stored your Makefile, HDL, and constraint files:
+
+Before you begin building your design, navigate to the directory where you have stored your personal Makefile, HDL, and constraint files:
 
 .. code-block:: bash
    :name: your-directory
 
    cd <path to your directory>
+
 
 Then, depending on your board type run: 
 
@@ -132,7 +134,7 @@ Once you navigate to the directory containing the bitstream, use the following c
 
 .. tip::
     Many of the commands needed to build a project are run multiple times with little to no variation. You might consider adding a few aliases or even a few bash functions to your .bashrc file to save yourself some typing or repeated copy/paste. 
-    For example, instead of using the somewhat cumbersome command used to upload the bitstream to Xilinx 7 series FPGA every time, you could just add the following lines to your bashrc file:
+    For example, instead of using the somewhat cumbersome command used to upload the bitstream to Xilinx 7 series FPGA every time, you could just add the following lines to your .bashrc file:
     
     .. code-block:: bash
        :name: bash-functions

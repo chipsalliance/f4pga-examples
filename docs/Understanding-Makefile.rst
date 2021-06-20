@@ -1,14 +1,14 @@
-Understanding the Makefile in Symbiflow
-==========================================
-A key steep in creating your own designs is understanding how to use the Makefiles in symbiflow. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow to allow for better debugging. 
+Customizing the Makefiles from Symbiflow-examples For Your Own Designs
+=======================================================================
+A key step in creating your own designs is understanding how to use the Makefiles in symbiflow. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow to allow for better debugging. 
 
 Example 
 -------
-To understand how the Makfiles within symbiflow are setup, lets take a look at a more simple Makefile that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code below are of particular interest and will change depending on your design and hardware.
+To understand how the Makefiles within Symbiflow are setup, lets take a look at a simple Makefile in symbiflow-examples that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code below are of particular interest and will change depending on your design and hardware.
 
 .. code-block:: bash
    :name: makefile-example
-   :emphasize-lines: 4, 5, 9, 10
+   :emphasize-lines: 4, 5, 9, 10, 22, 25, 28, 31
    :linenos:
 
    mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -52,7 +52,6 @@ To understand how the Makfiles within symbiflow are setup, lets take a look at a
    clean:
       rm -rf ${BUILDDIR}
 
-Lets go over the highlighted lines one by one and discuss their purpose. 
 
 Adding HDL files to your design
 ----------------------------------
@@ -84,9 +83,9 @@ To include SystemVerilog in your design simply change the ``*.v`` above to a ``*
 
    As of this writing symbiflow only supports Verilog and SystemVerilog HDL by default.
 
-Setting the device properties
-------------------------------
-Line 5 in the example sets the device type for the project. Several different board types are supported and a listing of the commands for each board type follows:
+Setting the Board Type and Part Name
+-------------------------------------
+Line 5 in the example defines the device architecture for the project. Several different board types are supported and a listing of the commands for each board type follow:
 
 .. tabs::
 
@@ -133,7 +132,7 @@ Line 5 in the example sets the device type for the project. Several different bo
          DEVICE:= xc7a200t_test
 
 
-As shown on line 9 of the example makefile you will also need to define the part your FPGA uses. To do this you need to add the following line of code to your makefile depending on your hardware:
+As shown on line 9 of the example makefile you will also need to define the specific FPGA part your board uses. To do this you need to add the following line of code to your makefile depending on your hardware:
 
 .. tabs::
 
@@ -183,7 +182,7 @@ As shown on line 9 of the example makefile you will also need to define the part
 Constraint files
 ----------------
 
-Line 10 shows how you can specify what the constraint files are being used for your design. The general syntax depends on wether you are using XDC files or a SDC+PCF pair:
+Line 10 shows how you can specify what the constraint files are being used for your design. The general syntax depends on whether you are using XDC files or a SDC+PCF pair:
 
 .. tabs::
 

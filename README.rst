@@ -24,7 +24,7 @@ The repository includes:
 * `.github/ <./.github>`_ - Directory with CI configuration and scripts
 
 Please refer to the `project documentation <https://symbiflow-examples.readthedocs.io>`_
-for a proper guide on how to run these examples. The examples provided by this
+for a proper guide on how to run these examples as well as instructions on how to build and compile your own HDL designs using the symbiflow toolchain. The examples provided by this
 repository are automatically built by extracting necessary code snippets with
 `tuttest <https://github.com/antmicro/tuttest>`_.
 

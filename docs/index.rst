@@ -13,6 +13,9 @@ Follow this guide to:
 - :doc:`install SymbiFlow <getting-symbiflow>` and all of its dependencies,
 - :doc:`build <building-examples>` and :doc:`upload <running-examples>`
   example designs onto the devboard of your choice.
+- compile and run :doc:`your own designs<personal-designs>` using the Symbiflow toolchain.
+- :doc:`customize the Makefile<Understanding-Makefile>` for your own designs.
+
 
 About SymbiFlow
 ---------------

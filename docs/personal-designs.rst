@@ -1,7 +1,7 @@
-Compiling and Running Your Own Designs Using the Symbiflow Toolchain 
-=====================================================================
+Compiling and Running Your Own Designs Using the Symbiflow-examples Toolchain 
+==============================================================================
 
-This section describes how to compile and download your own designs to an FPGA using only the symbiflow tool chain.
+This section describes how to compile and download your own designs to an FPGA using only the symbiflow-examples tool chain.
 
 Setup Prior to Running the Toolchain
 --------------------------------------

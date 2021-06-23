@@ -1,6 +1,6 @@
 Customizing the Makefiles from Symbiflow-examples For Your Own Designs
 =======================================================================
-A key step in creating your own designs is understanding how to use the Makefiles in symbiflow. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow to allow for better debugging. 
+A key step in creating your own designs is understanding how to use the Makefiles in symbiflow-examples. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow-examples to allow for better debugging. 
 
 Example 
 -------
@@ -85,7 +85,9 @@ To include SystemVerilog in your design simply change the ``*.v`` above to a ``*
 
 Setting the Board Type and Part Name
 -------------------------------------
-Line 5 in the example defines the device architecture for the project. Several different board types are supported and a listing of the commands for each board type follow:
+Line 5 in the example defines the board type for the project. The use of the term DEVICE may be confusing, but it does refer to a board type as you can see from the context below.  
+
+Several different board types are supported and a listing of the commands for each board type follow:
 
 .. tabs::
 

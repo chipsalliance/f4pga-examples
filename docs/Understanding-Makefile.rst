@@ -1,6 +1,6 @@
 Customizing the Makefiles from Symbiflow-examples For Your Own Designs
 =======================================================================
-A key step in creating your own designs is understanding how to use the Makefiles in symbiflow-examples. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow-examples to allow for better debugging. 
+A key step in creating your own designs is understanding how to use the Makefiles in symbiflow-examples. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow-examples to allow for better debugging as well as how to tailor the Makefiles to your own designs. 
 
 Example 
 -------

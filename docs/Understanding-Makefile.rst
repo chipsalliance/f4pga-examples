@@ -4,7 +4,7 @@ A key step in creating your own designs is understanding how to use the Makefile
 
 Example 
 -------
-To understand how the Makefiles within Symbiflow are setup, lets take a look at a simple Makefile in symbiflow-examples that will run the symbiflow counter test on the basys3 board. Highlighted lines within the code below are of particular interest and will change depending on your design and hardware.
+Every design in symbiflow has its own makefile. For example Counter-test <add links>, Picosoc, and Litex exmples all have there own unique makefiles for building the respective designs. To understand how these Makefiles are setup, lets take a look at a simple Makefile. The following code is taken from the Makefile within Counter-test and has been modified for simplicity to compile the design for the Basys3 board. Highlighted lines within the code below are of particular interest and will change depending on your design and hardware.
 
 .. code-block:: bash
    :name: makefile-example
@@ -180,6 +180,47 @@ As shown on line 9 of the example makefile you will also need to define the spec
 
          PARTNAME:= xc7a200tsbg484-1
 
+
+A Note on some example designs use of ifeq, else ifeq blocks
+-------------------------------------------------------------
+
+If you take a look at many of the example designs within symbiflow you will find an ifeq else ifeq block. For example the following snipet is from lines 9-39 of the Makefile within Counter-test:
+.. code-block:: bash
+   :name: counter-test Makefile snippet
+
+   ifeq ($(TARGET),arty_35)
+   PARTNAME := xc7a35tcsg324-1
+   XDC:=${current_dir}/arty.xdc
+   BOARD_BUILDDIR := ${BUILDDIR}/arty_35
+   else ifeq ($(TARGET),arty_100)
+   PARTNAME:= xc7a100tcsg324-1
+   XDC:=${current_dir}/arty.xdc
+   DEVICE:= xc7a100t_test
+   BOARD_BUILDDIR := ${BUILDDIR}/arty_100
+   else ifeq ($(TARGET),nexys4ddr)
+   PARTNAME:= xc7a100tcsg324-1
+   XDC:=${current_dir}/nexys4ddr.xdc
+   DEVICE:= xc7a100t_test
+   BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
+   else ifeq ($(TARGET),zybo)
+   PARTNAME:= xc7z010clg400-1
+   XDC:=${current_dir}/zybo.xdc
+   DEVICE:= xc7z010_test
+   BITSTREAM_DEVICE:= zynq7
+   BOARD_BUILDDIR := ${BUILDDIR}/zybo
+   VERILOG:=${current_dir}/counter_zynq.v
+   else ifeq ($(TARGET),nexys_video)
+   PARTNAME:= xc7a200tsbg484-1
+   XDC:=${current_dir}/nexys_video.xdc
+   DEVICE:= xc7a200t_test
+   BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
+   else
+   PARTNAME:= xc7a35tcpg236-1
+   XDC:=${current_dir}/basys3.xdc
+   BOARD_BUILDDIR := ${BUILDDIR}/basys3
+   endif
+
+This ifeq else ifeq works as an if else block to set specific PARTNAMES and DEVICE parameters given the board type as defined in the TARGET variable set before running make.
 
 Constraint files
 ----------------

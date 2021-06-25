@@ -54,7 +54,7 @@ Finally, activate your Conda environment:
 
 Preparing Your Design 
 ----------------------
-Building a design in symbiflow requires three parts, the HDL files for your design, a constraints file, and a Makefile. For simplicity, all three of these design files should be moved to a single directory in the location of your choosing.
+Building a design in symbiflow requires three parts, the HDL files for your design, a constraints file, and a Makefile. For simplicity, all three of these design files should be moved to a single directory. The location of the directory does not mater as long as the three design files are all within said directory.
 
 HDL Files
 ++++++++++
@@ -71,7 +71,7 @@ Makefile
 +++++++++
 To learn about how Makefiles in symbiflow work, see `Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_ page.
 
-If you have used verilog as your HDL and an XDC as your constraint, you can add this :download:`Makefile <master_makefile/Makefile>` to your design directory instead of building your own.
+If you have used verilog as your HDL and an XDC as your constraint, you can add this :download:`Makefile <master_makefile/Makefile>` to your design directory instead of building your own. If you have used a different HDL or constraint file you can find instructions for how to create a makefile for these designs in `Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_ page.  
 
 
 Building your personal projects 

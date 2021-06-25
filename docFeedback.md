@@ -2,9 +2,9 @@ I would add the following as issues but your repo doesn't allow that:
 
 # The Building your Designs Page
 
-- What to do to the Makefile if using SystemVerlog or not using XDL?  Need to tell how.
+- check What to do to the Makefile if using SystemVerlog or not using XDL?  Need to tell how.
 
-- Are there suggestions/restrictions on where your design files can be put?  If it doesn't matter, could still say so.
+- check Are there suggestions/restrictions on where your design files can be put?  If it doesn't matter, could still say so.
 
 - Add the programming of the board to the Makefile.  I assume it would be simple 1-liner.  I would add it but I have no way of testing it on my system.
 

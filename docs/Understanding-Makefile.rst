@@ -1,10 +1,11 @@
 Customizing the Makefiles from Symbiflow-examples For Your Own Designs
 =======================================================================
-A key step in creating your own designs is understanding how to use the Makefiles in symbiflow-examples. This tutorial walks you through some of the key aspects of working with the Makefiles in symbiflow-examples to allow for better debugging as well as how to tailor the Makefiles to your own designs. 
+A key step in creating your own designs is understanding how to generate your own Makefiles to properly compile and build designs with the symbiflow toolchain. This tutorial walks you through some of the key aspects of working with Makefiles and explains how you can create Makefiles for your own designs.
 
 Example 
 -------
-Every design in symbiflow has its own makefile. For example Counter-test <add links>, Picosoc, and Litex exmples all have there own unique makefiles for building the respective designs. To understand how these Makefiles are setup, lets take a look at a simple Makefile. The following code is taken from the Makefile within Counter-test and has been modified for simplicity to compile the design for the Basys3 board. Highlighted lines within the code below are of particular interest and will change depending on your design and hardware.
+
+Every design in symbiflow has its own makefile. For example `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  `Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, and `Picosoc Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ all have there own unique Makefiles for compiling and building respective designs. To understand how to set up a Makefile in symbiflow, lets take a look at a simple Makefile. The following code is based off of the Makefile within `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ and has been modified slightly for simplicity. Highlighted lines within the code below are of particular interest and will change depending on your specific design elements and hardware. Lines that are not highlighted do not change from design to design and can be copy and pasted into your own Makefile.
 
 .. code-block:: bash
    :name: makefile-example
@@ -69,7 +70,7 @@ Line 4 in the Makefile shows how to add HDL files to the design. The general syn
                      ${current_dir}/<HDL file 4> \
                      ...
 
-You could also use wildcards to collect all HDL file types of a specific extension and add them to your design. For example, if you wanted to add all verilog files within the current directory to your design you could replace line 4 in the Makefile with:
+You could also use wildcards to collect all HDL file types of a specific extension and add them to your design. For example, if you wanted to add all verilog files within the current directory to your design, you could replace line 4 in the Makefile with:
  
  .. code-block:: bash
    :name: wildcard-example
@@ -77,7 +78,7 @@ You could also use wildcards to collect all HDL file types of a specific extensi
     VERILOG := ${current_dir}/*.v
 
 
-To include SystemVerilog in your design simply change the ``*.v`` above to a ``*.sv``. You might also want to change the ``VERILOG`` bash variables throughout the Makefile to ``SYSTEM_VERILOG`` to improve readability. 
+To include SystemVerilog HDL in your designs simply change the ``.v`` extension in the examples above to a ``.sv``. You might also want to change the ``VERILOG`` bash variables throughout the Makefile to ``SYSTEM_VERILOG`` to improve readability. 
 
 .. note::
 
@@ -85,7 +86,7 @@ To include SystemVerilog in your design simply change the ``*.v`` above to a ``*
 
 Setting the Board Type and Part Name
 -------------------------------------
-Line 5 in the example defines the board type for the project. The use of the term DEVICE may be confusing, but it does refer to a board type as you can see from the context below.  
+Line 5 in the example Makefile defines the board type for the project. The use of the term DEVICE may be confusing, but it does refer to a board type as you can see from the context below.  
 
 Several different board types are supported and a listing of the commands for each board type follow:
 
@@ -181,47 +182,6 @@ As shown on line 9 of the example makefile you will also need to define the spec
          PARTNAME:= xc7a200tsbg484-1
 
 
-A Note on some example designs use of ifeq, else ifeq blocks
--------------------------------------------------------------
-
-If you take a look at many of the example designs within symbiflow you will find an ifeq else ifeq block. For example the following snipet is from lines 9-39 of the Makefile within Counter-test:
-.. code-block:: bash
-   :name: counter-test Makefile snippet
-
-   ifeq ($(TARGET),arty_35)
-   PARTNAME := xc7a35tcsg324-1
-   XDC:=${current_dir}/arty.xdc
-   BOARD_BUILDDIR := ${BUILDDIR}/arty_35
-   else ifeq ($(TARGET),arty_100)
-   PARTNAME:= xc7a100tcsg324-1
-   XDC:=${current_dir}/arty.xdc
-   DEVICE:= xc7a100t_test
-   BOARD_BUILDDIR := ${BUILDDIR}/arty_100
-   else ifeq ($(TARGET),nexys4ddr)
-   PARTNAME:= xc7a100tcsg324-1
-   XDC:=${current_dir}/nexys4ddr.xdc
-   DEVICE:= xc7a100t_test
-   BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
-   else ifeq ($(TARGET),zybo)
-   PARTNAME:= xc7z010clg400-1
-   XDC:=${current_dir}/zybo.xdc
-   DEVICE:= xc7z010_test
-   BITSTREAM_DEVICE:= zynq7
-   BOARD_BUILDDIR := ${BUILDDIR}/zybo
-   VERILOG:=${current_dir}/counter_zynq.v
-   else ifeq ($(TARGET),nexys_video)
-   PARTNAME:= xc7a200tsbg484-1
-   XDC:=${current_dir}/nexys_video.xdc
-   DEVICE:= xc7a200t_test
-   BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
-   else
-   PARTNAME:= xc7a35tcpg236-1
-   XDC:=${current_dir}/basys3.xdc
-   BOARD_BUILDDIR := ${BUILDDIR}/basys3
-   endif
-
-This ifeq else ifeq works as an if else block to set specific PARTNAMES and DEVICE parameters given the board type as defined in the TARGET variable set before running make.
-
 Constraint files
 ----------------
 
@@ -299,3 +259,58 @@ Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) will also
             cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
 
 Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do not change from design to design.
+
+A Note on the example designs use of ifeq/else ifeq blocks
+-------------------------------------------------------------
+
+If you look at many of the Makefiles from the example designs within symbiflow (i.e. counter-test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet is from lines 9-39 of `the Makefile from Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
+
+
+.. code-block:: bash
+   :name: counter-test Makefile snippet
+
+   ifeq ($(TARGET),arty_35)
+   PARTNAME := xc7a35tcsg324-1
+   XDC:=${current_dir}/arty.xdc
+   BOARD_BUILDDIR := ${BUILDDIR}/arty_35
+   else ifeq ($(TARGET),arty_100)
+   PARTNAME:= xc7a100tcsg324-1
+   XDC:=${current_dir}/arty.xdc
+   DEVICE:= xc7a100t_test
+   BOARD_BUILDDIR := ${BUILDDIR}/arty_100
+   else ifeq ($(TARGET),nexys4ddr)
+   PARTNAME:= xc7a100tcsg324-1
+   XDC:=${current_dir}/nexys4ddr.xdc
+   DEVICE:= xc7a100t_test
+   BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
+   else ifeq ($(TARGET),zybo)
+   PARTNAME:= xc7z010clg400-1
+   XDC:=${current_dir}/zybo.xdc
+   DEVICE:= xc7z010_test
+   BITSTREAM_DEVICE:= zynq7
+   BOARD_BUILDDIR := ${BUILDDIR}/zybo
+   VERILOG:=${current_dir}/counter_zynq.v
+   else ifeq ($(TARGET),nexys_video)
+   PARTNAME:= xc7a200tsbg484-1
+   XDC:=${current_dir}/nexys_video.xdc
+   DEVICE:= xc7a200t_test
+   BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
+   else
+   PARTNAME:= xc7a35tcpg236-1
+   XDC:=${current_dir}/basys3.xdc
+   BOARD_BUILDDIR := ${BUILDDIR}/basys3
+   endif
+
+This snippet of code is an if else block used to set the specific PARTNAME and DEVICE parameters for different types of hardware. Since each FPGA has a unique pin configuration, the block also defines a constraint file specific to the hardware being used (i.e. ``basys3.xdc``, ``nexys_video.xdc``). The code block determines what type of hardware is being used based upon a TARGET variable which is assumed to be defined before running make. For example, you may recall running ``TARGET="<board type>" make -C counter_test`` before building the counter-test example. This command sets the TARGET variable to the type of hardware you are using. 
+
+The if else block is completely optional. If you are only using one type of hardware for your designs then you could just use something similar to lines 5, 9 and 10 in our example:
+
+.. code-block:: bash
+   :name: device-partname-snippet
+
+   DEVICE  := xc7a50t_test
+
+   PARTNAME:= xc7a35tcpg236-1
+   XDC:=${current_dir}/<name of XDC file>
+
+If you plan on using multiple types of hardware for your designs, then it might be better to just copy the if else blocks from one of the symbiflow-examples. Note that you may need to change the names for the XDC or PCF+SDC parameters to match the names you have used. Also remember that you will need to set the TARGET variable before running make on your design.

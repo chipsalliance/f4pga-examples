@@ -1,11 +1,24 @@
 Customizing the Makefiles from Symbiflow-examples For Your Own Designs
 =======================================================================
-A key step in creating your own designs is understanding how to generate your own Makefiles to properly compile and build designs with the symbiflow toolchain. This tutorial walks you through some of the key aspects of working with Makefiles and explains how you can create Makefiles for your own designs.
+A key step in creating your own designs is understanding how to generate your own Makefiles to 
+properly compile and build designs with the symbiflow toolchain. This tutorial walks you through 
+some of the key aspects of working with Makefiles and explains how you can create Makefiles for 
+your own designs.
 
 Example 
 -------
 
-Every design in symbiflow has its own makefile. For example `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  `Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, and `Picosoc Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ all have there own unique Makefiles for compiling and building respective designs. To understand how to set up a Makefile in symbiflow, lets take a look at a simple Makefile. The following code is based off of the Makefile within `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ and has been modified slightly for simplicity. Highlighted lines within the code below are of particular interest and will change depending on your specific design elements and hardware. Lines that are not highlighted do not change from design to design and can be copy and pasted into your own Makefile.
+Every design in symbiflow has its own makefile. For example 
+`Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
+`Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, 
+and `Picosoc Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
+all have there own unique Makefiles for compiling and building respective designs. To understand 
+how to set up a Makefile in symbiflow, lets take a look at a simple Makefile. The following code 
+is based off of the Makefile within `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
+and has been modified slightly for simplicity. Highlighted lines within the code below are of 
+particular interest and will change depending on your specific design elements and hardware. 
+Lines that are not highlighted do not change from design to design and can be copy and pasted 
+into your own Makefile.
 
 .. code-block:: bash
    :name: makefile-example
@@ -56,7 +69,9 @@ Every design in symbiflow has its own makefile. For example `Counter-test <https
 
 Adding HDL files to your design
 ----------------------------------
-Line 4 in the Makefile shows how to add HDL files to the design. The general syntax is: ``<HDL language>:=${current_dir}/<your HDL file path>``. You can also add multiple HDL files to a design using the following syntax:
+Line 4 in the Makefile shows how to add HDL files to the design. The general syntax is: 
+``<HDL language>:=${current_dir}/<your HDL file path>``. You can also add multiple HDL files to a 
+design using the following syntax:
  
  .. code-block:: bash
    :name: multi-file-example
@@ -70,7 +85,9 @@ Line 4 in the Makefile shows how to add HDL files to the design. The general syn
                      ${current_dir}/<HDL file 4> \
                      ...
 
-You could also use wildcards to collect all HDL file types of a specific extension and add them to your design. For example, if you wanted to add all verilog files within the current directory to your design, you could replace line 4 in the Makefile with:
+You could also use wildcards to collect all HDL file types of a specific extension and add them 
+to your design. For example, if you wanted to add all verilog files within the current directory 
+to your design, you could replace line 4 in the Makefile with:
  
  .. code-block:: bash
    :name: wildcard-example
@@ -78,15 +95,20 @@ You could also use wildcards to collect all HDL file types of a specific extensi
     VERILOG := ${current_dir}/*.v
 
 
-To include SystemVerilog HDL in your designs simply change the ``.v`` extension in the examples above to a ``.sv``. You might also want to change the ``VERILOG`` bash variables throughout the Makefile to ``SYSTEM_VERILOG`` to improve readability. 
+To include SystemVerilog HDL in your designs simply change the ``.v`` extension in the examples 
+above to a ``.sv``. You might also want to change the ``VERILOG`` bash variables throughout the 
+Makefile to ``SYSTEM_VERILOG`` to improve readability. 
 
 .. note::
 
-   As of this writing symbiflow only supports Verilog and SystemVerilog HDL by default.
+   As of this writing symbiflow only offers full support for Verilog by default.
+   SystemVerilog can also be run through the toolchain but more complicated commands are not fully
+   supported. 
 
 Setting the Board Type and Part Name
 -------------------------------------
-Line 5 in the example Makefile defines the board type for the project. The use of the term DEVICE may be confusing, but it does refer to a board type as you can see from the context below.  
+Line 5 in the example Makefile defines the board type for the project. The use of the term DEVICE 
+may be confusing, but it does refer to a board type as you can see from the context below.  
 
 Several different board types are supported and a listing of the commands for each board type follow:
 
@@ -135,7 +157,9 @@ Several different board types are supported and a listing of the commands for ea
          DEVICE:= xc7a200t_test
 
 
-As shown on line 9 of the example makefile you will also need to define the specific FPGA part your board uses. To do this you need to add the following line of code to your makefile depending on your hardware:
+As shown on line 9 of the example makefile you will also need to define the specific FPGA part 
+your board uses. To do this you need to add the following line of code to your makefile depending 
+on your hardware:
 
 .. tabs::
 
@@ -185,7 +209,8 @@ As shown on line 9 of the example makefile you will also need to define the spec
 Constraint files
 ----------------
 
-Line 10 shows how you can specify what the constraint files are being used for your design. The general syntax depends on whether you are using XDC files or a SDC+PCF pair:
+Line 10 shows how you can specify what the constraint files are being used for your design. The 
+general syntax depends on whether you are using XDC files or a SDC+PCF pair:
 
 .. tabs::
 
@@ -202,7 +227,9 @@ Line 10 shows how you can specify what the constraint files are being used for y
             PCF := ${current_dir}/<name of PCF file>
             SDC := ${current_dir}/<name of SDC file>
 
-Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) will also need to change depending on if you use an XDC file or some combination of SDC, PCF and XDC files. The following snippets show the differences and the areas that will need to change:
+Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) will also need to change 
+depending on if you use an XDC file or some combination of SDC, PCF and XDC files. The following 
+snippets show the differences and the areas that will need to change:
 
 .. tabs::
 
@@ -263,7 +290,9 @@ Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``)
 A Note on the example designs use of ifeq/else ifeq blocks
 -------------------------------------------------------------
 
-If you look at many of the Makefiles from the example designs within symbiflow (i.e. counter-test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet is from lines 9-39 of `the Makefile from Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
+If you look at many of the Makefiles from the example designs within symbiflow 
+(i.e. counter-test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet 
+is from lines 9-39 of `the Makefile from Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
 
 
 .. code-block:: bash
@@ -301,9 +330,16 @@ If you look at many of the Makefiles from the example designs within symbiflow (
    BOARD_BUILDDIR := ${BUILDDIR}/basys3
    endif
 
-This snippet of code is an if else block used to set the specific PARTNAME and DEVICE parameters for different types of hardware. Since each FPGA has a unique pin configuration, the block also defines a constraint file specific to the hardware being used (i.e. ``basys3.xdc``, ``nexys_video.xdc``). The code block determines what type of hardware is being used based upon a TARGET variable which is assumed to be defined before running make. For example, you may recall running ``TARGET="<board type>" make -C counter_test`` before building the counter-test example. This command sets the TARGET variable to the type of hardware you are using. 
+This snippet of code is an if else block used to set the specific PARTNAME and DEVICE parameters 
+for different types of hardware. Since each FPGA has a unique pin configuration, the block also 
+defines a constraint file specific to the hardware being used (i.e. ``basys3.xdc``, 
+``nexys_video.xdc``). The code block determines what type of hardware is being used based upon a 
+TARGET variable which is assumed to be defined before running make. For example, you may recall 
+running ``TARGET="<board type>" make -C counter_test`` before building the counter-test example. 
+This command sets the TARGET variable to the type of hardware you are using. 
 
-The if else block is completely optional. If you are only using one type of hardware for your designs then you could just use something similar to lines 5, 9 and 10 in our example:
+The if else block is completely optional. If you are only using one type of hardware for your 
+designs then you could just use something similar to lines 5, 9 and 10 in our example:
 
 .. code-block:: bash
    :name: device-partname-snippet
@@ -313,4 +349,7 @@ The if else block is completely optional. If you are only using one type of hard
    PARTNAME:= xc7a35tcpg236-1
    XDC:=${current_dir}/<name of XDC file>
 
-If you plan on using multiple types of hardware for your designs, then it might be better to just copy the if else blocks from one of the symbiflow-examples. Note that you may need to change the names for the XDC or PCF+SDC parameters to match the names you have used. Also remember that you will need to set the TARGET variable before running make on your design.
+If you plan on using multiple types of hardware for your designs, then it might be better to just 
+copy the if else blocks from one of the symbiflow-examples. Note that you may need to change the 
+names for the XDC or PCF+SDC parameters to match the names you have used. Also remember that you 
+will need to set the TARGET variable before running make on your design.

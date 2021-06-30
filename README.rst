@@ -1,6 +1,10 @@
 SymbiFlow examples
 ==================
 
+Please refer to the `project documentation <https://symbiflow-examples.readthedocs.io>`_ 
+for a proper guide on how to run these examples as well as instructions on how to build and 
+compile your own HDL designs using the symbiflow toolchain. 
+
 .. image:: https://github.com/symbiflow/symbiflow-examples/workflows/doc-test/badge.svg?branch=master
    :target: https://github.com/SymbiFlow/symbiflow-examples/actions
 
@@ -23,10 +27,8 @@ The repository includes:
 * `docs/ <./docs>`_ - Guide on how to get started with SymbiFlow and build provided examples
 * `.github/ <./.github>`_ - Directory with CI configuration and scripts
 
-Please refer to the `project documentation <https://symbiflow-examples.readthedocs.io>`_
-for a proper guide on how to run these examples as well as instructions on how to build and compile your own HDL designs using the symbiflow toolchain. The examples provided by this
-repository are automatically built by extracting necessary code snippets with
-`tuttest <https://github.com/antmicro/tuttest>`_.
+The examples provided by this repository are automatically built by extracting 
+necessary code snippets with `tuttest <https://github.com/antmicro/tuttest>`_.
 
 Building those docs
 -------------------

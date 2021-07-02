@@ -54,7 +54,7 @@ fi
 
 # activate conda and enter example dir
 
-snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env,conda-act-env,enter-dir-$fpga_family"
+snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then

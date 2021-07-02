@@ -30,11 +30,23 @@ Select your FPGA family:
 
 Next, prepare the environment:
 
-.. code-block:: bash
-   :name: conda-prep-env
+.. tabs::
 
-   export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
-   source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
+   .. group-tab:: Artix-7
+
+      .. code-block:: bash
+         :name: conda-prep-env-xc7
+
+         export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
+         source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
+
+   .. group-tab:: EOS S3
+
+      .. code-block:: bash
+         :name: conda-prep-env-eos-s3
+
+         export PATH="$INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin:$PATH";
+         source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 Finally, enter your working Conda environment:
 

@@ -72,7 +72,9 @@ provided, although more complicated designs written in SystemVerilog may not bui
 Yosys. Use whichever method you prefer and add your design files to the directory of choice. 
 If you are using the provided Makefiles to build your design, the top level module in your HDL 
 code should be declared as ``module top (...``. Failure to do so will result in an error from 
-symbiflow_synth stating something similar to ``ERROR: Module 'top' not found!``
+symbiflow_synth stating something similar to ``ERROR: Module 'top' not found!`` If you are using 
+your own makefiles or commands you can specify your top level module name using the -t flag in 
+symbiflow_synth. 
 
 
 

@@ -78,7 +78,7 @@ design using the following syntax:
 
    <HDL language> := ${current_dir}/<HDL file 1> \
 
-                     ${current_dir}/<HDL file 2>\
+                     ${current_dir}/<HDL file 2> \
 
                      ${current_dir}/<HDL file 3> \
 
@@ -285,7 +285,12 @@ snippets show the differences and the areas that will need to change:
          ${BOARD_BUILDDIR}/${TOP}.route: ${BOARD_BUILDDIR}/${TOP}.place
             cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
 
-Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do not change from design to design.
+Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do 
+not change within the makefile from design to design. 
+
+If you would like to learn more about these commands or if you are using methods other than a 
+makefile to build and compile your designs (such as python or bash scripts) take a look at 
+`Understanding Toolchain Commands <understanding-commands.html>`_.
 
 A Note on the example designs use of ifeq/else ifeq blocks
 -------------------------------------------------------------

@@ -15,6 +15,7 @@ Follow this guide to:
   example designs onto the devboard of your choice.
 - compile and run :doc:`your own designs<personal-designs>` using the Symbiflow toolchain.
 - :doc:`customize the Makefile<customizing-makefiles>` for your own designs.
+- gain valuable information about `Understanding Toolchain Commands in Symbiflow <understanding-commands.html>`_
 
 
 About SymbiFlow
@@ -37,3 +38,4 @@ currently targeting chips from multiple vendors, e.g.:
    running-examples
    personal-designs
    customizing-makefiles
+   understanding-commands

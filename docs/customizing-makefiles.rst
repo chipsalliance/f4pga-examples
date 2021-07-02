@@ -1,14 +1,19 @@
-Customizing the Makefiles from Symbiflow-examples For Your Own Designs
+Customizing the Makefiles from Symbiflow-examples
 =======================================================================
 A key step in creating your own designs is understanding how to generate your own Makefiles to 
 properly compile and build designs with the symbiflow toolchain. This tutorial walks you through 
 some of the key aspects of working with Makefiles and explains how you can create Makefiles for 
 your own designs.
 
+If you would like to use methods other than a Makefile to build and compile your designs 
+(such as python or bash scripts) or if you would like to learn more about the various symbiflow
+commands used by the Makefile to build and compile designs take a look at 
+`Understanding Toolchain Commands <understanding-commands.html>`_ page.
+
 Example 
 -------
 
-Every design in symbiflow has its own makefile. For example 
+Every design in symbiflow has its own Makefile. For example 
 `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
 `Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, 
 and `Picosoc Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
@@ -22,7 +27,7 @@ into your own Makefile.
 
 .. code-block:: bash
    :name: makefile-example
-   :emphasize-lines: 4, 5, 9, 10, 22, 25, 28, 31
+   :emphasize-lines: 3, 4, 5, 6, 9, 10, 22, 25, 28, 31
    :linenos:
 
    mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -67,8 +72,13 @@ into your own Makefile.
       rm -rf ${BUILDDIR}
 
 
-Adding HDL files to your design
-----------------------------------
+Adding HDL files to your design 
+--------------------------------
+
+Line 3 in the Makefile shows how to define the name for your top level module. For example if
+your top level module was named ``module switches ( ...``  then you would simply change line 3 to 
+``TOP:=switches``.
+
 Line 4 in the Makefile shows how to add HDL files to the design. The general syntax is: 
 ``<HDL language>:=${current_dir}/<your HDL file path>``. You can also add multiple HDL files to a 
 design using the following syntax:
@@ -101,16 +111,16 @@ Makefile to ``SYSTEM_VERILOG`` to improve readability.
 
 .. note::
 
-   As of this writing symbiflow only offers full support for Verilog by default.
-   SystemVerilog can also be run through the toolchain but more complicated commands are not fully
-   supported. 
+   As of this writing, symbiflow only offers full support for Verilog by default.
+   SystemVerilog can also be run through the toolchain but more complicated 
+   designs may not be fully supported. 
 
 Setting the Board Type and Part Name
 -------------------------------------
-Line 5 in the example Makefile defines the board type for the project. The use of the term DEVICE 
-may be confusing, but it does refer to a board type as you can see from the context below.  
+Line 5 in the example Makefile defines the device fabric for the board being used in the project.   
 
-Several different board types are supported and a listing of the commands for each board type follow:
+Several different device fabrics are supported and a listing of the commands for each 
+follow:
 
 .. tabs::
 
@@ -157,9 +167,12 @@ Several different board types are supported and a listing of the commands for ea
          DEVICE:= xc7a200t_test
 
 
-As shown on line 9 of the example makefile you will also need to define the specific FPGA part 
-your board uses. To do this you need to add the following line of code to your makefile depending 
-on your hardware:
+Line 7 defines the family for your FPGA. For example basys3 and arty boards are from the artix7
+family while zybo boards are from the zynq7 series.
+
+As shown on line 9 of the example Makefile, you will also need to define the specific FPGA part 
+number for your chip. To do this you need to add the following line of code to your Makefile 
+depending on your hardware:
 
 .. tabs::
 
@@ -286,11 +299,7 @@ snippets show the differences and the areas that will need to change:
             cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
 
 Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do 
-not change within the makefile from design to design. 
-
-If you would like to learn more about these commands or if you are using methods other than a 
-makefile to build and compile your designs (such as python or bash scripts) take a look at 
-`Understanding Toolchain Commands <understanding-commands.html>`_.
+not change within the Makefile from design to design. 
 
 A Note on the example designs use of ifeq/else ifeq blocks
 -------------------------------------------------------------

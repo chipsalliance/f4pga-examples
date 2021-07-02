@@ -2,7 +2,7 @@ Building Custom Designs
 ========================
 
 This section describes how to compile and download your own designs to an FPGA using only 
-the symbiflow-examples tool chain.
+the symbiflow tool chain.
 
 Setup Prior to Running the Toolchain
 --------------------------------------
@@ -73,16 +73,20 @@ Yosys. Use whichever method you prefer and add your design files to the director
 If you are using the provided Makefiles to build your design, the top level module in your HDL 
 code should be declared as ``module top (...``. Failure to do so will result in an error from 
 symbiflow_synth stating something similar to ``ERROR: Module 'top' not found!`` If you are using 
-your own makefiles or commands you can specify your top level module name using the -t flag in 
+your own makefiles or commands, you can specify your top level module name using the -t flag in 
 symbiflow_synth. 
 
 
 
 Constraint File
 ++++++++++++++++
-The Symbiflow tool chain supports both .XDC and .PCF+.SDC formats for constraints. Use whichever
+The Symbiflow tool chain supports both .XDC and .PCF+.SDC formats for constraints. 
+You can use XDC to define IOPAD, IOSETTINGS, and clock constraints. SDCs can be used to 
+define clock constraints and PCFs can be used to define IOPAD constraints only. Use whichever 
 method you prefer and add your constraint file(s) to your design directory.
 
+Note that if you use an XDC file as your constraint and neglect to include your own SDC, the 
+toolchain will automatically generate one to provide clock constraints to VTR.
 
 Makefile
 +++++++++
@@ -100,7 +104,7 @@ Building your personal projects
 -------------------------------
 
 Before you begin building your design, navigate to the directory where you have stored your 
-personal Makefile, HDL, and constraint files:
+Makefile, HDL, and constraint files:
 
 .. code-block:: bash
    :name: your-directory
@@ -171,5 +175,6 @@ Once you navigate to the directory containing the bitstream, use the following c
         openocd -f <Your install directory>/xc7/conda/envs/xc7/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
        }
 
-    Now whenever you need to download a bitstream to the Xilinx-7 series you can simply type ``symbi_bit`` into the terminal and hit enter.
+    Now whenever you need to download a bitstream to the Xilinx-7 series you can simply type 
+    ``symbi_bit`` into the terminal and hit enter.
 

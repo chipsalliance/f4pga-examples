@@ -128,7 +128,7 @@ Download architecture definitions:
       .. code-block:: bash
          :name: download-arch-def-eos-s3
 
-         wget -qO- https://quicklogic-my.sharepoint.com/:u:/p/kkumar/EWuqtXJmalROpI2L5XeewMIBRYVCY8H4yc10nlli-Xq79g?download=1 | tar -xJ -C $INSTALL_DIR/eos-s3/
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-63c3d8f9.tar.gz | tar -xz -C $INSTALL_DIR/eos-s3/
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 

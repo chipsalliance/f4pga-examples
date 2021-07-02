@@ -32,7 +32,7 @@ Next, prepare the environment:
 .. code-block:: bash
    :name: conda-prep-env
 
-   export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
+   export PATH="$INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin:$PATH";
    source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 Finally, enter your working Conda environment:

@@ -3,19 +3,15 @@ channels:
   - conda-forge
   - litex-hub
 dependencies:
-  - litex-hub::quicklogic-yosys=0.8.0_0021_g5eaf370c=20201120_145821
-  - litex-hub::quicklogic-yosys-plugins=1.2.0_0009_g9ab211c=20201120_145821
-  - litex-hub::quicklogic-vtr=v8.0.0.rc2_4003_g8980e4621=20200902_114536
-  # FIXME: remove tbb pin once https://github.com/hdl/conda-eda/issues/84 is fixed
-  - tbb=2020.2
+  - litex-hub::quicklogic-yosys=0.8.0_105_gd282be04=20210625_074838
+  - litex-hub::quicklogic-yosys-plugins=1.2.0_11_g21045a9=20210625_074838
+  - litex-hub::vtr-optimized=8.0.0_4023_ge73e88940=20210625_074838
   - make
   - lxml
   - simplejson
   - intervaltree
   - git
   - pip
-  - coreutils
-  - util-linux
   # Packages installed from PyPI
   - pip:
     - -r file:requirements.txt

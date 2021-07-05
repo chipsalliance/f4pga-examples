@@ -80,6 +80,7 @@ jobs:
         run: |
           wget -O screenfetch-dev https://git.io/vaHfR
           chmod +x screenfetch-dev
+          ./screenfetch-dev
 
       - name: Install tuttest
         run: |

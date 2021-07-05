@@ -1,5 +1,5 @@
-Customizing the Makefiles from Symbiflow-examples
-===================================================
+Customizing the Makefiles
+==========================
 
 A key step in creating your own designs is understanding how to generate your own Makefiles to 
 properly compile and build designs with the symbiflow toolchain. This tutorial walks you through 
@@ -15,12 +15,12 @@ Example
 -------
 
 Every design in symbiflow has its own Makefile. For example 
-`counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
+`counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
 `Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, 
 and `PicoSoC Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
 all have there own unique Makefiles for compiling and building respective designs. To understand 
 how to set up a Makefile in Symbiflow, lets take a look at a simple Makefile. The following code 
-is based on the Makefile within the `counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
+is based on the Makefile within the `counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
 and has been modified slightly for simplicity. Highlighted lines within the code below are of 
 particular interest and will change depending on your specific design elements and hardware. 
 Lines that are not highlighted do not change from design to design and can be copy and pasted 
@@ -80,6 +80,19 @@ Adding HDL files to your design
 your top level module was named ``module switches ( ...``  then you would simply change line 3 to 
 ``TOP:=switches``.
 
+.. warning:: 
+
+   If you change the name of your top level module then the command you use to download the bitstream to 
+   your board using ``openocd`` will need to change slightly from what is provided in the examples. For 
+   instance, if you changed the top level module name to ``TOP := my_module_top`` then the openocd command 
+   would change to:
+
+   .. code-block:: bash
+
+      openocd -f <Your install directory>/xc7/conda/envs/xc7/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 my_module_top.bit; exit"
+
+   Note that the only part of the command that changes is "<top module name>.bit;"
+
 :ref:`Line 4 <makefile-example>` in the Makefile shows how to add HDL files to the design. The general syntax is: 
 ``<HDL language>:=${current_dir}/<your HDL file path>``. You can also add multiple HDL files to a 
 design using the following syntax:
@@ -88,11 +101,8 @@ design using the following syntax:
    :name: multi-file-example
 
    <HDL language> := ${current_dir}/<HDL file 1> \
-
                      ${current_dir}/<HDL file 2> \
-
                      ${current_dir}/<HDL file 3> \
-
                      ${current_dir}/<HDL file 4> \
                      ...
 
@@ -104,7 +114,6 @@ to your design, you could replace line 4 in the Makefile with:
    :name: wildcard-example
 
     VERILOG := ${current_dir}/*.v
-
 
 To include SystemVerilog HDL in your designs simply change the ``.v`` extension in the examples 
 above to a ``.sv``. You might also want to change the ``VERILOG`` bash variables throughout the 
@@ -118,6 +127,7 @@ Makefile to ``SYSTEM_VERILOG`` to improve readability.
 
 Setting the Board Type and Part Name
 -------------------------------------
+
 :ref:`Line 5 <makefile-example>` in the example Makefile defines the device fabric for the board being used in the project.   
 
 Several different device fabrics are supported and a listing of the commands for each 
@@ -166,7 +176,6 @@ follow:
          :name: example-counter-nexys_video-group
 
          DEVICE := xc7a200t_test
-
 
 :ref:`Line 7 <makefile-example>` defines the family for your FPGA. For example basys3 and arty boards are from the artix7
 family while zybo boards are from the zynq7 series.
@@ -292,8 +301,8 @@ A Note on the example designs use of ifeq/else ifeq blocks
 -------------------------------------------------------------
 
 If you look at many of the Makefiles from the example designs within symbiflow 
-(i.e. counter-test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet 
-is from lines 9-39 of `the Makefile from Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
+(i.e. counter test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet 
+is from lines 9-39 of `the Makefile from counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
 
 
 .. code-block:: bash
@@ -337,11 +346,11 @@ for different types of hardware. Since each FPGA has a unique pin configuration,
 defines a constraint file specific to the hardware being used (i.e. ``basys3.xdc``, 
 ``nexys_video.xdc``). The code block determines what type of hardware is being used based upon a 
 TARGET variable which is assumed to be defined before running make. For example, you may recall 
-running ``TARGET="<board type>" make -C counter_test`` before building the counter-test example. 
+running ``TARGET="<board type>" make -C counter_test`` before building the counter test example. 
 This command sets the TARGET variable to the type of hardware you are using. 
 
 The if else block is completely optional. If you are only using one type of hardware for your 
-designs then you could just use something similar to lines 5, 9 and 10 in our example:
+designs then you could just use something similar to :ref:`lines 5, 9 and 10 in our example <makefile-example>`:
 
 .. code-block:: bash
    :name: device-partname-snippet

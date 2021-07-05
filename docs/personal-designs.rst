@@ -2,7 +2,7 @@ Building Custom Designs
 ========================
 
 This section describes how to compile and download your own designs to an FPGA using only 
-the symbiflow toolchain.
+the Symbiflow toolchain.
 
 Before building any examples, you will need to first install the toolchain. To do this, follow the 
 steps in `Getting Symbiflow <getting-symbiflow.html>`_. After you have downloaded the toolchain, 
@@ -13,9 +13,9 @@ your conda environment, and activating your env.
 Preparing Your Design 
 ----------------------
 
-Building a design in symbiflow requires three parts, the HDL files for your design, a constraints
+Building a design in Symbiflow requires three parts: the HDL files for your design, a constraints
 file, and a Makefile. For simplicity, all three of these design files should be moved to a single
-directory. The location of the directory does not mater as long as the three design files are all 
+directory. The location of the directory does not mater as long as the three design elements are all 
 within it.
 
 HDL Files
@@ -23,12 +23,12 @@ HDL Files
 
 Symbiflow provides full support for Verilog. Some support for SystemVerilog HDL code is also 
 provided, although more complicated designs written in SystemVerilog may not build properly under 
-Yosys. Use whichever method you prefer and add your design files to the directory of choice. 
+Yosys. Use whichever method you prefer, and add your design files to the directory of choice. 
 If you are using the provided Makefiles to build your design, the top level module in your HDL 
 code should be declared as ``module top (...``. Failure to do so will result in an error from 
 symbiflow_synth stating something similar to ``ERROR: Module 'top' not found!`` If you are using 
 your own makefiles or commands, you can specify your top level module name using the -t flag in 
-symbiflow_synth. 
+``symbiflow_synth``. 
 
 Constraint File
 ++++++++++++++++
@@ -45,14 +45,11 @@ toolchain will automatically generate one to provide clock constraints to VTR.
 Makefile
 +++++++++
 
-To learn about how Makefiles in symbiflow work, see 
-`Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_ page.
-
 If you have used verilog as your HDL and an XDC as your constraint, you can add this 
 :download:`Makefile <master_makefile/Makefile>` to your design directory instead of building your
 own. If you have used a different HDL than verilog or have used a combination of PCF+SDC 
 constraint files, you can find instructions for how to modify the provided makefile or create 
-your own in `Understanding the Makefile in Symbiflow <Understanding-Makefile.html>`_.  
+your own in the `Customizing Makefiles <customizing-makefiles.html>`_ page.  
 
 Building your personal projects 
 -------------------------------

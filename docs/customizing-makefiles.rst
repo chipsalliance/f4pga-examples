@@ -1,26 +1,25 @@
 Customizing the Makefiles
 ==========================
 
-A key step in creating your own designs is understanding how to generate your own Makefiles to 
-properly compile and build designs with the symbiflow toolchain. This tutorial walks you through 
-some of the key aspects of working with Makefiles and explains how you can create Makefiles for 
-your own designs.
+A powerful tool in creating your own designs is understanding how to generate your own Makefile to
+compile projects. This tutorial walks you through some of the key aspects of working with Makefiles 
+and explains how you can create Makefiles for your own designs.
 
 If you would like to use methods other than a Makefile to build and compile your designs 
-(such as python or bash scripts) or if you would like to learn more about the various symbiflow
-commands used by the Makefile to build and compile designs take a look at 
+(such as python or bash scripts) or if you would like to learn more about the various Symbiflow
+commands used by the Makefile to build and compile designs take a look at the
 `Understanding Toolchain Commands <understanding-commands.html>`_ page.
 
 Example 
 -------
 
-Every design in symbiflow has its own Makefile. For example 
+Every example design in Symbiflow has its own Makefile. For example 
 `counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
-`Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, 
-and `PicoSoC Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
+`Linux Litex demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, 
+and `PicoSoC demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
 all have there own unique Makefiles for compiling and building respective designs. To understand 
 how to set up a Makefile in Symbiflow, lets take a look at a simple Makefile. The following code 
-is based on the Makefile within the `counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
+is based on the Makefile within `counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
 and has been modified slightly for simplicity. Highlighted lines within the code below are of 
 particular interest and will change depending on your specific design elements and hardware. 
 Lines that are not highlighted do not change from design to design and can be copy and pasted 
@@ -76,9 +75,9 @@ into your own Makefile.
 Adding HDL files to your design 
 --------------------------------
 
-:ref:`Line 3 <makefile-example>` in the Makefile shows how to define the name for your top level module. For example if
-your top level module was named ``module switches ( ...``  then you would simply change line 3 to 
-``TOP:=switches``.
+:ref:`Line 3 <makefile-example>` in the Makefile shows how to define the name for your top level module. For example, if
+your top module was named ``module switches ( ...``  then you would simply change line 3 to 
+``TOP := switches``.
 
 .. warning:: 
 
@@ -128,10 +127,9 @@ Makefile to ``SYSTEM_VERILOG`` to improve readability.
 Setting the Board Type and Part Name
 -------------------------------------
 
-:ref:`Line 5 <makefile-example>` in the example Makefile defines the device fabric for the board being used in the project.   
-
-Several different device fabrics are supported and a listing of the commands for each 
-follow:
+:ref:`Line 5 <makefile-example>` in the example Makefile defines the device fabric 
+for the board being used in the project. Several different device fabrics are 
+supported and a listing of the commands for each follow:
 
 .. tabs::
 
@@ -181,7 +179,7 @@ follow:
 family while zybo boards are from the zynq7 series.
 
 As shown on :ref:`line 9 <makefile-example>` of the example Makefile, you will also need to define the specific FPGA part 
-number for your chip. To do this you need to add the following line of code to your Makefile 
+number for your chip. To do this, you need to add the following line of code to your Makefile 
 depending on your hardware:
 
 .. tabs::
@@ -232,7 +230,7 @@ depending on your hardware:
 Constraint files
 ----------------
 
-:ref:`Line 10 <makefile-example>` shows how you can specify what the constraint files are being used for your design. The 
+:ref:`Line 10 <makefile-example>` shows how you can specify what constraint files are being used for your design. The 
 general syntax depends on whether you are using XDC files or a SDC+PCF pair:
 
 .. tabs::
@@ -300,7 +298,7 @@ not change within the Makefile from design to design.
 A Note on the example designs use of ifeq/else ifeq blocks
 -------------------------------------------------------------
 
-If you look at many of the Makefiles from the example designs within symbiflow 
+If you look at the Makefiles from the example designs within Symbiflow 
 (i.e. counter test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet 
 is from lines 9-39 of `the Makefile from counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
 
@@ -350,7 +348,7 @@ running ``TARGET="<board type>" make -C counter_test`` before building the count
 This command sets the TARGET variable to the type of hardware you are using. 
 
 The if else block is completely optional. If you are only using one type of hardware for your 
-designs then you could just use something similar to :ref:`lines 5, 9 and 10 in our example <makefile-example>`:
+designs, then you could just use something similar to :ref:`lines 5, 9 and 10 <makefile-example>` in our example:
 
 .. code-block:: bash
    :name: device-partname-snippet
@@ -361,6 +359,6 @@ designs then you could just use something similar to :ref:`lines 5, 9 and 10 in 
    XDC := ${current_dir}/<name of XDC file>
 
 If you plan on using multiple types of hardware for your designs, then it might be better to just 
-copy the if else blocks from one of the symbiflow-examples. Note that you may need to change the 
+copy the if else block from one of the Symbiflow-examples. Note that you may need to change the 
 names for the XDC or PCF+SDC parameters to match the names you have used. Also remember that you 
 will need to set the TARGET variable before running make on your design.

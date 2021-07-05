@@ -1,4 +1,5 @@
-# This is the master Makefile for all projects
+# This Makefile can be add to your design to compile projects using Verilog as an HDL,
+# and an XDC as a constraint. You can also make changes to this file to build more specialized designs.
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
 TOP := top

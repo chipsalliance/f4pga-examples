@@ -1,5 +1,6 @@
 Customizing the Makefiles from Symbiflow-examples
-=======================================================================
+===================================================
+
 A key step in creating your own designs is understanding how to generate your own Makefiles to 
 properly compile and build designs with the symbiflow toolchain. This tutorial walks you through 
 some of the key aspects of working with Makefiles and explains how you can create Makefiles for 
@@ -14,12 +15,12 @@ Example
 -------
 
 Every design in symbiflow has its own Makefile. For example 
-`Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
+`counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_,  
 `Linux Litex Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/linux_litex_demo/Makefile>`_, 
-and `Picosoc Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
+and `PicoSoC Demo <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/picosoc_demo/Makefile>`_ 
 all have there own unique Makefiles for compiling and building respective designs. To understand 
-how to set up a Makefile in symbiflow, lets take a look at a simple Makefile. The following code 
-is based off of the Makefile within `Counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
+how to set up a Makefile in Symbiflow, lets take a look at a simple Makefile. The following code 
+is based on the Makefile within the `counter-test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_ 
 and has been modified slightly for simplicity. Highlighted lines within the code below are of 
 particular interest and will change depending on your specific design elements and hardware. 
 Lines that are not highlighted do not change from design to design and can be copy and pasted 
@@ -31,7 +32,7 @@ into your own Makefile.
    :linenos:
 
    mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-   current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
+   current_dir := $(patsubst %/,%,$(dir $(mkfile_path))) 
    TOP:=top
    VERILOG:=${current_dir}/counter.v 
    DEVICE  := xc7a50t_test
@@ -75,11 +76,11 @@ into your own Makefile.
 Adding HDL files to your design 
 --------------------------------
 
-Line 3 in the Makefile shows how to define the name for your top level module. For example if
+:ref:`Line 3 <makefile-example>` in the Makefile shows how to define the name for your top level module. For example if
 your top level module was named ``module switches ( ...``  then you would simply change line 3 to 
 ``TOP:=switches``.
 
-Line 4 in the Makefile shows how to add HDL files to the design. The general syntax is: 
+:ref:`Line 4 <makefile-example>` in the Makefile shows how to add HDL files to the design. The general syntax is: 
 ``<HDL language>:=${current_dir}/<your HDL file path>``. You can also add multiple HDL files to a 
 design using the following syntax:
  
@@ -117,7 +118,7 @@ Makefile to ``SYSTEM_VERILOG`` to improve readability.
 
 Setting the Board Type and Part Name
 -------------------------------------
-Line 5 in the example Makefile defines the device fabric for the board being used in the project.   
+:ref:`Line 5 <makefile-example>` in the example Makefile defines the device fabric for the board being used in the project.   
 
 Several different device fabrics are supported and a listing of the commands for each 
 follow:
@@ -167,10 +168,10 @@ follow:
          DEVICE:= xc7a200t_test
 
 
-Line 7 defines the family for your FPGA. For example basys3 and arty boards are from the artix7
+:ref:`Line 7 <makefile-example>` defines the family for your FPGA. For example basys3 and arty boards are from the artix7
 family while zybo boards are from the zynq7 series.
 
-As shown on line 9 of the example Makefile, you will also need to define the specific FPGA part 
+As shown on :ref:`line 9 <makefile-example>` of the example Makefile, you will also need to define the specific FPGA part 
 number for your chip. To do this you need to add the following line of code to your Makefile 
 depending on your hardware:
 
@@ -222,7 +223,7 @@ depending on your hardware:
 Constraint files
 ----------------
 
-Line 10 shows how you can specify what the constraint files are being used for your design. The 
+:ref:`Line 10 <makefile-example>` shows how you can specify what the constraint files are being used for your design. The 
 general syntax depends on whether you are using XDC files or a SDC+PCF pair:
 
 .. tabs::
@@ -240,8 +241,8 @@ general syntax depends on whether you are using XDC files or a SDC+PCF pair:
             PCF := ${current_dir}/<name of PCF file>
             SDC := ${current_dir}/<name of SDC file>
 
-Note that the lines 22, 25, 28, and 31 (.eblif, net, place, and route) will also need to change 
-depending on if you use an XDC file or some combination of SDC, PCF and XDC files. The following 
+Note that the :ref:`lines 22, 25, 28, and 31 <makefile-example>` (.eblif, net, place, and route) will also need to change 
+depending on if you use an XDC file or some combination of SDC and PCF files. The following 
 snippets show the differences and the areas that will need to change:
 
 .. tabs::
@@ -249,6 +250,7 @@ snippets show the differences and the areas that will need to change:
    .. group-tab:: XDC
 
       .. code-block:: bash
+         :lineno-start: 21
          :emphasize-lines: 2
 
          ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
@@ -266,6 +268,7 @@ snippets show the differences and the areas that will need to change:
    .. group-tab:: SDC+PCF
 
       .. code-block:: bash
+         :lineno-start: 21
          :emphasize-lines: 5, 8, 11
 
          ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
@@ -281,24 +284,8 @@ snippets show the differences and the areas that will need to change:
             cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
          
 
-   .. group-tab:: SDC+PCF+XDC
-
-      .. code-block:: bash
-         :emphasize-lines: 2, 5, 8, 11 
-
-         ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
-            cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${VERILOG} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} -x ${XDC} 2>&1 > /dev/null
-
-         ${BOARD_BUILDDIR}/${TOP}.net: ${BOARD_BUILDDIR}/${TOP}.eblif
-            cd ${BOARD_BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
-
-         ${BOARD_BUILDDIR}/${TOP}.place: ${BOARD_BUILDDIR}/${TOP}.net
-            cd ${BOARD_BUILDDIR} && symbiflow_place -e ${TOP}.eblif -d ${DEVICE} -p ${PCF} -n ${TOP}.net -P ${PARTNAME} -s ${SDC} 2>&1 > /dev/null
-
-         ${BOARD_BUILDDIR}/${TOP}.route: ${BOARD_BUILDDIR}/${TOP}.place
-            cd ${BOARD_BUILDDIR} && symbiflow_route -e ${TOP}.eblif -d ${DEVICE} -s ${SDC} 2>&1 > /dev/null
-
-Lines 33-37 (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do 
+   
+:ref:`Lines 33-37 <makefile-example>` (running ``symbiflow_write_fasm`` and ``symbiflow_write_bitstream``) typically do 
 not change within the Makefile from design to design. 
 
 A Note on the example designs use of ifeq/else ifeq blocks
@@ -311,6 +298,7 @@ is from lines 9-39 of `the Makefile from Counter-test <https://github.com/SymbiF
 
 .. code-block:: bash
    :name: counter-test Makefile snippet
+   :lineno-start: 9
 
    ifeq ($(TARGET),arty_35)
    PARTNAME := xc7a35tcsg324-1

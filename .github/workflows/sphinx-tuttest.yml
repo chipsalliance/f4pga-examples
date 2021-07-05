@@ -76,6 +76,11 @@ jobs:
         if: ${{matrix.os == 'centos'}}
         run: yum -y install wget
 
+      - name: Install and run screenfetch
+        run: |
+          wget -O screenfetch-dev https://git.io/vaHfR
+          chmod +x screenfetch-dev
+
       - name: Install tuttest
         run: |
           wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest

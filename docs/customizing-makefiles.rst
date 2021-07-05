@@ -33,14 +33,14 @@ into your own Makefile.
 
    mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
    current_dir := $(patsubst %/,%,$(dir $(mkfile_path))) 
-   TOP:=top
-   VERILOG:=${current_dir}/counter.v 
+   TOP := top
+   VERILOG := ${current_dir}/counter.v 
    DEVICE  := xc7a50t_test
    BITSTREAM_DEVICE := artix7
-   BUILDDIR:=build
+   BUILDDIR := build
 
-   PARTNAME:= xc7a35tcpg236-1
-   XDC:=${current_dir}/basys3.xdc 
+   PARTNAME := xc7a35tcpg236-1
+   XDC := ${current_dir}/basys3.xdc 
    BOARD_BUILDDIR := ${BUILDDIR}/basys3
 
 
@@ -130,42 +130,42 @@ follow:
       .. code-block:: bash
          :name: example-counter-a35t-group
 
-         DEVICE:= xc7a50t_test
+         DEVICE := xc7a50t_test
 
    .. group-tab:: Arty_100T
 
       .. code-block:: bash
          :name: example-counter-a100t-group
 
-         DEVICE:= xc7a100t_test
+         DEVICE := xc7a100t_test
 
    .. group-tab:: Nexus 4 DDR
 
       .. code-block:: bash
          :name: example-counter-nexys4ddr-group
 
-         DEVICE:= xc7a100t_test
+         DEVICE := xc7a100t_test
 
    .. group-tab:: Basys3
 
       .. code-block:: bash
          :name: example-counter-basys3-group
 
-         DEVICE:= xc7a50t_test
+         DEVICE := xc7a50t_test
 
    .. group-tab:: Zybo Z7
 
       .. code-block:: bash
          :name: example-counter-zybo-group
 
-         DEVICE:= xc7z010_test
+         DEVICE := xc7z010_test
 
    .. group-tab:: Nexys Video
 
       .. code-block:: bash
          :name: example-counter-nexys_video-group
 
-         DEVICE:= xc7a200t_test
+         DEVICE := xc7a200t_test
 
 
 :ref:`Line 7 <makefile-example>` defines the family for your FPGA. For example basys3 and arty boards are from the artix7
@@ -189,35 +189,35 @@ depending on your hardware:
       .. code-block:: bash
          :name: example-part-a100t-group
 
-         PARTNAME:= xc7a100tcsg324-1
+         PARTNAME := xc7a100tcsg324-1
 
    .. group-tab:: Nexus 4 DDR
 
       .. code-block:: bash
          :name: example-part-nexys4ddr-group
 
-         PARTNAME:= xc7a100tcsg324-1
+         PARTNAME := xc7a100tcsg324-1
 
    .. group-tab:: Basys3
 
       .. code-block:: bash
          :name: example-part-basys3-group
 
-         PARTNAME:= xc7a35tcpg236-1
+         PARTNAME := xc7a35tcpg236-1
 
    .. group-tab:: Zybo Z7
 
       .. code-block:: bash
          :name: example-part-zybo-group
 
-         PARTNAME:= xc7z010clg400-1
+         PARTNAME := xc7z010clg400-1
 
    .. group-tab:: Nexys Video
 
       .. code-block:: bash
          :name: example-part-nexys_video-group
 
-         PARTNAME:= xc7a200tsbg484-1
+         PARTNAME := xc7a200tsbg484-1
 
 
 Constraint files
@@ -232,7 +232,7 @@ general syntax depends on whether you are using XDC files or a SDC+PCF pair:
    
       .. code-block:: bash
 
-         XDC:=${current_dir}/<name of XDC file>
+         XDC := ${current_dir}/<name of XDC file>
 
    .. group-tab:: SDC+PCF
 
@@ -305,30 +305,30 @@ is from lines 9-39 of `the Makefile from Counter-test <https://github.com/SymbiF
    XDC:=${current_dir}/arty.xdc
    BOARD_BUILDDIR := ${BUILDDIR}/arty_35
    else ifeq ($(TARGET),arty_100)
-   PARTNAME:= xc7a100tcsg324-1
+   PARTNAME := xc7a100tcsg324-1
    XDC:=${current_dir}/arty.xdc
-   DEVICE:= xc7a100t_test
+   DEVICE := xc7a100t_test
    BOARD_BUILDDIR := ${BUILDDIR}/arty_100
    else ifeq ($(TARGET),nexys4ddr)
    PARTNAME:= xc7a100tcsg324-1
    XDC:=${current_dir}/nexys4ddr.xdc
-   DEVICE:= xc7a100t_test
+   DEVICE := xc7a100t_test
    BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
    else ifeq ($(TARGET),zybo)
-   PARTNAME:= xc7z010clg400-1
-   XDC:=${current_dir}/zybo.xdc
-   DEVICE:= xc7z010_test
-   BITSTREAM_DEVICE:= zynq7
+   PARTNAME := xc7z010clg400-1
+   XDC := ${current_dir}/zybo.xdc
+   DEVICE := xc7z010_test
+   BITSTREAM_DEVICE := zynq7
    BOARD_BUILDDIR := ${BUILDDIR}/zybo
-   VERILOG:=${current_dir}/counter_zynq.v
+   VERILOG := ${current_dir}/counter_zynq.v
    else ifeq ($(TARGET),nexys_video)
-   PARTNAME:= xc7a200tsbg484-1
-   XDC:=${current_dir}/nexys_video.xdc
-   DEVICE:= xc7a200t_test
+   PARTNAME := xc7a200tsbg484-1
+   XDC := ${current_dir}/nexys_video.xdc
+   DEVICE := xc7a200t_test
    BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
    else
-   PARTNAME:= xc7a35tcpg236-1
-   XDC:=${current_dir}/basys3.xdc
+   PARTNAME := xc7a35tcpg236-1
+   XDC := ${current_dir}/basys3.xdc
    BOARD_BUILDDIR := ${BUILDDIR}/basys3
    endif
 
@@ -346,10 +346,10 @@ designs then you could just use something similar to lines 5, 9 and 10 in our ex
 .. code-block:: bash
    :name: device-partname-snippet
 
-   DEVICE  := xc7a50t_test
+   DEVICE := xc7a50t_test
 
-   PARTNAME:= xc7a35tcpg236-1
-   XDC:=${current_dir}/<name of XDC file>
+   PARTNAME := xc7a35tcpg236-1
+   XDC := ${current_dir}/<name of XDC file>
 
 If you plan on using multiple types of hardware for your designs, then it might be better to just 
 copy the if else blocks from one of the symbiflow-examples. Note that you may need to change the 

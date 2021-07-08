@@ -5,7 +5,8 @@ This example design features a Linux-capable SoC based around VexRiscv soft
 CPU. It also includes DDR and Ethernet controllers. To build the litex example,
 run the following commands:
 
-To build the linux-litex-demo example, depending on your hardware, run:
+To build the linux-litex-demo example, first re-navigate to the directory that contains examples for Xilinx 7-Series FPGAs. Then depending on your hardware, run:
+
 
 .. code-block:: bash
    :name: example-litex-a35t-group

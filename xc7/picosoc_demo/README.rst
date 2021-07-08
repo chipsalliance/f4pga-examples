@@ -1,8 +1,7 @@
 PicoSoC demo
 ~~~~~~~~~~~~
 
-This example features a picorv32 soft CPU and a SoC based on it. To build the
-picosoc example, run the following commands:
+This example features a picorv32 soft CPU and a SoC based on it. To build the picosoc example, first navigate to the directory that contains examples for Xilinx 7-Series FPGAs. Then run the following commands:
 
 .. code-block:: bash
    :name: example-picosoc-a35t-group

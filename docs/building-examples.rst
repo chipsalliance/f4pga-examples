@@ -1,3 +1,4 @@
+
 Building example designs
 ========================
 
@@ -53,6 +54,14 @@ Finally, enter your working Conda environment:
    :name: conda-act-env
 
    conda activate $FPGA_FAM
+
+.. tip::
+
+   You will need to run the commands for setting the path and source of your conda environment 
+   each time you open a new terminal. You will also need to activate the Conda environment for 
+   your hardware before you attempt to build your designs. It might be a good idea to add the 
+   above commands to your ``.bashrc`` either as default commands that run each time you open a 
+   new terminal or aliases to save yourself some repetitive typing. 
 
 .. note::
 

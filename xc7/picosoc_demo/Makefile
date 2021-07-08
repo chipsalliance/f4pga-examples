@@ -15,7 +15,7 @@ BUILDDIR := build
 ifeq ($(TARGET),arty_35)
   VERILOG += ${current_dir}/arty.v
   PARTNAME := xc7a35tcsg324-1
-  PCF :=${current_dir}/arty.pcf
+  PCF := ${current_dir}/arty.pcf
   BOARD_BUILDDIR := ${BUILDDIR}/arty_35
 else ifeq ($(TARGET),arty_100)
   VERILOG += ${current_dir}/arty.v

@@ -13,6 +13,10 @@ Follow this guide to:
 - :doc:`install SymbiFlow <getting-symbiflow>` and all of its dependencies,
 - :doc:`build <building-examples>` and :doc:`upload <running-examples>`
   example designs onto the devboard of your choice.
+- compile and run :doc:`your own designs<personal-designs>` using the Symbiflow toolchain.
+- :doc:`customize the Makefile<customizing-makefiles>` for your own designs.
+- gain valuable information about `Understanding Toolchain Commands in Symbiflow <understanding-commands.html>`_
+
 
 About SymbiFlow
 ---------------
@@ -32,3 +36,6 @@ currently targeting chips from multiple vendors, e.g.:
    getting-symbiflow
    building-examples
    running-examples
+   personal-designs
+   customizing-makefiles
+   understanding-commands

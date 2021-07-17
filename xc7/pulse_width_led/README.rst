@@ -6,7 +6,7 @@ demonstrates a PWM that drives the RGB leds on the board. To build this example 
 commands:
 
 .. code-block:: bash
-   :name: example-watch-basys3
+   :name: example-pulse-arty-35t
 
    make -C pulse_width_led
 

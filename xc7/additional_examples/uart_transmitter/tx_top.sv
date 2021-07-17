@@ -2,7 +2,7 @@
 
 module top(
     input wire logic            clk, 
-    input wire logic            btnu, //reset button
+    input wire logic            btnu,
     input wire logic    [7:0]   sw, 
     input wire logic            btnc, 
     output logic        [3:0]   anode, 

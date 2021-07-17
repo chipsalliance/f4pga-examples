@@ -6,7 +6,7 @@ on the basys3 board. The number of presses will be given on the seven segment di
 by pressing the up button on the board. To build the design first navigate to the additional examples directory:
 
 .. code-block:: bash
-   :name: example-debouncer-basys3
+   :name: additional-examples
 
    cd additional_examples
 

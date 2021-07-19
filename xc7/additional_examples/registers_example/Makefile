@@ -2,7 +2,6 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
 TOP := top
 SOURCES := ${current_dir}/*.sv
-SOURCES += ${current_dir}/*.v
 DEVICE  := xc7a50t_test
 BITSTREAM_DEVICE := artix7
 BUILDDIR:=build

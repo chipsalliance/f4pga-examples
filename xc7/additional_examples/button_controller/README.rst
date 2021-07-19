@@ -2,7 +2,7 @@ Button Debouncer
 ~~~~~~~~~~~~~~~~~~
 
 This example demonstrates using a button debouncer state machine to count the number of presses on the center button
-on the basys3 board. The number of presses will be given on the seven segment display. You can reset the button counter
+on the basys3 board. The number of presses counted by the debouncer will be given on the two left most digits of the display followed by the count for the number of presses by the non debounced counter. You can reset the button counter
 by pressing the up button on the board. To build the design first navigate to the additional examples directory:
 
 .. code-block:: bash

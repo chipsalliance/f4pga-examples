@@ -4,7 +4,7 @@
 module timer_par #(parameter MOD_VALUE=1, parameter BIT_WIDTH = 1) (
     input wire logic clk, reset, increment,
     output logic rolling_over,
-    output logic[BIT_WIDTH-1:0] count
+    output logic[BIT_WIDTH-1:0] count = 0
     );
     
     always_ff @(posedge clk)

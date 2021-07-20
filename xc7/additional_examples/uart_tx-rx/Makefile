@@ -6,30 +6,8 @@ DEVICE  := xc7a50t_test
 BITSTREAM_DEVICE := artix7
 BUILDDIR:=build
 
-ifeq ($(TARGET),arty_35)
-  PARTNAME := xc7a35tcsg324-1
-  BOARD_BUILDDIR := ${BUILDDIR}/arty_35
-else ifeq ($(TARGET),arty_100)
-  PARTNAME:= xc7a100tcsg324-1
-  DEVICE:= xc7a100t_test
-  BOARD_BUILDDIR := ${BUILDDIR}/arty_100
-else ifeq ($(TARGET),nexys4ddr)
-  PARTNAME:= xc7a100tcsg324-1
-  DEVICE:= xc7a100t_test
-  BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
-else ifeq ($(TARGET),zybo)
-  PARTNAME:= xc7z010clg400-1
-  DEVICE:= xc7z010_test
-  BITSTREAM_DEVICE:= zynq7
-  BOARD_BUILDDIR := ${BUILDDIR}/zybo
-else ifeq ($(TARGET),nexys_video)
-  PARTNAME:= xc7a200tsbg484-1
-  DEVICE:= xc7a200t_test
-  BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
-else
-  PARTNAME:= xc7a35tcpg236-1
+  PARTNAME := xc7a35tcpg236-1
   BOARD_BUILDDIR := ${BUILDDIR}/basys3
-endif
 
   XDC:=${current_dir}/*.xdc
 

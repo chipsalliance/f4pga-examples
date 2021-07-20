@@ -24,7 +24,7 @@ At completion, the bitstream is located in the build directory:
 
 .. code-block:: bash
 
-   cd button_controller/build/arty_35
+   cd button_controller/build/basys3
 
 Now, you can upload the design with:
 

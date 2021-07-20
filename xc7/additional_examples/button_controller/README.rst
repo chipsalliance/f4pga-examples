@@ -1,9 +1,11 @@
-Button Debouncer
+Button Controller
 ~~~~~~~~~~~~~~~~~~
 
-This example demonstrates using a button debouncer state machine to count the number of presses on the center button
-on the basys3 board. The number of presses counted by the debouncer will be given on the two left most digits of the display followed by the count for the number of presses by the non debounced counter. You can reset the button counter
-by pressing the up button on the board. To build the design first navigate to the additional examples directory:
+This example demonstrates using a button debouncer state machine to count the number of presses on the
+center button of the basys3 board. The number of presses counted by the debouncer state machine will
+be given on the two right most digits of the display. The two left most digits record the number of 
+presses counted without the debouncer. You can reset the button counter by pressing the up button on 
+the board. To build the design first navigate to the additional examples directory:
 
 .. code-block:: bash
    :name: additional-examples
@@ -15,14 +17,14 @@ Then run make to compile the design:
 .. code-block:: bash
    :name: example-debouncer-basys3
 
-   make -C button_debouncer
+   make -C button_controller
 
 
 At completion, the bitstream is located in the build directory:
 
 .. code-block:: bash
 
-   cd button_debouncer/build/arty_35
+   cd button_controller/build/arty_35
 
 Now, you can upload the design with:
 

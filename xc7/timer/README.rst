@@ -26,7 +26,7 @@ Now, you can upload the design with:
 After downloading the bitstream you can start and stop the watch by toggling switch 0 on the board.
 Press the center button to reset the counter. The following gives a visual example:
 
-.. image:: ../../docs/images/stop-watch.gif
+.. image:: ../../docs/images/timer.gif
    :align: center
    :width: 50%
 

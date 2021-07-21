@@ -1,6 +1,6 @@
 
 Building example designs
-========================
+===========================
 
 Before building any example, set the installation directory to match what you
 set it to earlier, for example:
@@ -95,7 +95,7 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
    :file: templates/example.jinja
 
 .. jinja:: xc7_pulse_width_led
-   :file: templates/example.jinja
+   :file: templates/example.jinja 
 
 
 QuickLogic EOS S3

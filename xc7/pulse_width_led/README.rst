@@ -1,5 +1,5 @@
 Pulse Width Modulation
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 This example is built specificity for the arty_35T. It demonstrates a greater variety of I/O and 
 a PWM that drives the RGB leds on the board. To build this example run the following

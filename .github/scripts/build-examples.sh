@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux"
+    examples="counter picosoc litex litex_linux timer pulse_width_led button_controller registers_example uart_transmitter uart_tx-rx"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -55,6 +55,7 @@ fi
 # activate conda and enter example dir
 
 snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
+additionalDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family,additional_examples"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
@@ -71,6 +72,26 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "litex_linux")
                 snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group"
+                ;;
+            "pulse_width_led")
+                snippets="${snippets} xc7/pulse_width_led/README.rst:example-pulse-arty-35t"
+                ;;
+            "timer")
+                snippets="${snippets} xc7/timer/README.rst:example-watch-basys3"
+                ;;
+
+            #Additional examples:
+            "button_controller")
+                snippets="${additionalDesigns} xc7/additional_examples/button_controller/README.rst:example-debouncer-basys3"
+                ;;
+            "registers_example")
+                snippets="${additionalDesigns} xc7/additional_examples/registers_example/README.rst:example-registers-basys3"
+                ;;
+            "uart_transmitter")
+                snippets="${additionalDesigns} xc7/additional_examples/uart_transmitter/README.rst:example-uarttx-basys3"
+                ;;
+            "uart_tx-rx")
+                snippets="${additionalDesigns} xc7/additional_examples/uart_tx-rx/README.rst:example-uarttx-rx-basys3"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

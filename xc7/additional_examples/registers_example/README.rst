@@ -8,7 +8,7 @@ To build the design first navigate to the additional_examples directory:
 .. code-block:: bash
    :name: additional-example
 
-   cd additional_examples
+   cd additional_examples 
 
 Then run make to compile the design: 
 

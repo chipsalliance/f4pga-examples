@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux timer pulse_width_led button_controller registers_example uart_transmitter uart_tx-rx"
+    examples="counter picosoc litex litex_linux timer pulse_width_led"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -55,7 +55,6 @@ fi
 # activate conda and enter example dir
 
 snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
-additionalDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family,additional_examples"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
@@ -78,20 +77,6 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "timer")
                 snippets="${snippets} xc7/timer/README.rst:example-watch-basys3"
-                ;;
-
-            #Additional examples:
-            "button_controller")
-                snippets="${additionalDesigns} xc7/additional_examples/button_controller/README.rst:example-debouncer-basys3"
-                ;;
-            "registers_example")
-                snippets="${additionalDesigns} xc7/additional_examples/registers_example/README.rst:example-registers-basys3"
-                ;;
-            "uart_transmitter")
-                snippets="${additionalDesigns} xc7/additional_examples/uart_transmitter/README.rst:example-uarttx-basys3"
-                ;;
-            "uart_tx-rx")
-                snippets="${additionalDesigns} xc7/additional_examples/uart_tx-rx/README.rst:example-uarttx-rx-basys3"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

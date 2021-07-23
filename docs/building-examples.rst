@@ -91,13 +91,6 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 .. jinja:: xc7_linux_litex_demo
    :file: templates/example.jinja
 
-.. jinja:: xc7_timer
-   :file: templates/example.jinja
-
-.. jinja:: xc7_pulse_width_led
-   :file: templates/example.jinja 
-
-
 Additional Examples
 --------------------
 

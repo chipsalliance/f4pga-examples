@@ -1,6 +1,6 @@
 
 Building example designs
-===========================
+=========================
 
 Before building any example, set the installation directory to match what you
 set it to earlier, for example:

@@ -1,5 +1,5 @@
 Button Controller
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 This example demonstrates using a button debouncer state machine to count the number of presses on the
 center button of the basys3 board. The number of presses counted by the debouncer state machine will

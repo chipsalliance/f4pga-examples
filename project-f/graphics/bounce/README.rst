@@ -2,7 +2,7 @@ Bouncing Squares
 ================
 
 This design is targeted for the Basys3 board and comes from the designs in 
-`Project F <https://projectf.io/about/>`. When the board is connected to a display though a VGA cable 
+`Project F <https://projectf.io/about/>`_. When the board is connected to a display though a VGA cable 
 three squares one red, one green, and one blue are displayed on screen. The squares bounce around 
 the display their colors mix as they collide with each other. More detailed documentation can be 
 found on `this blog page <https://projectf.io/posts/fpga-graphics/>`_ from Project F.

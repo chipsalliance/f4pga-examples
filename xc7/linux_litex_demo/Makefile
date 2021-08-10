@@ -9,17 +9,6 @@ PCF := ${current_dir}/arty.pcf
 SDC := ${current_dir}/arty.sdc
 XDC := ${current_dir}/arty.xdc
 
-
-BITSTREAM_DEVICE := artix7
-
-ifeq ($(TARGET),arty_100)
-    PARTNAME := xc7a100tcsg324-1
-    DEVICE   := xc7a100t_test
-else
-    PARTNAME := xc7a35tcsg324-1
-    DEVICE   := xc7a50t_test
-endif
-
 export
 
 all:

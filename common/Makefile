@@ -1,54 +1,15 @@
 BUILDDIR := ${current_dir}/build
-
-# Set board properties based on TARGET variable
-ifeq ($(TARGET),arty_35)
-  DEVICE := xc7a50t_test
-  BITSTREAM_DEVICE := artix7
-  PARTNAME := xc7a35tcsg324-1
-  CONSTRAINT_PATH := ${current_dir}/arty
-  BOARD_BUILDDIR := ${BUILDDIR}/arty_35
-else ifeq ($(TARGET),arty_100)
-  DEVICE := xc7a100t_test
-  BITSTREAM_DEVICE := artix7
-  PARTNAME := xc7a100tcsg324-1
-  CONSTRAINT_PATH := ${current_dir}/arty
-  BOARD_BUILDDIR := ${BUILDDIR}/arty_100
-else ifeq ($(TARGET),nexys4ddr)
-  DEVICE := xc7a100t_test
-  BITSTREAM_DEVICE := artix7
-  PARTNAME := xc7a100tcsg324-1
-  CONSTRAINT_PATH := ${current_dir}/nexys4ddr
-  BOARD_BUILDDIR := ${BUILDDIR}/nexys4ddr
-else ifeq ($(TARGET),zybo)
-  DEVICE := xc7z010_test
-  BITSTREAM_DEVICE := zynq7
-  PARTNAME := xc7z010clg400-1
-  CONSTRAINT_PATH := ${current_dir}/zybo
-  BOARD_BUILDDIR := ${BUILDDIR}/zybo
-  SOURCES := ${current_dir}/counter_zynq.v
-else ifeq ($(TARGET),nexys_video)
-  DEVICE := xc7a200t_test
-  BITSTREAM_DEVICE := artix7
-  PARTNAME := xc7a200tsbg484-1
-  CONSTRAINT_PATH := ${current_dir}/nexys_video
-  BOARD_BUILDDIR := ${BUILDDIR}/nexys_video
-else
-  DEVICE := xc7a50t_test
-  BITSTREAM_DEVICE := artix7
-  PARTNAME := xc7a35tcpg236-1
-  CONSTRAINT_PATH := ${current_dir}/basys3
-  BOARD_BUILDDIR := ${BUILDDIR}/basys3
-endif
+BOARD_BUILDDIR := ${BUILDDIR}/${TARGET}
 
 # Determine the type of constraint being used
-ifneq ($(wildcard ${CONSTRAINT_PATH}.xdc),)
-  XDC_CMD := -x ${CONSTRAINT_PATH}.xdc
+ifneq (${XDC},)
+  XDC_CMD := -x ${XDC}
 endif
-ifneq ($(wildcard ${CONSTRAINT_PATH}.sdc),)
-  SDC_CMD := -s ${CONSTRAINT_PATH}.sdc
+ifneq (${SDC},)
+  SDC_CMD := -s ${SDC}
 endif
-ifneq ($(wildcard ${CONSTRAINT_PATH}.pcf),)
-  PCF_CMD := -p ${CONSTRAINT_PATH}.pcf
+ifneq (${PCF},)
+  PCF_CMD := -p ${PCF}
 endif
 
 .DELETE_ON_ERROR:

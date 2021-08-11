@@ -1,21 +1,22 @@
-`default_nettype none
+`timescale 1ns / 1ps `default_nettype none
 
-module modify_count #(
-    parameter MOD_VALUE = 10
+module time_counter #(
+    parameter MOD_VALUE = 1000000
 ) (
     input wire logic clk,
     reset,
     increment,
     output logic rolling_over,
-    output logic [3:0] count = 0
+    output logic [23:0] count = 0
 );
 
   always_ff @(posedge clk) begin
-    if (reset) count <= 4'b0000;
+    if (reset) count <= 0;
     else if (increment) begin
-      if (rolling_over) count <= 4'b0000;
-      else count <= count + 4'b0001;
+      if (rolling_over) count <= 0;
+      else count <= count + 1'b1;
     end
+
   end
 
   always_comb begin

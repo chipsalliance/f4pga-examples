@@ -21,10 +21,4 @@ else
   PCF := ${current_dir}/basys3.pcf
 endif
 
-export
-
-all:
-	cd ../../common && $(MAKE)
-
-clean:
-	cd ../../common && $(MAKE) clean 
+include ${current_dir}/../../common/Makefile

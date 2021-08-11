@@ -9,10 +9,4 @@ PCF := ${current_dir}/arty.pcf
 SDC := ${current_dir}/arty.sdc
 XDC := ${current_dir}/arty.xdc
 
-export
-
-all:
-	cd ../../common && $(MAKE)
-
-clean:
-	cd ../../common && $(MAKE) clean    
+include ${current_dir}/../../common/Makefile 

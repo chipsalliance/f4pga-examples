@@ -14,40 +14,50 @@ module timer (
 
   logic [23:0] timerCount;
 
-  modify_count #(10) M0 (
-      clk,
-      reset,
-      inc0,
-      inc1,
-      digit0
+  modify_count #(
+      .MOD_VALUE(10)
+  ) M0 (
+      .clk(clk),
+      .reset(reset),
+      .increment(inc0),
+      .rolling_over(inc1),
+      .count(digit0)
   );
-  modify_count #(10) M1 (
-      clk,
-      reset,
-      inc1,
-      inc2,
-      digit1
+  modify_count #(
+      .MOD_VALUE(10)
+  ) M1 (
+      .clk(clk),
+      .reset(reset),
+      .increment(inc1),
+      .rolling_over(inc2),
+      .count(digit1)
   );
-  modify_count #(10) M2 (
-      clk,
-      reset,
-      inc2,
-      inc3,
-      digit2
+  modify_count #(
+      .MOD_VALUE(10)
+  ) M2 (
+      .clk(clk),
+      .reset(reset),
+      .increment(inc2),
+      .rolling_over(inc3),
+      .count(digit2)
   );
-  modify_count #(6) M3 (
-      clk,
-      reset,
-      inc3,
-      inc4,
-      digit3
+  modify_count #(
+      .MOD_VALUE(6)
+  ) M3 (
+      .clk(clk),
+      .reset(reset),
+      .increment(inc3),
+      .rolling_over(inc4),
+      .count(digit3)
   );
 
-  time_counter #(1000000) T0 (
-      clk,
-      reset,
-      run,
-      inc0,
-      timerCount
+  time_counter #(
+      .MOD_VALUE(1000000)
+  ) T0 (
+      .clk(clk),
+      .reset(reset),
+      .increment(run),
+      .rolling_over(inc0),
+      .count(timerCount)
   );
 endmodule

@@ -11,21 +11,21 @@ module top (
   logic [15:0] digitData;
 
   timer TC0 (
-      clk,
-      btnc,
-      sw,
-      digitData[3:0],
-      digitData[7:4],
-      digitData[11:8],
-      digitData[15:12]
+      .clk(clk),
+      .reset(btnc),
+      .run(sw),
+      .digit0(digitData[3:0]),
+      .digit1(digitData[7:4]),
+      .digit2(digitData[11:8]),
+      .digit3(digitData[15:12])
   );
   display_control SSC0 (
-      clk,
-      btnc,
-      digitData,
-      4'b1111,
-      4'b0100,
-      anode,
-      segment
+      .clk(clk),
+      .reset(btnc),
+      .dataIn(digitData),
+      .digitDisplay(4'b1111),
+      .digitPoint(4'b0100),
+      .anode(anode),
+      .segment(segment)
   );
 endmodule

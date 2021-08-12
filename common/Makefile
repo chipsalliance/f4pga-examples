@@ -48,11 +48,6 @@ all: ${BOARD_BUILDDIR}/${TOP}.bit
 
 ${BOARD_BUILDDIR}:
 	mkdir -p ${BOARD_BUILDDIR}
-  #Check if design includes initialization files for memory
-  ifneq (${MEM_INIT},)
-    #if there are memory initialization files link them to the build/board_type directory
-	  ln -s ${MEM_INIT} ${BOARD_BUILDDIR}
-  endif
 
 ${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
 	cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${SOURCES} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} ${XDC_CMD} 2>&1 > /dev/null

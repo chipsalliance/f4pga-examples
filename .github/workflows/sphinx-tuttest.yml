@@ -57,6 +57,15 @@ jobs:
           - {fpga-fam: "xc7",    os: "debian", os-version: "buster",   example: "litex_linux"}
           - {fpga-fam: "xc7",    os: "debian", os-version: "bullseye", example: "litex_linux"}
           - {fpga-fam: "xc7",    os: "debian", os-version: "sid",      example: "litex_linux"}
+  
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "xenial",   example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "bionic",   example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "ubuntu", os-version: "focal",    example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "7",        example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "centos", os-version: "8",        example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "debian", os-version: "buster",   example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "debian", os-version: "bullseye", example: "button_controller"}
+          - {fpga-fam: "xc7",    os: "debian", os-version: "sid",      example: "button_controller"}
 
     env:
       LANG: "en_US.UTF-8"

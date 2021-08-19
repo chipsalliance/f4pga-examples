@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux"
+    examples="counter picosoc litex litex_linux button_controller"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -55,6 +55,7 @@ fi
 # activate conda and enter example dir
 
 snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
+additionalDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family,additional_examples"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
@@ -71,6 +72,11 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "litex_linux")
                 snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group"
+                ;;
+
+            #Additional examples:
+            "button_controller")
+                snippets="${additionalDesigns} xc7/additional_examples/button_controller/README.rst:example-debouncer-basys3"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

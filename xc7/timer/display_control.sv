@@ -1,29 +1,6 @@
 `default_nettype none
 
-module display_control (
-    input  wire logic        clk,
-    input  wire logic        reset,
-    input  wire logic [15:0] dataIn,
-    input  wire logic [ 3:0] digitDisplay,
-    input  wire logic [ 3:0] digitPoint,
-    output logic      [ 3:0] anode,
-    output logic      [ 7:0] segment
-);
 
-<<<<<<< HEAD:xc7/additional_examples/button_controller/display_control.sv
-  parameter integer COUNT_BITS = 17;
-
-  logic [COUNT_BITS-1:0] count_val;
-  logic [           1:0] anode_select;
-  logic [           3:0] cur_anode;
-  logic [           3:0] cur_data_in;
-
-  always_ff @(posedge clk) begin
-    if (reset) count_val <= 0;
-    else count_val <= count_val + 1;
-  end
-
-=======
 module display_control (
     input  wire logic        clk,
     input  wire logic        reset,
@@ -47,7 +24,6 @@ module display_control (
     else count_val <= count_val + 1;
   end
 
->>>>>>> Ran PWM and timer through verible formatter and linter:xc7/timer/display_control.sv
   assign anode_select = count_val[COUNT_BITS-1:COUNT_BITS-2];
 
   assign cur_anode =
@@ -56,10 +32,6 @@ module display_control (
                         (anode_select == 2'b10) ? 4'b1011 :
                         4'b0111;
 
-<<<<<<< HEAD:xc7/additional_examples/button_controller/display_control.sv
-
-=======
->>>>>>> Ran PWM and timer through verible formatter and linter:xc7/timer/display_control.sv
   assign anode = cur_anode | (~digitDisplay);
 
   assign cur_data_in =

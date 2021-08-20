@@ -7,4 +7,4 @@ PCF := ${current_dir}/arty.pcf
 SDC := ${current_dir}/arty.sdc
 XDC := ${current_dir}/arty.xdc
 
-include ${current_dir}/../../common/Makefile 
+include ${current_dir}/../../common/Makefile.common 

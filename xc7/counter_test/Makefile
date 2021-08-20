@@ -17,5 +17,5 @@ else
   XDC := ${current_dir}/basys3.xdc
 endif
 
-include ${current_dir}/../../common/Makefile
+include ${current_dir}/../../common/Makefile.common
 

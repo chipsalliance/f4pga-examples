@@ -1,0 +1,3 @@
+[submodule "projf-explore"]
+	path = projf-explore
+	url = https://github.com/projf/projf-explore.git

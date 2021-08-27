@@ -39,3 +39,4 @@ currently targeting chips from multiple vendors, e.g.:
    personal-designs
    customizing-makefiles
    understanding-commands
+   project-f

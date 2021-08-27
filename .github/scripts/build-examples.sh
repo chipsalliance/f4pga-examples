@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux button_controller timer pulse_width_led"
+    examples="counter picosoc litex litex_linux button_controller timer pulse_width_led hello-a"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -83,6 +83,10 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "timer")
                 snippets="${snippets} xc7/timer/README.rst:example-watch-basys3"
+
+            # Project F examples
+            "hello-a")
+                TARGET="arty_35" make -C projf-makefiles/hello/hello-arty/A
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

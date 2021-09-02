@@ -173,7 +173,7 @@ family instead of the fabric as in the write_fasm step.
 .. warning:: 
 
    If you change the name of the output for your bitstream to something other than top.bit then the 
-   openocd command used in the examples would need to change to. For example if I used 
+   openocd command used in the examples would need to change too. For example if I used 
    ``-b my_module_top`` in symbiflow_write_bitstream then my openocd command would change to:
 
    .. code-block:: bash

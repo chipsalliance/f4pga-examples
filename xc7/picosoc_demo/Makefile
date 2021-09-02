@@ -21,4 +21,4 @@ else
   PCF := ${current_dir}/basys3.pcf
 endif
 
-include ${current_dir}/../../common/Makefile.common
+include ${current_dir}/../../common/common.mk

@@ -12,34 +12,27 @@ commands used by the common Makefile to build and compile designs take a look at
 Example 
 -------
 
-By including Symbiflow's provided Makefile.common in your designs, running the commands necessary for building 
+By including Symbiflow's provided common Makefile in your designs, running the commands necessary for building 
 your personal projects is incredibly simple. All you have to do is run a few simple commands and set
 a few variables. 
 
-To download Symbiflows common.Makefile run the following command inside the directory containing your 
-build files:
-
-.. code-block:: bash
-
-   wget https://raw.githubusercontent.com/SymbiFlow/symbiflow-examples/master/common/Makefile.common
-
-Then create a main makefile by running ``touch Makefile``. Add the following to the contents of the file.
-Don't change the two highlighted lines unless you know what you are doing:
+Create a makefile for your project by running ``touch Makefile``, and add the following to the contents.  
 
 .. code-block:: bash
    :name: makefile-example
-   :emphasize-lines: 1, 9
    :linenos:
 
    current_dir := ${CURDIR}
-   # TOP := <put the name of your top module here>
-   # SOURCES := ${current_dir}/<put your HDL sources here>
+   TOP := <put the name of your top module here>
+   SOURCES := ${current_dir}/<put your HDL sources here>
+   
+   # Include your constraint file path(s) below. Use either an XDC file 
+   # or a PCF+SDC pair. Don't use all three file types.
+   XDC := ${current_dir}/<name of your pcf file if applicable>
+   PCF := ${current_dir}/<name of your xdc file if applicable>
+   SDC := ${current_dir}/<name of your sdc file if applicable>
 
-   # PCF := ${current_dir}/<name of your xdc file if applicable>
-   # SDC := ${current_dir}/<name of your sdc file if applicable>
-   # XDC := ${current_dir}/<name of your pcf file if applicable>
-
-   include ${current_dir}/Makefile.common 
+   include <path to symbiflow-examples root directory>/common/common.mk
 
 Lets talk briefly about each of the commands in the above makefile
 
@@ -87,8 +80,8 @@ above to a ``.sv``.
 Constraint files
 ----------------
 
-:ref:`Lines 5-7 <makefile-example>` show how you can specify what constraint files are being used for your design. The 
-general syntax depends on whether you are using XDC files or a SDC+PCF pair:
+:ref:`Lines 7-9 <makefile-example>` show how you can specify what constraint files are being used for 
+your design. The general syntax depends on whether you are using XDC files or a SDC+PCF pair:
 
 .. tabs::
 

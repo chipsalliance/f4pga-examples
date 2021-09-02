@@ -114,7 +114,8 @@ If your design builds without error, the bitstream can be found in the following
    cd build/<board>
 
 Once you navigate to the directory containing the bitstream, use the following commands on the 
-**Arty and Basys3** to upload the design to your board:
+**Arty and Basys3** to upload the design to your board. Make sure to change ``top.bit`` to the
+name you used for your top level module:
 
 .. code-block:: bash
 

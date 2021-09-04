@@ -53,9 +53,9 @@ elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
 fi
 
 # activate conda and enter example dir
-
 snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
 additionalDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family,additional_examples"
+projfDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
@@ -83,10 +83,11 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "timer")
                 snippets="${snippets} xc7/timer/README.rst:example-watch-basys3"
+                ;;
 
             # Project F examples
             "hello-a")
-                TARGET="arty_35" make -C projf-makefiles/hello/hello-arty/A
+                snippets="${projfDesigns} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-A"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

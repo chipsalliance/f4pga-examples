@@ -91,6 +91,16 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 .. jinja:: xc7_linux_litex_demo
    :file: templates/example.jinja
 
+Additional Examples
+-------------------
+
+In addition to the designs we have gone over here, you can also find several other exciting designs 
+for the basys3 board in the additional_examples directory:
+
+.. code-block:: bash
+   :name: additional_examples
+
+   cd additional_examples
 
 QuickLogic EOS S3
 -----------------

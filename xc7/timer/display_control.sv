@@ -1,5 +1,6 @@
 `default_nettype none
 
+
 module display_control (
     input  wire logic        clk,
     input  wire logic        reset,
@@ -16,6 +17,7 @@ module display_control (
   logic [           1:0] anode_select;
   logic [           3:0] cur_anode;
   logic [           3:0] cur_data_in;
+
 
   always_ff @(posedge clk) begin
     if (reset) count_val <= 0;

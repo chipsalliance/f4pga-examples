@@ -53,9 +53,10 @@ elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
 fi
 
 # activate conda and enter example dir
-snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
-additionalDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family,additional_examples"
-projfDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env"
+activate_env="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env"
+snippets="${activate_env},enter-dir-$fpga_family"
+additionalDesigns="${activate_env},enter-dir-$fpga_family,additional_examples"
+
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
@@ -87,7 +88,7 @@ if [ "$fpga_family" = "xc7" ]; then
 
             # Project F examples
             "hello-a")
-                snippets="${projfDesigns} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-A"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-A"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

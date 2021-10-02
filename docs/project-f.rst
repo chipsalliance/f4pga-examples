@@ -37,11 +37,10 @@ For example, to build the first design in project F's hello ary designs:
 .. code-block:: bash
 
    TARGET="arty_35" make -C projf-makefiles/hello/hello-arty/A
-
-To download the bitstream to the board navigate to the generated bitstream and run openocd. 
-For example to download the first design from hello arty:
+ 
+To download the bitstream to the board run ``make download``. For example to download the first design from 
+hello arty, run the following in symbiflows root directory:
 
 .. code-block:: bash
 
-   cd hello-build/A 
-   openocd -f ${INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   TARGET="arty_35" make download -C projf-makefiles/hello/hello-arty/A

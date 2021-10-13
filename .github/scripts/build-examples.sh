@@ -47,15 +47,16 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux button_controller timer pulse_width_led"
+    examples="counter picosoc litex litex_linux button_controller timer pulse_width_led hello-a"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
 
 # activate conda and enter example dir
+activate_env="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env"
+snippets="${activate_env},enter-dir-$fpga_family"
+additionalDesigns="${activate_env},enter-dir-$fpga_family,additional_examples"
 
-snippets="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family"
-additionalDesigns="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env,enter-dir-$fpga_family,additional_examples"
 
 # Xilinx 7-Series examples
 if [ "$fpga_family" = "xc7" ]; then
@@ -83,6 +84,11 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "timer")
                 snippets="${snippets} xc7/timer/README.rst:example-watch-basys3"
+                ;;
+
+            # Project F examples
+            "hello-a")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-A"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

@@ -16,95 +16,47 @@ jobs:
 
     steps:
 
-      - name: Setup repository
-        uses: actions/checkout@v2
-
       - name: Generate examples matrix
         id: generate
         shell: python
         run: |
-          print('::set-output name=matrix::' + str([
-              {'fpga-fam': "eos-s3", 'os': "ubuntu", 'os-version': "xenial",   'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "ubuntu", 'os-version': "bionic",   'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "ubuntu", 'os-version': "focal",    'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "centos", 'os-version': "7",        'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "centos", 'os-version': "8",        'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "debian", 'os-version': "buster",   'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "debian", 'os-version': "bullseye", 'example': "counter"},
-              {'fpga-fam': "eos-s3", 'os': "debian", 'os-version': "sid",      'example': "counter"},
+          examples = [
+              "counter",
+              "picosoc",
+              "litex",
+              "litex_linux",
+              "button_controller",
+              "pulse_width_led",
+              "timer",
+              "hello-a"
+          ]
+          osvers = [
+              ("ubuntu", "xenial"),
+              ("ubuntu", "bionic"),
+              ("ubuntu", "focal"),
+              ("centos", "7"),
+              ("centos", "8"),
+              ("debian", "buster"),
+              ("debian", "bullseye"),
+              ("debian", "sid")
+          ]
+          jobs = []
+          for osver in osvers:
+              jobs += [{
+                  'fpga-fam': "xc7",
+                  'os': osver[0],
+                  'os-version': osver[1],
+                  'example': example
+              } for example in examples]
 
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "counter"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "counter"},
+          jobs += [{
+              'fpga-fam': "eos-s3",
+              'os': osver[0],
+              'os-version': osver[1],
+              'example': "counter"
+          } for osver in osvers]
 
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "picosoc"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "picosoc"},
-
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "litex"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "litex"},
-
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "litex_linux"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "litex_linux"},
-
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "button_controller"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "button_controller"},
-
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "pulse_width_led"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "pulse_width_led"},
-
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "timer"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "timer"},
-
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "xenial",   'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "bionic",   'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "ubuntu", 'os-version': "focal",    'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "7",        'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "centos", 'os-version': "8",        'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "buster",   'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "bullseye", 'example': "hello-a"},
-              {'fpga-fam': "xc7",    'os': "debian", 'os-version': "sid",      'example': "hello-a"},
-          ]))
+          print('::set-output name=matrix::' + str(jobs))
 
 
   Test:

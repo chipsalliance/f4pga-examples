@@ -16,47 +16,12 @@ jobs:
 
     steps:
 
+      - name: Setup repository
+        uses: actions/checkout@v2
+
       - name: Generate examples matrix
         id: generate
-        shell: python
-        run: |
-          examples = [
-              "counter",
-              "picosoc",
-              "litex",
-              "litex_linux",
-              "button_controller",
-              "pulse_width_led",
-              "timer",
-              "hello-a"
-          ]
-          osvers = [
-              ("ubuntu", "xenial"),
-              ("ubuntu", "bionic"),
-              ("ubuntu", "focal"),
-              ("centos", "7"),
-              ("centos", "8"),
-              ("debian", "buster"),
-              ("debian", "bullseye"),
-              ("debian", "sid")
-          ]
-          jobs = []
-          for osver in osvers:
-              jobs += [{
-                  'fpga-fam': "xc7",
-                  'os': osver[0],
-                  'os-version': osver[1],
-                  'example': example
-              } for example in examples]
-
-          jobs += [{
-              'fpga-fam': "eos-s3",
-              'os': osver[0],
-              'os-version': osver[1],
-              'example': "counter"
-          } for osver in osvers]
-
-          print('::set-output name=matrix::' + str(jobs))
+        run: ./.github/scripts/generate_job_matrix.py
 
 
   Test:

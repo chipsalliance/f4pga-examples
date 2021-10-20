@@ -10,6 +10,15 @@ on:
 
 jobs:
 
+  License-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Check Licenses
+        uses: SymbiFlow/actions/checks@main
+
 
   Test:
     strategy:

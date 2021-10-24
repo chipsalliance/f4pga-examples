@@ -11,7 +11,13 @@ examples = [
     "hello-a",
     "hello-b",
     "hello-c",
-    "hello-d"
+    "hello-d",
+    "hello-e",
+    "hello-f",
+    "hello-g",
+    "hello-h",
+    "hello-i",
+    "hello-j"
 ]
 
 jobs = []

@@ -117,6 +117,12 @@ if [ "$fpga_family" = "xc7" ]; then
             "hello-j")
                 snippets="${activate_env} projf-makefiles/hello/hello-arty/J/README.rst:hello-arty-J"
                 ;;
+            "hello-k")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/K/README.rst:hello-arty-K"
+                ;;
+            "hello-l")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/L/README.rst:hello-arty-L"
+                ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2
                 exit 1

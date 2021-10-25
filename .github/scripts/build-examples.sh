@@ -91,37 +91,70 @@ if [ "$fpga_family" = "xc7" ]; then
                 snippets="${activate_env} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-a"
                 ;;
             "hello-b")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/B/README.rst:hello-arty-B"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/B/README.rst:hello-arty-b"
                 ;;
             "hello-c")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/C/README.rst:hello-arty-C"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/C/README.rst:hello-arty-c"
                 ;;
             "hello-d")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/D/README.rst:hello-arty-D"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/D/README.rst:hello-arty-d"
                 ;;
             "hello-e")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/E/README.rst:hello-arty-E"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/E/README.rst:hello-arty-e"
                 ;;
             "hello-f")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/F/README.rst:hello-arty-F"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/F/README.rst:hello-arty-f"
                 ;;
             "hello-g")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/G/README.rst:hello-arty-G"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/G/README.rst:hello-arty-g"
                 ;;
             "hello-h")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/H/README.rst:hello-arty-H"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/H/README.rst:hello-arty-h"
                 ;;
             "hello-i")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/I/README.rst:hello-arty-I"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/I/README.rst:hello-arty-i"
                 ;;
             "hello-j")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/J/README.rst:hello-arty-J"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/J/README.rst:hello-arty-j"
                 ;;
             "hello-k")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/K/README.rst:hello-arty-K"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/K/README.rst:hello-arty-k"
                 ;;
             "hello-l")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/L/README.rst:hello-arty-L"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/L/README.rst:hello-arty-l"
+                ;;
+            "hello-b")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/B/README.rst:hello-arty-b"
+                ;;
+            "hello-c")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/C/README.rst:hello-arty-c"
+                ;;
+            "hello-d")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/D/README.rst:hello-arty-d"
+                ;;
+            "hello-e")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/E/README.rst:hello-arty-e"
+                ;;
+            "hello-f")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/F/README.rst:hello-arty-f"
+                ;;
+            "hello-g")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/G/README.rst:hello-arty-g"
+                ;;
+            "hello-h")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/H/README.rst:hello-arty-h"
+                ;;
+            "hello-i")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/I/README.rst:hello-arty-i"
+                ;;
+            "hello-j")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/J/README.rst:hello-arty-j"
+                ;;
+            "hello-k")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/K/README.rst:hello-arty-k"
+                ;;
+            "hello-l")
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/L/README.rst:hello-arty-l"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

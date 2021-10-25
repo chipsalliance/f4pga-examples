@@ -4,8 +4,8 @@ Part 2 Design F
 This design blinks LEDs 0-3 at different frequencies. 
 To build this design run the following command in the main symbiflow directory:
 
-.. code:: bash
-   :name: hello-arty-F
+.. code-block:: bash
+   :name: hello-arty-f
 
    TARGET="arty_35" make -C projf-makefiles/hello/hello-arty/F
 

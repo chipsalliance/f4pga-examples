@@ -4,8 +4,8 @@ Part 2 Design J
 This design controls the color of each of the 4 RGB LEDs on the arty using a PWM. 
 To build this design run the following command in the main symbiflow directory:
 
-.. code:: bash
-   :name: hello-arty-J
+.. code-block:: bash
+   :name: hello-arty-j
 
    TARGET="arty_35" make -C projf-makefiles/hello/hello-arty/J
 

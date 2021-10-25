@@ -5,7 +5,7 @@ This design allows you to turn the first led on the arty board on and off by tog
 To build this design run the following command in the main symbiflow directory:
 
 .. code-block:: bash
-   :name: hello-arty-A
+   :name: hello-arty-a
 
    TARGET="arty_35" make -C projf-makefiles/hello/hello-arty/A
 

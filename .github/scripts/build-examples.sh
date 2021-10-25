@@ -88,7 +88,7 @@ if [ "$fpga_family" = "xc7" ]; then
 
             # Project F examples
             "hello-a")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-A"
+                snippets="${activate_env} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-a"
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2

@@ -41,6 +41,8 @@ jobs:
     steps:
       - name: Setup repository
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Install utils
         if: ${{matrix.os == 'ubuntu' || matrix.os == 'debian'}}

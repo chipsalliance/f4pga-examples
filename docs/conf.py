@@ -65,15 +65,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 
 html_show_sourcelink = True
-html_sidebars = {
-    "**":
-        [
-            "logo-text.html", "globaltoc.html", "localtoc.html",
-            "searchbox.html"
-        ]
-}
 
-html_theme = 'sphinx_material'
+html_theme = 'sphinx_symbiflow_theme'
+
 html_theme_options = {
     'nav_title': project,
     'color_primary': 'deep-purple',

@@ -69,6 +69,7 @@ html_show_sourcelink = True
 html_theme = 'sphinx_symbiflow_theme'
 
 html_theme_options = {
+    'github_url' : 'https://github.com/SymbiFlow/symbiflow-examples',
     'globaltoc_collapse': True
 }
 

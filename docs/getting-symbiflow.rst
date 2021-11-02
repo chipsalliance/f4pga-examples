@@ -57,7 +57,7 @@ into three steps:
 Conda
 ~~~~~
 
-Download Conda installer script:
+Download Conda installer script into the symbiflow-examples directory:
 
 .. code-block:: bash
    :name: wget-conda

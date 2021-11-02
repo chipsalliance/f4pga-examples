@@ -1,5 +1,5 @@
 sphinx
 docutils==0.17
-git+http://github.com/SymbiFlow/sphinx_materialdesign_theme.git@master#egg=sphinx_symbiflow_theme
+git+https://github.com/SymbiFlow/sphinx_symbiflow_theme.git#egg=sphinx-symbiflow-theme
 sphinx-tabs
 sphinx-jinja

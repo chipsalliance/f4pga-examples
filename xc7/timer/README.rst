@@ -15,7 +15,7 @@ At completion, the bitstream is located in the build directory:
 
 .. code-block:: bash
 
-   cd timer/build/basys3
+   timer/build/basys3
 
 Now, you can upload the design with:
 

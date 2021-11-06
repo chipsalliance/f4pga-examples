@@ -16,7 +16,7 @@ At completion, the bitstreams are located in the build directory:
 
 .. code-block:: bash
 
-   cd pulse_width_led/build/arty_35
+   pulse_width_led/build/arty_35
 
 Now, you can upload the design with:
 

@@ -8,7 +8,18 @@ examples = [
     "button_controller",
     "pulse_width_led",
     "timer",
-    "hello-a"
+    "hello-a",
+    "hello-b",
+    "hello-c",
+    "hello-d",
+    "hello-e",
+    "hello-f",
+    "hello-g",
+    "hello-h",
+    "hello-i",
+    "hello-j",
+    "hello-k",
+    "hello-l"
 ]
 
 jobs = []

@@ -98,15 +98,6 @@ Select your target FPGA family:
 
          export FPGA_FAM=eos-s3
 
-Next, setup Conda and your system's environment:
-
-.. code-block:: bash
-   :name: conda-setup
-
-   bash conda_installer.sh -u -b -p $INSTALL_DIR/$FPGA_FAM/conda;
-   source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
-   conda env create -f $FPGA_FAM/environment.yml
-
 Download architecture definitions:
 
 .. tabs::
@@ -129,6 +120,15 @@ Download architecture definitions:
          :name: download-arch-def-eos-s3
 
          wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-63c3d8f9.tar.gz | tar -xz -C $INSTALL_DIR/eos-s3/
+
+Next, setup Conda and your system's environment:
+
+.. code-block:: bash
+   :name: conda-setup
+
+   bash conda_installer.sh -u -b -p $INSTALL_DIR/$FPGA_FAM/conda;
+   source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
+   conda env create -f $FPGA_FAM/install/environment.yml
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 

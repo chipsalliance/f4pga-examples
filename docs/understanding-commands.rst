@@ -170,6 +170,18 @@ Notice that the specification for the part number is a lowercase ``-p`` instead 
 ``-P`` as in the placement step. Also note that the ``-d`` in write_bitstream defines the FPGA 
 family instead of the fabric as in the write_fasm step.
 
+.. warning:: 
+
+   If you change the name of the output for your bitstream to something other than top.bit then the 
+   openocd command used in the examples would need to change too. For example if I used 
+   ``-b my_module_top`` in symbiflow_write_bitstream then my openocd command would change to:
+
+   .. code-block:: bash
+
+      openocd -f <Your install directory>/xc7/conda/envs/xc7/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 my_module_top.bit; exit"
+
+   Note that the only part of the command that changes is "<top module name>.bit;"
+
 The following example generates a bitstream file named example.bit for the basys3 board:
 
 .. code-block:: bash

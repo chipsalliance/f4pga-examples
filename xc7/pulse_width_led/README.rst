@@ -16,13 +16,13 @@ At completion, the bitstreams are located in the build directory:
 
 .. code-block:: bash
 
-   cd pulse_width_led/build/arty_35
+   pulse_width_led/build/arty_35
 
 Now, you can upload the design with:
 
 .. code-block:: bash
 
-   openocd -f ${INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   TARGET="arty_35" make download -C pulse_width_led
 
 After downloading the bitstream, you can experiment with and mix different amounts of red, green, and 
 blue on RGB led 0 by toggling different switches and buttons on and off. From left to right: 

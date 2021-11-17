@@ -45,11 +45,9 @@ toolchain will automatically generate one to provide clock constraints to VTR.
 Makefile
 +++++++++
 
-If you have used verilog as your HDL and an XDC as your constraint, you can add this 
-:download:`Makefile <master_makefile/Makefile>` to your design directory instead of building your
-own. If you have used a different HDL than verilog or have used a combination of PCF+SDC 
-constraint files, you can find instructions for how to modify the provided makefile or create 
-your own in the `Customizing Makefiles <customizing-makefiles.html>`_ page.  
+Visit the `Customizing Makefiles <customizing-makefiles.html>`_ page to learn how to make a simple 
+Makefile for your designs. After following the directions listed there return to this page to
+finish building your custom design.
 
 Building your personal projects 
 -------------------------------
@@ -93,6 +91,21 @@ Then, depending on your board type run:
          :name: example-counter-basys3-group
 
          TARGET="basys3" make -C .
+      
+   .. group-tab:: Nexys Video
+
+      .. code-block:: bash
+         :name: example-counter-nexys_video-group
+
+         TARGET="nexys_video" make -C counter_test
+
+   .. group-tab:: Zybo Z7
+   
+      .. code-block:: bash
+         :name: example-counter-zybo-group
+
+         TARGET="zybo" make -C counter_test
+   
 
 If your design builds without error, the bitstream can be found in the following location:
 
@@ -101,7 +114,8 @@ If your design builds without error, the bitstream can be found in the following
    cd build/<board>
 
 Once you navigate to the directory containing the bitstream, use the following commands on the 
-**Arty and Basys3** to upload the design to your board:
+**Arty and Basys3** to upload the design to your board. Make sure to change ``top.bit`` to the
+name you used for your top level module:
 
 .. code-block:: bash
 

@@ -15,13 +15,13 @@ At completion, the bitstream is located in the build directory:
 
 .. code-block:: bash
 
-   cd timer/build/basys3
+   timer/build/basys3
 
 Now, you can upload the design with:
 
 .. code-block:: bash
 
-   openocd -f ${INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   TARGET="basys3" make download -C timer
 
 After downloading the bitstream you can start and stop the watch by toggling switch 0 on the board.
 Press the center button to reset the counter. The following gives a visual example:

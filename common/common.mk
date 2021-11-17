@@ -77,7 +77,7 @@ download: ${BOARD_BUILDDIR}/${TOP}.bit
 	else  \
 	  echo "The commands needed to download the bitstreams to the board type specified are not currently supported by the symbiflow makefiles. \
     Please see documentation for more information."; \
-	fi  
+	fi
 
 
 clean:

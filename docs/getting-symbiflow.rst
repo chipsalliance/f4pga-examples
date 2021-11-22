@@ -32,6 +32,9 @@ To be able to follow through this tutorial, install the following software:
       .. code-block:: bash
          :name: install-reqs-centos
 
+         ls -l /usr/share/zoneinfo
+         find /usr/share/zoneinfo
+         rm /usr/share/zoneinfo -rf
          yum update -y
          yum install -y git wget which xz
 

@@ -6,7 +6,7 @@ ifeq ($(TARGET),arty_35)
   XDC := ${current_dir}/arty.xdc
 else ifeq ($(TARGET),arty_100)
   XDC := ${current_dir}/arty.xdc
-else ifeq ($(TARGET),cmod_a7)
+else ifeq ($(TARGET),cmod_a7_35)
   XDC := ${current_dir}/cmod_a7.xdc
 else ifeq ($(TARGET),nexys4ddr)
   XDC := ${current_dir}/nexys4ddr.xdc

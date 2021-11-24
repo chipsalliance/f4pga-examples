@@ -47,7 +47,7 @@ shift
 
 examples="$@"
 if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux button_controller timer pulse_width_led hello-a"
+    examples="counter picosoc litex litex_linux litex_sata button_controller timer pulse_width_led hello-a"
 elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
     examples="counter"
 fi
@@ -73,6 +73,9 @@ if [ "$fpga_family" = "xc7" ]; then
                 ;;
             "litex_linux")
                 snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group"
+                ;;
+            "litex_sata")
+                snippets="${snippets} xc7/litex_sata_demo/README.rst:example-litex-sata-*-group"
                 ;;
 
             #Additional examples:

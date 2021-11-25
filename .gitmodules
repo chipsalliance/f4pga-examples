@@ -1,3 +1,6 @@
 [submodule "third_party/projf-explore"]
 	path = third_party/projf-explore
 	url = https://github.com/projf/projf-explore.git
+[submodule "third_party/vexriscv-verilog"]
+	path = third_party/vexriscv-verilog
+	url = https://github.com/m-labs/VexRiscv-verilog

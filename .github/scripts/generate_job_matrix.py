@@ -5,6 +5,7 @@ examples = [
     "picosoc",
     "litex",
     "litex_linux",
+    "litex_sata",
     "button_controller",
     "pulse_width_led",
     "timer",

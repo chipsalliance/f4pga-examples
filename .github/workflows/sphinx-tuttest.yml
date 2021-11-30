@@ -35,7 +35,7 @@ jobs:
     env:
       LANG: "en_US.UTF-8"
       DEBIAN_FRONTEND: "noninteractive"
-      GHA_PREEMPTIBLE: "false" 
+      GHA_PREEMPTIBLE: "false"
 
     container: ${{matrix.os}}:${{matrix.os-version}}
 

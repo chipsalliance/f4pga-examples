@@ -1,0 +1,21 @@
+services:
+  xc7:
+    container_name: symbiflow-xc7
+    image: symbiflow-xc7
+    build:
+      context: .
+      dockerfile: xc7/Dockerfile
+    volumes:
+      - ./common:/symbiflow-examples/common
+      - ./xc7:/symbiflow-examples/xc7
+      - ./arch-definitions/xc7:/root/opt/symbiflow/xc7/install
+  eos-s3:
+    container_name: symbiflow-eos-s3
+    image: symbiflow-eos-s3
+    build:
+      context: .
+      dockerfile: eos-s3/Dockerfile
+    volumes:
+      - ./common:/symbiflow-examples/common
+      - ./eos-s3:/symbiflow-examples/eos-s3
+      - ./arch-definitions/eos-s3:/root/opt/symbiflow/eos-s3/install

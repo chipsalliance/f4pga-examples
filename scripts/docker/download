@@ -1,0 +1,58 @@
+#!/bin/bash
+
+set -e
+
+arch="arch-definitions"
+
+# Parse args
+while [[ "$#" > 0 ]]; do case $1 in
+    --xc7)
+        XC7=1
+        shift
+        ;;
+    --eos-s3)
+        EOS=1
+        shift
+        ;;
+    *)
+        echo -n "Unknown parameter passed: $1"
+        shift
+        shift
+        ;;
+    esac done
+
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [[ "${XC7}" ]]; then
+    
+        xc7_arch="../../$arch/xc7"
+
+        parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+        cd "$parent_path" && mkdir -p $xc7_arch
+
+        declare -a arr=("https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/367/20210822-000315/symbiflow-arch-defs-install-709cac78.tar.xz" 
+                "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/367/20210822-000315/symbiflow-arch-defs-xc7a50t_test-709cac78.tar.xz" 
+                "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/367/20210822-000315/symbiflow-arch-defs-xc7a100t_test-709cac78.tar.xz"
+                "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/367/20210822-000315/symbiflow-arch-defs-xc7a200t_test-709cac78.tar.xz"
+                "https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/367/20210822-000315/symbiflow-arch-defs-xc7z010_test-709cac78.tar.xz"
+                )
+        
+        echo "Downloading xc7 architecture definitions..."
+        for i in "${arr[@]}"
+        do
+            wget -qO- $i | tar -xJC $xc7_arch
+            echo "Downloading $i"
+        done
+    fi
+    if [[ "${EOS}" ]]; then
+        echo "Downloading EOS-S3 architecture definitions..."
+
+        eos_arch="../../$arch/eos-s3"
+
+        parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+        cd "$parent_path" && mkdir -p $eos_arch
+
+        wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-63c3d8f9.tar.gz | tar -xz -C $eos_arch
+
+    fi
+fi

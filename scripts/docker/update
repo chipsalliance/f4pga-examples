@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Builds the docker containers.
+
+set -e
+
+NO_CACHE="";
+while [[ "$#" > 0 ]]; do case $1 in
+    --no-cache) NO_CACHE="--no-cache"; shift;;
+    --restart) RESTART_SERVERS=1; shift;;
+  *) usage "Unknown parameter passed: $1"; shift; shift;;
+esac; done
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+
+    if [ "${RESTART_SERVERS}" ]; then
+        echo "==Bringing down servers.."
+        docker-compose \
+            -f docker-compose.yml \
+            down --remove-orphans
+    fi
+
+    echo "==Building images..."
+    docker-compose \
+        -f docker-compose.yml \
+        build ${NO_CACHE}
+
+fi

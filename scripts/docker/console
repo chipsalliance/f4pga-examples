@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+while [[ "$#" > 0 ]]; do case $1 in
+    --xc7)
+        XC7=1
+        shift
+        ;;
+    --eos)
+        EOS=1
+        shift
+        ;;
+    *)
+        echo -n "Unknown parameter passed: $1"
+        shift
+        shift
+        ;;
+    esac done
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [[ "${XC7}" ]]; then
+        docker-compose \
+            -f docker-compose.yml \
+            run --rm \
+            xc7 /bin/bash
+
+        exit 0
+
+    fi
+    if [[ "${EOS}" ]]; then
+       :
+    fi
+fi

@@ -57,16 +57,21 @@ Finally, enter your working Conda environment:
 
 .. tip::
 
-   You will need to run the commands for setting the path and source of your conda environment 
-   each time you open a new terminal. You will also need to activate the Conda environment for 
-   your hardware before you attempt to build your designs. It might be a good idea to add the 
-   above commands to your ``.bashrc`` either as default commands that run each time you open a 
-   new terminal or aliases to save yourself some repetitive typing. 
+   You will need to run the commands for setting the path and source of your conda environment
+   each time you open a new terminal. You will also need to activate the Conda environment for
+   your hardware before you attempt to build your designs. It might be a good idea to add the
+   above commands to your ``.bashrc`` either as default commands that run each time you open a
+   new terminal or aliases to save yourself some repetitive typing.
 
 .. note::
 
    If you don't know how to upload any of the following examples onto your
    development board, please refer to the Running examples section.
+
+.. note::
+
+   Make sure you have executed all the above commands, or otherwise you may encounter errors when
+   building the designs.
 
 
 Xilinx 7-Series
@@ -102,7 +107,7 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 Additional Examples
 -------------------
 
-In addition to the designs we have gone over here, you can also find several other exciting designs 
+In addition to the designs we have gone over here, you can also find several other exciting designs
 for the basys3 board in the additional_examples directory:
 
 .. code-block:: bash

@@ -157,7 +157,7 @@ Prepare SD card
 
       mkdir uboot-linux-images
       pushd uboot-linux-images
-      wget -qO- https://github.com/SymbiFlow/symbiflow-xc7z-automatic-tester/releases/download/v1.0.0/uboot-linux-images.zip | bsdtar -xf-
+      curl -fsSL https://github.com/SymbiFlow/symbiflow-xc7z-automatic-tester/releases/download/v1.0.0/uboot-linux-images.zip | bsdtar -xf-
       popd
 
 #. Copy U-boot images to the boot mountpoint:
@@ -171,7 +171,7 @@ Prepare SD card
 
    .. code-block:: bash
 
-      wget -qO- http://de5.mirror.archlinuxarm.org/os/ArchLinuxARM-armv7-latest.tar.gz | sudo tar -xvzC /path/to/mountpoint/root
+      curl -fsSL http://de5.mirror.archlinuxarm.org/os/ArchLinuxARM-armv7-latest.tar.gz | sudo tar -xvzC /path/to/mountpoint/root
       sync
 
 #. Copy additional files and binaries to the root directory in the Arch Linux filesystem:
@@ -201,7 +201,7 @@ Load bitstreams from U-boot
 Make sure to have :ref:`prepared the SD correctly<prepare-sd>`.
 
 #. With the SD card inserted in the PC, copy the bitstream in the boot directory:
-   
+
    .. code-block:: bash
 
       cp <name>.bit /path/to/mountpoint/boot

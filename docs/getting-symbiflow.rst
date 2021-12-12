@@ -17,7 +17,7 @@ To be able to follow through this tutorial, install the following software:
          :name: install-reqs-ubuntu
 
          apt update -y
-         apt install -y git wget xz-utils
+         apt install -y git curl xz-utils
 
    .. group-tab:: Debian
 
@@ -25,7 +25,7 @@ To be able to follow through this tutorial, install the following software:
          :name: install-reqs-debian
 
          apt update -y
-         apt install -y git wget xz-utils
+         apt install -y git curl xz-utils
 
    .. group-tab:: CentOS
 
@@ -33,7 +33,7 @@ To be able to follow through this tutorial, install the following software:
          :name: install-reqs-centos
 
          yum update -y
-         yum install -y git wget which xz
+         yum install -y git curl which xz
 
    .. group-tab:: Fedora
 
@@ -67,9 +67,9 @@ Conda
 Download Conda installer script into the symbiflow-examples directory:
 
 .. code-block:: bash
-   :name: wget-conda
+   :name: curl-conda
 
-   wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O conda_installer.sh
+   curl -fsSL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh > conda_installer.sh
 
 Choose the install directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,18 +124,16 @@ Download architecture definitions:
          :name: download-arch-def-xc7
 
          mkdir -p $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/459/20211116-000105/symbiflow-arch-defs-install-ef6fff3c.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/459/20211116-000105/symbiflow-arch-defs-xc7a50t_test-ef6fff3c.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/459/20211116-000105/symbiflow-arch-defs-xc7a100t_test-ef6fff3c.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/459/20211116-000105/symbiflow-arch-defs-xc7a200t_test-ef6fff3c.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/459/20211116-000105/symbiflow-arch-defs-xc7z010_test-ef6fff3c.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         for PKG in toolchain xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test xc7z020_test; do
+           curl -fsSL "https://storage.googleapis.com/symbiflow-arch-defs-gha/symbiflow-${PKG}-latest" | xargs curl -fsSL | tar -xJC "$INSTALL_DIR/xc7/install"
+         done
 
    .. group-tab:: EOS-S3
 
       .. code-block:: bash
          :name: download-arch-def-eos-s3
 
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-63c3d8f9.tar.gz | tar -xz -C $INSTALL_DIR/eos-s3/
+         curl -fsSL https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-63c3d8f9.tar.gz | tar -xzC $INSTALL_DIR/eos-s3/
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 

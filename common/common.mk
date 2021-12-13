@@ -49,7 +49,7 @@ all: ${BOARD_BUILDDIR}/${TOP}.bit
 ${BOARD_BUILDDIR}:
 	mkdir -p ${BOARD_BUILDDIR}
 
-${BOARD_BUILDDIR}/${TOP}.eblif: | ${BOARD_BUILDDIR}
+${BOARD_BUILDDIR}/${TOP}.eblif: ${SOURCES} ${XDC} ${SDC} ${PCF} | ${BOARD_BUILDDIR}
 	cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${SOURCES} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} ${XDC_CMD} 2>&1 > /dev/null
 
 ${BOARD_BUILDDIR}/${TOP}.net: ${BOARD_BUILDDIR}/${TOP}.eblif

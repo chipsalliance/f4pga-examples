@@ -40,6 +40,7 @@ jobs:
     container: ${{matrix.os}}:${{matrix.os-version}}
 
     steps:
+
       - name: Setup repository
         uses: actions/checkout@v2
         with:
@@ -52,6 +53,10 @@ jobs:
       - name: Install utils
         if: ${{matrix.os == 'centos'}}
         run: yum -y install wget
+
+      - name: Install utils
+        if: ${{matrix.os == 'fedora'}}
+        run: dnf install -y wget
 
       - name: Install tuttest
         run: |

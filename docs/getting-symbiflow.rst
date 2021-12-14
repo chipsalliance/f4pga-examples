@@ -35,6 +35,13 @@ To be able to follow through this tutorial, install the following software:
          yum update -y
          yum install -y git wget which xz
 
+   .. group-tab:: Fedora
+
+      .. code-block:: bash
+         :name: install-reqs-fedora
+
+         dnf install -y findutils git wget which xz
+
 
 Next, clone the SymbiFlow examples repository and enter it:
 

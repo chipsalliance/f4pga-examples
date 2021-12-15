@@ -9,7 +9,7 @@ set it to earlier, for example:
 .. code-block:: bash
    :name: export-install-dir
 
-   export F4PGA_INSTALL_DIR=~/opt/f4pga
+   export F4PGA_INSTALL_DIR=/opt/f4pga
 
 Select your FPGA family:
 

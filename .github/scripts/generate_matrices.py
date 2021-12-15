@@ -19,6 +19,8 @@
 from os import environ
 from sys import argv as sys_argv
 
+registry = 'ghcr.io/chipsalliance/f4pga/dev/conda'
+
 isFork = len(sys_argv)>1 and sys_argv[1] != 'chipsalliance/f4pga-examples'
 
 runs_on = (
@@ -86,21 +88,19 @@ def get_jobs(
 
     for osver in osvers:
         jobs.extend([{
-            'name': "Surelog" if usesSurelog else "Default",
+            'name': ("Surelog" if usesSurelog else "Default") + f' | xc7 | {osver[0]}/{osver[1]} | {example}',
             'runs-on': runs_on,
             'fpga-fam': "xc7",
-            'os': osver[0],
-            'os-version': osver[1],
+            'image': f'{registry}/{osver[0]}/{osver[1]}/xc7',
             'example': example,
             'surelog': "-parse -DSYNTHESIS" if usesSurelog else ""
         } for example in examples])
 
     jobs.extend([{
-        'name': "Surelog" if usesSurelog else "Default",
+        'name': ("Surelog" if usesSurelog else "Default") + f' | eos-s3 | {osver[0]}/{osver[1]} | counter',
         'runs-on': runs_on,
         'fpga-fam': "eos-s3",
-        'os': osver[0],
-        'os-version': osver[1],
+        'image': f'{registry}/{osver[0]}/{osver[1]}/eos-s3',
         'example': "counter",
         'surelog': "-parse -DSYNTHESIS" if usesSurelog else ""
     } for osver in osvers])
@@ -111,3 +111,33 @@ for distribution in ['debian', 'ubuntu', 'fedora', 'centos']:
     jobs = get_jobs(distribution, False) + get_jobs(distribution, True)
     print(f'::set-output name={distribution}::{jobs!s}')
     print(f"{distribution}: {jobs!s}")
+
+utils = {
+    'ubuntu': 'apt -qqy update && apt -qqy install wget locales patch && locale-gen $LANG',
+    'debian': 'apt -qqy update && apt -qqy install wget locales patch && locale-gen $LANG',
+    'centos': 'yum -y install wget patch',
+    'fedora': 'dnf install -y wget patch'
+}
+
+images = [
+    {
+        'registry': f'{registry}',
+        'image': f'{osver[0]}/{osver[1]}/{fam}',
+        'from': f'{osver[0]}:{osver[1]}',
+        'utils': utils[osver[0]],
+        'args': f'{fam} {osver[0]}'
+    } for osver in [
+        ("debian", "buster"),
+        ("debian", "bullseye"),
+        ("debian", "sid"),
+        ("fedora", "35"),
+        ("fedora", "36"),
+        ("ubuntu", "xenial"),
+        ("ubuntu", "bionic"),
+        ("ubuntu", "focal"),
+        ("centos", "7")
+    ] for fam in ['xc7', 'eos-s3']
+]
+
+print(f'::set-output name=images::{images!s}')
+print(f"images: {images!s}")

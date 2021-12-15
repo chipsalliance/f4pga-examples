@@ -22,15 +22,11 @@ jobs:
       matrix:
         include: ${{ fromJson(inputs.matrix) }}
     runs-on: ${{ matrix.runs-on }}
-    name: ${{ matrix.os-version }} | ${{ matrix.name }} | ${{ matrix.fpga-fam }} | ${{ matrix.example }}
+    name: ${{ matrix.name }}
 
     env:
-      LANG: "en_US.UTF-8"
-      DEBIAN_FRONTEND: "noninteractive"
       GHA_PREEMPTIBLE: "false"
       SURELOG_CMD: ${{ matrix.surelog }}
-
-    container: ${{matrix.os}}:${{matrix.os-version}}
 
     steps:
 
@@ -39,48 +35,32 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install utils
-        run: |
-          case ${{ matrix.os }} in
-            debian|ubuntu) apt -qqy update && apt -qqy install git wget locales && locale-gen $LANG ;;
-            centos) yum -y install git wget ;;
-            fedora) dnf install -y git wget ;;
-          esac
-
-      - name: Install tuttest
-        run: |
-          wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest
-          chmod a+rx /usr/bin/tuttest
+      - name: Pull container image
+        run: docker pull ${{matrix.image}}
 
       - name: Patch package URLs
         if: inputs.latest == true
         run: |
-          case ${{ matrix.os }} in
-            debian|ubuntu)
-              apt update -qq
-              apt install -y patch
-            ;;
-            centos)
-              yum -y install patch
-            ;;
-            fedora)
-              dnf install -y patch
-            ;;
-          esac
+          sudo apt update -qq
+          sudo apt install -y patch
           patch -p1 -i .github/latest.patch
 
-      - name: Install F4PGA toolchain
-        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}}
-
       - name: Build examples
-        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
+        # Workaround for 'uses: docker://${{matrix.image}}' not being supported.
+        # See https://github.com/github/feedback/discussions/9049
+        run: >-
+          docker run --rm
+          -v $(pwd):/wrk -w /wrk
+          -e DEBIAN_FRONTEND="noninteractive"
+          ${{matrix.image}}
+          bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
 
-      - uses: actions/upload-artifact@v3
-        with:
-          name: f4pga-examples-bitstreams-${{ matrix.name }}
-          path: '**/*.bit'
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: f4pga-examples-plots-${{ matrix.name }}
-          path: '**/plot_*.svg'
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: f4pga-examples-bitstreams-${{ matrix.name }}
+#          path: '**/*.bit'
+#
+#      - uses: actions/upload-artifact@v3
+#        with:
+#          name: f4pga-examples-plots-${{ matrix.name }}
+#          path: '**/plot_*.svg'

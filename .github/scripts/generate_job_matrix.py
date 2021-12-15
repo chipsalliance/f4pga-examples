@@ -11,11 +11,9 @@ runs_on = (
 )
 
 examples = [
-    "counter",
     "picosoc",
     "litex",
     "litex_linux",
-    "litex_sata",
     "button_controller",
     "pulse_width_led",
     "timer",
@@ -45,6 +43,10 @@ osvers = [
 ]
 
 if not isFork:
+    examples = [
+        "counter",
+        "litex_sata",
+    ] + examples
     osvers += [
         ("ubuntu", "xenial"),
         ("ubuntu", "bionic"),

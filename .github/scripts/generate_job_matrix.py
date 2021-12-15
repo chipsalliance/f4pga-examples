@@ -2,9 +2,11 @@
 
 from sys import argv as sys_argv
 
+isFork = len(sys_argv)>1 and sys_argv[1] != 'SymbiFlow/symbiflow-examples'
+
 runs_on = (
     'ubuntu-latest'
-    if len(sys_argv)>1 and sys_argv[1] != 'SymbiFlow/symbiflow-examples' else
+    if isFork else
     ['self-hosted', 'Linux', 'X64']
 )
 
@@ -34,16 +36,20 @@ examples = [
 jobs = []
 
 osvers = [
-    ("ubuntu", "xenial"),
-    ("ubuntu", "bionic"),
     ("ubuntu", "focal"),
-    ("centos", "7"),
     ("centos", "8"),
     ("debian", "buster"),
     ("debian", "bullseye"),
     ("debian", "sid"),
     ("fedora", "35")
 ]
+
+if not isFork:
+    osvers += [
+        ("ubuntu", "xenial"),
+        ("ubuntu", "bionic"),
+        ("centos", "7"),
+    ]
 
 for osver in osvers:
     jobs += [{

@@ -33,7 +33,8 @@ osvers = [
     ("centos", "8"),
     ("debian", "buster"),
     ("debian", "bullseye"),
-    ("debian", "sid")
+    ("debian", "sid"),
+    ("fedora", "35")
 ]
 
 for osver in osvers:

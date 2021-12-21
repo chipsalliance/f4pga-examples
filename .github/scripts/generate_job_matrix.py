@@ -1,11 +1,19 @@
 #!/usr/bin/env python3
 
+from sys import argv as sys_argv
+
+isFork = len(sys_argv)>1 and sys_argv[1] != 'SymbiFlow/symbiflow-examples'
+
+runs_on = (
+    'ubuntu-latest'
+    if isFork else
+    ['self-hosted', 'Linux', 'X64']
+)
+
 examples = [
-    "counter",
     "picosoc",
     "litex",
     "litex_linux",
-    "litex_sata",
     "button_controller",
     "pulse_width_led",
     "timer",
@@ -26,10 +34,7 @@ examples = [
 jobs = []
 
 osvers = [
-    ("ubuntu", "xenial"),
-    ("ubuntu", "bionic"),
     ("ubuntu", "focal"),
-    ("centos", "7"),
     ("centos", "8"),
     ("debian", "buster"),
     ("debian", "bullseye"),
@@ -37,8 +42,20 @@ osvers = [
     ("fedora", "35")
 ]
 
+if not isFork:
+    examples = [
+        "counter",
+        "litex_sata",
+    ] + examples
+    osvers += [
+        ("ubuntu", "xenial"),
+        ("ubuntu", "bionic"),
+        ("centos", "7"),
+    ]
+
 for osver in osvers:
     jobs += [{
+        'runs-on': runs_on,
         'fpga-fam': "xc7",
         'os': osver[0],
         'os-version': osver[1],
@@ -46,10 +63,13 @@ for osver in osvers:
     } for example in examples]
 
 jobs += [{
+    'runs-on': runs_on,
     'fpga-fam': "eos-s3",
     'os': osver[0],
     'os-version': osver[1],
     'example': "counter"
 } for osver in osvers]
 
-print('::set-output name=matrix::' + str(jobs))
+print(f'::set-output name=matrix::{jobs!s}')
+
+print(str(jobs))

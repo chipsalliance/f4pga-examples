@@ -21,16 +21,17 @@ jobs:
 
       - name: Generate examples matrix
         id: generate
-        run: ./.github/scripts/generate_job_matrix.py
+        run: ./.github/scripts/generate_job_matrix.py '${{ github.repository }}'
 
 
   Test:
     needs: Matrix
-    runs-on: [self-hosted, Linux, X64]
     strategy:
       fail-fast: false
       matrix:
         include: ${{ fromJson(needs.Matrix.outputs.matrix) }}
+    runs-on: ${{ matrix.runs-on }}
+    name: ${{ matrix.fpga-fam }} | ${{ matrix.os }} ${{ matrix.os-version }} | ${{ matrix.example }}
 
     env:
       LANG: "en_US.UTF-8"

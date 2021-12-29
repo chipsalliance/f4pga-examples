@@ -45,52 +45,57 @@ At completion, the bitstreams are located in the build directory:
 
    counter_test/build/<board>
 
-Now, for **Arty and Basys3**, you can upload the design with:
 
-.. code-block:: bash
+.. tabs::
 
-   TARGET="<board type>" make download -C counter_test
+   .. tab:: Arty and Basys 3
 
+      Now, for **Arty and Basys3**, you can upload the design with:
 
-The result should be as follows:
+      .. code-block:: bash
 
-.. image:: ../../docs/images/counter-example-arty.gif
-   :align: center
-   :width: 50%
+         TARGET="<board type>" make download -C counter_test
 
-For **Zybo**, please follow the `guide on how to load a bitstream from U-boot <https://symbiflow-examples.readthedocs.io/en/latest/running-examples.html#load-bitstream-from-u-boot>`_.
+      The result should be as follows:
 
+      .. image:: ../../docs/images/counter-example-arty.gif
+         :align: center
+         :width: 50%
 
-Once the bitstream is loaded, the result should be as follows:
+   .. tab:: Zybo
 
-.. image:: ../../docs/images/counter-example-zyboz7.gif
-   :align: center
-   :width: 50%
+      For **Zybo**, please follow the `guide on how to load a bitstream from U-boot <https://symbiflow-examples.readthedocs.io/en/latest/running-examples.html#load-bitstream-from-u-boot>`_.
 
-On the picocom terminal, you can control the counter behaviour to stop it, or let it count backwards, by toggling values of the EMIO pins of the ARM Processing System (PS).
+      Once the bitstream is loaded, the result should be as follows:
 
-You can control the counter enable signal with:
+      .. image:: ../../docs/images/counter-example-zyboz7.gif
+         :align: center
+         :width: 50%
 
-.. code-block:: bash
+      On the picocom terminal, you can control the counter behaviour to stop it, or let it count backwards, by toggling values of the EMIO pins of the ARM Processing System (PS).
 
-   gpio set 54
-   gpio clear 54
+      You can control the counter enable signal with:
 
-If GPIO 54 is set, the counter is disabled. It is enabled if the GPIO 54 is cleared. The result should be as follows:
+      .. code-block:: bash
 
-.. image:: ../../docs/images/counter-example-zyboz7-clken.gif
-   :align: center
-   :width: 50%
+         gpio set 54
+         gpio clear 54
 
-You can control the counter direction with:
+      If GPIO 54 is set, the counter is disabled. It is enabled if the GPIO 54 is cleared. The result should be as follows:
 
-.. code-block:: bash
+      .. image:: ../../docs/images/counter-example-zyboz7-clken.gif
+         :align: center
+         :width: 50%
 
-   gpio set 55
-   gpio clear 55
+      You can control the counter direction with:
 
-If GPIO 55 is set, the counter goes backwards. It goes forwared if the GPIO 54 is cleared. The result should be as follows:
+      .. code-block:: bash
 
-.. image:: ../../docs/images/counter-example-zyboz7-reverse.gif
-   :align: center
-   :width: 50%
+         gpio set 55
+         gpio clear 55
+
+      If GPIO 55 is set, the counter goes backwards. It goes forwared if the GPIO 54 is cleared. The result should be as follows:
+
+      .. image:: ../../docs/images/counter-example-zyboz7-reverse.gif
+         :align: center
+         :width: 50%

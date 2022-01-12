@@ -1,3 +1,6 @@
+TOP := $(strip ${TOP})
+TARGET := $(strip ${TARGET})
+
 BUILDDIR := ${current_dir}/build
 BOARD_BUILDDIR := ${BUILDDIR}/${TARGET}
 

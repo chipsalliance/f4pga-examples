@@ -37,6 +37,61 @@ jobs:
       LANG: "en_US.UTF-8"
       DEBIAN_FRONTEND: "noninteractive"
       GHA_PREEMPTIBLE: "false"
+      SURELOG_CMD: ""
+
+    container: ${{matrix.os}}:${{matrix.os-version}}
+
+    steps:
+
+      - name: Setup repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Install utils
+        if: ${{matrix.os == 'ubuntu' || matrix.os == 'debian'}}
+        run: apt -qqy update && apt -qqy install wget locales && locale-gen $LANG
+
+      - name: Install utils
+        if: ${{matrix.os == 'centos'}}
+        run: yum -y install wget
+
+      - name: Install utils
+        if: ${{matrix.os == 'fedora'}}
+        run: dnf install -y wget
+
+      - name: Install tuttest
+        run: |
+          wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest
+          chmod a+rx /usr/bin/tuttest
+
+      - name: Install SymbiFlow toolchain
+        run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}}
+
+      - name: Build examples
+        run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: symbiflow-examples-bitstreams
+          path: |
+            **/*.bit
+            **/plot_*.svg
+
+  Test-Surelog:
+    needs: Matrix
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.Matrix.outputs.matrix) }}
+    runs-on: ${{ matrix.runs-on }}
+    name: Surelog frontend - ${{ matrix.fpga-fam }} | ${{ matrix.os }} ${{ matrix.os-version }} | ${{ matrix.example }}
+
+    env:
+      LANG: "en_US.UTF-8"
+      DEBIAN_FRONTEND: "noninteractive"
+      GHA_PREEMPTIBLE: "false"
+      SURELOG_CMD: "-parse -DSYNTHESIS"
 
     container: ${{matrix.os}}:${{matrix.os-version}}
 

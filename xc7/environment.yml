@@ -7,8 +7,9 @@ dependencies:
   - litex-hub::gcc-riscv64-elf-newlib=9.2.0=20201119_154229
   - litex-hub::prjxray-db=0.0_257_g0a0adde=20220114_081711
   - litex-hub::vtr-optimized=8.0.0_5105_g116f30cb8=20220114_081711
-  - litex-hub::yosys=0.13_4_g61324cf55=20220114_081711_py37
-  - litex-hub::symbiflow-yosys-plugins=1.0.0_7_599_gdb3a9c7=20220114_081711
+  - litex-hub::yosys
+  - litex-hub::symbiflow-yosys-plugins
+  - litex-hub::surelog
   - make
   - lxml
   - simplejson

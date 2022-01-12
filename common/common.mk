@@ -44,6 +44,11 @@ ifneq (${PCF},)
   PCF_CMD := -p ${PCF}
 endif
 
+# Determine if we should use Surelog/UHDM to read sources
+ifneq (${SURELOG_CMD},)
+  SURELOG_OPT := -s ${SURELOG_CMD}
+endif
+
 .DELETE_ON_ERROR:
 
 # Build design
@@ -53,7 +58,7 @@ ${BOARD_BUILDDIR}:
 	mkdir -p ${BOARD_BUILDDIR}
 
 ${BOARD_BUILDDIR}/${TOP}.eblif: ${SOURCES} ${XDC} ${SDC} ${PCF} | ${BOARD_BUILDDIR}
-	cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} -v ${SOURCES} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} ${XDC_CMD} 2>&1 > /dev/null
+	cd ${BOARD_BUILDDIR} && symbiflow_synth -t ${TOP} ${SURELOG_OPT} -v ${SOURCES} -d ${BITSTREAM_DEVICE} -p ${PARTNAME} ${XDC_CMD}
 
 ${BOARD_BUILDDIR}/${TOP}.net: ${BOARD_BUILDDIR}/${TOP}.eblif
 	cd ${BOARD_BUILDDIR} && symbiflow_pack -e ${TOP}.eblif -d ${DEVICE} ${SDC_CMD} 2>&1 > /dev/null

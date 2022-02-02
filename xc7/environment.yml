@@ -3,12 +3,12 @@ channels:
   - litex-hub
 dependencies:
   - litex-hub::openocd=0.10.0_1514_ga8edbd020=20201119_154304
-  - litex-hub::prjxray-tools=0.1_2842_g6867429c=20210301_104249
+  - litex-hub::prjxray-tools=0.1_2942_g5349556b=20220114_081711
   - litex-hub::gcc-riscv64-elf-newlib=9.2.0=20201119_154229
-  - litex-hub::prjxray-db=0.0_253_gcd41f08=20211122_104637
-  - litex-hub::vtr-optimized=8.0.0_4118_g06317d042=20210813_070938
-  - litex-hub::yosys=0.9_5567_g539d4ee9=20210813_070938_py37
-  - litex-hub::symbiflow-yosys-plugins=1.0.0_7_382_g6712d71=20210818_135210
+  - litex-hub::prjxray-db=0.0_257_g0a0adde=20220114_081711
+  - litex-hub::vtr-optimized=8.0.0_5105_g116f30cb8=20220114_081711
+  - litex-hub::yosys=0.13_4_g61324cf55=20220114_081711_py37
+  - litex-hub::symbiflow-yosys-plugins=1.0.0_7_599_gdb3a9c7=20220114_081711
   - make
   - lxml
   - simplejson

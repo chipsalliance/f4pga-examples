@@ -52,8 +52,15 @@ jobs:
         run: apt -qqy update && apt -qqy install wget locales && locale-gen $LANG
 
       - name: Install utils
+        if: ${{matrix.os == 'centos' && matrix.os-version == '8'}}
+        run: |
+          sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
+          sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
+
+      - name: Install utils
         if: ${{matrix.os == 'centos'}}
-        run: yum -y install wget
+        run: |
+          yum -y install wget
 
       - name: Install utils
         if: ${{matrix.os == 'fedora'}}

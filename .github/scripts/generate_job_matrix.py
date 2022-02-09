@@ -55,7 +55,8 @@ osvers = [
     ("debian", "buster"),
     ("debian", "bullseye"),
     ("debian", "sid"),
-    ("fedora", "35")
+    ("fedora", "35"),
+    ("fedora", "36"),
 ]
 
 if not isFork:

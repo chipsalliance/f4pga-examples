@@ -41,15 +41,9 @@ jobs:
     container: ${{matrix.os}}:${{matrix.os-version}}
 
     steps:
-
-      - name: Setup repository
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
       - name: Install utils
         if: ${{matrix.os == 'ubuntu' || matrix.os == 'debian'}}
-        run: apt -qqy update && apt -qqy install wget locales && locale-gen $LANG
+        run: apt -qqy update && apt -qqy install git wget locales && locale-gen $LANG
 
       - name: Install utils
         if: ${{matrix.os == 'centos' && matrix.os-version == '8'}}
@@ -59,12 +53,16 @@ jobs:
 
       - name: Install utils
         if: ${{matrix.os == 'centos'}}
-        run: |
-          yum -y install wget
+        run: yum -y install git wget
 
       - name: Install utils
         if: ${{matrix.os == 'fedora'}}
-        run: dnf install -y wget
+        run: dnf install -y git wget
+
+      - name: Setup repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Install tuttest
         run: |

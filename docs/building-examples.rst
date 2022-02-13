@@ -1,3 +1,5 @@
+.. _Building-Examples:
+
 Building example designs
 ========================
 
@@ -99,7 +101,7 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
    :file: templates/example.jinja
 
 .. jinja:: xc7_pulse_width_led
-   :file: templates/example.jinja 
+   :file: templates/example.jinja
 
 
 

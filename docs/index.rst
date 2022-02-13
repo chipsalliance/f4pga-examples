@@ -49,3 +49,4 @@ currently targeting chips from multiple vendors, e.g.:
    :caption: Additional example designs
 
    project-f
+   basys3

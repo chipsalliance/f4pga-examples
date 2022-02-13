@@ -1,7 +1,7 @@
 .. _Building-Examples:
 
 Building example designs
-========================
+########################
 
 Before building any example, set the installation directory to match what you
 set it to earlier, for example:
@@ -76,7 +76,7 @@ Finally, enter your working Conda environment:
 
 
 Xilinx 7-Series
----------------
+===============
 
 Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 
@@ -104,21 +104,8 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
    :file: templates/example.jinja
 
 
-
-Additional Examples
--------------------
-
-In addition to the designs we have gone over here, you can also find several other exciting designs
-for the basys3 board in the additional_examples directory:
-
-.. code-block:: bash
-   :name: additional_examples
-
-   cd additional_examples
-
-
 QuickLogic EOS S3
------------------
+=================
 
 Enter the directory that contains examples for QuickLogic EOS S3:
 

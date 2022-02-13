@@ -55,7 +55,7 @@ fi
 # activate conda and enter example dir
 activate_env="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,conda-act-env"
 snippets="${activate_env},enter-dir-$fpga_family"
-additionalDesigns="${activate_env},enter-dir-$fpga_family,additional_examples"
+additionalDesigns="${activate_env},enter-dir-$fpga_family"
 
 
 # Xilinx 7-Series examples
@@ -80,7 +80,7 @@ if [ "$fpga_family" = "xc7" ]; then
 
             #Additional examples:
             "button_controller")
-                snippets="${additionalDesigns} xc7/additional_examples/button_controller/README.rst:example-debouncer-basys3"
+                snippets="${additionalDesigns} xc7/additional_examples/button_controller/README.rst:additional-examples,example-debouncer-basys3"
                 ;;
             "pulse_width_led")
                 snippets="${snippets} xc7/pulse_width_led/README.rst:example-pulse-arty-35t"

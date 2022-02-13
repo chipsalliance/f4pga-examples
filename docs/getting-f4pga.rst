@@ -139,11 +139,9 @@ Download architecture definitions:
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 
-Build Example Designs
----------------------
+.. IMPORTANT::
+  With the toolchain installed, you are ready to build the example designs!
+  Examples are provided in separated directories:
 
-With the toolchain installed, you can build the example designs.
-The example designs are provided in separate directories:
-
-* ``xc7`` directory for the Artix-7 devices
-* ``eos-s3`` directory for the EOS S3 devices
+  * Subdir :ghsrc:`xc7` for the Artix-7 devices
+  * Subdir :ghsrc:`eos-s3` for the EOS S3 devices

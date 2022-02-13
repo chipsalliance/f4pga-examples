@@ -1,5 +1,7 @@
-Understanding Toolchain Commands
-=================================
+.. _Understanding:
+
+Understanding the flow
+======================
 
 This section provides valuable information on how each of the commands used to compile and build
 designs in F4PGA work. It is especially helpful for debugging or for using methods

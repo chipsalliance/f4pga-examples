@@ -15,8 +15,7 @@ Follow this guide to:
   example designs onto the devboard of your choice.
 - compile and run :doc:`your own designs<personal-designs>` using the F4PGA toolchain.
 - :doc:`customize the Makefile<customizing-makefiles>` for your own designs.
-- gain valuable information about `Understanding Toolchain Commands in F4PGA <understanding-commands.html>`_
-
+- gain valuable information about :doc:`Understanding Toolchain Commands in F4PGA <understanding>`.
 
 About F4PGA
 -----------
@@ -32,7 +31,7 @@ currently targeting chips from multiple vendors, e.g.:
 .. toctree::
 
    getting
-   understanding-commands
+   understanding
 
 .. toctree::
    :caption: Example designs

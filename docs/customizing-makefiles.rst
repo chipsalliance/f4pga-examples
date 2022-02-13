@@ -1,13 +1,12 @@
 Customizing the Makefiles
-==========================
+=========================
 
-A powerful tool in creating your own designs is understanding how to generate your own Makefile to
-compile projects. This tutorial walks you through how to do that.
+A powerful tool in creating your own designs is understanding how to generate your own Makefile to compile projects.
+This tutorial walks you through how to do that.
 
-If you would like to use methods other than a Makefile to build and compile your designs
-(such as python or bash scripts) or if you would like to learn more about the various F4PGA
-commands used by the common Makefile to build and compile designs take a look at the
-`Understanding Toolchain Commands <understanding-commands.html>`_ page.
+If you would like to use methods other than a Makefile to build and compile your designs (such as python or bash
+scripts) or if you would like to learn more about the various F4PGA commands used by the common Makefile to build and
+compile designs take a look at the :ref:`Understanding` page.
 
 Example
 -------
@@ -107,7 +106,7 @@ your design. The general syntax depends on whether you are using XDC files or a 
 
 
 A Note on the example designs use of ifeq/else ifeq blocks
--------------------------------------------------------------
+----------------------------------------------------------
 
 If you look at the Makefiles from the example designs within F4PGA
 (i.e. counter test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet

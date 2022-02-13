@@ -30,13 +30,23 @@ currently targeting chips from multiple vendors, e.g.:
 - QuickLogic EOS S3
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Sections
 
    getting-f4pga
+   understanding-commands
+
+.. toctree::
+   :caption: Example designs
+
    building-examples
    running-examples
+
+.. toctree::
+   :caption: Custom designs
+
    personal-designs
    customizing-makefiles
-   understanding-commands
+
+.. toctree::
+   :caption: Additional example designs
+
    project-f

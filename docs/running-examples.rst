@@ -14,7 +14,7 @@ Arty board
 #. Connect the board to your computer using the Ethernet cable
    (only if you want to test the LiteX Linux Example)
 
-.. image:: images/arty-usb-ethernet.png
+.. image:: _static/images/arty-usb-ethernet.png
    :width: 49%
    :align: center
 
@@ -23,7 +23,7 @@ Basys 3 board
 
 Connect the Basys3 Board to your computer using the USB cable:
 
-.. image:: images/basys3-usb.png
+.. image:: _static/images/basys3-usb.png
    :width: 49%
    :align: center
 
@@ -32,13 +32,13 @@ Zybo-Z7 board
 
 Connect the Zybo-Z7 Board to your computer using the USB cable:
 
-.. image:: images/zyboz7-usb.png
+.. image:: _static/images/zyboz7-usb.png
    :width: 49%
    :align: center
 
 Insert the SD card in the dedicated slot:
 
-.. image:: images/zyboz7-sdcard.png
+.. image:: _static/images/zyboz7-sdcard.png
    :width: 49%
    :align: center
 
@@ -201,7 +201,7 @@ Load bitstreams from U-boot
 Make sure to have :ref:`prepared the SD correctly<prepare-sd>`.
 
 #. With the SD card inserted in the PC, copy the bitstream in the boot directory:
-   
+
    .. code-block:: bash
 
       cp <name>.bit /path/to/mountpoint/boot
@@ -209,7 +209,7 @@ Make sure to have :ref:`prepared the SD correctly<prepare-sd>`.
 
 #. Set the jumper J5 to SD.
 
-   .. image:: images/zyboz7-jmp.png
+   .. image:: _static/images/zyboz7-jmp.png
       :width: 49%
       :align: center
 

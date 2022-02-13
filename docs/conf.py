@@ -29,16 +29,17 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
+from os import path as os_path, scandir as os_scandir
+from sys import path as sys_path
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath('.'))
+sys_path.insert(0, os_path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'F4PGA examples'
-authors = u'F4PGA Authors'
-copyright = authors + u', 2020 - 2022'
+project = 'F4PGA examples'
+authors = 'F4PGA Authors'
+copyright = f'{authors}, 2020 - 2022'
 
 # -- General configuration ---------------------------------------------------
 
@@ -60,16 +61,13 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # -- Options for HTML output -------------------------------------------------
 
-# The theme to use for HTML and HTML Help pages.  See the documentation for
-# a list of builtin themes.
-#
-
 html_show_sourcelink = True
 
 html_theme = 'sphinx_symbiflow_theme'
 
 html_theme_options = {
-    'github_url' : 'https://github.com/chipsalliance/F4PGA-examples',
+    'repo_name': 'chipsalliance/f4pga-examples',
+    'github_url' : 'https://github.com/chipsalliance/f4pga-examples',
     'globaltoc_collapse': True,
     'color_primary': 'indigo',
     'color_accent': 'blue',
@@ -78,24 +76,27 @@ html_theme_options = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ['_static']
+
+html_logo = str(Path(html_static_path[0]) / 'logo.svg')
+html_favicon = str(Path(html_static_path[0]) / 'favicon.svg')
 
 # -- Collect READMEs from examples --------------------------------------------
 
 from collect_readmes import full_name_lut, families, fill_context
 
 jinja_contexts = {}
-top_dir = os.path.join(os.path.dirname(__file__), '..')
+top_dir = os_path.join(os_path.dirname(__file__), '..')
 for family in families:
-    examples = os.scandir(os.path.join(top_dir, family))
+    examples = os_scandir(os_path.join(top_dir, family))
     for example in examples:
         if example.is_dir():
 
             # get README
-            path = os.path.join(top_dir, family, example, 'README.rst')
+            path = os_path.join(top_dir, family, example, 'README.rst')
 
             # skip if file does not exist
-            if not os.path.isfile(path):
+            if not os_path.isfile(path):
                 continue
 
             with open(path) as f:

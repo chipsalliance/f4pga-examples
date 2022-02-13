@@ -1,9 +1,9 @@
 Welcome to F4PGA examples!
 ==========================
 
-This guide explains how to get started with F4PGA and build example designs
-from the `F4PGA Examples <https://github.com/chipsalliance/f4pga-examples>`_
-GitHub repository. It currently focuses on the following FPGA families:
+This guide explains how to get started with F4PGA and build example designs from the :gh:`F4PGA Examples <chipsalliance/f4pga-examples>`
+GitHub repository.
+It currently focuses on the following FPGA families:
 
 - Artix-7 from Xilinx,
 - EOS S3 from QuickLogic.

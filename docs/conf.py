@@ -48,6 +48,7 @@ copyright = f'{authors}, 2020 - 2022'
 # ones.
 extensions = [
     'sphinx.ext.extlinks',
+    'sphinx.ext.intersphinx',
     'sphinx_tabs.tabs',
     'sphinxcontrib.jinja',
 ]
@@ -105,6 +106,18 @@ for family in families:
 
             key = '_'.join((family, example.name))
             jinja_contexts[key] = {'blocks': fill_context(text)}
+
+# -- Sphinx.Ext.InterSphinx ------------------------------------------------------------------------
+
+intersphinx_mapping = {
+   'python':     ('https://docs.python.org/3.6/', None),
+   'f4pga':      ('https://f4pga.readthedocs.io/en/latest/', None),
+   'arch-defs':  ('https://f4pga.readthedocs.io/projects/arch-defs/en/latest/', None),
+   'fasm':       ('https://fasm.readthedocs.io/en/latest/', None),
+   'prjtrellis': ('https://prjtrellis.readthedocs.io/en/latest/', None),
+   'prjxray':    ('https://f4pga.readthedocs.io/projects/prjxray/en/latest/', None),
+   'vtr':        ('https://docs.verilogtorouting.org/en/latest/', None),
+}
 
 # -- Sphinx.Ext.ExtLinks ---------------------------------------------------------------------------
 

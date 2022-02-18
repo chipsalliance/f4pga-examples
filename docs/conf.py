@@ -70,7 +70,9 @@ html_theme = 'sphinx_symbiflow_theme'
 
 html_theme_options = {
     'github_url' : 'https://github.com/chipsalliance/F4PGA-examples',
-    'globaltoc_collapse': True
+    'globaltoc_collapse': True,
+    'color_primary': 'indigo',
+    'color_accent': 'blue',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

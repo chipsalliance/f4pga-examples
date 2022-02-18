@@ -25,7 +25,7 @@ source ${CURRENT_DIR}/common.sh
 
 function help() {
    echo
-   echo "Install the SymbiFlow toolchain as described in the sphinx documentation"
+   echo "Install the F4PGA toolchain as described in the sphinx documentation"
    echo
    echo "Syntax: $0 fpga_family os"
    echo "Arguments:"
@@ -45,4 +45,4 @@ fi
 fpga_family=$1
 os=$2
 
-tuttest_exec docs/getting-symbiflow.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,conda-setup,download-arch-def-$fpga_family
+tuttest_exec docs/getting-f4pga.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,conda-setup,download-arch-def-$fpga_family

@@ -2,10 +2,10 @@ Building Custom Designs
 ========================
 
 This section describes how to compile and download your own designs to an FPGA using only 
-the Symbiflow toolchain.
+the F4PGA toolchain.
 
 Before building any examples, you will need to first install the toolchain. To do this, follow the 
-steps in `Getting Symbiflow <getting-symbiflow.html>`_. After you have downloaded the toolchain, 
+steps in `Getting F4PGA <getting-f4pga.html>`_. After you have downloaded the toolchain, 
 follow the steps in `Building Examples <building-examples.html>`_ by seting the installation 
 directory to match what you set it to earlier, assigning the path and source for 
 your conda environment, and activating your env.
@@ -13,7 +13,7 @@ your conda environment, and activating your env.
 Preparing Your Design 
 ----------------------
 
-Building a design in Symbiflow requires three parts: the HDL files for your design, a constraints
+Building a design in F4PGA requires three parts: the HDL files for your design, a constraints
 file, and a Makefile. For simplicity, all three of these design files should be moved to a single
 directory. The location of the directory does not mater as long as the three design elements are all 
 within it.
@@ -21,7 +21,7 @@ within it.
 HDL Files
 ++++++++++
 
-Symbiflow provides full support for Verilog. Some support for SystemVerilog HDL code is also 
+F4PGA provides full support for Verilog. Some support for SystemVerilog HDL code is also 
 provided, although more complicated designs written in SystemVerilog may not build properly under 
 Yosys. Use whichever method you prefer, and add your design files to the directory of choice. 
 If you are using the provided Makefiles to build your design, the top level module in your HDL 
@@ -33,7 +33,7 @@ your own makefiles or commands, you can specify your top level module name using
 Constraint File
 ++++++++++++++++
 
-The Symbiflow toolchain supports both .XDC and .PCF+.SDC formats for constraints. 
+The F4PGA toolchain supports both .XDC and .PCF+.SDC formats for constraints. 
 You can use XDC to define IOPAD, IOSETTINGS, and clock constraints. SDCs can be used to 
 define clock constraints and PCFs can be used to define IOPAD constraints only. Use whichever 
 method you prefer and add your constraint file(s) to your design directory.

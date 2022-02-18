@@ -1,7 +1,7 @@
-Getting SymbiFlow
-=================
+Getting F4PGA
+=============
 
-This section describes how to install SymbiFlow and set up a fully working
+This section describes how to install F4PGA and set up a fully working
 environment to later build example designs.
 
 Prerequisites
@@ -43,18 +43,18 @@ To be able to follow through this tutorial, install the following software:
          dnf install -y findutils git wget which xz
 
 
-Next, clone the SymbiFlow examples repository and enter it:
+Next, clone the F4PGA examples repository and enter it:
 
 .. code-block:: bash
-   :name: get-symbiflow
+   :name: get-f4pga
 
-   git clone https://github.com/SymbiFlow/symbiflow-examples
-   cd symbiflow-examples
+   git clone https://github.com/F4PGA/f4pga-examples
+   cd f4pga-examples
 
 Toolchain installation
 ----------------------
 
-Now we are able to install the SymbiFlow toolchain. This procedure is divided
+Now we are able to install the F4PGA toolchain. This procedure is divided
 into three steps:
 
 - installing the Conda package manager,
@@ -64,7 +64,7 @@ into three steps:
 Conda
 ~~~~~
 
-Download Conda installer script into the symbiflow-examples directory:
+Download Conda installer script into the f4pga-examples directory:
 
 .. code-block:: bash
    :name: wget-conda
@@ -75,14 +75,14 @@ Choose the install directory
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The install directory can either be in your home directory
-such as ``~/opt/symbiflow`` or in a system directory such as ``/opt/symbiflow``.
+such as ``~/opt/f4pga`` or in a system directory such as ``/opt/f4pga``.
 If you choose a system directory, you will need root permission to perform the installation,
 and so you will need to add some ``sudo`` commands to the instructions below.
 
 .. code-block:: bash
    :name: conda-install-dir
 
-   export INSTALL_DIR=~/opt/symbiflow
+   export INSTALL_DIR=~/opt/f4pga
 
 Toolchain
 ~~~~~~~~~

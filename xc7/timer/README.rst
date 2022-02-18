@@ -2,7 +2,7 @@ Timer
 ~~~~~~
 
 This example is built specifically for the basys3 and demonstrates a greater variety of I/O 
-then previous designs. It also demonstrates symbiflow's support for code written in System Verilog 
+then previous designs. It also demonstrates F4PGA's support for code written in System Verilog 
 as well as its support of dictionaries in XDCs. To build this example run the following commands:
 
 .. code-block:: bash

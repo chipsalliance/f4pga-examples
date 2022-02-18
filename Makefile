@@ -22,7 +22,7 @@ VERILOG_SRCS=$(shell find . -name "*.v" -not -path "./env/*" -not -path "./symbi
 
 env:
 	conda env create -f environment.yml
-	conda activate symbiflow-examples
+	conda activate f4pga-examples
 
 format:
 	yapf -i ${PYTHON_SRCS}
@@ -36,6 +36,6 @@ format:
 clean::
 	rm -rf env/
 	conda deactivate
-	conda env remove -n symbiflow-examples
+	conda env remove -n f4pga-examples
 
 .PHONY: env format clean

@@ -1,8 +1,8 @@
-Welcome to SymbiFlow examples!
-==============================
+Welcome to F4PGA examples!
+==========================
 
-This guide explains how to get started with SymbiFlow and build example designs
-from the `SymbiFlow Examples <https://github.com/symbiflow/symbiflow-examples>`_
+This guide explains how to get started with F4PGA and build example designs
+from the `F4PGA Examples <https://github.com/chipsalliance/f4pga-examples>`_
 GitHub repository. It currently focuses on the following FPGA families:
 
 - Artix-7 from Xilinx,
@@ -10,18 +10,18 @@ GitHub repository. It currently focuses on the following FPGA families:
 
 Follow this guide to:
 
-- :doc:`install SymbiFlow <getting-symbiflow>` and all of its dependencies,
+- :doc:`install F4PGA <getting-symbiflow>` and all of its dependencies,
 - :doc:`build <building-examples>` and :doc:`upload <running-examples>`
   example designs onto the devboard of your choice.
-- compile and run :doc:`your own designs<personal-designs>` using the Symbiflow toolchain.
+- compile and run :doc:`your own designs<personal-designs>` using the F4PGA toolchain.
 - :doc:`customize the Makefile<customizing-makefiles>` for your own designs.
-- gain valuable information about `Understanding Toolchain Commands in Symbiflow <understanding-commands.html>`_
+- gain valuable information about `Understanding Toolchain Commands in F4PGA <understanding-commands.html>`_
 
 
-About SymbiFlow
----------------
+About F4PGA
+-----------
 
-SymbiFlow is a fully open source toolchain for the development of FPGAs,
+F4PGA is a fully open source toolchain for the development of FPGAs,
 currently targeting chips from multiple vendors, e.g.:
 
 - Xilinx 7-Series
@@ -33,7 +33,7 @@ currently targeting chips from multiple vendors, e.g.:
    :maxdepth: 2
    :caption: Sections
 
-   getting-symbiflow
+   getting-f4pga
    building-examples
    running-examples
    personal-designs

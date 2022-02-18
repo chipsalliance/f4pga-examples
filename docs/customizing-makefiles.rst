@@ -5,14 +5,14 @@ A powerful tool in creating your own designs is understanding how to generate yo
 compile projects. This tutorial walks you through how to do that.
 
 If you would like to use methods other than a Makefile to build and compile your designs 
-(such as python or bash scripts) or if you would like to learn more about the various Symbiflow
+(such as python or bash scripts) or if you would like to learn more about the various F4PGA
 commands used by the common Makefile to build and compile designs take a look at the
 `Understanding Toolchain Commands <understanding-commands.html>`_ page.
 
 Example 
 -------
 
-By including Symbiflow's provided common Makefile in your designs, running the commands necessary for building 
+By including F4PGA's provided common Makefile in your designs, running the commands necessary for building 
 your personal projects is incredibly simple. All you have to do is run a few simple commands and set
 a few variables. 
 
@@ -32,7 +32,7 @@ Create a makefile for your project by running ``touch Makefile``, and add the fo
    PCF := ${current_dir}/<name of your xdc file if applicable>
    SDC := ${current_dir}/<name of your sdc file if applicable>
 
-   include <path to symbiflow-examples root directory>/common/common.mk
+   include <path to f4pga-examples root directory>/common/common.mk
 
 Lets talk briefly about each of the commands in the above makefile
 
@@ -72,7 +72,7 @@ above to a ``.sv``.
 
 .. note::
 
-   As of this writing, symbiflow only offers full support for Verilog by default.
+   As of this writing, F4PGAw only offers full support for Verilog by default.
    SystemVerilog can also be run through the toolchain but more complicated 
    designs may not be fully supported. 
 
@@ -109,9 +109,9 @@ your design. The general syntax depends on whether you are using XDC files or a 
 A Note on the example designs use of ifeq/else ifeq blocks
 -------------------------------------------------------------
 
-If you look at the Makefiles from the example designs within Symbiflow 
+If you look at the Makefiles from the example designs within F4PGA
 (i.e. counter test, Picosoc, etc.), you will find an ifeq else ifeq block. The following snippet 
-is from lines 9-39 of `the Makefile from counter test <https://github.com/SymbiFlow/symbiflow-examples/blob/master/xc7/counter_test/Makefile>`_:
+is from lines 9-39 of `the Makefile from counter test <https://github.com/chipsalliance/f4pga-examples/blob/master/xc7/counter_test/Makefile>`_:
 
 
 .. code-block:: bash

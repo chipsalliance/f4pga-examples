@@ -2,7 +2,7 @@ Part 1 Design A
 ===============
 
 This design allows you to turn the first led on the arty board on and off by toggling switch 0. 
-To build this design run the following command in the main symbiflow directory:
+To build this design run the following command in the main f4pga directory:
 
 .. code-block:: bash
    :name: hello-arty-a

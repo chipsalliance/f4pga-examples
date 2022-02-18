@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2020  The SymbiFlow Authors.
+# Copyright (C) 2020-2022 F4PGA Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,9 +36,9 @@ sys.path.insert(0, os.path.abspath('.'))
 
 # -- Project information -----------------------------------------------------
 
-project = u'SymbiFlow examples'
-authors = u'SymbiFlow'
-copyright = authors + u', 2020'
+project = u'F4PGA examples'
+authors = u'F4PGA Authors'
+copyright = authors + u', 2020 - 2022'
 
 # -- General configuration ---------------------------------------------------
 
@@ -69,7 +69,7 @@ html_show_sourcelink = True
 html_theme = 'sphinx_symbiflow_theme'
 
 html_theme_options = {
-    'github_url' : 'https://github.com/SymbiFlow/symbiflow-examples',
+    'github_url' : 'https://github.com/chipsalliance/F4PGA-examples',
     'globaltoc_collapse': True
 }
 

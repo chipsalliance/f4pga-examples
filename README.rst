@@ -1,19 +1,19 @@
-SymbiFlow examples
-==================
+F4PGA examples
+==============
 
-Please refer to the `project documentation <https://symbiflow-examples.readthedocs.io>`_ 
-for a proper guide on how to run these examples as well as instructions on how to build and 
-compile your own HDL designs using the symbiflow toolchain. 
+Please refer to the `project documentation <https://f4pga-examples.readthedocs.io>`_
+for a proper guide on how to run these examples as well as instructions on how to build and
+compile your own HDL designs using the F4PGA toolchain.
 
-.. image:: https://github.com/symbiflow/symbiflow-examples/workflows/doc-test/badge.svg?branch=master
-   :target: https://github.com/SymbiFlow/symbiflow-examples/actions
+.. image:: https://github.com/chipsalliance/f4pga-examples/workflows/doc-test/badge.svg?branch=master
+   :target: https://github.com/chipsalliance/f4pga-examples/actions
 
-.. image:: https://readthedocs.org/projects/symbiflow-examples/badge/?version=latest
-   :target: https://symbiflow-examples.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/f4pga-examples/badge/?version=latest
+   :target: https://f4pga-examples.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
 This repository provides example FPGA designs that can be built using the
-SymbiFlow open source toolchain. These examples target the Xilinx 7-Series and
+F4PGA open source toolchain. These examples target the Xilinx 7-Series and
 the QuickLogic EOS S3 devices.
 
 The repository includes:
@@ -23,11 +23,11 @@ The repository includes:
   * Verilog code
   * Pin constraints files
   * Timing constraints files
-  * Makefiles for running the SymbiFlow toolchain
-* `docs/ <./docs>`_ - Guide on how to get started with SymbiFlow and build provided examples
+  * Makefiles for running the F4PGA toolchain
+* `docs/ <./docs>`_ - Guide on how to get started with F4PGA and build provided examples
 * `.github/ <./.github>`_ - Directory with CI configuration and scripts
 
-The examples provided by this repository are automatically built by extracting 
+The examples provided by this repository are automatically built by extracting
 necessary code snippets with `tuttest <https://github.com/antmicro/tuttest>`_.
 
 Building those docs

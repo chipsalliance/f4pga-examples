@@ -2,7 +2,7 @@ Part 2 Design J
 ===============
 
 This design controls the color of each of the 4 RGB LEDs on the arty using a PWM. 
-To build this design run the following command in the main symbiflow directory:
+To build this design run the following command in the main f4pga directory:
 
 .. code-block:: bash
    :name: hello-arty-j

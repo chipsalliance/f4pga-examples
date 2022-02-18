@@ -1,4 +1,3 @@
-
 Building example designs
 ========================
 
@@ -8,7 +7,7 @@ set it to earlier, for example:
 .. code-block:: bash
    :name: export-install-dir
 
-   export INSTALL_DIR=~/opt/symbiflow
+   export INSTALL_DIR=~/opt/f4pga
 
 Select your FPGA family:
 

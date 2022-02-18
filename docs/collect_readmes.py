@@ -212,7 +212,7 @@ def get_blocks(text):
 
 def fill_context(text):
     """
-    Creates a jinja context dictionary for a SymbiFlow Toolchain usage example.
+    Creates a jinja context dictionary for a F4PGA Toolchain usage example.
     The dictionary contains all the important information from the example's README.
 
     Args:

@@ -58,7 +58,7 @@ The result should be as follows:
    :align: center
    :width: 50%
 
-For **Zybo**, please follow the `guide on how to load a bitstream from U-boot <https://symbiflow-examples.readthedocs.io/en/latest/running-examples.html#load-bitstream-from-u-boot>`_.
+For **Zybo**, please follow the `guide on how to load a bitstream from U-boot <https://f4pga-examples.readthedocs.io/en/latest/running-examples.html#load-bitstream-from-u-boot>`_.
 
 
 Once the bitstream is loaded, the result should be as follows:

@@ -1,5 +1,5 @@
-SymbiFlow Toolchain Examples for Xilinx 7 Series
-================================================
+F4PGA Toolchain Examples for Xilinx 7 Series
+============================================
 
 #. ``counter`` - simple 4-bit counter driving LEDs. The design targets the `Basys3 board <https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/>`__, the `Arty boards <https://store.digilentinc.com/arty-a7-artix-7-fpga-development-board-for-makers-and-hobbyists/>`__, and the `Zybo Z7 board <https://store.digilentinc.com/zybo-z7-zynq-7000-arm-fpga-soc-development-board/>`__
 #. ``picosoc`` - `picorv32 <https://github.com/cliffordwolf/picorv32>`__ based SoC. The design targets the `Basys3 board <https://store.digilentinc.com/basys-3-artix-7-fpga-trainer-board-recommended-for-introductory-users/>`__.
@@ -10,4 +10,4 @@ The Linux images for the ``linux_litex`` example can be built following the `lin
 The ``linux_litex`` example is already provided with working Linux images.
 
 The detailed description about building the examples is available in the
-`project documentation <https://symbiflow-examples.readthedocs.io/en/latest/building-examples.html#xilinx-7-series>`__.
+`project documentation <https://f4pga-examples.readthedocs.io/en/latest/building-examples.html#xilinx-7-series>`__.

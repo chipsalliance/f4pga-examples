@@ -18,7 +18,7 @@
 
 from sys import argv as sys_argv
 
-isFork = len(sys_argv)>1 and sys_argv[1] != 'SymbiFlow/symbiflow-examples'
+isFork = len(sys_argv)>1 and sys_argv[1] != 'chipsalliance/f4pga-examples'
 
 runs_on = (
     'ubuntu-latest'

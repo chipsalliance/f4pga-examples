@@ -2,7 +2,7 @@ Part 2 Design H
 ===============
 
 This design controls the brightness of LEDs 0-3 by using a PWM. 
-To build this design run the following command in the main symbiflow directory:
+To build this design run the following command in the main f4pga directory:
 
 .. code-block:: bash
    :name: hello-arty-h

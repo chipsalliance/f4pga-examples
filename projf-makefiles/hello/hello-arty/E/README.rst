@@ -2,7 +2,7 @@ Part 2 Design E
 ===============
 
 This is the first design in Hello Arty part 2. This design blinks LED 0. 
-To build this design run the following command in the main symbiflow directory:
+To build this design run the following command in the main f4pga directory:
 
 .. code-block:: bash
    :name: hello-arty-e

@@ -102,7 +102,7 @@ def handle_img(block):
 
     ret = {}
     ret['type'] = 'image'
-    ret['uri'] = os.path.join(*block['uri'].split('/')[3:])
+    ret['uri'] = '_static/' + os.path.join(*block['uri'].split('/')[3:])
     ret['align'] = block.get('align', 'center')
     ret['width'] = block.get('width', '100%')
 

@@ -51,7 +51,6 @@ jobs = []
 
 osvers = [
     ("ubuntu", "focal"),
-    ("centos", "8"),
     ("debian", "buster"),
     ("debian", "bullseye"),
     ("debian", "sid"),

@@ -23,7 +23,7 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
-# -- Path setup --------------------------------------------------------------
+# -- Path setup -----------------------------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -35,18 +35,20 @@ from pathlib import Path
 
 sys_path.insert(0, os_path.abspath('.'))
 
-# -- Project information -----------------------------------------------------
+# -- Project information --------------------------------------------------------------------------
 
 project = 'F4PGA examples'
 authors = 'F4PGA Authors'
 copyright = f'{authors}, 2020 - 2022'
 
-# -- General configuration ---------------------------------------------------
+# -- General configuration ------------------------------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.extlinks',
+    'sphinx.ext.intersphinx',
     'sphinx_tabs.tabs',
     'sphinxcontrib.jinja',
 ]
@@ -59,7 +61,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-# -- Options for HTML output -------------------------------------------------
+# -- Options for HTML output ----------------------------------------------------------------------
 
 html_show_sourcelink = True
 
@@ -81,7 +83,7 @@ html_static_path = ['_static']
 html_logo = str(Path(html_static_path[0]) / 'logo.svg')
 html_favicon = str(Path(html_static_path[0]) / 'favicon.svg')
 
-# -- Collect READMEs from examples --------------------------------------------
+# -- Collect READMEs from examples -----------------------------------------------------------------
 
 from collect_readmes import full_name_lut, families, fill_context
 
@@ -104,3 +106,26 @@ for family in families:
 
             key = '_'.join((family, example.name))
             jinja_contexts[key] = {'blocks': fill_context(text)}
+
+# -- Sphinx.Ext.InterSphinx ------------------------------------------------------------------------
+
+intersphinx_mapping = {
+   'python':     ('https://docs.python.org/3.6/', None),
+   'f4pga':      ('https://f4pga.readthedocs.io/en/latest/', None),
+   'arch-defs':  ('https://f4pga.readthedocs.io/projects/arch-defs/en/latest/', None),
+   'fasm':       ('https://fasm.readthedocs.io/en/latest/', None),
+   'prjtrellis': ('https://prjtrellis.readthedocs.io/en/latest/', None),
+   'prjxray':    ('https://f4pga.readthedocs.io/projects/prjxray/en/latest/', None),
+   'vtr':        ('https://docs.verilogtorouting.org/en/latest/', None),
+}
+
+# -- Sphinx.Ext.ExtLinks ---------------------------------------------------------------------------
+
+extlinks = {
+   'wikipedia': ('https://en.wikipedia.org/wiki/%s', 'wikipedia:'),
+   'gh':        ('https://github.com/%s', 'gh:'),
+   'ghsharp':   ('https://github.com/chipsalliance/f4pga-examples/issues/%s', '#'),
+   'ghissue':   ('https://github.com/chipsalliance/f4pga-examples/issues/%s', 'issue #'),
+   'ghpull':    ('https://github.com/chipsalliance/f4pga-examples/pull/%s', 'pull request #'),
+   'ghsrc':     ('https://github.com/chipsalliance/f4pga-examples/blob/master/%s', '')
+}

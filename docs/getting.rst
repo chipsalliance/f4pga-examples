@@ -50,7 +50,7 @@ Next, clone the F4PGA examples repository and enter it:
 .. code-block:: bash
    :name: get-f4pga
 
-   git clone https://github.com/F4PGA/f4pga-examples
+   git clone https://github.com/chipsalliance/f4pga-examples
    cd f4pga-examples
 
 Toolchain installation

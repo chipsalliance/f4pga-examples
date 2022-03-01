@@ -4,6 +4,7 @@ from docutils.core import publish_doctree
 full_name_lut = {
     'a35t': 'Arty 35T',
     'a100t': 'Arty 100T',
+    'genesys2': 'Genesys 2',
     'nexys4ddr': 'Nexys 4 DDR',
     'basys3': 'Basys 3',
     'eos_s3': 'EOS S3',

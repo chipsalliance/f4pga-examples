@@ -10,13 +10,12 @@ It currently focuses on the following FPGA families:
 
 Follow this guide to:
 
-- :doc:`install F4PGA <getting-f4pga>` and all of its dependencies,
+- :doc:`install F4PGA <getting>` and all of its dependencies,
 - :doc:`build <building-examples>` and :doc:`upload <running-examples>`
   example designs onto the devboard of your choice.
 - compile and run :doc:`your own designs<personal-designs>` using the F4PGA toolchain.
 - :doc:`customize the Makefile<customizing-makefiles>` for your own designs.
-- gain valuable information about `Understanding Toolchain Commands in F4PGA <understanding-commands.html>`_
-
+- gain valuable information about :doc:`Understanding Toolchain Commands in F4PGA <understanding>`.
 
 About F4PGA
 -----------
@@ -30,13 +29,24 @@ currently targeting chips from multiple vendors, e.g.:
 - QuickLogic EOS S3
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Sections
 
-   getting-f4pga
+   getting
+   understanding
+
+.. toctree::
+   :caption: Example designs
+
    building-examples
    running-examples
+
+.. toctree::
+   :caption: Custom designs
+
    personal-designs
    customizing-makefiles
-   understanding-commands
+
+.. toctree::
+   :caption: Additional example designs
+
    project-f
+   basys3

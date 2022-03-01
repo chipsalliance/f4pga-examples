@@ -1,11 +1,13 @@
+.. _Getting:
+
 Getting F4PGA
-=============
+#############
 
 This section describes how to install F4PGA and set up a fully working
 environment to later build example designs.
 
 Prerequisites
--------------
+=============
 
 To be able to follow through this tutorial, install the following software:
 
@@ -52,7 +54,7 @@ Next, clone the F4PGA examples repository and enter it:
    cd f4pga-examples
 
 Toolchain installation
-----------------------
+======================
 
 Now we are able to install the F4PGA toolchain. This procedure is divided
 into three steps:
@@ -62,7 +64,7 @@ into three steps:
 - downloading the architecture definitions and installing the toolchain.
 
 Conda
-~~~~~
+-----
 
 Download Conda installer script into the f4pga-examples directory:
 
@@ -84,8 +86,8 @@ and so you will need to add some ``sudo`` commands to the instructions below.
 
    export INSTALL_DIR=~/opt/f4pga
 
-Toolchain
-~~~~~~~~~
+Setup and download assets
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Select your target FPGA family:
 
@@ -139,11 +141,9 @@ Download architecture definitions:
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 
-Build Example Designs
----------------------
+.. IMPORTANT::
+  With the toolchain installed, you are ready to build the example designs!
+  Examples are provided in separated directories:
 
-With the toolchain installed, you can build the example designs.
-The example designs are provided in separate directories:
-
-* ``xc7`` directory for the Artix-7 devices
-* ``eos-s3`` directory for the EOS S3 devices
+  * Subdir :ghsrc:`xc7` for the Artix-7 devices
+  * Subdir :ghsrc:`eos-s3` for the EOS S3 devices

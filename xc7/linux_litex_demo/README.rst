@@ -36,7 +36,7 @@ Now you can upload the design with:
    The LiteX design is provided with an Ethernet module that uses the ``192.168.100.100/24``
    IPv4 address that needs to be set on your network interface.
 
-   You may find these information useful to correctly setup the network interface: :gh:`timvideos/litex-buildenv/wiki/Networking`.
+   You may find these information useful to correctly setup the network interface: `timvideos/litex-buildenv/wiki/Networking <https://github.com/timvideos/litex-buildenv/wiki/Networking>`__.
 
 You should observe the following line in the OpenOCD output:
 

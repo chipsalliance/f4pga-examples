@@ -85,27 +85,17 @@ html_favicon = str(Path(html_static_path[0]) / 'favicon.svg')
 
 # -- Collect READMEs from examples -----------------------------------------------------------------
 
-from collect_readmes import full_name_lut, families, fill_context
+from collect_readmes import families, fill_context
 
 jinja_contexts = {}
-top_dir = os_path.join(os_path.dirname(__file__), '..')
+top_dir = Path(__file__).resolve().parent.parent
 for family in families:
-    examples = os_scandir(os_path.join(top_dir, family))
+    examples = os_scandir(str(top_dir / family))
     for example in examples:
-        if example.is_dir():
-
-            # get README
-            path = os_path.join(top_dir, family, example, 'README.rst')
-
-            # skip if file does not exist
-            if not os_path.isfile(path):
-                continue
-
-            with open(path) as f:
-                text = f.read()
-
-            key = '_'.join((family, example.name))
-            jinja_contexts[key] = {'blocks': fill_context(text)}
+        path = top_dir / family / example / 'README.rst'
+        if example.is_dir() and path.is_file():
+            with path.open('r') as frptr:
+                jinja_contexts['_'.join((family, example.name))] = {'blocks': fill_context(frptr.read())}
 
 # -- Sphinx.Ext.InterSphinx ------------------------------------------------------------------------
 

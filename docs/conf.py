@@ -50,7 +50,7 @@ extensions = [
     'sphinx.ext.extlinks',
     'sphinx.ext.intersphinx',
     'sphinx_tabs.tabs',
-    'sphinxcontrib.jinja',
+    'sphinx_jinja',
 ]
 
 # Add any paths that contain templates here, relative to this directory.

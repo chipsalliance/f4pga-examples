@@ -30,7 +30,7 @@ module top (
   PS7 PS7 (
       .EMIOGPIOO (emio_gpio_o),
       .EMIOGPIOTN(emio_gpio_t),
-      .EMIOGPIOI (emio_gpio_i),
+      .EMIOGPIOI (emio_gpio_i)
   );
 
 

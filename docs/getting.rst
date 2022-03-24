@@ -126,11 +126,12 @@ Download architecture definitions:
          :name: download-arch-def-xc7
 
          mkdir -p $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/535/20220128-000432/symbiflow-arch-defs-install-5fa5e715.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/535/20220128-000432/symbiflow-arch-defs-xc7a50t_test-5fa5e715.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/535/20220128-000432/symbiflow-arch-defs-xc7a100t_test-5fa5e715.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/535/20220128-000432/symbiflow-arch-defs-xc7a200t_test-5fa5e715.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/535/20220128-000432/symbiflow-arch-defs-xc7z010_test-5fa5e715.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/554/20220207-114924/symbiflow-arch-defs-install-b483f254.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/554/20220207-114924/symbiflow-arch-defs-xc7a50t_test-b483f254.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/554/20220207-114924/symbiflow-arch-defs-xc7a100t_test-b483f254.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/554/20220207-114924/symbiflow-arch-defs-xc7a200t_test-b483f254.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/554/20220207-114924/symbiflow-arch-defs-xc7z010_test-b483f254.tar.xz | tar -xJC $INSTALL_DIR/xc7/install
+
 
    .. group-tab:: EOS-S3
 

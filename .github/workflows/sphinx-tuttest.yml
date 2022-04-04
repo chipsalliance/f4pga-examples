@@ -78,12 +78,26 @@ jobs:
             **/*.bit
             **/plot_*.svg
 
+  Matrix-Surelog:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.generate.outputs.matrix }}
+
+    steps:
+
+      - name: Setup repository
+        uses: actions/checkout@v2
+
+      - name: Generate examples matrix
+        id: generate
+        run: ./.github/scripts/generate_job_matrix.py '${{ github.repository }}' Surelog
+
   Test-Surelog:
-    needs: Matrix
+    needs: Matrix-Surelog
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.Matrix.outputs.matrix) }}
+        include: ${{ fromJson(needs.Matrix-Surelog.outputs.matrix) }}
     runs-on: ${{ matrix.runs-on }}
     name: Surelog frontend - ${{ matrix.fpga-fam }} | ${{ matrix.os }} ${{ matrix.os-version }} | ${{ matrix.example }}
 

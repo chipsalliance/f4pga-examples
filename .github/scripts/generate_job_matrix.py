@@ -19,6 +19,7 @@
 from sys import argv as sys_argv
 
 isFork = len(sys_argv)>1 and sys_argv[1] != 'chipsalliance/f4pga-examples'
+usesSurelog = len(sys_argv)>2 and sys_argv[2] == 'Surelog'
 
 runs_on = (
     'ubuntu-latest'
@@ -27,12 +28,7 @@ runs_on = (
 )
 
 examples = [
-    "picosoc",
-    "litex",
-    "litex_linux",
-    "button_controller",
     "pulse_width_led",
-    "timer",
     "hello-a",
     "hello-b",
     "hello-c",
@@ -43,9 +39,19 @@ examples = [
     "hello-h",
     "hello-i",
     "hello-j",
-    "hello-k",
-    "hello-l"
 ]
+
+# Skip tests that are currently unsupported
+if not usesSurelog:
+    examples = [
+        "litex",
+        "picosoc",
+        "litex_linux",
+        "button_controller",
+        "timer",
+        "hello-k",
+        "hello-l"
+    ] + examples
 
 jobs = []
 
@@ -61,8 +67,14 @@ osvers = [
 if not isFork:
     examples = [
         "counter",
-        "litex_sata",
     ] + examples
+
+    # Skip tests that are currently unsupported
+    if not usesSurelog:
+        examples = [
+            "litex_sata",
+        ] + examples
+
     osvers += [
         ("ubuntu", "xenial"),
         ("ubuntu", "bionic"),

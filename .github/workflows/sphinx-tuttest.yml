@@ -73,7 +73,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: symbiflow-examples-bitstreams
+          name: f4pga-examples-bitstreams
           path: |
             **/*.bit
             **/plot_*.svg
@@ -140,7 +140,7 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: f4pga-examples-bitstreams
+          name: f4pga-examples-bitstreams-systemverilog-plugin
           path: |
             **/*.bit
             **/plot_*.svg

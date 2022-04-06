@@ -17,7 +17,7 @@ jobs:
     steps:
 
       - name: Setup repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Generate examples matrix
         id: generate
@@ -44,7 +44,7 @@ jobs:
     steps:
 
       - name: Setup repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -86,7 +86,7 @@ jobs:
     steps:
 
       - name: Setup repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Generate examples matrix
         id: generate
@@ -123,7 +123,7 @@ jobs:
         run: dnf install -y git wget
 
       - name: Setup repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 

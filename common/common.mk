@@ -13,6 +13,10 @@ else ifeq ($(TARGET),arty_100)
   DEVICE := xc7a100t_test
   BITSTREAM_DEVICE := artix7
   PARTNAME := xc7a100tcsg324-1
+else ifeq ($(TARGET),cmod_a7_35)
+  DEVICE := xc7a50t_test
+  BITSTREAM_DEVICE := artix7
+  PARTNAME := xc7a35tcpg236-1
 else ifeq ($(TARGET),nexys4ddr)
   DEVICE := xc7a100t_test
   BITSTREAM_DEVICE := artix7

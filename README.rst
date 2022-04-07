@@ -1,12 +1,14 @@
 F4PGA examples
 ==============
 
-.. image:: https://github.com/chipsalliance/f4pga-examples/workflows/doc-test/badge.svg?branch=master
+.. |SHIELD:GHA:doc-test| image:: https://github.com/chipsalliance/f4pga-examples/workflows/doc-test/badge.svg?branch=master
    :target: https://github.com/chipsalliance/f4pga-examples/actions
 
-.. image:: https://readthedocs.org/projects/f4pga-examples/badge/?version=latest
+.. |SHIELD:RTD| image:: https://readthedocs.org/projects/f4pga-examples/badge/?version=latest
    :target: https://f4pga-examples.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
+
+.. centered:: |SHIELD:GHA:doc-test| |SHIELD:RTD|
 
 This repository provides example FPGA designs that can be built using the F4PGA open source toolchain.
 These examples target the Xilinx 7-Series and the QuickLogic EOS S3 devices.

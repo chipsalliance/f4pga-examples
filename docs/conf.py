@@ -61,6 +61,12 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+rst_prolog = """
+.. IMPORTANT::
+  SymbiFlow is now F4PGA. See `f4pga.org <https://f4pga.org/>`__, `f4pga.readthedocs.io <https://f4pga.readthedocs.io>`__
+  and `f4pga-examples.readthedocs.io <https://f4pga-examples.readthedocs.io>`__.
+"""
+
 # -- Options for HTML output ----------------------------------------------------------------------
 
 html_show_sourcelink = True

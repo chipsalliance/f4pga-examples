@@ -68,7 +68,7 @@ jobs:
       - name: Build examples
         run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: f4pga-examples-bitstreams
           path: |
@@ -135,7 +135,7 @@ jobs:
       - name: Build examples
         run: bash .github/scripts/build-examples.sh ${{matrix.fpga-fam}} ${{matrix.example}}
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: f4pga-examples-bitstreams-systemverilog-plugin
           path: |

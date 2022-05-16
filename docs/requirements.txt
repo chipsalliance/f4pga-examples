@@ -1,5 +1,5 @@
 sphinx
 docutils
-git+https://github.com/SymbiFlow/sphinx_symbiflow_theme.git@chips#egg=sphinx-symbiflow-theme
+git+https://github.com/f4pga/sphinx_f4pga_theme.git@f4pga#egg=sphinx-f4pga-theme
 sphinx-tabs
 sphinx-jinja

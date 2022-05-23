@@ -7,7 +7,7 @@ Running Project F designs in F4PGA
    As such, all of the designs in project F that require a display (all designs in FPGA graphics) will fail when run
    through the toolchain. Only the designs in :gh:`Hello Arty <projf/projf-explore/tree/master/hello/hello-arty>` are
    currently officially supported.
-   To track the progress of the MMCME2_BASE see :ghissue:`153` and issue :gh:`chipsalliance/f4pga-arch-defs#2246 <chipsalliance/f4pga-arch-defs/issues/2246>`.
+   To track the progress of the MMCME2_BASE see :ghissue:`153` and issue :gh:`SymbiFlow/f4pga-arch-defs#2246 <SymbiFlow/f4pga-arch-defs/issues/2246>`.
    One user was able to successfully run most of the display designs in project F by replacing the MMCM in
    ``clock_gen_480p.sv`` with a PLLE2_ADV.
    For details on that see :ghissue:`180` in f4pga-examples.

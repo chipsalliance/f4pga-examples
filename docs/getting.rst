@@ -122,6 +122,10 @@ Download architecture definitions:
 
    .. group-tab:: Artix-7
 
+      .. NOTE::
+         The ``*-install-*`` package is required regardless of the target device, but you can avoid installing the
+         ``*-xc7*_test-*`` packages for architectures that you don't need.
+
       .. code-block:: bash
          :name: download-arch-def-xc7
 

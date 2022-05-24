@@ -30,25 +30,25 @@ jobs:
 
   Debian:
     needs: Matrices
-    uses: ./.github/workflows/sphinx-tuttest.yml
+    uses: ./.github/workflows/Tests.yml
     with:
       matrix: ${{ needs.Matrices.outputs.debian }}
 
   Ubuntu:
     needs: Matrices
-    uses: ./.github/workflows/sphinx-tuttest.yml
+    uses: ./.github/workflows/Tests.yml
     with:
       matrix: ${{ needs.Matrices.outputs.ubuntu }}
 
   Fedora:
     needs: Matrices
-    uses: ./.github/workflows/sphinx-tuttest.yml
+    uses: ./.github/workflows/Tests.yml
     with:
       matrix: ${{ needs.Matrices.outputs.fedora }}
 
   Centos:
     needs: Matrices
-    uses: ./.github/workflows/sphinx-tuttest.yml
+    uses: ./.github/workflows/Tests.yml
     with:
       matrix: ${{ needs.Matrices.outputs.centos }}
 

@@ -50,3 +50,9 @@ currently targeting chips from multiple vendors, e.g.:
 
    project-f
    basys3
+
+.. toctree::
+   :caption: Development
+
+   development/building-docs
+   development/running-ci-locally

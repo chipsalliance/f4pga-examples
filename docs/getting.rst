@@ -131,8 +131,8 @@ Download architecture definitions:
 
          mkdir -p $INSTALL_DIR/xc7/install
 
-         F4PGA_TIMESTAMP='20220406-185509'
-         F4PGA_HASH='3ef4188'
+         F4PGA_TIMESTAMP='20220523-230829'
+         F4PGA_HASH='934b12d'
 
          for PKG in install xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test; do
            wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $INSTALL_DIR/${FPGA_FAM}/install

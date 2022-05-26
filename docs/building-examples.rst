@@ -9,7 +9,7 @@ set it to earlier, for example:
 .. code-block:: bash
    :name: export-install-dir
 
-   export INSTALL_DIR=~/opt/f4pga
+   export F4PGA_INSTALL_DIR=~/opt/f4pga
 
 Select your FPGA family:
 
@@ -39,22 +39,22 @@ Next, prepare the environment:
       .. code-block:: bash
          :name: conda-prep-env-xc7
 
-         export PATH="$INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
-         source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
+         export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
+         source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
    .. group-tab:: EOS S3
 
       .. code-block:: bash
          :name: conda-prep-env-eos-s3
 
-         export PATH="$INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin:$PATH";
-         source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
+         export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin:$PATH";
+         source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 
 .. code-block:: bash
    :name: f4pga-env-bin
 
-   export F4PGA_ENV_BIN="$INSTALL_DIR/$FPGA_FAM/conda/bin"
+   export F4PGA_ENV_BIN="$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/bin"
 
 
 .. tabs::
@@ -64,14 +64,14 @@ Next, prepare the environment:
       .. code-block:: bash
          :name: f4pga-env-share-xc7
 
-         export F4PGA_ENV_SHARE="$INSTALL_DIR/$FPGA_FAM/install/share/symbiflow"
+         export F4PGA_ENV_SHARE="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/share/symbiflow"
 
    .. group-tab:: EOS S3
 
       .. code-block:: bash
          :name: f4pga-env-share-ql
 
-         export F4PGA_ENV_SHARE="$INSTALL_DIR/$FPGA_FAM/share"
+         export F4PGA_ENV_SHARE="$F4PGA_INSTALL_DIR/$FPGA_FAM/share"
 
 
 Finally, enter your working Conda environment:

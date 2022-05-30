@@ -3,7 +3,7 @@ current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
 TOP:=top
 VERILOG:=btn_counter.v
 DEVICE := ql-eos-s3
-PARTNAME := pd64
+PARTNAME := PD64
 PCF:=chandalar.pcf
 
 all:

@@ -76,9 +76,12 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: f4pga-examples-bitstreams
-          path: |
-            **/*.bit
-            **/plot_*.svg
+          path: '**/*.bit'
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: f4pga-examples-plots
+          path: '**/plot_*.svg'
 
 
   Test-Surelog:
@@ -130,6 +133,9 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: f4pga-examples-bitstreams-systemverilog-plugin
-          path: |
-            **/*.bit
-            **/plot_*.svg
+          path: '**/*.bit'
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: f4pga-examples-plots-systemverilog-plugin
+          path: '**/plot_*.svg'

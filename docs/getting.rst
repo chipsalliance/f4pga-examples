@@ -84,7 +84,7 @@ and so you will need to add some ``sudo`` commands to the instructions below.
 .. code-block:: bash
    :name: conda-install-dir
 
-   export INSTALL_DIR=~/opt/f4pga
+   export F4PGA_INSTALL_DIR=~/opt/f4pga
 
 Setup and download assets
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,8 +112,8 @@ Next, setup Conda and your system's environment:
 .. code-block:: bash
    :name: conda-setup
 
-   bash conda_installer.sh -u -b -p $INSTALL_DIR/$FPGA_FAM/conda;
-   source "$INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
+   bash conda_installer.sh -u -b -p $F4PGA_INSTALL_DIR/$FPGA_FAM/conda;
+   source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
    conda env create -f $FPGA_FAM/environment.yml
 
 Download architecture definitions:
@@ -129,13 +129,13 @@ Download architecture definitions:
       .. code-block:: bash
          :name: download-arch-def-xc7
 
-         mkdir -p $INSTALL_DIR/xc7/install
+         mkdir -p $F4PGA_INSTALL_DIR/xc7/install
 
          F4PGA_TIMESTAMP='20220523-230829'
          F4PGA_HASH='934b12d'
 
          for PKG in install xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test; do
-           wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $INSTALL_DIR/${FPGA_FAM}/install
+           wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
          done
 
    .. group-tab:: EOS-S3
@@ -143,7 +143,7 @@ Download architecture definitions:
       .. code-block:: bash
          :name: download-arch-def-eos-s3
 
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-d6d05185.tar.gz | tar -xzC $INSTALL_DIR/$FPGA_FAM/
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-d6d05185.tar.gz | tar -xzC $F4PGA_INSTALL_DIR/$FPGA_FAM/
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 

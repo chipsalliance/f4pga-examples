@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.generate.outputs.matrix }}
+      surelog-matrix: ${{ steps.generate-surelog.outputs.matrix }}
 
     steps:
 
@@ -19,6 +20,10 @@ jobs:
       - name: Generate examples matrix
         id: generate
         run: ./.github/scripts/generate_job_matrix.py '${{ github.repository }}'
+
+      - name: Generate examples matrix
+        id: generate-surelog
+        run: ./.github/scripts/generate_job_matrix.py '${{ github.repository }}' Surelog
 
 
   Test:
@@ -71,30 +76,20 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: f4pga-examples-bitstreams
-          path: |
-            **/*.bit
-            **/plot_*.svg
+          path: '**/*.bit'
 
-  Matrix-Surelog:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.generate.outputs.matrix }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: f4pga-examples-plots
+          path: '**/plot_*.svg'
 
-    steps:
-
-      - name: Setup repository
-        uses: actions/checkout@v3
-
-      - name: Generate examples matrix
-        id: generate
-        run: ./.github/scripts/generate_job_matrix.py '${{ github.repository }}' Surelog
 
   Test-Surelog:
-    needs: Matrix-Surelog
+    needs: Matrix
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.Matrix-Surelog.outputs.matrix) }}
+        include: ${{ fromJson(needs.Matrix.outputs.surelog-matrix) }}
     runs-on: ${{ matrix.runs-on }}
     name: Surelog frontend - ${{ matrix.fpga-fam }} | ${{ matrix.os }} ${{ matrix.os-version }} | ${{ matrix.example }}
 
@@ -138,6 +133,9 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: f4pga-examples-bitstreams-systemverilog-plugin
-          path: |
-            **/*.bit
-            **/plot_*.svg
+          path: '**/*.bit'
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: f4pga-examples-plots-systemverilog-plugin
+          path: '**/plot_*.svg'

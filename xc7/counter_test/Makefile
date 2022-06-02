@@ -6,6 +6,9 @@ ifeq ($(TARGET),arty_35)
   XDC := ${current_dir}/arty.xdc
 else ifeq ($(TARGET),arty_100)
   XDC := ${current_dir}/arty.xdc
+else ifeq ($(TARGET),genesys2)
+  XDC := ${current_dir}/genesys2.xdc
+  SOURCES := ${current_dir}/counter_genesys2.v
 else ifeq ($(TARGET),nexys4ddr)
   XDC := ${current_dir}/nexys4ddr.xdc
 else ifeq ($(TARGET),zybo)

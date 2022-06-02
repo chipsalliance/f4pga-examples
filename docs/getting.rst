@@ -93,7 +93,7 @@ Select your target FPGA family:
 
 .. tabs::
 
-   .. group-tab:: Artix-7
+   .. group-tab:: Artix-7, Kintex-7
 
       .. code-block:: bash
          :name: fpga-fam-xc7
@@ -120,7 +120,7 @@ Download architecture definitions:
 
 .. tabs::
 
-   .. group-tab:: Artix-7
+   .. group-tab:: Artix-7, Kintex-7
 
       .. NOTE::
          The ``*-install-*`` package is required regardless of the target device, but you can avoid installing the
@@ -151,5 +151,5 @@ If the above commands exited without errors, you have successfully installed and
   With the toolchain installed, you are ready to build the example designs!
   Examples are provided in separated directories:
 
-  * Subdir :ghsrc:`xc7` for the Artix-7 devices
+  * Subdir :ghsrc:`xc7` for the Artix-7 and Kintex-7 devices
   * Subdir :ghsrc:`eos-s3` for the EOS S3 devices

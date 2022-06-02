@@ -5,7 +5,7 @@ This guide explains how to get started with F4PGA and build example designs from
 GitHub repository.
 It currently focuses on the following FPGA families:
 
-- Artix-7 from Xilinx,
+- Artix-7 and Kintex-7 from Xilinx,
 - EOS S3 from QuickLogic.
 
 Follow this guide to:

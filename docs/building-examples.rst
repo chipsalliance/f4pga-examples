@@ -15,7 +15,7 @@ Select your FPGA family:
 
 .. tabs::
 
-   .. group-tab:: Artix-7
+   .. group-tab:: Artix-7, Kintex-7
 
       .. code-block:: bash
          :name: fpga-fam-xc7
@@ -33,7 +33,7 @@ Next, prepare the environment:
 
 .. tabs::
 
-   .. group-tab:: Artix-7
+   .. group-tab:: Artix-7, Kintex-7
 
       .. code-block:: bash
          :name: conda-prep-env-xc7
@@ -102,6 +102,19 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 
 .. jinja:: xc7_pulse_width_led
    :file: templates/example.jinja
+
+
+
+Additional Examples
+-------------------
+
+In addition to the designs we have gone over here, you can also find several other exciting designs
+for the basys3 board in the additional_examples directory:
+
+.. code-block:: bash
+   :name: additional_examples
+
+   cd additional_examples
 
 
 QuickLogic EOS S3

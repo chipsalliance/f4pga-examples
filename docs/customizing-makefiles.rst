@@ -121,6 +121,8 @@ is from lines 9-39 of :gh:`the Makefile from counter test <chipsalliance/f4pga-e
       XDC := ${current_dir}/arty.xdc
    else ifeq ($(TARGET),arty_100)
       XDC := ${current_dir}/arty.xdc
+   else ifeq ($(TARGET),genesys2)
+      XDC := ${current_dir}/genesys2.xdc
    else ifeq ($(TARGET),nexys4ddr)
       XDC := ${current_dir}/nexys4ddr.xdc
    else ifeq ($(TARGET),zybo)

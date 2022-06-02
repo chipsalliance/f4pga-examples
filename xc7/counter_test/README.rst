@@ -15,6 +15,10 @@ counter example, depending on your hardware, run:
 
    TARGET="arty_100" make -C counter_test
 
+.. code-block:: bash
+   :name: example-counter-genesys2-group
+
+   TARGET="genesys2" make -C counter_test
 
 .. code-block:: bash
    :name: example-counter-nexys4ddr-group
@@ -45,7 +49,7 @@ At completion, the bitstreams are located in the build directory:
 
    counter_test/build/<board>
 
-Now, for **Arty and Basys3**, you can upload the design with:
+Now, for **Arty, Basys3, and Genesys2**, you can upload the design with:
 
 .. code-block:: bash
 

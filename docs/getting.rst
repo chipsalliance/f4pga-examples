@@ -143,7 +143,7 @@ Download architecture definitions:
       .. code-block:: bash
          :name: download-arch-def-eos-s3
 
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-d6d05185.tar.gz | tar -xzC $F4PGA_INSTALL_DIR/$FPGA_FAM/
+         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-qlf-fc5d8da.tar.gz | tar -xzC $F4PGA_INSTALL_DIR/$FPGA_FAM/
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 

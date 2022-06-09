@@ -2,9 +2,7 @@ current_dir := ${CURDIR}
 TOP := top
 SOURCES := ${current_dir}/counter.v
 
-ifeq ($(TARGET),arty_35)
-  XDC := ${current_dir}/arty.xdc
-else ifeq ($(TARGET),arty_100)
+ifeq ($(TARGET),arty_100)
   XDC := ${current_dir}/arty.xdc
 else ifeq ($(TARGET),nexys4ddr)
   XDC := ${current_dir}/nexys4ddr.xdc
@@ -17,5 +15,9 @@ else
   XDC := ${current_dir}/basys3.xdc
 endif
 
-include ${current_dir}/../../common/common.mk
+ifeq ($(TARGET),arty_35)
+build:
+	f4pga build --flow ./flow.json
+endif
 
+include ${current_dir}/../../common/common.mk

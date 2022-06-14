@@ -17,9 +17,6 @@
             "xdc": [
                 "arty.xdc"
             ]
-        },
-        "values": {
-            "part": "xc7a35tcpg236-1"
         }
     }
 }

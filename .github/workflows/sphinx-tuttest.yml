@@ -3,7 +3,7 @@ name: doc-test
 on:
   workflow_call:
     inputs:
-      distribution:
+      matrix:
         description: 'Distribution to execute tests on'
         required: true
         type: string
@@ -11,31 +11,11 @@ on:
 jobs:
 
 
-  Matrix:
-    runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.generate.outputs.matrix }}
-      surelog-matrix: ${{ steps.generate-surelog.outputs.matrix }}
-
-    steps:
-
-      - name: Setup repository
-        uses: actions/checkout@v3
-
-      - name: Generate examples matrix
-        id: generate
-        run: >-
-          F4PGA_EXAMPLES_DISTRIBUTION='${{ inputs.distribution }}'
-          ./.github/scripts/generate_job_matrix.py
-          '${{ github.repository }}'
-
-
   Test:
-    needs: Matrix
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.Matrix.outputs.matrix) }}
+        include: ${{ fromJson(inputs.matrix) }}
     runs-on: ${{ matrix.runs-on }}
     name: ${{ matrix.os-version }} | ${{ matrix.name }} | ${{ matrix.fpga-fam }} | ${{ matrix.example }}
 

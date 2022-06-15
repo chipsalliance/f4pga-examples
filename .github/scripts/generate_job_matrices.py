@@ -117,9 +117,7 @@ def get_jobs(
 
     return jobs
 
-distribution = environ['F4PGA_EXAMPLES_DISTRIBUTION']
-jobs = get_jobs(distribution, False) + get_jobs(distribution, True)
-
-print(f'::set-output name=matrix::{jobs!s}')
-
-print(str(jobs))
+for distribution in ['debian', 'ubuntu', 'fedora', 'centos']:
+    jobs = get_jobs(distribution, False) + get_jobs(distribution, True)
+    print(f'::set-output name={distribution}::{jobs!s}')
+    print(f"{distribution}: {jobs!s}")

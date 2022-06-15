@@ -14,23 +14,43 @@ on:
 jobs:
 
 
-  Debian:
+  Matrices:
     if: ${{ !(github.event_name != 'pull_request' && github.actor == 'dependabot[bot]') }}
+    runs-on: ubuntu-latest
+    outputs:
+      debian: ${{ steps.generate.outputs.debian }}
+      ubuntu: ${{ steps.generate.outputs.ubuntu }}
+      fedora: ${{ steps.generate.outputs.fedora }}
+      centos: ${{ steps.generate.outputs.centos }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: generate
+        run: ./.github/scripts/generate_job_matrices.py '${{ github.repository }}'
+
+
+  Debian:
+    needs: Matrices
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
-      distribution: debian
+      matrix: ${{ needs.Matrices.outputs.debian }}
 
   Ubuntu:
-    if: ${{ !(github.event_name != 'pull_request' && github.actor == 'dependabot[bot]') }}
+    needs: Matrices
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
-      distribution: ubuntu
+      matrix: ${{ needs.Matrices.outputs.ubuntu }}
 
   Fedora:
-    if: ${{ !(github.event_name != 'pull_request' && github.actor == 'dependabot[bot]') }}
+    needs: Matrices
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
-      distribution: fedora
+      matrix: ${{ needs.Matrices.outputs.fedora }}
+
+  Centos:
+    needs: Matrices
+    uses: ./.github/workflows/sphinx-tuttest.yml
+    with:
+      matrix: ${{ needs.Matrices.outputs.centos }}
 
 
   Automerge:
@@ -38,6 +58,7 @@ jobs:
       - Debian
       - Ubuntu
       - Fedora
+      - Centos
     if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     name: Automerge dependabot PRs

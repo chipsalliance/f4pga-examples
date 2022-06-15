@@ -1,6 +1,5 @@
 name: eos-s3
 channels:
-  - conda-forge
   - litex-hub
 dependencies:
   - litex-hub::quicklogic-yosys=0.8.0_105_gd282be04=20210625_074838

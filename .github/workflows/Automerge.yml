@@ -14,13 +14,30 @@ on:
 jobs:
 
 
-  Pipeline:
+  Debian:
     if: ${{ !(github.event_name != 'pull_request' && github.actor == 'dependabot[bot]') }}
     uses: ./.github/workflows/sphinx-tuttest.yml
+    with:
+      distribution: debian
+
+  Ubuntu:
+    if: ${{ !(github.event_name != 'pull_request' && github.actor == 'dependabot[bot]') }}
+    uses: ./.github/workflows/sphinx-tuttest.yml
+    with:
+      distribution: ubuntu
+
+  Fedora:
+    if: ${{ !(github.event_name != 'pull_request' && github.actor == 'dependabot[bot]') }}
+    uses: ./.github/workflows/sphinx-tuttest.yml
+    with:
+      distribution: fedora
 
 
   Automerge:
-    needs: Pipeline
+    needs:
+      - Debian
+      - Ubuntu
+      - Fedora
     if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     name: Automerge dependabot PRs

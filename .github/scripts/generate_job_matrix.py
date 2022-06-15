@@ -16,10 +16,10 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
+from os import environ
 from sys import argv as sys_argv
 
 isFork = len(sys_argv)>1 and sys_argv[1] != 'chipsalliance/f4pga-examples'
-usesSurelog = len(sys_argv)>2 and sys_argv[2] == 'Surelog'
 
 runs_on = (
     'ubuntu-latest'
@@ -27,76 +27,98 @@ runs_on = (
     ['self-hosted', 'Linux', 'X64']
 )
 
-examples = [
-    "pulse_width_led",
-    "hello-a",
-    "hello-b",
-    "hello-c",
-    "hello-d",
-    "hello-e",
-    "hello-f",
-    "hello-g",
-    "hello-h",
-    "hello-i",
-    "hello-j",
-]
 
-# Skip tests that are currently unsupported
-if not usesSurelog:
+def get_jobs(
+    distribution: str = 'debian',
+    usesSurelog: bool = False
+):
     examples = [
-        "litex",
-        "picosoc",
-        "litex_linux",
-        "button_controller",
-        "timer",
-        "hello-k",
-        "hello-l"
-    ] + examples
-
-jobs = []
-
-osvers = [
-    ("ubuntu", "focal"),
-    ("debian", "buster"),
-    ("debian", "bullseye"),
-    ("debian", "sid"),
-    ("fedora", "35"),
-    ("fedora", "36"),
-]
-
-if not isFork:
-    examples = [
-        "counter",
-    ] + examples
+        "pulse_width_led",
+        "hello-a",
+        "hello-b",
+        "hello-c",
+        "hello-d",
+        "hello-e",
+        "hello-f",
+        "hello-g",
+        "hello-h",
+        "hello-i",
+        "hello-j",
+    ]
 
     # Skip tests that are currently unsupported
     if not usesSurelog:
-        examples = [
-            "litex_sata",
-        ] + examples
+        examples.extend([
+            "litex",
+            "picosoc",
+            "litex_linux",
+            "button_controller",
+            "timer",
+            "hello-k",
+            "hello-l"
+        ])
 
-    osvers += [
-        ("ubuntu", "xenial"),
-        ("ubuntu", "bionic"),
-        ("centos", "7"),
-    ]
+    jobs = []
+    osvers = []
 
-for osver in osvers:
-    jobs += [{
+    if distribution == "debian":
+        osvers.extend([
+            ("debian", "buster"),
+            ("debian", "bullseye"),
+            ("debian", "sid")
+        ])
+    elif distribution == "ubuntu":
+        osvers.extend([
+            ("ubuntu", "focal")
+        ])
+    elif distribution == "fedora":
+        osvers.extend([
+            ("fedora", "35"),
+            ("fedora", "36")
+        ])
+
+    if not isFork:
+        examples.extend(["counter"])
+
+        # Skip tests that are currently unsupported
+        if not usesSurelog:
+            examples.extend(["litex_sata"])
+
+        if distribution == "ubuntu":
+            osvers.extend([
+                ("ubuntu", "xenial"),
+                ("ubuntu", "bionic"),
+            ])
+        elif distribution == "centos":
+            osvers.extend([
+                ("centos", "7")
+            ])
+
+    for osver in osvers:
+        jobs.extend([{
+            'name': "Surelog" if usesSurelog else "Default",
+            'runs-on': runs_on,
+            'fpga-fam': "xc7",
+            'os': osver[0],
+            'os-version': osver[1],
+            'example': example,
+            'surelog': "-parse -DSYNTHESIS" if usesSurelog else ""
+        } for example in examples])
+
+    jobs.extend([{
+        'name': "Surelog" if usesSurelog else "Default",
         'runs-on': runs_on,
-        'fpga-fam': "xc7",
+        'fpga-fam': "eos-s3",
         'os': osver[0],
         'os-version': osver[1],
-        'example': example
-    } for example in examples]
+        'example': "counter",
+        'surelog': "-parse -DSYNTHESIS" if usesSurelog else ""
+    } for osver in osvers])
 
-jobs += [{
-    'runs-on': runs_on,
-    'fpga-fam': "eos-s3",
-    'os': osver[0],
-    'os-version': osver[1],
-    'example': "counter"
-} for osver in osvers]
+    return jobs
+
+distribution = environ['F4PGA_EXAMPLES_DISTRIBUTION']
+jobs = get_jobs(distribution, False) + get_jobs(distribution, True)
 
 print(f'::set-output name=matrix::{jobs!s}')
 

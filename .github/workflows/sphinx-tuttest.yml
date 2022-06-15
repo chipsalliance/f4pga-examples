@@ -63,7 +63,7 @@ jobs:
           wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest
           chmod a+rx /usr/bin/tuttest
 
-      - name: Install SymbiFlow toolchain
+      - name: Install F4PGA toolchain
         run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}}
 
       - name: Build examples

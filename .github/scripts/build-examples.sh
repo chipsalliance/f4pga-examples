@@ -64,68 +64,42 @@ if [ "$fpga_family" = "xc7" ]; then
     for example in $examples; do
         case $example in
             "counter")
-                snippets="${snippets} xc7/counter_test/README.rst:example-counter-*-group"
+                tuttest_exec ${snippets} xc7/counter_test/README.rst:example-counter-*-group
                 ;;
             "picosoc")
-                snippets="${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group"
+                tuttest_exec ${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group
                 ;;
             "litex")
-                snippets="${snippets} xc7/litex_demo/README.rst:example-litex-dir,example-litex-req,example-litex_picorv32-*-group,example-litex_vexriscv-*-group"
+                tuttest_exec ${snippets} xc7/litex_demo/README.rst:example-litex-dir,example-litex-req,example-litex_picorv32-*-group,example-litex_vexriscv-*-group
                 ;;
             "litex_linux")
-                snippets="${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group"
+                tuttest_exec ${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group
                 ;;
             "litex_sata")
-                snippets="${snippets} xc7/litex_sata_demo/README.rst:example-litex-sata-*-group"
+                tuttest_exec ${snippets} xc7/litex_sata_demo/README.rst:example-litex-sata-*-group
                 ;;
 
             #Additional examples:
             "button_controller")
-                snippets="${additionalDesigns} xc7/additional_examples/button_controller/README.rst:additional-examples,example-debouncer-basys3"
+                tuttest_exec ${additionalDesigns} xc7/additional_examples/button_controller/README.rst:additional-examples,example-debouncer-basys3
                 ;;
             "pulse_width_led")
-                snippets="${snippets} xc7/pulse_width_led/README.rst:example-pulse-arty-35t"
+                tuttest_exec ${snippets} xc7/pulse_width_led/README.rst:example-pulse-arty-35t
                 ;;
             "timer")
-                snippets="${snippets} xc7/timer/README.rst:example-watch-basys3"
+                tuttest_exec ${snippets} xc7/timer/README.rst:example-watch-basys3
                 ;;
 
             # Project F examples
-            "hello-a")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/A/README.rst:hello-arty-a"
-                ;;
-            "hello-b")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/B/README.rst:hello-arty-b"
-                ;;
-            "hello-c")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/C/README.rst:hello-arty-c"
-                ;;
-            "hello-d")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/D/README.rst:hello-arty-d"
-                ;;
-            "hello-e")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/E/README.rst:hello-arty-e"
-                ;;
-            "hello-f")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/F/README.rst:hello-arty-f"
-                ;;
-            "hello-g")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/G/README.rst:hello-arty-g"
-                ;;
-            "hello-h")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/H/README.rst:hello-arty-h"
-                ;;
-            "hello-i")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/I/README.rst:hello-arty-i"
-                ;;
-            "hello-j")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/J/README.rst:hello-arty-j"
+            "hello")
+                for example in A B C D E F G H I J; do
+                  tuttest_exec ${activate_env} projf-makefiles/hello/hello-arty/${example}/README.rst:hello-arty-${example,,}
+                done
                 ;;
             "hello-k")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/K/README.rst:hello-arty-k"
-                ;;
-            "hello-l")
-                snippets="${activate_env} projf-makefiles/hello/hello-arty/L/README.rst:hello-arty-l"
+                for example in K L; do
+                  tuttest_exec ${activate_env} projf-makefiles/hello/hello-arty/${example}/README.rst:hello-arty-${example,,}
+                done
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2
@@ -138,7 +112,7 @@ elif [ "$fpga_family" = "eos-s3" ]; then
     for example in $examples; do
         case $example in
             "counter")
-                snippets="${snippets} eos-s3/btn_counter/README.rst:eos-s3-counter"
+                tuttest_exec ${snippets} eos-s3/btn_counter/README.rst:eos-s3-counter
                 ;;
              *)
                 echo "ERROR: Unknown example name: $example" >&2
@@ -150,6 +124,3 @@ else
   echo "ERROR: Unknown fpga_family: $fpga_family" >&2
   exit 1
 fi
-
-# call tuttest
-tuttest_exec ${snippets}

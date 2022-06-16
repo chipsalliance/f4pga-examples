@@ -46,81 +46,52 @@ fpga_family=$1
 shift
 
 examples="$@"
-if [ "$fpga_family" == "xc7" -a -z "$examples" ]; then
-    examples="counter picosoc litex litex_linux litex_sata button_controller timer pulse_width_led hello-a"
-elif [ "$fpga_family" == "eos-s3" -a -z "$examples" ]; then
-    examples="counter"
+if [ -z "$examples" ]; then
+case "$fpga_family" in
+  xc7)    examples="counter picosoc litex litex_linux litex_sata button_controller timer pulse_width_led hello-a" ;;
+  eos-s3) examples="counter" ;;
+esac
 fi
-
 
 # activate conda and enter example dir
 activate_env="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,f4pga-env-bin,f4pga-env-share-$fpga_family,conda-act-env"
 snippets="${activate_env},enter-dir-$fpga_family"
-additionalDesigns="${activate_env},enter-dir-$fpga_family"
 
+case "$fpga_family" in
+  xc7) for example in $examples; do
+    case $example in
+      "counter")     tuttest_exec ${snippets} xc7/counter_test/README.rst:example-counter-*-group ;;
+      "picosoc")     tuttest_exec ${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group ;;
+      "litex")       tuttest_exec ${snippets} xc7/litex_demo/README.rst:example-litex-dir,example-litex-req,example-litex_picorv32-*-group,example-litex_vexriscv-*-group ;;
+      "litex_linux") tuttest_exec ${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group ;;
+      "litex_sata")  tuttest_exec ${snippets} xc7/litex_sata_demo/README.rst:example-litex-sata-*-group ;;
 
-# Xilinx 7-Series examples
-if [ "$fpga_family" = "xc7" ]; then
-    for example in $examples; do
-        case $example in
-            "counter")
-                tuttest_exec ${snippets} xc7/counter_test/README.rst:example-counter-*-group
-                ;;
-            "picosoc")
-                tuttest_exec ${snippets} xc7/picosoc_demo/README.rst:example-picosoc-*-group
-                ;;
-            "litex")
-                tuttest_exec ${snippets} xc7/litex_demo/README.rst:example-litex-dir,example-litex-req,example-litex_picorv32-*-group,example-litex_vexriscv-*-group
-                ;;
-            "litex_linux")
-                tuttest_exec ${snippets} xc7/linux_litex_demo/README.rst:example-litex-*-group
-                ;;
-            "litex_sata")
-                tuttest_exec ${snippets} xc7/litex_sata_demo/README.rst:example-litex-sata-*-group
-                ;;
+      #Additional examples:
+      "button_controller") tuttest_exec ${activate_env},enter-dir-$fpga_family xc7/additional_examples/button_controller/README.rst:additional-examples,example-debouncer-basys3 ;;
+      "pulse_width_led")   tuttest_exec ${snippets} xc7/pulse_width_led/README.rst:example-pulse-arty-35t ;;
+      "timer")             tuttest_exec ${snippets} xc7/timer/README.rst:example-watch-basys3 ;;
 
-            #Additional examples:
-            "button_controller")
-                tuttest_exec ${additionalDesigns} xc7/additional_examples/button_controller/README.rst:additional-examples,example-debouncer-basys3
-                ;;
-            "pulse_width_led")
-                tuttest_exec ${snippets} xc7/pulse_width_led/README.rst:example-pulse-arty-35t
-                ;;
-            "timer")
-                tuttest_exec ${snippets} xc7/timer/README.rst:example-watch-basys3
-                ;;
-
-            # Project F examples
-            "hello")
-                for example in A B C D E F G H I J; do
-                  tuttest_exec ${activate_env} projf-makefiles/hello/hello-arty/${example}/README.rst:hello-arty-${example,,}
-                done
-                ;;
-            "hello-k")
-                for example in K L; do
-                  tuttest_exec ${activate_env} projf-makefiles/hello/hello-arty/${example}/README.rst:hello-arty-${example,,}
-                done
-                ;;
-             *)
-                echo "ERROR: Unknown example name: $example" >&2
-                exit 1
-                ;;
-        esac
-    done
-# QuickLogic EOS-S3 examples
-elif [ "$fpga_family" = "eos-s3" ]; then
-    for example in $examples; do
-        case $example in
-            "counter")
-                tuttest_exec ${snippets} eos-s3/btn_counter/README.rst:eos-s3-counter
-                ;;
-             *)
-                echo "ERROR: Unknown example name: $example" >&2
-                exit 1
-                ;;
-        esac
-    done
-else
-  echo "ERROR: Unknown fpga_family: $fpga_family" >&2
-  exit 1
-fi
+      # Project F examples
+      "hello") for helloexample in A B C D E F G H I J; do
+        tuttest_exec ${activate_env} projf-makefiles/hello/hello-arty/${helloexample}/README.rst:hello-arty-${helloexample,,}
+      done ;;
+      "hello-k") for helloexample in K L; do
+        tuttest_exec ${activate_env} projf-makefiles/hello/hello-arty/${helloexample}/README.rst:hello-arty-${helloexample,,}
+      done ;;
+      *) echo "ERROR: Unknown example name: $example" >&2
+        exit 1 ;;
+    esac
+  done
+  ;;
+  eos-s3) for example in $examples; do
+    case $example in
+      "counter") tuttest_exec ${snippets} eos-s3/btn_counter/README.rst:eos-s3-counter ;;
+      *) echo "ERROR: Unknown example name: $example" >&2
+        exit 1 ;;
+    esac
+  done
+  ;;
+  *) echo "ERROR: Unknown fpga_family: $fpga_family" >&2
+    exit 1
+  ;;
+esac

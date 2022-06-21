@@ -34,16 +34,7 @@ def get_jobs(
 ):
     examples = [
         "pulse_width_led",
-        "hello-a",
-        "hello-b",
-        "hello-c",
-        "hello-d",
-        "hello-e",
-        "hello-f",
-        "hello-g",
-        "hello-h",
-        "hello-i",
-        "hello-j",
+        "hello",
     ]
 
     # Skip tests that are currently unsupported
@@ -55,7 +46,6 @@ def get_jobs(
             "button_controller",
             "timer",
             "hello-k",
-            "hello-l"
         ])
 
     jobs = []

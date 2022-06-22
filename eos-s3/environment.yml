@@ -2,9 +2,9 @@ name: eos-s3
 channels:
   - litex-hub
 dependencies:
-  - litex-hub::quicklogic-yosys=0.8.0_105_gd282be04=20210625_074838
-  - litex-hub::quicklogic-yosys-plugins=1.2.0_11_g21045a9=20210625_074838
-  - litex-hub::vtr-optimized=8.0.0_4023_ge73e88940=20210625_074838
+  - litex-hub::yosys=0.15_51_g6318db615=20220317_162926_py37
+  - litex-hub::symbiflow-yosys-plugins=1.0.0_7_832_ga2a80a1=20220317_162926
+  - litex-hub::vtr-optimized=8.0.0_5338_g829c06d8f=20220409_131122
   - make
   - lxml
   - simplejson

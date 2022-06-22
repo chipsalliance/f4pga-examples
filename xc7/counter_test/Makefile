@@ -2,7 +2,14 @@ current_dir := ${CURDIR}
 TOP := top
 SOURCES := ${current_dir}/counter.v
 
-ifeq ($(TARGET),arty_100)
+ifeq ($(TARGET),arty_35)
+ifdef F4PGA_USE_DEPRECATED
+  XDC := ${current_dir}/arty.xdc
+else
+build:
+	f4pga build --flow ./flow.json
+endif
+else ifeq ($(TARGET),arty_100)
   XDC := ${current_dir}/arty.xdc
 else ifeq ($(TARGET),nexys4ddr)
   XDC := ${current_dir}/nexys4ddr.xdc
@@ -11,13 +18,8 @@ else ifeq ($(TARGET),zybo)
   SOURCES:=${current_dir}/counter_zynq.v
 else ifeq ($(TARGET),nexys_video)
   XDC := ${current_dir}/nexys_video.xdc
-else
+else ifeq ($(TARGET),basys3)
   XDC := ${current_dir}/basys3.xdc
-endif
-
-ifeq ($(TARGET),arty_35)
-build:
-	f4pga build --flow ./flow.json
 endif
 
 include ${current_dir}/../../common/common.mk

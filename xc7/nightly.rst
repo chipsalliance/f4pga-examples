@@ -6,6 +6,9 @@ Sometimes it may be preferable to get the latest versions of the tools even befo
 Updating Yosys SystemVerilog plugin
 -----------------------------------
 
+**Warning**: the expected usage of the plugin by using the :code:`read_systemverilog` command (used by default in F4PGA flow) should work. When using the plugin by calling :code:`read_uhdm` command, take additional care to use the same Surelog and UHDM version for creating and reading the UHDM file - updating only the plugin can create a mismatch in this case.
+
+
 Make sure :code:`curl`, :code:`jq`, :code:`tar` and :code:`wget` are installed (used to automatically download newest version):
 
 .. code-block:: bash

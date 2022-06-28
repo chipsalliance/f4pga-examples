@@ -30,7 +30,7 @@ Now, you can upload the design with:
 
 .. code-block:: bash
 
-   openocd -f ${F4PGA_INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openFPGALoader -b basys3 top.bit
 
 The following is an example of the debouncer in action:
 

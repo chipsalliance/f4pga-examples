@@ -2,7 +2,7 @@ name: xc7
 channels:
   - litex-hub
 dependencies:
-  - litex-hub::openocd=0.10.0_1514_ga8edbd020=20201119_154304
+  - litex-hub::openfpgaloader==0.8.0_114_g057ce93=20220706_155948
   - litex-hub::prjxray-tools=0.1_2986_g5937733d=20220512_085338
   - litex-hub::gcc-riscv64-elf-newlib=9.2.0=20201119_154229
   - litex-hub::prjxray-db=0.0_257_g0a0adde=20220512_085338

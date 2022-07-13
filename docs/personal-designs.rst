@@ -120,24 +120,24 @@ name you used for your top level module:
 
 .. code-block:: bash
 
-   openocd -f ${F4PGA_INSTALL_DIR}/${FPGA_FAM}/conda/envs/${FPGA_FAM}/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+   openFPGALoader -b arty_a7_35t top.bit
 
 
 .. tip::
     Many of the commands needed to build a project are run multiple times with little to no
     variation. You might consider adding a few aliases or even a few bash functions to your
     .bashrc file to save yourself some typing or repeated copy/paste. For example, instead of
-    using the somewhat cumbersome command used to upload the bitstream to Xilinx 7 series FPGA
-    every time, you could just add the following lines to your .bashrc file:
+    using the command used to upload the bitstream to Xilinx 7 series FPGA every time, you
+    could just add the following lines to your .bashrc file:
 
     .. code-block:: bash
        :name: bash-functions
 
-        symbi_bit() {
+        f4pga_bit() {
         #Creates and downloads the bitstream to Xilinx 7 series FPGA:
-        openocd -f <Your install directory>/xc7/conda/envs/xc7/share/openocd/scripts/board/digilent_arty.cfg -c "init; pld load 0 top.bit; exit"
+        openFPGALoader -b $OFL_BOARD top.bit
        }
 
     Now whenever you need to download a bitstream to the Xilinx-7 series you can simply type
-    ``symbi_bit`` into the terminal and hit enter.
+    e.g. ``OFL_BOARD=basys3 f4pga_bit`` into the terminal and hit enter.
 

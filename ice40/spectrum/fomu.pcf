@@ -1,0 +1,4 @@
+set_io led[0] C5
+set_io led[1] B5
+set_io led[2] A5
+set_io clk    F4

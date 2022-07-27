@@ -1,4 +1,4 @@
-name: doc-test
+name: Tests
 
 on:
   workflow_call:
@@ -11,7 +11,18 @@ on:
 jobs:
 
 
-  Test:
+  License-check:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: Check Licenses
+        uses: SymbiFlow/actions/checks@main
+
+
+  Examples:
     strategy:
       fail-fast: false
       matrix:

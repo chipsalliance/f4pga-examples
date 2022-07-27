@@ -7,7 +7,7 @@
 -         for PKG in install xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test; do
 -           wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
 +         for PKG in toolchain xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test; do
-+           wget -qO- $(wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-gha/symbiflow-${PKG}-latest) | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
++           wget -qO- $(wget -qO- https://github.com/SymbiFlow/f4pga-arch-defs/releases/download/latest/symbiflow-${PKG}-latest) | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
           done
  
     .. group-tab:: EOS-S3

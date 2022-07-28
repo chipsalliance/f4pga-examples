@@ -7,6 +7,11 @@ on:
         description: 'Distribution to execute tests on'
         required: true
         type: string
+      latest:
+        description: 'Use latest arch-defs packages'
+        required: false
+        type: boolean
+        default: false
 
 jobs:
 
@@ -37,7 +42,7 @@ jobs:
       - name: Install utils
         run: |
           case ${{ matrix.os }} in
-            ubuntu|debian) apt -qqy update && apt -qqy install git wget locales && locale-gen $LANG ;;
+            debian|ubuntu) apt -qqy update && apt -qqy install git wget locales && locale-gen $LANG ;;
             centos) yum -y install git wget ;;
             fedora) dnf install -y git wget ;;
           esac
@@ -46,6 +51,23 @@ jobs:
         run: |
           wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest
           chmod a+rx /usr/bin/tuttest
+
+      - name: Patch package URLs
+        if: inputs.latest == true
+        run: |
+          case ${{ matrix.os }} in
+            debian|ubuntu)
+              apt update -qq
+              apt install -y patch
+            ;;
+            centos)
+              yum -y install patch
+            ;;
+            fedora)
+              dnf install -y patch
+            ;;
+          esac
+          patch -p1 -i .github/latest.patch
 
       - name: Install F4PGA toolchain
         run: bash .github/scripts/install-toolchain.sh ${{matrix.fpga-fam}} ${{matrix.os}}

@@ -46,9 +46,9 @@ Next, prepare the environment:
       .. code-block:: bash
          :name: conda-prep-env-eos-s3
 
-         export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin:$PATH";
-         export F4PGA_BIN_DIR="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin";
-         export F4PGA_SHARE_DIR="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/share/f4pga";
+         export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
+         export F4PGA_BIN_DIR="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin";
+         export F4PGA_SHARE_DIR="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/share/f4pga";
          source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 Finally, enter your working Conda environment:

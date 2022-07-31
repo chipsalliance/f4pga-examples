@@ -1,4 +1,4 @@
 python-constraint
 serial
 git+https://github.com/QuickLogic-Corp/quicklogic-fasm@aaf4c314a165b6185b0983019d8aae4d0d4db6cb
-https://github.com/chipsalliance/f4pga/archive/27eca4f35db3c4e04ce255ab319611774de9b9a1.zip#subdirectory=f4pga
+https://github.com/chipsalliance/f4pga/archive/8c411eb74e4bb23d1ec243a1515b9bfb48e2cd83.zip#subdirectory=f4pga

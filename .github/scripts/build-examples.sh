@@ -54,7 +54,7 @@ esac
 fi
 
 # activate conda and enter example dir
-activate_env="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env-$fpga_family,f4pga-env-bin,f4pga-env-share-$fpga_family,conda-act-env"
+activate_env="docs/building-examples.rst:export-install-dir,fpga-fam-$fpga_family,conda-prep-env,f4pga-env-bin,f4pga-env-share-$fpga_family,conda-act-env"
 snippets="${activate_env},enter-dir-$fpga_family"
 
 case "$fpga_family" in

@@ -107,43 +107,36 @@ Select your target FPGA family:
 
          export FPGA_FAM=eos-s3
 
-Next, setup Conda and your system's environment:
+Next, setup Conda and your system's environment, and download architecture definitions:
+
+.. NOTE::
+
+   The ``*-install-*`` package is required regardless of the target device, but you can avoid installing the
+   ``*-xc7*_test-*`` or ``ql-*`` packages for architectures that you don't need.
 
 .. code-block:: bash
-   :name: conda-setup
+   :name: env-setup
 
    bash conda_installer.sh -u -b -p $F4PGA_INSTALL_DIR/$FPGA_FAM/conda;
    source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
    conda env create -f $FPGA_FAM/environment.yml
+   mkdir -p $F4PGA_INSTALL_DIR/$FPGA_FAM/install
 
-Download architecture definitions:
+   F4PGA_TIMESTAMP='20220729-181657'
+   F4PGA_HASH='7833050'
 
-.. tabs::
+   case $FPGA_FAM in
+     xc7)
+       F4PGA_PACKAGES='install-xc7 xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test'
+     ;;
+     eos-s3)
+       F4PGA_PACKAGES='install-ql ql-eos-s3_wlcsp'
+     ;;
+   esac
 
-   .. group-tab:: Artix-7
-
-      .. NOTE::
-         The ``*-install-*`` package is required regardless of the target device, but you can avoid installing the
-         ``*-xc7*_test-*`` packages for architectures that you don't need.
-
-      .. code-block:: bash
-         :name: download-arch-def-xc7
-
-         mkdir -p $F4PGA_INSTALL_DIR/xc7/install
-
-         F4PGA_TIMESTAMP='20220721-204939'
-         F4PGA_HASH='38358c4'
-
-         for PKG in install xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test; do
-           wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
-         done
-
-   .. group-tab:: EOS-S3
-
-      .. code-block:: bash
-         :name: download-arch-def-eos-s3
-
-         wget -qO- https://storage.googleapis.com/symbiflow-arch-defs-install/quicklogic-arch-defs-qlf-fc5d8da.tar.gz | tar -xzC $F4PGA_INSTALL_DIR/$FPGA_FAM/
+   for PKG in $F4PGA_PACKAGES; do
+     wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
+   done
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.
 

@@ -107,6 +107,13 @@ Select your target FPGA family:
 
          export FPGA_FAM=eos-s3
 
+   .. group-tab:: ICE40
+
+      .. code-block:: bash
+         :name: fpga-fam-ice40
+
+         export FPGA_FAM=ice40
+
 Next, setup Conda and your system's environment, and download architecture definitions:
 
 .. NOTE::
@@ -146,6 +153,7 @@ If the above commands exited without errors, you have successfully installed and
 
   * Subdir :ghsrc:`xc7` for the Artix-7 devices
   * Subdir :ghsrc:`eos-s3` for the EOS S3 devices
+  * Subdir :ghsrc:`ice40` for the ICE40 devices
 
 Bumping specific tools
 ======================

@@ -20,14 +20,21 @@ Select your FPGA family:
       .. code-block:: bash
          :name: fpga-fam-xc7
 
-         FPGA_FAM="xc7"
+         export FPGA_FAM=xc7
 
    .. group-tab:: EOS S3
 
       .. code-block:: bash
          :name: fpga-fam-eos-s3
 
-         FPGA_FAM="eos-s3"
+         export FPGA_FAM=eos-s3
+
+   .. group-tab:: ICE40
+
+      .. code-block:: bash
+         :name: fpga-fam-ice40
+
+         export FPGA_FAM=ice40
 
 Next, prepare the environment:
 
@@ -103,4 +110,16 @@ Enter the directory that contains examples for QuickLogic EOS S3:
    cd eos-s3
 
 .. jinja:: eos-s3_btn_counter
+   :file: templates/example.jinja
+
+
+Lattice ICE40
+=============
+
+.. code-block:: bash
+   :name: enter-dir-ice40
+
+   cd ice40
+
+.. jinja:: ice40-spectrum
    :file: templates/example.jinja

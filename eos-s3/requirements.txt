@@ -14,7 +14,7 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 
-python-constraint
+-r ../common/requirements.txt
+
 serial
 git+https://github.com/antmicro/quicklogic-fasm@607849ec0bdef8740be33dbaa49d15a3d400f809
-https://github.com/chipsalliance/f4pga/archive/df55ee75e4a1da978ffa5f7385bed47faf255661.zip#subdirectory=f4pga

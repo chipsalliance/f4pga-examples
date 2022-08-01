@@ -14,7 +14,7 @@ sympy
 textx
 yapf==0.24.0
 python-constraint
-https://github.com/chipsalliance/f4pga/archive/27eca4f35db3c4e04ce255ab319611774de9b9a1.zip#subdirectory=f4pga
+https://github.com/chipsalliance/f4pga/archive/df55ee75e4a1da978ffa5f7385bed47faf255661.zip#subdirectory=f4pga
 fasm
 git+https://github.com/f4pga/prjxray.git@ae546d6b7648bf4df9cf63f0b25b2028b5623c43#egg=prjxray
 git+https://github.com/chipsalliance/f4pga-xc-fasm.git@25dc605c9c0896204f0c3425b52a332034cf5e5c#egg=xc-fasm

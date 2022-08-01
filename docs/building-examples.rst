@@ -31,25 +31,11 @@ Select your FPGA family:
 
 Next, prepare the environment:
 
-.. tabs::
+.. code-block:: bash
+   :name: conda-prep-env
 
-   .. group-tab:: Artix-7
-
-      .. code-block:: bash
-         :name: conda-prep-env-xc7
-
-         export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
-         source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
-
-   .. group-tab:: EOS S3
-
-      .. code-block:: bash
-         :name: conda-prep-env-eos-s3
-
-         export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin:$PATH";
-         export F4PGA_BIN_DIR="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/bin";
-         export F4PGA_SHARE_DIR="$F4PGA_INSTALL_DIR/$FPGA_FAM/quicklogic-arch-defs/share/symbiflow";
-         source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
+   export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
+   source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 Finally, enter your working Conda environment:
 

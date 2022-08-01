@@ -163,7 +163,7 @@ Updating Yosys SystemVerilog plugin
 Make sure ``curl``, ``jq``, ``tar`` and ``wget`` are installed (used to automatically download newest version):
 
 .. code-block:: bash
-   :name: activate-xc7
+   :name: get-utils
 
    apt install curl jq tar wget
 

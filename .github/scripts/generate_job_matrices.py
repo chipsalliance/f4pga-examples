@@ -105,6 +105,16 @@ def get_jobs(
         'surelog': "-parse -DSYNTHESIS" if usesSurelog else ""
     } for osver in osvers])
 
+    jobs.extend([{
+        'name': "Surelog" if usesSurelog else "Default",
+        'runs-on': runs_on,
+        'fpga-fam': "ice40",
+        'os': osver[0],
+        'os-version': osver[1],
+        'example': "spectrum",
+        'surelog': "-parse -DSYNTHESIS" if usesSurelog else ""
+    } for osver in osvers])
+
     return jobs
 
 for distribution in ['debian', 'ubuntu', 'fedora', 'centos']:

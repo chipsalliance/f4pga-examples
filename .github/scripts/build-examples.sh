@@ -91,6 +91,14 @@ case "$fpga_family" in
     esac
   done
   ;;
+  ice40) for example in $examples; do
+    case $example in
+      "spectrum") tuttest_exec ${snippets} ice40/spectrum/README.rst:ice40-spectrum ;;
+      *) echo "ERROR: Unknown example name: $example" >&2
+        exit 1 ;;
+    esac
+  done
+  ;;
   *) echo "ERROR: Unknown fpga_family: $fpga_family" >&2
     exit 1
   ;;

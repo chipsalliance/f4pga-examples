@@ -20,14 +20,14 @@ Select your FPGA family:
       .. code-block:: bash
          :name: fpga-fam-xc7
 
-         FPGA_FAM="xc7"
+         export FPGA_FAM="xc7"
 
    .. group-tab:: EOS S3
 
       .. code-block:: bash
          :name: fpga-fam-eos-s3
 
-         FPGA_FAM="eos-s3"
+         export FPGA_FAM="eos-s3"
 
 Next, prepare the environment:
 

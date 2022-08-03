@@ -19,7 +19,7 @@
 from os import environ
 from sys import argv as sys_argv
 
-registry = 'ghcr.io/chipsalliance/f4pga/dev/conda'
+registry = 'ghcr.io/umarcor/f4pga/dev/conda'
 
 isFork = len(sys_argv)>1 and sys_argv[1] != 'chipsalliance/f4pga-examples'
 

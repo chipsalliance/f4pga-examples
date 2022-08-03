@@ -18,31 +18,16 @@
 
 set -e
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-source ${CURRENT_DIR}/common.sh
-
-# -- validate input -----------------------------------------------------------
-
-function help() {
-   echo
-   echo "Install the F4PGA toolchain as described in the sphinx documentation"
-   echo
-   echo "Syntax: $0 fpga_family os"
-   echo "Arguments:"
-   echo "  fpga_family  - A supported FPGA family"
-   echo "  os           - A supported operating system"
-   echo
-}
-
 if [[ ! $# -eq 2 ]]; then
-  echo "ERROR: Invalid number of arguments" >&2
-  help >&2
+  echo "ERROR: Two arguments are required!" >&2
+  echo "Please, provide: path/to/install-toolchain.sh <fpga_family> <os>" >&2
   exit 1
 fi
 
-# -- tuttest ------------------------------------------------------------------
-
+# A supported FPGA family
 fpga_family=$1
+
+# A supported operating system
 os=$2
 
-tuttest_exec docs/getting.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,env-setup
+tuttest "docs/getting.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,env-setup"

@@ -1,14 +1,19 @@
-mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-current_dir := $(patsubst %/,%,$(dir $(mkfile_path)))
-TOP:=top
-VERILOG:=btn_counter.v
-DEVICE := ql-eos-s3
-PARTNAME := PD64
-PCF:=chandalar.pcf
-
 ifdef F4PGA_USE_DEPRECATED
 all:
-	ql_symbiflow -compile -d ${DEVICE} -P ${PARTNAME} -v ${VERILOG} -t ${TOP} -p ${PCF}
+# -d: Device
+# -P: Part name
+# -v: Verilog source
+# -t: Top
+# -p: PCF Constrains
+	ql_symbiflow -compile \
+	  -d ql-eos-s3 \
+	  -P PD64 \
+	  -v btn_counter.v \
+	  -t top \
+	  -p chandalar.pcf \
+	  -dump openocd \
+	  -dump header \
+	  -dump binary
 else
 all:
 	f4pga -vvv build --flow ./flow.json

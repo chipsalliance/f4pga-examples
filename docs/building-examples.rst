@@ -29,18 +29,13 @@ Select your FPGA family:
 
          FPGA_FAM="eos-s3"
 
-Next, prepare the environment:
+Next, prepare and activate the environment:
 
 .. code-block:: bash
-   :name: conda-prep-env
+   :name: conda-env
 
    export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
    source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
-
-Finally, enter your working Conda environment:
-
-.. code-block:: bash
-   :name: conda-act-env
 
    conda activate $FPGA_FAM
 

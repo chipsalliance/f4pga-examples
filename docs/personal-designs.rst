@@ -1,6 +1,6 @@
 .. _Building-Custom-Designs:
 
-Building Custom Designs
+Building custom designs
 =======================
 
 This section describes how to compile and download your own designs to an FPGA using only

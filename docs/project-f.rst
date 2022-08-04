@@ -1,5 +1,5 @@
-Running Project F designs in F4PGA
-==================================
+Running Project F designs
+=========================
 
 .. warning::
    F4PGA does not currently support the MMCME2_BASE primitive--a key commponent in Project F's clock_gen_480p module

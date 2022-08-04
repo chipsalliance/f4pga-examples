@@ -6,7 +6,7 @@ This tutorial walks you through how to do that.
 
 If you would like to use methods other than a Makefile to build and compile your designs (such as python or bash
 scripts) or if you would like to learn more about the various F4PGA commands used by the common Makefile to build and
-compile designs take a look at the :ref:`Understanding` page.
+compile designs take a look at the :doc:`F4PGA Documentation <f4pga:index>` page.
 
 Example
 -------

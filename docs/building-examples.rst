@@ -34,7 +34,6 @@ Next, prepare the environment:
 .. code-block:: bash
    :name: conda-prep-env
 
-   export PATH="$F4PGA_INSTALL_DIR/$FPGA_FAM/install/bin:$PATH";
    source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh"
 
 Finally, enter your working Conda environment:

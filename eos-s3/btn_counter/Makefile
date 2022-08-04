@@ -11,6 +11,7 @@ all:
 	  -v btn_counter.v \
 	  -t top \
 	  -p chandalar.pcf \
+	  -dump jlink \
 	  -dump openocd \
 	  -dump header \
 	  -dump binary

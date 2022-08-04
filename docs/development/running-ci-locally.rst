@@ -1,5 +1,5 @@
-Running "CI" locally
-####################
+Running CI locally
+##################
 
 The CI uses a bunch of scripts in the `.github/scripts/ <./.github/scripts>`_ directory to execute the needed tests.
 You can use the same scripts locally to test without having to wait for the online CIs to pass if you want to quickly

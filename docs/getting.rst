@@ -120,10 +120,10 @@ Next, setup Conda and your system's environment, and download architecture defin
    bash conda_installer.sh -u -b -p $F4PGA_INSTALL_DIR/$FPGA_FAM/conda;
    source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
    conda env create -f $FPGA_FAM/environment.yml
-   mkdir -p $F4PGA_INSTALL_DIR/$FPGA_FAM/install
+   mkdir -p $F4PGA_INSTALL_DIR/$FPGA_FAM
 
-   F4PGA_TIMESTAMP='20220729-181657'
-   F4PGA_HASH='7833050'
+   F4PGA_TIMESTAMP='20220803-160711'
+   F4PGA_HASH='df6d9e5'
 
    case $FPGA_FAM in
      xc7)
@@ -135,7 +135,7 @@ Next, setup Conda and your system's environment, and download architecture defin
    esac
 
    for PKG in $F4PGA_PACKAGES; do
-     wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}/install
+     wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}
    done
 
 If the above commands exited without errors, you have successfully installed and configured your working environment.

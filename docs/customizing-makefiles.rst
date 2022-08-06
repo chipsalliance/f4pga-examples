@@ -1,3 +1,5 @@
+.. _CustomizingMakefiles:
+
 Customizing the Makefiles
 =========================
 

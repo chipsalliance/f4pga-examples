@@ -45,4 +45,4 @@ fi
 fpga_family=$1
 os=$2
 
-tuttest_exec docs/getting.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,env-setup
+tuttest_exec docs/getting.rst:install-reqs-$os,wget-conda,conda-install-dir,fpga-fam-$fpga_family,env-setup,packages-$fpga_family,get-packages

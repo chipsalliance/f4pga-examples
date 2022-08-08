@@ -120,19 +120,30 @@ Next, setup Conda and your system's environment, and download architecture defin
    bash conda_installer.sh -u -b -p $F4PGA_INSTALL_DIR/$FPGA_FAM/conda;
    source "$F4PGA_INSTALL_DIR/$FPGA_FAM/conda/etc/profile.d/conda.sh";
    conda env create -f $FPGA_FAM/environment.yml
+
+.. tabs::
+
+   .. group-tab:: Artix-7
+
+      .. code-block:: bash
+         :name: packages-xc7
+
+         export F4PGA_PACKAGES='install-xc7 xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test'
+
+   .. group-tab:: EOS S3
+
+      .. code-block:: bash
+         :name: packages-eos-s3
+
+         export F4PGA_PACKAGES='install-ql ql-eos-s3_wlcsp'
+
+.. code-block:: bash
+   :name: get-packages
+
    mkdir -p $F4PGA_INSTALL_DIR/$FPGA_FAM
 
    F4PGA_TIMESTAMP='20220803-160711'
    F4PGA_HASH='df6d9e5'
-
-   case $FPGA_FAM in
-     xc7)
-       F4PGA_PACKAGES='install-xc7 xc7a50t_test xc7a100t_test xc7a200t_test xc7z010_test'
-     ;;
-     eos-s3)
-       F4PGA_PACKAGES='install-ql ql-eos-s3_wlcsp'
-     ;;
-   esac
 
    for PKG in $F4PGA_PACKAGES; do
      wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}

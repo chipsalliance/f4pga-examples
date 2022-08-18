@@ -72,23 +72,15 @@ Enter the directory that contains examples for Xilinx 7-Series FPGAs:
 
    cd xc7
 
-.. jinja:: xc7_counter_test
-   :file: templates/example.jinja
+Then, follow the guidelines for each example:
 
-.. jinja:: xc7_picosoc_demo
-   :file: templates/example.jinja
+.. toctree::
 
-.. jinja:: xc7_litex_demo
-   :file: templates/example.jinja
-
-.. jinja:: xc7_linux_litex_demo
-   :file: templates/example.jinja
-
-.. jinja:: xc7_timer
-   :file: templates/example.jinja
-
-.. jinja:: xc7_pulse_width_led
-   :file: templates/example.jinja
+   xc7/counter_test
+   xc7/picosoc_demo
+   xc7/litex_demo
+   xc7/timer
+   xc7/pulse_width_led
 
 
 QuickLogic EOS S3
@@ -101,5 +93,8 @@ Enter the directory that contains examples for QuickLogic EOS S3:
 
    cd eos-s3
 
-.. jinja:: eos-s3_btn_counter
-   :file: templates/example.jinja
+Then, follow the guidelines for each example:
+
+.. toctree::
+
+   eos-s3/btn_counter

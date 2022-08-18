@@ -7,7 +7,7 @@ ifdef F4PGA_USE_DEPRECATED
   XDC := ${current_dir}/arty.xdc
 else
 build:
-	f4pga build --flow ./flow.json
+	f4pga -vv build --flow ./flow.json
 endif
 else ifeq ($(TARGET),arty_100)
   XDC := ${current_dir}/arty.xdc

@@ -84,7 +84,7 @@ and so you will need to add some ``sudo`` commands to the instructions below.
 .. code-block:: bash
    :name: conda-install-dir
 
-   export F4PGA_INSTALL_DIR=~/opt/f4pga
+   export F4PGA_INSTALL_DIR=/opt/f4pga
 
 Setup and download assets
 ~~~~~~~~~~~~~~~~~~~~~~~~~

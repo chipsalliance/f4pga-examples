@@ -22,32 +22,89 @@ jobs:
       ubuntu: ${{ steps.generate.outputs.ubuntu }}
       fedora: ${{ steps.generate.outputs.fedora }}
       centos: ${{ steps.generate.outputs.centos }}
+      images: ${{ steps.generate.outputs.images }}
     steps:
       - uses: actions/checkout@v3
       - id: generate
-        run: ./.github/scripts/generate_job_matrices.py '${{ github.repository }}'
+        run: ./.github/scripts/generate_matrices.py '${{ github.repository }}'
+
+
+  Packages:
+    needs: Matrices
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.Matrices.outputs.images) }}
+    name: 'Image: ${{ matrix.image }}'
+    env:
+      DOCKER_BUILDKIT: 1
+
+    steps:
+
+      - name: Setup repository
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Build container image
+        run: |
+          docker build -t ${{ matrix.registry }}/${{ matrix.image }} . -f- <<'EOF'
+          FROM ${{ matrix.from }}
+
+          ENV LANG en_US.UTF-8
+
+          # Install utils
+          RUN ${{ matrix.utils }}
+
+          # Install tuttest
+          RUN wget https://github.com/antmicro/tuttest/releases/download/v0.2-beta/tuttest -O /usr/bin/tuttest \
+           && chmod a+rx /usr/bin/tuttest
+
+          # Install F4PGA toolchain
+          RUN --mount=type=bind,target=/tmp/ctx cp -vr /tmp/ctx /tmp/repo \
+           && cd /tmp/repo && bash /tmp/repo/.github/scripts/install-toolchain.sh ${{ matrix.args }} \
+           && cd .. && rm -rf /tmp/repo
+          EOF
+
+      - name: Push container image
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: pyTooling/Actions/with-post-step@r0
+        with:
+          main: |
+            echo '${{ github.token }}' | docker login ghcr.io -u GitHub-Actions --password-stdin
+            docker push ${{ matrix.registry }}/${{ matrix.image }}
+          post: docker logout ghcr.io
 
 
   Debian:
-    needs: Matrices
+    needs:
+      - Matrices
+      - Packages
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
       matrix: ${{ needs.Matrices.outputs.debian }}
 
   Ubuntu:
-    needs: Matrices
+    needs:
+      - Matrices
+      - Packages
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
       matrix: ${{ needs.Matrices.outputs.ubuntu }}
 
   Fedora:
-    needs: Matrices
+    needs:
+      - Matrices
+      - Packages
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
       matrix: ${{ needs.Matrices.outputs.fedora }}
 
   Centos:
-    needs: Matrices
+    needs:
+      - Matrices
+      - Packages
     uses: ./.github/workflows/sphinx-tuttest.yml
     with:
       matrix: ${{ needs.Matrices.outputs.centos }}

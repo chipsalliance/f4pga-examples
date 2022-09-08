@@ -142,8 +142,8 @@ Next, setup Conda and your system's environment, and download architecture defin
 
    mkdir -p $F4PGA_INSTALL_DIR/$FPGA_FAM
 
-   F4PGA_TIMESTAMP='20220818-143856'
-   F4PGA_HASH='24e8f73'
+   F4PGA_TIMESTAMP='20220907-210059'
+   F4PGA_HASH='66a976d'
 
    for PKG in $F4PGA_PACKAGES; do
      wget -qO- https://storage.googleapis.com/symbiflow-arch-defs/artifacts/prod/foss-fpga-tools/symbiflow-arch-defs/continuous/install/${F4PGA_TIMESTAMP}/symbiflow-arch-defs-${PKG}-${F4PGA_HASH}.tar.xz | tar -xJC $F4PGA_INSTALL_DIR/${FPGA_FAM}

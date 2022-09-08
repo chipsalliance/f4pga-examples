@@ -15,4 +15,4 @@
 # SPDX-License-Identifier: Apache-2.0
 
 python-constraint
-https://github.com/chipsalliance/f4pga/archive/2d8d85706ecc7a72e17078ea903e2751022825da.zip#subdirectory=f4pga
+https://github.com/chipsalliance/f4pga/archive/6b4976a028e8a8a3b78711b6471655d3bfe58ed7.zip#subdirectory=f4pga

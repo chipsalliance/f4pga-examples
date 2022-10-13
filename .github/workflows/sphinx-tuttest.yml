@@ -77,7 +77,7 @@ jobs:
 
       - uses: actions/upload-artifact@v3
         with:
-          name: f4pga-examples-bitstreams-${{ matrix.name }}
+          name: ${{matrix.os}}-${{matrix.os-version}}-f4pga-examples-bitstreams-${{ matrix.name }}
           path: '**/*.bit'
 
       - uses: actions/upload-artifact@v3

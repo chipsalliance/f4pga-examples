@@ -9,7 +9,7 @@ For this, you will need `tuttest <https://github.com/antmicro/tuttest/>`_, which
 
     pip install git+https://github.com/antmicro/tuttest
 
-* ``<fpga-family>`` is one of ``{eos-s3, xc7}`` (the two currently covered platforms - EOS-S3 and Xilinx series 7).
+* ``<fpga-family>`` is one of ``{eos-s3, xc7, qlf_k4n8}`` (the three currently covered platforms - EOS-S3, K4N8 and Xilinx series 7).
 
 * ``<os>`` is one of ``{ubuntu, debian, centos}`` (currently supported operating systems).
 

@@ -107,6 +107,13 @@ Select your target FPGA family:
 
          export FPGA_FAM=eos-s3
 
+   .. group-tab:: K4N8
+
+      .. code-block:: bash
+         :name: fpga-fam-qlf_k4n8
+
+         export FPGA_FAM=qlf_k4n8
+
 Next, setup Conda and your system's environment, and download architecture definitions:
 
 .. NOTE::
@@ -137,6 +144,13 @@ Next, setup Conda and your system's environment, and download architecture defin
 
          export F4PGA_PACKAGES='install-ql ql-eos-s3_wlcsp'
 
+   .. group-tab:: K4N8
+
+      .. code-block:: bash
+         :name: packages-qlf_k4n8
+
+         export F4PGA_PACKAGES='install-ql qlf_k4n8-qlf_k4n8_umc22_fast_qlf_k4n8-qlf_k4n8_umc22_fast qlf_k4n8-qlf_k4n8_umc22_qlf_k4n8-qlf_k4n8_umc22 qlf_k4n8-qlf_k4n8_umc22_slow_qlf_k4n8-qlf_k4n8_umc22_slow'
+
 .. code-block:: bash
    :name: get-packages
 
@@ -157,6 +171,7 @@ If the above commands exited without errors, you have successfully installed and
 
   * Subdir :ghsrc:`xc7` for the Artix-7 devices
   * Subdir :ghsrc:`eos-s3` for the EOS S3 devices
+  * Subdir :ghsrc:`qlf_k4n8` for the K4N8 devices
 
 .. HINT::
   Sometimes it may be preferable to get the latest versions of the tools before the pinned versions in this repository

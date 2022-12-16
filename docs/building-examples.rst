@@ -77,11 +77,12 @@ Then, follow the guidelines for each example:
 .. toctree::
 
    xc7/counter_test
-   xc7/picosoc_demo
-   xc7/litex_demo
    xc7/timer
    xc7/pulse_width_led
-
+   xc7/picosoc_demo
+   xc7/litex_demo
+   xc7/linux_litex_demo
+   xc7/litex_sata_demo
 
 QuickLogic EOS S3
 =================

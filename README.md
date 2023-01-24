@@ -10,7 +10,7 @@
 # F4PGA examples
 
 <p align="center">
-  <a title="GitHub Actions" href="https://github.com/chipsalliance/f4pga-examples/actions"><img src="https://img.shields.io/github/workflow/status/chipsalliance/f4pga-examples/Automerge/main?longCache=true&style=flat-square&label=Tests&logo=Github%20Actions&logoColor=fff"></a><!--
+  <a title="GitHub Actions" href="https://github.com/chipsalliance/f4pga-examples/actions"><img src="https://img.shields.io/github/actions/workflow/status/chipsalliance/f4pga-examples/Automerge.yml?branch=main&longCache=true&style=flat-square&label=Tests&logo=Github%20Actions&logoColor=fff"></a><!--
   -->
   <a title="ReadTheDocs CI Status" href="https://f4pga-examples.readthedocs.io/en/latest/?badge=latest"><img alt="'Doc' workflow status" src="https://img.shields.io/readthedocs/f4pga-examples?longCache=true&style=flat-square&logo=ReadTheDocs&logoColor=fff&label=F4PGA%20Examples%20Documentation"></a><!--
   -->

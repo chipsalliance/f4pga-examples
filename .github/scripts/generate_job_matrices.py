@@ -24,7 +24,7 @@ isFork = len(sys_argv)>1 and sys_argv[1] != 'chipsalliance/f4pga-examples'
 runs_on = (
     'ubuntu-latest'
     if isFork else
-    ['self-hosted', 'Linux', 'X64']
+    ['self-hosted', 'Linux', 'X64', 'gcp-custom-runners']
 )
 
 

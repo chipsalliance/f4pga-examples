@@ -29,8 +29,8 @@ Create a makefile for your project by running ``touch Makefile``, and add the fo
 
    # Include your constraint file path(s) below. Use either an XDC file
    # or a PCF+SDC pair. Don't use all three file types.
-   XDC := ${current_dir}/<name of your pcf file if applicable>
-   PCF := ${current_dir}/<name of your xdc file if applicable>
+   XDC := ${current_dir}/<name of your xdc file if applicable>
+   PCF := ${current_dir}/<name of your pcf file if applicable>
    SDC := ${current_dir}/<name of your sdc file if applicable>
 
    include <path to f4pga-examples root directory>/common/common.mk

@@ -25,8 +25,8 @@ dependencies:
   - litex-hub::gcc-riscv64-elf-newlib=10.1.0=20220706_160221
   - litex-hub::prjxray-db=0.0_257_g0a0adde=20220708_203356
   - litex-hub::vtr-optimized=8.0.0_5699_g25e723a24=20220708_203356
-  - litex-hub::yosys=0.19_21_ga82eff2e2=20220720_081021_py37
-  - litex-hub::symbiflow-yosys-plugins=1.0.0_7_1027_g52cdcc4=20220720_081021
+  - litex-hub::yosys=0.27_29_g0f5e7c244=20230406_083352_py37
+  - litex-hub::symbiflow-yosys-plugins=1.0.0_7_1260_ge7070ca=20230225_164303
   - make
   - lxml
   - simplejson

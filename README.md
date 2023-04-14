@@ -17,7 +17,7 @@
 </p>
 
 This repository provides example FPGA designs that can be built using the F4PGA open source toolchain.
-These examples target the Xilinx 7-Series and the QuickLogic EOS S3 devices.
+These examples target the Xilinx 7-Series, the QuickLogic EOS S3 and K4N8 devices.
 
 * Please refer to the [![](https://img.shields.io/website?longCache=true&style=flat-square&label=Documentation%20For%20Users&up_color=231f20&up_message=%E2%9E%9A&url=https%3A%2F%2Ff4pga-examples.readthedocs.io%2Fen%2Flatest%2Findex.html&labelColor=fff)](https://f4pga-examples.readthedocs.io)
   for a proper guide on how to run these examples, as well as instructions on how to build and compile your own HDL designs using
@@ -27,7 +27,7 @@ These examples target the Xilinx 7-Series and the QuickLogic EOS S3 devices.
 
 The repository includes:
 
-* [xc7/](./xc7) and [eos-s3/](./eos-s3) - Examples for Xilinx 7-Series and EOS-S3 devices, including:
+* [xc7/](./xc7), [eos-s3/](./eos-s3) and [qlf_k4n8/](./qlf_k4n8)- Examples for Xilinx 7-Series, EOS-S3 and K4N8 devices, including:
 
   * Verilog code
 

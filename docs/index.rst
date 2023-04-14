@@ -7,6 +7,7 @@ It currently focuses on the following FPGA families:
 
 - Artix-7 from Xilinx,
 - EOS-S3 from QuickLogic.
+- K4N8 from QuickLogic.
 
 Follow this guide to:
 
@@ -24,7 +25,7 @@ F4PGA is a fully open source toolchain for the development of FPGAs, currently t
 
 - Xilinx's 7-Series.
 - Lattice's ICE40 and ECP5.
-- QuickLogic's EOS-S3.
+- QuickLogic's EOS-S3 and K4N8.
 
 Gain valuable information about the flows and the tools in section :ref:`Design Flows <f4pga:Flows>` at
 :doc:`F4PGA Documentation <f4pga:index>`.

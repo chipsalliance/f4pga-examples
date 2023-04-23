@@ -16863,7 +16863,7 @@ GTPE2_COMMON #(
 	// FIXME: The GTREFCLK1 needs to be used for this design.
 	// Vivado automatically swaps the input accordingly to the IBUFDS placement location
 	// and this is currently not doable in VPR. For the time being, we can just manually adjust it.
-	// https://github.com/SymbiFlow/symbiflow-arch-defs/issues/2328
+	// https://github.com/chipsalliance/f4pga-arch-defs/issues/2328
 	.GTREFCLK1(a7litesataphy_gtrefclk0),
 	.PLL0LOCKEN(1'd1),
 	.PLL0PD(1'd0),
@@ -16880,7 +16880,7 @@ GTPE2_COMMON #(
 
 // FIXME: FDPE connected to the IBUFDS clk output need to be in the same clock region, otherwise resulting
 // 		  in an unroutable situation.
-// 		  https://github.com/SymbiFlow/symbiflow-arch-defs/issues/2327
+// 		  https://github.com/chipsalliance/f4pga-arch-defs/issues/2327
 (* LOC="SLICE_X51Y227" *)
 FDPE #(
 	.INIT(1'd1)

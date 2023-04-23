@@ -23,24 +23,24 @@ There are multiple CPU types supported, choose one from the below commands to ge
 .. code-block:: bash
    :name: example-litex_picorv32-a35t-group
 
-   ./src/litex/litex/boards/targets/arty.py --toolchain=symbiflow --cpu-type=picorv32 --sys-clk-freq 80e6 --output-dir build/picorv32/arty_35 --variant a7-35 --build
+   ./src/litex/litex/boards/targets/arty.py --toolchain=f4pga --cpu-type=picorv32 --sys-clk-freq 80e6 --output-dir build/picorv32/arty_35 --variant a7-35 --build
 
 .. code-block:: bash
    :name: example-litex_picorv32-a100t-group
 
-   ./src/litex/litex/boards/targets/arty.py --toolchain=symbiflow --cpu-type=picorv32 --sys-clk-freq 80e6 --output-dir build/picorv32/arty_100 --variant a7-100 --build
+   ./src/litex/litex/boards/targets/arty.py --toolchain=f4pga --cpu-type=picorv32 --sys-clk-freq 80e6 --output-dir build/picorv32/arty_100 --variant a7-100 --build
 
 **VexRiscv**
 
 .. code-block:: bash
    :name: example-litex_vexriscv-a35t-group
 
-   ./src/litex/litex/boards/targets/arty.py --toolchain=symbiflow --cpu-type=vexriscv --sys-clk-freq 80e6 --output-dir build/vexriscv/arty_35 --variant a7-35 --build
+   ./src/litex/litex/boards/targets/arty.py --toolchain=f4pga --cpu-type=vexriscv --sys-clk-freq 80e6 --output-dir build/vexriscv/arty_35 --variant a7-35 --build
 
 .. code-block:: bash
    :name: example-litex_vexriscv-a100t-group
 
-   ./src/litex/litex/boards/targets/arty.py --toolchain=symbiflow --cpu-type=vexriscv --sys-clk-freq 80e6 --output-dir build/vexriscv/arty_100 --variant a7-100 --build
+   ./src/litex/litex/boards/targets/arty.py --toolchain=f4pga --cpu-type=vexriscv --sys-clk-freq 80e6 --output-dir build/vexriscv/arty_100 --variant a7-100 --build
 
 Depending on which board and CPU-type you selected, the bitstream is loacted in:
 

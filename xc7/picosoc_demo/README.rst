@@ -26,6 +26,11 @@ This example features a picorv32 soft CPU and a SoC based on it. To build the pi
 
    TARGET="basys3" make -C picosoc_demo
 
+.. code-block:: bash
+   :name: example-picosoc-nexys_video-group
+
+   TARGET="nexys_video" make -C picosoc_demo
+
 At completion, the bitstreams are located in the build directory:
 
 .. code-block:: bash

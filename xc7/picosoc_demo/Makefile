@@ -16,6 +16,9 @@ else ifeq ($(TARGET),arty_100)
 else ifeq ($(TARGET),nexys4ddr)
   SOURCES += ${current_dir}/nexys4ddr.v
   PCF := ${current_dir}/nexys4ddr.pcf
+else ifeq ($(TARGET),nexys_video)
+  SOURCES += ${current_dir}/nexysvideo.v
+  PCF := ${current_dir}/nexysvideo.pcf
 else
   SOURCES += ${current_dir}/basys3.v
   PCF := ${current_dir}/basys3.pcf

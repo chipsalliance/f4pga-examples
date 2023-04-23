@@ -19,7 +19,7 @@ To be able to follow through this tutorial, install the following software:
          :name: install-reqs-ubuntu
 
          apt update -y
-         apt install -y git wget xz-utils
+         apt install -y git wget xz-utils openocd
 
    .. group-tab:: Debian
 
@@ -27,7 +27,7 @@ To be able to follow through this tutorial, install the following software:
          :name: install-reqs-debian
 
          apt update -y
-         apt install -y git wget xz-utils
+         apt install -y git wget xz-utils openocd
 
    .. group-tab:: CentOS
 
@@ -35,14 +35,14 @@ To be able to follow through this tutorial, install the following software:
          :name: install-reqs-centos
 
          yum update -y
-         yum install -y git wget which xz
+         yum install -y git wget which xz openocd
 
    .. group-tab:: Fedora
 
       .. code-block:: bash
          :name: install-reqs-fedora
 
-         dnf install -y findutils git wget which xz
+         dnf install -y findutils git wget which xz openocd
 
 
 Next, clone the F4PGA examples repository and enter it:

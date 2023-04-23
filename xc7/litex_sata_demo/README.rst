@@ -24,13 +24,13 @@ At completion, the bitstreams are located in the build directory:
 
 .. NOTE::
   To generate the source files for this test, the following packages were used:
-  ``enjoy-digital/litex@95b310ee0f0d9e78e00eb32b71324b25265da4f4``,
-  ``enjoy-digital/litesata@fae9f8d5b7b6d4c6a0a93b496bd15db5201d14f7``,
-  ``enjoy-digital/litedram@2c60861929a317af697267d6219da43d10dcf1fa``,
-  ``enjoy-digital/liteiclink@0980a7cf4ffcb0b69a84fa0343a66180408b2a91``,
-  ``litex-hub/litex-boards@ea58ef94a784308ae024a1d201d603bc8459a590``,
-  and
-  ``m-labs/migen@c50ecdebd0e93c90ff44ca2e13d9f55fa97947d5``.
+
+  * :gh:`LiteX <enjoy-digital/litex>` @95b310ee0f0d9e78e00eb32b71324b25265da4f4
+  * :gh:`LiteSATA <enjoy-digital/litesata>` @fae9f8d5b7b6d4c6a0a93b496bd15db5201d14f7
+  * :gh:`LiteDRAM <enjoy-digital/litedram>` @2c60861929a317af697267d6219da43d10dcf1fa
+  * :gh:`LiteICLink <enjoy-digital/liteiclink>` @0980a7cf4ffcb0b69a84fa0343a66180408b2a91
+  * :gh:`LiteX Boards <litex-hub/litex-boards>` @ea58ef94a784308ae024a1d201d603bc8459a590
+  * :gh:`migen <m-labs/migen>` @c50ecdebd0e93c90ff44ca2e13d9f55fa97947d5
 
 .. NOTE::
   The generated verilog design file (litesata.v) contains a couple of fixes to properly work with the Yosys+VPR flow.

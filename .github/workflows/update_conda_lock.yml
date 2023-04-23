@@ -1,0 +1,19 @@
+name: Update Conda lock
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+
+  update-locks:
+    uses: f4pga/actions/.github/workflows/update_conda_lock.yml@main
+    with:
+      conda_lock_file: xc7/conda_lock.yml
+      environment_file: xc7/environment.yml
+    secrets:
+      SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    
+    # Download arch definitions
+    # scripts/download
+    
+    # Build docker containers
+    scripts/update
+
+fi

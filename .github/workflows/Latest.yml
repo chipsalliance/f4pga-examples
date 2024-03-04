@@ -23,7 +23,7 @@ jobs:
       fedora: ${{ steps.generate.outputs.fedora }}
       centos: ${{ steps.generate.outputs.centos }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: generate
         run: ./.github/scripts/generate_job_matrices.py '${{ github.repository }}'
 

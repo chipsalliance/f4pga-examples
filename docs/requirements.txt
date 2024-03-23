@@ -3,3 +3,4 @@ docutils
 git+https://github.com/f4pga/sphinx_f4pga_theme.git@f4pga#egg=sphinx-f4pga-theme
 sphinx-tabs
 sphinx-jinja
+docutils==0.17.1

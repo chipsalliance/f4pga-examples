@@ -1,4 +1,4 @@
-sphinx==4.5.0
+sphinx
 docutils
 git+https://github.com/f4pga/sphinx_f4pga_theme.git@f4pga#egg=sphinx-f4pga-theme
 sphinx-tabs

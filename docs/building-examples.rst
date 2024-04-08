@@ -29,6 +29,13 @@ Select your FPGA family:
 
          export FPGA_FAM="eos-s3"
 
+   .. group-tab:: K4N8
+
+      .. code-block:: bash
+         :name: fpga-fam-qlf_k4n8
+
+         export FPGA_FAM="qlf_k4n8"
+
 Next, prepare the environment:
 
 .. code-block:: bash
@@ -99,3 +106,20 @@ Then, follow the guidelines for each example:
 .. toctree::
 
    eos-s3/btn_counter
+
+
+QuickLogic K4N8
+===============
+
+Enter the directory that contains examples for QuickLogic K4N8:
+
+.. code-block:: bash
+   :name: enter-dir-qlf_k4n8
+
+   cd qlf_k4n8
+
+Then, follow the guidelines for each example:
+
+.. toctree::
+
+   qlf_k4n8/btn_counter

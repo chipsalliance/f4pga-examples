@@ -91,6 +91,14 @@ case "$fpga_family" in
     esac
   done
   ;;
+  qlf_k4n8) for example in $examples; do
+    case $example in
+      "counter") tuttest_exec ${snippets} qlf_k4n8/btn_counter/README.rst:qlf_k4n8-counter ;;
+      *) echo "ERROR: Unknown example name: $example" >&2
+        exit 1 ;;
+    esac
+  done
+  ;;
   *) echo "ERROR: Unknown fpga_family: $fpga_family" >&2
     exit 1
   ;;

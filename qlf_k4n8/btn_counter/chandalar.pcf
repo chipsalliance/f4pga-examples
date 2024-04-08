@@ -1,0 +1,5 @@
+set_clk clk      clk
+set_io  led[0]   A2F_GPIO6_4
+set_io  led[1]   A2F_GPIO6_5
+set_io  led[2]   A2F_GPIO6_6
+set_io  led[3]   A2F_GPIO6_7

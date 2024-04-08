@@ -10,7 +10,7 @@ full_name_lut = {
     'zybo': 'Zybo Z7',
     'nexys_video': 'Nexys Video',
 }
-families = ('xc7', 'eos-s3')
+families = ('xc7', 'eos-s3', 'qlf_k4n8')
 inlines = ('literal', 'strong', 'reference')
 
 

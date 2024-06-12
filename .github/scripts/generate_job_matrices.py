@@ -35,16 +35,16 @@ def get_jobs(
     examples = [
         "pulse_width_led",
         "hello",
+        "litex",
+        "button_controller",
+        "timer",
     ]
 
     # Skip tests that are currently unsupported
     if not usesSurelog:
         examples.extend([
-            "litex",
             "picosoc",
             "litex_linux",
-            "button_controller",
-            "timer",
             "hello-k",
         ])
 
@@ -68,11 +68,10 @@ def get_jobs(
         ])
 
     if not isFork:
-        examples.extend(["counter"])
-
-        # Skip tests that are currently unsupported
-        if not usesSurelog:
-            examples.extend(["litex_sata"])
+        examples.extend([
+            "counter",
+            "litex_sata"
+        ])
 
         if distribution == "ubuntu":
             osvers.extend([
